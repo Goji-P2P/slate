@@ -516,22 +516,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <p>The result is then Base64 encoded to produce a string.</p>
 
 <p>The encrypted string is then UTF-8 URL encoded.</p>
-<h3 id='examples'>Examples</h3>
-<p><code>GET https://api.gojip2p.com/user/session/valid</code></p>
-
-<p>With a nonce = 67681625-d7f9-43e3-859a-25e634c203c2</p>
-
-<p>and timestamp = 1474982268271</p>
-
-<p>The signature string would be as follows:</p>
-
-<p>67681625-d7f9-43e3-859a-25e634c203c2
-    1474982268271</p>
-
-<p>Assuming a secret key of <code>abcd1234</code>, this will produce a signature equal to: <code>q0AdIAm6SphhgN/VxjMiE9UEd3uZRca9gjJXQ5+dyNI=</code> which is then URL encoded to <code>q0AdIAm6SphhgN%2FVxjMiE9UEd3uZRca9gjJXQ5%2BdyNI%3D</code></p>
-
-<p>An example in Java is as follows:</p>
-<pre class="highlight java tab-java"><code>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">hashSignature</span><span class="o">(</span><span class="n">String</span> <span class="n">signatureToHash</span><span class="o">,</span> <span class="n">String</span> <span class="n">apiSecret</span><span class="o">)</span> <span class="o">{</span>
+<h3 id='examples'>Examples</h3><pre class="highlight java tab-java"><code>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">hashSignature</span><span class="o">(</span><span class="n">String</span> <span class="n">signatureToHash</span><span class="o">,</span> <span class="n">String</span> <span class="n">apiSecret</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">try</span> <span class="o">{</span>
         <span class="n">Mac</span> <span class="n">sha256HMAC</span> <span class="o">=</span> <span class="n">Mac</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"HmacSHA256"</span><span class="o">);</span>
         <span class="n">SecretKeySpec</span> <span class="n">secretKey</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SecretKeySpec</span><span class="o">(</span><span class="n">apiSecret</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">"UTF-8"</span><span class="o">),</span> <span class="s">"HmacSHA256"</span><span class="o">);</span>
@@ -562,7 +547,20 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre><h2 id='security'>Security</h2>
+</code></pre>
+<p><code>GET https://api.gojip2p.com/user/session/valid</code></p>
+
+<p>With a nonce = 67681625-d7f9-43e3-859a-25e634c203c2</p>
+
+<p>and timestamp = 1474982268271</p>
+
+<p>The signature string would be as follows:</p>
+
+<p>67681625-d7f9-43e3-859a-25e634c203c2
+    1474982268271</p>
+
+<p>Assuming a secret key of <code>abcd1234</code>, this will produce a signature equal to: <code>q0AdIAm6SphhgN/VxjMiE9UEd3uZRca9gjJXQ5+dyNI=</code> which is then URL encoded to <code>q0AdIAm6SphhgN%2FVxjMiE9UEd3uZRca9gjJXQ5%2BdyNI%3D</code></p>
+<h2 id='security'>Security</h2>
 <p>All communication is over HTTPS. Authentication will be via HMAC Authentication. Basic HTTP Auth can be used for testing in the Sandbox environment.</p>
 
 <p>API keys will be made available once integration starts.</p>
