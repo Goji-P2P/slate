@@ -224,36 +224,29 @@
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
-          </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
-          </li>
-          <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#hmac-authentication" class="toc-h2 toc-link" data-title="HMAC Authentication">HMAC Authentication</a>
+                    <a href="#getting-started" class="toc-h2 toc-link" data-title="Getting started">Getting started</a>
                   </li>
                   <li>
-                    <a href="#how-to-sign-the-request" class="toc-h2 toc-link" data-title="How to sign the request">How to sign the request</a>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
                   </li>
                   <li>
-                    <a href="#building-the-signature-string" class="toc-h2 toc-link" data-title="Building the signature string">Building the signature string</a>
+                    <a href="#versioning" class="toc-h2 toc-link" data-title="Versioning">Versioning</a>
                   </li>
                   <li>
-                    <a href="#security" class="toc-h2 toc-link" data-title="Security">Security</a>
+                    <a href="#email-integration" class="toc-h2 toc-link" data-title="Email integration">Email integration</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#guides" class="toc-h1 toc-link" data-title="Guides">Guides</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#settlement-quickstart" class="toc-h2 toc-link" data-title="Settlement Quickstart">Settlement Quickstart</a>
                   </li>
                   <li>
-                    <a href="#error-handling-and-retry-policy" class="toc-h2 toc-link" data-title="Error handling and retry policy">Error handling and retry policy</a>
-                  </li>
-                  <li>
-                    <a href="#request-ids" class="toc-h2 toc-link" data-title="Request IDs">Request IDs</a>
-                  </li>
-                  <li>
-                    <a href="#test-environment" class="toc-h2 toc-link" data-title="Test Environment">Test Environment</a>
-                  </li>
-                  <li>
-                    <a href="#dates" class="toc-h2 toc-link" data-title="Dates">Dates</a>
+                    <a href="#bond-management-quickstart" class="toc-h2 toc-link" data-title="Bond Management Quickstart">Bond Management Quickstart</a>
                   </li>
               </ul>
           </li>
@@ -275,25 +268,22 @@
             <a href="#payments" class="toc-h1 toc-link" data-title="Payments">Payments</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#overview" class="toc-h2 toc-link" data-title="Overview">Overview</a>
+                    <a href="#create-a-set-of-bank-details" class="toc-h2 toc-link" data-title="Create a set of bank details.">Create a set of bank details.</a>
                   </li>
                   <li>
-                    <a href="#security" class="toc-h2 toc-link" data-title="Security">Security</a>
+                    <a href="#update-a-set-of-bank-details" class="toc-h2 toc-link" data-title="Update a set of bank details.">Update a set of bank details.</a>
                   </li>
                   <li>
-                    <a href="#paths" class="toc-h2 toc-link" data-title="Paths">Paths</a>
+                    <a href="#fetch-all-bank-details" class="toc-h2 toc-link" data-title="Fetch all bank details.">Fetch all bank details.</a>
                   </li>
                   <li>
-                    <a href="#definitions" class="toc-h2 toc-link" data-title="Definitions">Definitions</a>
+                    <a href="#fetch-a-set-of-bank-details" class="toc-h2 toc-link" data-title="Fetch a set of bank details.">Fetch a set of bank details.</a>
                   </li>
               </ul>
           </li>
           <li>
             <a href="#settlement" class="toc-h1 toc-link" data-title="Settlement">Settlement</a>
               <ul class="toc-list-h2">
-                  <li>
-                    <a href="#overview" class="toc-h2 toc-link" data-title="Overview">Overview</a>
-                  </li>
                   <li>
                     <a href="#list-investments-for-an-investor" class="toc-h2 toc-link" data-title="List investments for an investor">List investments for an investor</a>
                   </li>
@@ -326,9 +316,6 @@
                   </li>
                   <li>
                     <a href="#records-an-investment-tranche-and-triggers-a-transfer-of-funds-to-the-investment-manager" class="toc-h2 toc-link" data-title="Records an investment tranche and triggers a transfer of funds to the Investment Manager">Records an investment tranche and triggers a transfer of funds to the Investment Manager</a>
-                  </li>
-                  <li>
-                    <a href="#definitions" class="toc-h2 toc-link" data-title="Definitions">Definitions</a>
                   </li>
               </ul>
           </li>
@@ -377,9 +364,12 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='mailto:techteam@gojip2p.net'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -387,79 +377,30 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
-</tr>
-</tbody></table>
-<p>SortOrder: 1</p>
-<h1 id='authentication'>Authentication</h1>
+<p>This document gives you an overview of the Goji Platform API and operational processes. This site contains both detailed API documentation as well as accompanying guides that detail how the API should be used and the operational processes behind them.</p>
+<h2 id='getting-started'>Getting started</h2>
+<p>To make use of the Goji platform you will want to use one or more of the APIs described below.</p>
+<h3 id='investors-api'><a href="#investors">Investors API</a></h3>
+<p>The Investors API allows you to onboard, conduct KYC checks, open general/ISA accounts for your investors. You can also retrieve and update investor data.</p>
+<h3 id='payments-api'><a href="#payments">Payments API</a></h3>
+<p>The Payments API allows you to retrieve bank details and balance information for investors who have passed KYC. You can also transfer funds between accounts and execute withdrawals.</p>
+<h3 id='bond-management-api'><a href="#bond-management">Bond management API</a></h3>
+<p>The Goji Platform can be used to issue fixed term, fixed rate bonds (debt based securities). The Bond management API allows you to configure these products and determine who has invested in each bond and when repayments are due.</p>
+<h3 id='settlement-api'><a href="#settlement">Settlement API</a></h3>
+<p>The Settlement API allows you to settle investments in securities that are not being managed by the Bond management module. These might be P2P loans, bonds etc. This API can be used where the securitiy itself is being controlled by your platform and the Goji platform is being used to control the movement of client money.</p>
+<h3 id='webhooks-api'><a href="#webhooks">Webhooks API</a></h3>
+<p>Many events in the Goji platform publish events which can be consumed as a webhook.</p>
+<h3 id='isa-administration-api'><a href="#isa-administration">ISA administration API</a></h3>
+<p>The ISA administration API is a standalone API and is not used in conjunction with any of the other APIs detailed above. The ISA administration API allows you to interact with the Goji platform for the purpose of administering an IF ISA.</p>
+<h2 id='authentication'>Authentication</h2>
 <p>Authentication to the API is via an HMAC mechanism.</p>
 
 <p>A basic HTTP API key and password will also be made available to make it easy to prototype against the sandbox environment.</p>
-<h2 id='hmac-authentication'>HMAC Authentication</h2>
+<h3 id='hmac-authentication'>HMAC Authentication</h3>
 <p>HMAC authentication is a mechanism where each HTTP request made by the client of the API is cryptographically signed.</p>
 
 <p>By signing the request with a secret key known only to the API client and the API itself it means that the authenticity of the request can be established.</p>
-<h2 id='how-to-sign-the-request'>How to sign the request</h2>
+<h3 id='how-to-sign-the-request'>How to sign the request</h3>
 <p>The request is signed by including three headers:</p>
 
 <p><code>x-nonce</code> A unique string for every request. This will also be included in the signature string (see below) and is used to prevent replay attacks.</p>
@@ -467,7 +408,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <p><code>x-timestamp</code> Milliseconds since epoch. This will also be included in the signature string (see below) and is used to prevent replay attacks.</p>
 
 <p><code>Authorization</code> In the format <code>&lt;api-key&gt;:&lt;signature-string&gt;</code> See below for how to build the <code>signature-string</code> .</p>
-<h2 id='building-the-signature-string'>Building the signature string</h2>
+<h3 id='building-the-signature-string'>Building the signature string</h3>
 <p>The following details are concatenated together:</p>
 
 <p>nonce + \n
@@ -478,7 +419,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <p>The result is then Base64 encoded to produce a string.</p>
 
 <p>The encrypted string is then UTF-8 URL encoded.</p>
-<h3 id='examples'>Examples</h3><pre class="highlight java tab-java"><code>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">hashSignature</span><span class="o">(</span><span class="n">String</span> <span class="n">signatureToHash</span><span class="o">,</span> <span class="n">String</span> <span class="n">apiSecret</span><span class="o">)</span> <span class="o">{</span>
+<h4 id='examples'>Examples</h4><pre class="highlight java tab-java"><code>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">hashSignature</span><span class="o">(</span><span class="n">String</span> <span class="n">signatureToHash</span><span class="o">,</span> <span class="n">String</span> <span class="n">apiSecret</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">try</span> <span class="o">{</span>
         <span class="n">Mac</span> <span class="n">sha256HMAC</span> <span class="o">=</span> <span class="n">Mac</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"HmacSHA256"</span><span class="o">);</span>
         <span class="n">SecretKeySpec</span> <span class="n">secretKey</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SecretKeySpec</span><span class="o">(</span><span class="n">apiSecret</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">"UTF-8"</span><span class="o">),</span> <span class="s">"HmacSHA256"</span><span class="o">);</span>
@@ -522,21 +463,79 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
     1474982268271</p>
 
 <p>Assuming a secret key of <code>abcd1234</code>, this will produce a signature equal to: <code>q0AdIAm6SphhgN/VxjMiE9UEd3uZRca9gjJXQ5+dyNI=</code> which is then URL encoded to <code>q0AdIAm6SphhgN%2FVxjMiE9UEd3uZRca9gjJXQ5%2BdyNI%3D</code></p>
-<h2 id='security'>Security</h2>
+<h3 id='security'>Security</h3>
 <p>All communication is over HTTPS. Authentication will be via HMAC Authentication. Basic HTTP Auth can be used for testing in the Sandbox environment.</p>
 
 <p>API keys will be made available once integration starts.</p>
-<h2 id='error-handling-and-retry-policy'>Error handling and retry policy</h2>
+<h3 id='error-handling-and-retry-policy'>Error handling and retry policy</h3>
 <p>It is recommended that clients use circuit breakers and a retry policy to make connections to the Goji API resilient to failure.</p>
 
 <p>Including a unique <code>X-CLIENT-REQUEST-ID</code> header with each request will ensure <code>POST</code> and <code>PUT</code> requests are idempotent. If a call is made with a <code>X-CLIENT-REQUEST-ID</code> that has been seen in the last 24 hours, no modifications will be made and a <code>200</code> response code returned. This will allow a client to retry a request in the event of a timeout or network failure with confidence that the action will only be carried out once.</p>
-<h2 id='request-ids'>Request IDs</h2>
+<h3 id='request-ids'>Request IDs</h3>
 <p>All responses will include a header <code>X-GOJI-REQUEST-ID</code>. Please include this in all correspondence to assist with our investigation.</p>
-<h2 id='test-environment'>Test Environment</h2>
+<h3 id='test-environment'>Test Environment</h3>
 <p>Goji supports a Sandbox environment which can be used for integration testing.</p>
-<h2 id='dates'>Dates</h2>
+<h3 id='dates'>Dates</h3>
 <p>Dates and time are in ISO 8601 format eg 2015-02-18 or 2015-02-18T04:57:56Z</p>
-<h1 id='investors'>Investors</h1>
+<h2 id='versioning'>Versioning</h2><pre class="highlight java tab-java"><code><span class="o">&gt;</span><span class="n">If</span> <span class="n">Jackson</span> <span class="n">is</span> <span class="n">being</span> <span class="n">used</span><span class="o">,</span> <span class="n">the</span> <span class="n">following</span> <span class="kd">class</span> <span class="nc">level</span> <span class="n">annotation</span> <span class="n">can</span> <span class="n">be</span> <span class="nl">added:</span>
+<span class="nd">@JsonIgnoreProperties</span><span class="o">(</span><span class="n">ignoreUnknown</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+</code></pre>
+<p>Whenever a breaking change needs to be made to any of the following, a new version of the URL will be made available:</p>
+
+<ul>
+<li>URL format</li>
+<li>Mandatory query parameters</li>
+<li>Breaking change in structure of request body</li>
+<li>Breaking change in structure of response body</li>
+</ul>
+
+<p>The version of the endpoint to use is specified in a header named version e.g. version : 2
+If no version header is specified, version one of the endpoint will be used.
+If an invalid version header is specified, a 404 response code will be returned.</p>
+
+<p>A breaking change to the request or response body is defined as the following:</p>
+
+<ul>
+<li>renaming a field</li>
+<li>changing the type of a field e.g. from string to decimal</li>
+<li>changing the format of a field e.g. changing a date format representation</li>
+<li>removing a field</li>
+<li>restructuring the request/response object</li>
+</ul>
+
+<p>The following changes are not considered breaking changes:</p>
+
+<ul>
+<li>Adding a new field to a response object</li>
+<li>Adding a new, optional field to a request object</li>
+<li>Adding a new, optional query parameter to a url</li>
+</ul>
+
+<p>It is therefore important that clients of the API are liberal in the way they parse response objects such that new fields do not cause the process to fail.</p>
+<h2 id='email-integration'>Email integration</h2>
+<p>Goji can send a emails on behalf of the Platform at various points in the ISA lifecycle. When you completed the onboarding questionnaire, you will have specified which emails you want Goji to send.</p>
+
+<p>In order to complete the email integration you will need to:</p>
+
+<p>Specify the email address emails should be sent from eg isa@platform.com
+    Create a forwarding rule so that emails sent to the address specified above are forwarded to platformsupport@gojip2p.com
+    Specify the email address Goji should send notifications of inound transfer in funds to eg isa-transfer-notifications@platform.com</p>
+
+<p>In order to permission our email provider (Mandrill) to send emails using your domain you will be required to make the following DNS changes:</p>
+<h3 id='dkim'>DKIM</h3><pre class="highlight plaintext"><code>v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB;
+</code></pre><pre class="highlight plaintext"><code>v=DKIM1\; k=rsa\; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB\;
+</code></pre>
+<p>DKIM is a DNS-based email authentication mechanism that helps Mandrill more effectively send mail on your behalf by allowing receivers to verify that we have permission to send your email. To enable DKIM, create a TXT record for mandrill._domainkey.yourdomain.com (just replace yourdomain.com with the domain you&#39;re setting up) with the following value.</p>
+
+<p>Some DNS providers require that semicolons be escaped. If your provider requires escaping, use this value instead.</p>
+<h3 id='spf'>SPF</h3><pre class="highlight plaintext"><code>v=spf1 include:spf.mandrillapp.com ?all
+</code></pre>
+<p>SPF is another DNS-based email authentication mechanism. If you don&#39;t yet have an SPF record, you&#39;ll want to add one for your domain. At a minimum, the value should be the following if you&#39;re only sending mail through Mandrill for that domain.</p>
+
+<p>If you already have a TXT record with SPF information, you&#39;ll need to add Mandrill&#39;s servers to that record by adding include:spf.mandrillapp.com in the record (before the last operator, which is usually ?all, ~all, or -all).</p>
+<h3 id='domain-ownership-verification'>Domain ownership verification</h3>
+<p>Additionally, we need to send a verification email to verify your ownership of the domain. Please let us know which email address to send this to and when you receive the email from Mandrill, please forward it to <a href="mailto:techsupport@gojip2p.com">techsupport@gojip2p.com</a></p>
+<h1 id='guides'>Guides</h1><h2 id='settlement-quickstart'>Settlement Quickstart</h2><h2 id='bond-management-quickstart'>Bond Management Quickstart</h2><h1 id='investors'>Investors</h1>
 <p><a name="overview"></a></p>
 <h2 id='overview'>Overview</h2>
 <p>Onboard and maintain investors.</p>
@@ -2621,42 +2620,89 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 </tbody></table>
 <h1 id='payments'>Payments</h1>
-<p><a name="overview"></a></p>
-<h2 id='overview'>Overview</h2>
-<p>Interact with an investor&#39;s cash balance.</p>
-<h3 id='version-information'>Version information</h3>
-<p><em>Version</em> : 1.0.0</p>
-<h3 id='uri-scheme'>URI scheme</h3>
-<p><em>Host</em> : api-sandbox.goji.investments
-<em>BasePath</em> : /platformApi
-<em>Schemes</em> : HTTPS</p>
-<h3 id='tags'>Tags</h3>
-<ul>
-<li>payments</li>
-</ul>
-<h3 id='consumes'>Consumes</h3>
-<ul>
-<li><code>application/json</code></li>
-</ul>
-<h3 id='produces'>Produces</h3>
-<ul>
-<li><code>application/json</code></li>
-</ul>
+<p>Resources for interacting with payment wallets, bank accounts used for settlement and investors cash balances/tranactions.</p>
 
-<p><a name="securityscheme"></a></p>
-<h2 id='security'>Security</h2>
-<p><a name="basicauth"></a></p>
-<h3 id='basicauth'>basicAuth</h3>
-<p>HTTP Basic Authentication over HTTPS. Only valid in Sandbox, HMAC should be used in production.</p>
-
-<p><em>Type</em> : basic</p>
-
-<p><a name="paths"></a></p>
-<h2 id='paths'>Paths</h2>
 <p><a name="addbankaccountdetails"></a></p>
-<h3 id='create-a-set-of-bank-details'>Create a set of bank details.</h3><pre class="highlight plaintext"><code>POST /bankAccountDetails
-</code></pre><h4 id='description'>Description</h4>
+<h2 id='create-a-set-of-bank-details'>Create a set of bank details.</h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/bankAccountDetails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+</span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
+
+  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='description'>Description</h4>
 <p>Create a set of bank details.</p>
+<h4 id='request'>Request</h4>
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>accountName</strong>  <br><em>required</em></td>
+<td>The name of the account</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>accountNumber</strong>  <br><em>required</em></td>
+<td>The account number</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sortCode</strong>  <br><em>required</em></td>
+<td>The sortcode for the account</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h4 id='response'>Response</h4>
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>id</strong></td>
+<td>The id of the newly created account</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><a name="updatebankaccountdetails"></a></p>
+<h2 id='update-a-set-of-bank-details'>Update a set of bank details.</h2><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/bankAccountDetails/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+</span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
+</span></code></pre><h4 id='description-2'>Description</h4>
+<p>Update a set of bank details.</p>
 <h4 id='parameters'>Parameters</h4>
 <table><thead>
 <tr>
@@ -2668,134 +2714,152 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </thead><tbody>
 <tr>
 <td><strong>Body</strong></td>
-<td><strong>bankDetails</strong>  <br><em>required</em></td>
-<td>The new bank account details</td>
-<td><a href="#bankdetails">BankDetails</a></td>
+<td><strong>accountName</strong>  <br><em>required</em></td>
+<td>The name of the account</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>accountNumber</strong>  <br><em>required</em></td>
+<td>The account number</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sortCode</strong>  <br><em>required</em></td>
+<td>The sortcode for the account</td>
+<td>string</td>
 </tr>
 </tbody></table>
-<h4 id='responses'>Responses</h4>
-<table><thead>
-<tr>
-<th>HTTP Code</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>200</strong></td>
-<td>ID of the created bank account details.</td>
-<td><a href="#createdbankaccountdetails">CreatedBankAccountDetails</a></td>
-</tr>
-<tr>
-<td><strong>400</strong></td>
-<td>Bad request.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
-</tr>
-<tr>
-<td><strong>401</strong></td>
-<td>Unauthorised.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
-</tr>
-<tr>
-<td><strong>500</strong></td>
-<td>Unexpected server error.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
-</tr>
-</tbody></table>
-<h4 id='consumes-2'>Consumes</h4>
-<ul>
-<li><code>application/json</code></li>
-</ul>
-<h4 id='produces-2'>Produces</h4>
-<ul>
-<li><code>application/json</code></li>
-</ul>
-<h4 id='tags-2'>Tags</h4>
-<ul>
-<li>payments</li>
-</ul>
-<h4 id='security-2'>Security</h4>
-<p>|Type|Name|</p>
 
-<p><a name="definitions"></a></p>
-<h2 id='definitions'>Definitions</h2>
-<p><a name="accountbalance"></a></p>
-<h3 id='account-balance'>Account Balance</h3>
+<p><a name="getallbankaccountdetails"></a></p>
+<h2 id='fetch-all-bank-details'>Fetch all bank details.</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/bankAccountDetails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
+
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+
+</span></code></pre><h4 id='description-3'>Description</h4>
+<p>Fetch a list of bank details.</p>
+<h4 id='response-2'>Response</h4>
 <table><thead>
 <tr>
+<th>Type</th>
 <th>Name</th>
 <th>Description</th>
 <th>Schema</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>isaRemainingSubscriptionAmount</strong>  <br><em>optional</em></td>
-<td>The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
+<td><strong>Body</strong></td>
+<td><strong>accountName</strong></td>
+<td>The name of the account</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>totalBalance</strong>  <br><em>optional</em></td>
-<td>The total balance. The sum of the invested, queued and cash balances.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
+<td><strong>Body</strong></td>
+<td><strong>accountNumber</strong></td>
+<td>The account number</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>totalCashBalance</strong>  <br><em>optional</em></td>
-<td>The total cash balance.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
+<td><strong>Body</strong></td>
+<td><strong>sortCode</strong></td>
+<td>The sortcode for the account</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>totalInvestedBalance</strong>  <br><em>optional</em></td>
-<td>The total invested balance.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
+<td><strong>Body</strong></td>
+<td><strong>id</strong></td>
+<td>The id for the account</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>totalQueuedInvestedBalance</strong>  <br><em>optional</em></td>
-<td>The total queued for investment.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
+<td><strong>Body</strong></td>
+<td><strong>status</strong></td>
+<td>The status for the account (ENABLED, DISABLED).</td>
+<td>string</td>
 </tr>
 </tbody></table>
 
-<p><a name="accountbalances"></a></p>
-<h3 id='account-balances'>Account Balances</h3>
+<p><a name="getbankaccountdetails"></a></p>
+<h2 id='fetch-a-set-of-bank-details'>Fetch a set of bank details.</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/bankAccountDetails/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
+
+  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='description-4'>Description</h4>
+<p>Fetch a set of bank details.</p>
+<h4 id='response-3'>Response</h4>
 <table><thead>
 <tr>
+<th>Type</th>
 <th>Name</th>
 <th>Description</th>
 <th>Schema</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>accounts</strong>  <br><em>optional</em></td>
-<td>A breakdown of the balances by account.</td>
-<td><a href="#accountbalances-accounts">accounts</a></td>
+<td><strong>Body</strong></td>
+<td><strong>accountName</strong></td>
+<td>The name of the account</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>totalBalance</strong>  <br><em>optional</em></td>
-<td>The total balance. The sum of the invested, queued and cash balances.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
+<td><strong>Body</strong></td>
+<td><strong>accountNumber</strong></td>
+<td>The account number</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>totalCashBalance</strong>  <br><em>optional</em></td>
-<td>The total cash balance.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
+<td><strong>Body</strong></td>
+<td><strong>sortCode</strong></td>
+<td>The sortcode for the account</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>totalInvestedBalance</strong>  <br><em>optional</em></td>
-<td>The total invested balance.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
+<td><strong>Body</strong></td>
+<td><strong>id</strong></td>
+<td>The id for the account</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>totalQueuedInvestedBalance</strong>  <br><em>optional</em></td>
-<td>The total queued for investment.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
+<td><strong>Body</strong></td>
+<td><strong>status</strong></td>
+<td>The status for the account (ENABLED, DISABLED).</td>
+<td>string</td>
 </tr>
 </tbody></table>
-
-<p><a name="accountbalances-accounts"></a>
-<strong>accounts</strong></p>
 <h1 id='settlement'>Settlement</h1>
-<p><a name="overview"></a></p>
-<h3 id='overview'>Overview</h3>
 <p>Settle securities not managed by the Bond management module.</p>
 
 <p><a name="loadrecordedinvestmentsforinvestor"></a></p>
@@ -2824,7 +2888,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
   </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='description'>Description</h4>
 <p>Lists recorded investments for an investor.</p>
-<h4 id='parameters'>Parameters</h4>
+<h4 id='request'>Request</h4>
 <table><thead>
 <tr>
 <th>Type</th>
@@ -2846,33 +2910,50 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <td>string</td>
 </tr>
 </tbody></table>
-<h4 id='responses'>Responses</h4>
+<h4 id='response'>Response</h4>
 <table><thead>
 <tr>
-<th>HTTP Code</th>
+<th>Type</th>
+<th>Name</th>
 <th>Description</th>
 <th>Schema</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>200</strong></td>
-<td>Investments.</td>
-<td><a href="#clientmoneyinvestmentsforinvestor">ClientMoneyInvestmentsForInvestor</a></td>
+<td><strong>Body</strong></td>
+<td><strong>accountType</strong></td>
+<td>The type of the account</td>
+<td>enum (ISA, GOJI_INVESTMENT)</td>
 </tr>
 <tr>
-<td><strong>400</strong></td>
-<td>Bad request.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>amount</strong></td>
+<td>The amount of the investment</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>401</strong></td>
-<td>Unauthorised.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>clientId</strong></td>
+<td>The id of the client</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>500</strong></td>
-<td>Unexpected server error.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>investmentId</strong></td>
+<td>The unique id of the investment</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>productId</strong></td>
+<td>The product id</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>trancheId</strong></td>
+<td>The tranche id</td>
+<td>string</td>
 </tr>
 </tbody></table>
 
@@ -2897,7 +2978,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
   </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='description-2'>Description</h4>
 <p>Adds a payment destination. This has been deprecated to be replaced with https://docs.api.goji.investments/payments/reference/payments/add-bank-account-details</p>
-<h4 id='parameters-2'>Parameters</h4>
+<h4 id='request-2'>Request</h4>
 <table><thead>
 <tr>
 <th>Type</th>
@@ -2908,9 +2989,43 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </thead><tbody>
 <tr>
 <td><strong>Body</strong></td>
-<td><strong>paymentDestination</strong>  <br><em>optional</em></td>
-<td>The payment destination</td>
-<td><a href="#paymentdestination">PaymentDestination</a></td>
+<td><strong>accountName</strong></td>
+<td>The name of the account</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>accountNumber</strong></td>
+<td>The account number</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sortCode</strong></td>
+<td>The sortcode for the account</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>reference</strong></td>
+<td>The bank account reference</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h4 id='response-2'>Response</h4>
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>id</strong></td>
+<td>The id of the payment destination</td>
+<td>string</td>
 </tr>
 </tbody></table>
 
@@ -2932,7 +3047,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='description-3'>Description</h4>
 <p>Lists payment destinations. This has been deprecated to be replaced with https://docs.api.goji.investments/payments/reference/payments/bank-account-details</p>
-<h4 id='parameters-3'>Parameters</h4>
+<h4 id='response-3'>Response</h4>
 <table><thead>
 <tr>
 <th>Type</th>
@@ -2943,38 +3058,27 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </thead><tbody>
 <tr>
 <td><strong>Body</strong></td>
-<td><strong>paymentDestination</strong>  <br><em>optional</em></td>
-<td>The payment destination</td>
-<td><a href="#paymentdestinations">PaymentDestinations</a></td>
-</tr>
-</tbody></table>
-<h4 id='responses-2'>Responses</h4>
-<table><thead>
-<tr>
-<th>HTTP Code</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>200</strong></td>
-<td>Payment Destination Id.</td>
-<td><a href="#paymentdestinationresponse">PaymentDestinationResponse</a></td>
+<td><strong>accountName</strong></td>
+<td>The name of the account</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>400</strong></td>
-<td>Bad request.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>accountNumber</strong></td>
+<td>The account number</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>401</strong></td>
-<td>Unauthorised.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>sortCode</strong></td>
+<td>The sort code</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>500</strong></td>
-<td>Unexpected server error.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>reference</strong></td>
+<td>The bank reference</td>
+<td>string</td>
 </tr>
 </tbody></table>
 
@@ -2999,7 +3103,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
   </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='description-4'>Description</h4>
 <p>Updates a payment destination. This has been deprecated to be replaced with https://docs.api.goji.investments/payments/reference/payments/update-bank-account-details</p>
-<h4 id='parameters-4'>Parameters</h4>
+<h4 id='request-3'>Request</h4>
 <table><thead>
 <tr>
 <th>Type</th>
@@ -3016,38 +3120,43 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td><strong>Body</strong></td>
-<td><strong>paymentDestination</strong>  <br><em>optional</em></td>
-<td>The payment destination update</td>
-<td><a href="#paymentdestination">PaymentDestination</a></td>
+<td><strong>accountName</strong>  <br><em>required</em></td>
+<td>The account name</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>accountNumber</strong>  <br><em>required</em></td>
+<td>The accountNumber</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sortCode</strong>  <br><em>required</em></td>
+<td>The sort code</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>reference</strong>  <br><em>required</em></td>
+<td>The payment reference</td>
+<td>string</td>
 </tr>
 </tbody></table>
-<h4 id='responses-3'>Responses</h4>
+<h4 id='response-4'>Response</h4>
 <table><thead>
 <tr>
-<th>HTTP Code</th>
+<th>Type</th>
+<th>Name</th>
 <th>Description</th>
 <th>Schema</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>200</strong></td>
-<td>Payment Destination Id.</td>
-<td><a href="#paymentdestinationresponse">PaymentDestinationResponse</a></td>
-</tr>
-<tr>
-<td><strong>400</strong></td>
-<td>Bad request.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
-</tr>
-<tr>
-<td><strong>401</strong></td>
-<td>Unauthorised.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
-</tr>
-<tr>
-<td><strong>500</strong></td>
-<td>Unexpected server error.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>id</strong></td>
+<td>The id of the updated bank account details</td>
+<td>string</td>
 </tr>
 </tbody></table>
 
@@ -3060,7 +3169,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <span class="w">  </span><span class="p">{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"investmentDocument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"isaEligible"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boolean"</span><span class="w">
+      </span><span class="s2">"isaEligible"</span><span class="p">:</span><span class="w"> </span><span class="err">boolean</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
@@ -3069,7 +3178,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
   </span><span class="s2">"SUCCESS"</span><span class="w">
 </span></code></pre><h4 id='description-5'>Description</h4>
 <p>Adds a registered product</p>
-<h4 id='parameters-5'>Parameters</h4>
+<h4 id='request-4'>Request</h4>
 <table><thead>
 <tr>
 <th>Type</th>
@@ -3080,38 +3189,21 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </thead><tbody>
 <tr>
 <td><strong>Body</strong></td>
-<td><strong>product</strong>  <br><em>optional</em></td>
-<td>Product to add</td>
-<td><a href="#registeredproduct">RegisteredProduct</a></td>
-</tr>
-</tbody></table>
-<h4 id='responses-4'>Responses</h4>
-<table><thead>
-<tr>
-<th>HTTP Code</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>200</strong></td>
-<td>The registered product.</td>
-<td><a href="#registeredproduct">RegisteredProduct</a></td>
+<td><strong>id</strong>  <br><em>required</em></td>
+<td>The unique id for the product</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>400</strong></td>
-<td>Bad request.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>investmentDocument</strong>  <br><em>required</em></td>
+<td>A link to the investment document / memorandum</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>401</strong></td>
-<td>Unauthorised.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
-</tr>
-<tr>
-<td><strong>500</strong></td>
-<td>Unexpected server error.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>isaEligible</strong>  <br><em>required</em></td>
+<td>If the product is suitable for an ISA</td>
+<td>boolean</td>
 </tr>
 </tbody></table>
 
@@ -3129,39 +3221,38 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
          </span><span class="p">{</span><span class="w">
              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
              </span><span class="s2">"investmentDocument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-             </span><span class="s2">"isaEligible"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boolean"</span><span class="w">
+             </span><span class="s2">"isaEligible"</span><span class="p">:</span><span class="w"> </span><span class="err">boolean</span><span class="w">
          </span><span class="p">}</span><span class="w">
      </span><span class="p">]</span><span class="w">
  </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='description-6'>Description</h4>
 <p>Returns list of registered products</p>
-<h4 id='responses-5'>Responses</h4>
+<h4 id='response-5'>Response</h4>
 <table><thead>
 <tr>
-<th>HTTP Code</th>
+<th>Type</th>
+<th>Name</th>
 <th>Description</th>
 <th>Schema</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>200</strong></td>
-<td>List of registered products.</td>
-<td><a href="#listregisteredproducts">ListRegisteredProducts</a></td>
+<td><strong>Body</strong></td>
+<td><strong>products[].id</strong></td>
+<td>The unique id for the product</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>400</strong></td>
-<td>Bad request.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>products[].investmentDocument</strong></td>
+<td>A link to the investment document / memorandum</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>401</strong></td>
-<td>Unauthorised.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
-</tr>
-<tr>
-<td><strong>500</strong></td>
-<td>Unexpected server error.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>products[].isaEligible</strong></td>
+<td>If the product is suitable for an ISA</td>
+<td>boolean</td>
 </tr>
 </tbody></table>
 
@@ -3182,7 +3273,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
   </span><span class="s2">"SUCCESS"</span><span class="w">
 </span></code></pre><h4 id='description-7'>Description</h4>
 <p>Updates a registered product</p>
-<h4 id='parameters-6'>Parameters</h4>
+<h4 id='request-5'>Request</h4>
 <table><thead>
 <tr>
 <th>Type</th>
@@ -3192,45 +3283,16 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>Path</strong></td>
-<td><strong>productId</strong>  <br><em>required</em></td>
-<td>The ID of the product.</td>
+<td><strong>Body</strong></td>
+<td><strong>investmentDocument</strong></td>
+<td>A link to the investment document / memorandum</td>
 <td>string</td>
 </tr>
 <tr>
 <td><strong>Body</strong></td>
-<td><strong>product</strong>  <br><em>optional</em></td>
-<td>Product to add</td>
-<td><a href="#registeredproductupdate">RegisteredProductUpdate</a></td>
-</tr>
-</tbody></table>
-<h4 id='responses-6'>Responses</h4>
-<table><thead>
-<tr>
-<th>HTTP Code</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>200</strong></td>
-<td>The registered product.</td>
-<td><a href="#registeredproduct">RegisteredProduct</a></td>
-</tr>
-<tr>
-<td><strong>400</strong></td>
-<td>Bad request.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
-</tr>
-<tr>
-<td><strong>401</strong></td>
-<td>Unauthorised.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
-</tr>
-<tr>
-<td><strong>500</strong></td>
-<td>Unexpected server error.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>isaEligible</strong></td>
+<td>If the product is suitable for an ISA</td>
+<td>boolean</td>
 </tr>
 </tbody></table>
 
@@ -3264,7 +3326,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
   </span><span class="s2">"SUCCESS"</span><span class="w">
 </span></code></pre><h4 id='description-8'>Description</h4>
 <p>Adds a repayment to an investment.</p>
-<h4 id='parameters-7'>Parameters</h4>
+<h4 id='request-6'>Request</h4>
 <table><thead>
 <tr>
 <th>Type</th>
@@ -3275,38 +3337,45 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </thead><tbody>
 <tr>
 <td><strong>Body</strong></td>
-<td><strong>repayment</strong>  <br><em>optional</em></td>
-<td>The repayment</td>
-<td><a href="#clientmoneyrepayment">ClientMoneyRepayment</a></td>
-</tr>
-</tbody></table>
-<h4 id='responses-7'>Responses</h4>
-<table><thead>
-<tr>
-<th>HTTP Code</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>200</strong></td>
-<td>The repayments were registered successfully.</td>
-<td>No Content</td>
+<td><strong>investorRepayments[].amount.amount</strong>  <br><em>required</em></td>
+<td>The amount</td>
+<td>number</td>
 </tr>
 <tr>
-<td><strong>400</strong></td>
-<td>Bad request.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>investorRepayments[].amount.currency</strong>  <br><em>required</em></td>
+<td>The ISO currency code</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>401</strong></td>
-<td>Unauthorised.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>investorRepayments[].investmentId</strong>  <br><em>required</em></td>
+<td>The investmentId related to this repayment</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>500</strong></td>
-<td>Unexpected server error.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>investorRepayments[].tax.amount</strong>  <br><em>optional</em></td>
+<td>The amount of tax if any to be withheld</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>investorRepayments[].tax.currency</strong>  <br><em>optional</em></td>
+<td>The ISO currency code for the tax</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>investorRepayments[].type</strong>  <br><em>required</em></td>
+<td>The type of repayment. enum(CAPITAL, INTEREST)</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>reference</strong>  <br><em>required</em></td>
+<td>The repayment reference to validate the monies received</td>
+<td>string</td>
 </tr>
 </tbody></table>
 
@@ -3326,33 +3395,32 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
   </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='description-9'>Description</h4>
 <p>Generates a repayment reference to be used when depositing repayment funds.</p>
-<h4 id='responses-8'>Responses</h4>
+<h4 id='response-6'>Response</h4>
 <table><thead>
 <tr>
-<th>HTTP Code</th>
+<th>Type</th>
+<th>Name</th>
 <th>Description</th>
 <th>Schema</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>200</strong></td>
-<td>RepaymentReference.</td>
-<td><a href="#repaymentreference">RepaymentReference</a></td>
+<td><strong>Body</strong></td>
+<td><strong>accountNumber</strong></td>
+<td>The accountNumber</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>400</strong></td>
-<td>Bad request.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>sortCode</strong></td>
+<td>The sort code</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>401</strong></td>
-<td>Unauthorised.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
-</tr>
-<tr>
-<td><strong>500</strong></td>
-<td>Unexpected server error.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>reference</strong></td>
+<td>The payment reference</td>
+<td>string</td>
 </tr>
 </tbody></table>
 
@@ -3405,7 +3473,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 
 </span></code></pre><h4 id='description-10'>Description</h4>
 <p>Records the settlement of a secondary market trade.</p>
-<h4 id='parameters-8'>Parameters</h4>
+<h4 id='request-7'>Request</h4>
 <table><thead>
 <tr>
 <th>Type</th>
@@ -3416,38 +3484,129 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </thead><tbody>
 <tr>
 <td><strong>Body</strong></td>
-<td><strong>secondaryMarketTrade</strong>  <br><em>optional</em></td>
-<td>The secondary market trade</td>
-<td><a href="#settlesecondarymarkettrade">SettleSecondaryMarketTrade</a></td>
-</tr>
-</tbody></table>
-<h4 id='responses-9'>Responses</h4>
-<table><thead>
-<tr>
-<th>HTTP Code</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>200</strong></td>
-<td>Added secondary market trade.</td>
-<td>No Content</td>
+<td><strong>buySide.accountType</strong>  <br><em>required</em></td>
+<td>The account purchasing the investment</td>
+<td>enum (GOJI_INVESTMENT, ISA, SIPP)</td>
 </tr>
 <tr>
-<td><strong>400</strong></td>
-<td>Bad request.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>buySide.bankAccountId</strong>  <br><em>optional</em></td>
+<td>The ID of the bank account details to send fees to</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>401</strong></td>
-<td>Unauthorised.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>buySide.clientId</strong>  <br><em>required</em></td>
+<td>The client ID of the buyer</td>
+<td>string</td>
 </tr>
 <tr>
-<td><strong>500</strong></td>
-<td>Unexpected server error.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
+<td><strong>Body</strong></td>
+<td><strong>buySide.fee.amount</strong>  <br><em>optional</em></td>
+<td>The fee amount being paid by the buyer. In addition to the totalPurchaseAmount.</td>
+<td>number</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>buySide.fee.currency</strong>  <br><em>optional</em></td>
+<td>The ISO Currency code</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>buySide.feePaymentDestination (Deprecated)</strong>  <br><em>optional</em></td>
+<td>The ID of the payment destination to send fees to. This has been deprecated, please use the bankAccountId field</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>buySide.newInvestmentId</strong>  <br><em>required</em></td>
+<td>The ID for the investment being held by the buy side investor</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>buySide.reference</strong>  <br><em>required</em></td>
+<td>The bank reference for the funds transfer</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>buySide.totalPurchaseAmount.amount</strong>  <br><em>required</em></td>
+<td>The total amount being paid for the investment. This must equal the sum of the remainingCapitalAmount plus premium on the sell side.</td>
+<td>number</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>buySide.totalPurchaseAmount.currency</strong>  <br><em>required</em></td>
+<td>The ISO Currency code</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sellSide.bankAccountId</strong>  <br><em>optional</em></td>
+<td>The ID of the bank account details to send fees to</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sellSide.clientId</strong>  <br><em>required</em></td>
+<td>The client ID of the seller</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sellSide.fee.amount</strong>  <br><em>optional</em></td>
+<td>The fee being paid by the seller. Deducted from the total sales price.</td>
+<td>number</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sellSide.fee.currency</strong>  <br><em>optional</em></td>
+<td>The ISO Currency code</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sellSide.feePaymentDestination (Deprecated)</strong>  <br><em>optional</em></td>
+<td>The ID of the payment destination to send fees to. This has been deprecated, please use the bankAccountId field</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sellSide.investmentId</strong>  <br><em>required</em></td>
+<td>The ID of the investment being sold</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sellSide.premium.amount</strong>  <br><em>optional</em></td>
+<td>The premium (positive or negative) added to the remaining capital amount to get the total sales price.</td>
+<td>number</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sellSide.premium.currency</strong>  <br><em>optional</em></td>
+<td>The ISO Currency code</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sellSide.reference</strong>  <br><em>required</em></td>
+<td>The bank reference for the funds transfer</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sellSide.remainingCapitalAmount.amount</strong>  <br><em>required</em></td>
+<td>The remaining capital amount of the investment being sold.</td>
+<td>number</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>sellSide.remainingCapitalAmount.currency</strong>  <br><em>required</em></td>
+<td>The ISO Currency code</td>
+<td>string</td>
 </tr>
 </tbody></table>
 
@@ -3491,7 +3650,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
   </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='description-11'>Description</h4>
 <p>Records an investment and triggers a transfer of funds to the Investment Manager.</p>
-<h4 id='parameters-9'>Parameters</h4>
+<h4 id='request-8'>Request</h4>
 <table><thead>
 <tr>
 <th>Type</th>
@@ -3502,1778 +3661,108 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </thead><tbody>
 <tr>
 <td><strong>Body</strong></td>
-<td><strong>investment</strong>  <br><em>optional</em></td>
-<td>Investment to add</td>
-<td><a href="#clientmoneytranche">ClientMoneyTranche</a></td>
-</tr>
-</tbody></table>
-<h4 id='responses-10'>Responses</h4>
-<table><thead>
-<tr>
-<th>HTTP Code</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>200</strong></td>
-<td>Added investment.</td>
-<td><a href="#clientmoneyinvestmentresponse">ClientMoneyInvestmentResponse</a></td>
-</tr>
-<tr>
-<td><strong>400</strong></td>
-<td>Bad request.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
-</tr>
-<tr>
-<td><strong>401</strong></td>
-<td>Unauthorised.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
-</tr>
-<tr>
-<td><strong>500</strong></td>
-<td>Unexpected server error.</td>
-<td><a href="#errorresponse">ErrorResponse</a></td>
-</tr>
-</tbody></table>
-
-<p><a name="definitions"></a></p>
-<h2 id='definitions'>Definitions</h2>
-<p><a name="accountbalance"></a></p>
-<h3 id='account-balance'>Account Balance</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>isaRemainingSubscriptionAmount</strong>  <br><em>optional</em></td>
-<td>The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>totalBalance</strong>  <br><em>optional</em></td>
-<td>The total balance. The sum of the invested, queued and cash balances.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>totalCashBalance</strong>  <br><em>optional</em></td>
-<td>The total cash balance.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>totalInvestedBalance</strong>  <br><em>optional</em></td>
-<td>The total invested balance.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>totalQueuedInvestedBalance</strong>  <br><em>optional</em></td>
-<td>The total queued for investment.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-</tbody></table>
-
-<p><a name="accountbalances"></a></p>
-<h3 id='account-balances'>Account Balances</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accounts</strong>  <br><em>optional</em></td>
-<td>A breakdown of the balances by account.</td>
-<td><a href="#accountbalances-accounts">accounts</a></td>
-</tr>
-<tr>
-<td><strong>totalBalance</strong>  <br><em>optional</em></td>
-<td>The total balance. The sum of the invested, queued and cash balances.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>totalCashBalance</strong>  <br><em>optional</em></td>
-<td>The total cash balance.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>totalInvestedBalance</strong>  <br><em>optional</em></td>
-<td>The total invested balance.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>totalQueuedInvestedBalance</strong>  <br><em>optional</em></td>
-<td>The total queued for investment.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-</tbody></table>
-
-<p><a name="accountbalances-accounts"></a>
-<strong>accounts</strong></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>GOJI_INVESTMENT</strong>  <br><em>optional</em></td>
-<td><a href="#accountbalance">AccountBalance</a></td>
-</tr>
-<tr>
-<td><strong>ISA</strong>  <br><em>optional</em></td>
-<td><a href="#accountbalance">AccountBalance</a></td>
-</tr>
-</tbody></table>
-
-<p><a name="accounttype"></a></p>
-<h3 id='account-type'>Account Type</h3>
-<p><em>Type</em> : enum (GOJI_INVESTMENT, ISA)</p>
-
-<p><a name="accounts"></a></p>
-<h3 id='accounts'>Accounts</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accounts</strong>  <br><em>optional</em></td>
-<td>&lt; enum (GOJI_INVESTMENT, ISA) &gt; array</td>
-</tr>
-</tbody></table>
-
-<p><a name="addisa"></a></p>
-<h3 id='add-isa'>Add ISA</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>nationalInsuranceNumber</strong>  <br><em>required</em></td>
-<td>The national insurance number of the investor.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="address"></a></p>
-<h3 id='address'>Address</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>country</strong>  <br><em>required</em></td>
-<td>The country of the investor&#39;s address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>lineOne</strong>  <br><em>required</em></td>
-<td>Line one of the address.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>lineThree</strong>  <br><em>optional</em></td>
-<td>Line three of the address.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>lineTwo</strong>  <br><em>optional</em></td>
-<td>Line two of the address.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>postcode</strong>  <br><em>required</em></td>
-<td>The post code of the address.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>region</strong>  <br><em>required</em></td>
-<td>The region of the address eg county.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>townCity</strong>  <br><em>required</em></td>
-<td>The town/city of the address.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="bankdetails"></a></p>
-<h3 id='bank-details'>Bank Details</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accountName</strong>  <br><em>required</em></td>
-<td>The account name.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>accountNumber</strong>  <br><em>required</em></td>
-<td>The account number.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>sortCode</strong>  <br><em>required</em></td>
-<td>The sort code.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="banktransferdetails"></a></p>
-<h3 id='bank-transfer-details'>Bank Transfer Details</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accountNumber</strong>  <br><em>optional</em></td>
-<td>The account number.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>bankReference</strong>  <br><em>optional</em></td>
-<td>The reference to use for the transfer.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>sortCode</strong>  <br><em>optional</em></td>
-<td>The sort code.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="bond"></a></p>
-<h3 id='bond'>Bond</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accruedInterestAmount</strong>  <br><em>optional</em></td>
-<td>The amount of interest that will be requested before the next repayment date.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>id</strong>  <br><em>optional</em></td>
-<td>The ID of the Bond.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>initialInvestmentAmount</strong>  <br><em>optional</em></td>
-<td>The initial investment amount.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>maturity</strong>  <br><em>optional</em></td>
-<td>The maturity of the bond.</td>
-<td><a href="#maturity">Maturity</a></td>
-</tr>
-<tr>
-<td><strong>nextRepaymentDate</strong>  <br><em>optional</em></td>
-<td>The date of the next repayment event.</td>
-<td>string (date)</td>
-</tr>
-<tr>
-<td><strong>productCode</strong>  <br><em>optional</em></td>
-<td>The product code of the bond.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>startDate</strong>  <br><em>optional</em></td>
-<td>The start date of the bond.</td>
-<td>string (date)</td>
-</tr>
-<tr>
-<td><strong>status</strong>  <br><em>optional</em></td>
-<td>The status of the bond.</td>
-<td>enum (QUEUED, LIVE, MATURED)</td>
-</tr>
-<tr>
-<td><strong>totalAmount</strong>  <br><em>optional</em></td>
-<td>The total current invested amount. This can increase up to the start date of the bond.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-</tbody></table>
-
-<p><a name="clientmoneyinvestmentitem"></a></p>
-<h3 id='investment-for-a-specific-investor'>Investment for a specific investor</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accountType</strong>  <br><em>optional</em></td>
-<td>The account making the investment.</td>
-<td>enum (GOJI_INVESTMENT, ISA)</td>
-</tr>
-<tr>
-<td><strong>amount</strong>  <br><em>optional</em></td>
-<td>The amount being invested</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>clientId</strong>  <br><em>optional</em></td>
-<td>The ID of the investor</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>investmentId</strong>  <br><em>optional</em></td>
-<td>The ID of the investment. This is the ID of the overall investment and so will be shared by multiple investors.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>productId</strong>  <br><em>optional</em></td>
-<td>The ID of the investment product as preciously registered in the system</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>trancheId</strong>  <br><em>optional</em></td>
-<td>The ID of the investment tranche of a particular product</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="clientmoneyinvestmentresponse"></a></p>
-<h3 id='an-investment-response'>An investment response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accountNumber</strong>  <br><em>optional</em></td>
-<td>The account number the funds will be sent to</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>id</strong>  <br><em>optional</em></td>
-<td>The unique ID for this investment</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>reference</strong>  <br><em>optional</em></td>
-<td>The bank reference for the funds transfer</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>sortCode</strong>  <br><em>optional</em></td>
-<td>The sort code the funds will be sent to</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>totalAmount</strong>  <br><em>optional</em></td>
-<td>The total amount being invested</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-</tbody></table>
-
-<p><a name="clientmoneyinvestmentsforinvestor"></a></p>
-<h3 id='investments-for-the-investor'>Investments for the investor</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>investments</strong>  <br><em>optional</em></td>
-<td>&lt; <a href="#clientmoneyinvestmentitem">ClientMoneyInvestmentItem</a> &gt; array</td>
-</tr>
-</tbody></table>
-
-<p><a name="clientmoneyrepayment"></a></p>
-<h3 id='the-repayment-to-be-added-to-the-investment'>The repayment to be added to the investment.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>investorRepayments</strong>  <br><em>required</em></td>
-<td>The repayments per investor.</td>
-<td>&lt; <a href="#clientmoneyrepaymentitem">ClientMoneyRepaymentItem</a> &gt; array</td>
-</tr>
-<tr>
-<td><strong>reference</strong>  <br><em>required</em></td>
-<td>The payment reference used for the repayment of funds.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="clientmoneyrepaymentitem"></a></p>
-<h3 id='the-repayment-for-a-specific-investor'>The repayment for a specific investor</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>amount</strong>  <br><em>required</em></td>
-<td>The amount being repaid</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>investmentId</strong>  <br><em>required</em></td>
-<td>The ID of the of the investment</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>tax</strong>  <br><em>optional</em></td>
-<td>The amount of tax being withheld from this repayment</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>type</strong>  <br><em>required</em></td>
-<td>The type of the repayment</td>
-<td>enum (CAPITAL, INTEREST)</td>
-</tr>
-</tbody></table>
-
-<p><a name="clientmoneyrepaymentresponse"></a></p>
-<h3 id='the-details-for-sending-the-repayment'>The details for sending the repayment.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accountNumber</strong>  <br><em>optional</em></td>
-<td>The account number to end the funds to.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>reference</strong>  <br><em>optional</em></td>
-<td>The bank reference for the funds transfer.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>sortCode</strong>  <br><em>optional</em></td>
-<td>The sort code to send the funds to.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>totalAmount</strong>  <br><em>optional</em></td>
-<td>The total amount to send.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-</tbody></table>
-
-<p><a name="clientmoneytranche"></a></p>
-<h3 id='a-recorded-investment-tranche'>A recorded investment tranche</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
 <td><strong>bankAccountId</strong>  <br><em>required</em></td>
 <td>The ID of the bank account details to be used for this tranche.</td>
 <td>string</td>
 </tr>
 <tr>
+<td><strong>Body</strong></td>
 <td><strong>id</strong>  <br><em>required</em></td>
 <td>The unique ID for this tranche of investment</td>
 <td>string</td>
 </tr>
 <tr>
-<td><strong>investments</strong>  <br><em>required</em></td>
-<td></td>
-<td>&lt; <a href="#createclientmoneyinvestmentitem">CreateClientMoneyInvestmentItem</a> &gt; array</td>
+<td><strong>Body</strong></td>
+<td><strong>investments[].amount.amount</strong>  <br><em>required</em></td>
+<td>The amount for the investment</td>
+<td>number</td>
 </tr>
 <tr>
+<td><strong>Body</strong></td>
+<td><strong>investments[].amount.currency</strong>  <br><em>required</em></td>
+<td>The ISO currency code for the investment amount</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>investments[].clientId</strong>  <br><em>required</em></td>
+<td>The clientId for the investment</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>investments[].accountType</strong>  <br><em>required</em></td>
+<td>The clients accountType (ISA, GOJI_INVESTMENTS)</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td><strong>investments[].id</strong>  <br><em>required</em></td>
+<td>The unique id for the investment</td>
+<td>string</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
 <td><strong>paymentDestinationId (Deprecated)</strong>  <br><em>optional</em></td>
 <td>The ID of the payment destination to be used for this tranche. This has been deprecated, please use the bankAccountId field</td>
 <td>string</td>
 </tr>
 <tr>
+<td><strong>Body</strong></td>
 <td><strong>productId</strong>  <br><em>required</em></td>
 <td>The ID of the investment product as preciously registered in the system</td>
 <td>string</td>
 </tr>
 <tr>
+<td><strong>Body</strong></td>
 <td><strong>reference</strong>  <br><em>required</em></td>
 <td>The bank reference for the funds transfer</td>
 <td>string</td>
 </tr>
 </tbody></table>
-
-<p><a name="contactdetails"></a></p>
-<h3 id='contact-details'>Contact Details</h3>
+<h4 id='response-7'>Response</h4>
 <table><thead>
 <tr>
+<th>Type</th>
 <th>Name</th>
 <th>Description</th>
 <th>Schema</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>emailAddress</strong>  <br><em>required</em></td>
-<td>The email address.</td>
+<td><strong>Body</strong></td>
+<td><strong>id</strong></td>
+<td>The unique ID for this investment tranche</td>
 <td>string</td>
 </tr>
 <tr>
-<td><strong>telephoneNumber</strong>  <br><em>required</em></td>
-<td>The telephone number.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="corporatedetails"></a></p>
-<h3 id='corporate-details'>Corporate Details</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>companyName</strong>  <br><em>required</em></td>
-<td>The company name.</td>
+<td><strong>Body</strong></td>
+<td><strong>accountNumber</strong></td>
+<td>The account number the funds will be sent to</td>
 <td>string</td>
 </tr>
 <tr>
-<td><strong>companyType</strong>  <br><em>required</em></td>
-<td>The company type.</td>
+<td><strong>Body</strong></td>
+<td><strong>sortCode</strong></td>
+<td>The sort code the funds will be sent to</td>
 <td>string</td>
 </tr>
 <tr>
-<td><strong>registrationNumber</strong>  <br><em>required</em></td>
-<td>The company registration number.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="createclientmoneyinvestmentitem"></a></p>
-<h3 id='investment-for-a-specific-investor-2'>Investment for a specific investor</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accountType</strong>  <br><em>required</em></td>
-<td>The account making the investment.</td>
-<td>enum (GOJI_INVESTMENT, ISA)</td>
-</tr>
-<tr>
-<td><strong>amount</strong>  <br><em>required</em></td>
-<td>The amount being invested</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>clientId</strong>  <br><em>required</em></td>
-<td>The ID of the investor</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>id</strong>  <br><em>required</em></td>
-<td>The unique ID for this clients investment</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="createinvestment"></a></p>
-<h3 id='create-investment'>Create Investment</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>amount</strong>  <br><em>required</em></td>
-<td>The amount invested.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>productTermId</strong>  <br><em>required</em></td>
-<td>The product code for the investment.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>repaymentProfileId</strong>  <br><em>required</em></td>
-<td>The repayment profile ID.</td>
-<td>integer</td>
-</tr>
-</tbody></table>
-
-<p><a name="createinvestor"></a></p>
-<h3 id='create-investor'>Create Investor</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accountTypes</strong>  <br><em>optional</em></td>
-<td>defaults to [GOJI_INVESTMENT, ISA] if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType</td>
-<td>&lt; <a href="#accounttype">AccountType</a> &gt; array</td>
-</tr>
-<tr>
-<td><strong>address</strong>  <br><em>required</em></td>
-<td></td>
-<td><a href="#address">Address</a></td>
-</tr>
-<tr>
-<td><strong>contactDetails</strong>  <br><em>required</em></td>
-<td></td>
-<td><a href="#contactdetails">ContactDetails</a></td>
-</tr>
-<tr>
-<td><strong>corporateDetails</strong>  <br><em>optional</em></td>
-<td>only required for CORPORATE entityType.</td>
-<td><a href="#corporatedetails">CorporateDetails</a></td>
-</tr>
-<tr>
-<td><strong>dateOfBirth</strong>  <br><em>required</em></td>
-<td>The date of birth of the investor.</td>
-<td>string (date)</td>
-</tr>
-<tr>
-<td><strong>employmentDetails</strong>  <br><em>optional</em></td>
-<td></td>
-<td><a href="#employmentdetails">EmploymentDetails</a></td>
-</tr>
-<tr>
-<td><strong>entityType</strong>  <br><em>required</em></td>
-<td></td>
-<td>enum (INDIVIDUAL, CORPORATE)</td>
-</tr>
-<tr>
-<td><strong>firstName</strong>  <br><em>required</em></td>
-<td>The first name of the investor.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>investorDeclarationType</strong>  <br><em>required</em></td>
-<td>All investors must complete a declaration to confirm the kind of investor they are.</td>
-<td>enum (RESTRICTED, HIGH_NET_WORTH, INVESTMENT_PROFESSIONAL, SOPHISTICATED)</td>
-</tr>
-<tr>
-<td><strong>lastName</strong>  <br><em>required</em></td>
-<td>The last name of the investor.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>migrationDetails</strong>  <br><em>optional</em></td>
-<td>Optional. Only required if migrating an investor.</td>
-<td><a href="#migrationdetails">MigrationDetails</a></td>
-</tr>
-<tr>
-<td><strong>nationalInsuranceNumber</strong>  <br><em>optional</em></td>
-<td>The national insurance number of the investor. Only required if opening an ISA.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>nationality</strong>  <br><em>required</em></td>
-<td>The nationality of the investor in 2 character ISO country code eg. GB for British.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>title</strong>  <br><em>required</em></td>
-<td>The title of the investor.</td>
-<td>enum (MISS, MR, MRS, MS, DR)</td>
-</tr>
-</tbody></table>
-
-<p><a name="currentbonds"></a></p>
-<h3 id='current-bonds'>Current Bonds</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>bonds</strong>  <br><em>optional</em></td>
-<td>&lt; <a href="#bond">Bond</a> &gt; array</td>
-</tr>
-</tbody></table>
-
-<p><a name="documentupload"></a></p>
-<h3 id='document-upload'>Document Upload</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>data</strong>  <br><em>required</em></td>
-<td>The file to upload Base64 encoded.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>fileName</strong>  <br><em>required</em></td>
-<td>The file name eg passport.pdf.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="employmentdetails"></a></p>
-<h3 id='employment-details'>Employment Details</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>employmentStatus</strong>  <br><em>required</em></td>
-<td>The employment status.</td>
-<td>enum (EMPLOYED_FULL_TIME, EMPLOYED_PART_TIME, SELF_EMPLOYED, UNEMPLOYED, HOUSE_PERSON, EDUCATION, RETIRED, NOT_WORKING_ILLNESS_DISABILITY)</td>
-</tr>
-<tr>
-<td><strong>jobTitle</strong>  <br><em>required</em></td>
-<td>The job title.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="error"></a></p>
-<h3 id='error'>Error</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>errorCode</strong>  <br><em>optional</em></td>
-<td>The error code.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>message</strong>  <br><em>optional</em></td>
-<td>The error message.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="errorresponse"></a></p>
-<h3 id='error-response'>Error Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>errors</strong>  <br><em>optional</em></td>
-<td>&lt; <a href="#error">Error</a> &gt; array</td>
-</tr>
-</tbody></table>
-
-<p><a name="isadeclaration"></a></p>
-<h3 id='isa-declaration'>ISA Declaration</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>declaration</strong>  <br><em>optional</em></td>
-<td>The ISA declaration in HTML format.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>version</strong>  <br><em>optional</em></td>
-<td>The version of the ISA declaration.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="interaccounttransfer"></a></p>
-<h3 id='inter-account-transfer'>Inter Account Transfer</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>amount</strong>  <br><em>optional</em></td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>toAccount</strong>  <br><em>optional</em></td>
-<td>enum (GOJI_INVESTMENT, ISA)</td>
-</tr>
-</tbody></table>
-
-<p><a name="investment"></a></p>
-<h3 id='investment'>Investment</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>amountInvested</strong>  <br><em>optional</em></td>
-<td>The amount invested.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>endDate</strong>  <br><em>optional</em></td>
-<td>The end date of the investment.</td>
-<td>string (date)</td>
-</tr>
-<tr>
-<td><strong>gainToDate</strong>  <br><em>optional</em></td>
-<td>The gain to date. Can be negative if the investment has decreased in value.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>gainToDateAsPercentage</strong>  <br><em>optional</em></td>
-<td>The gain to date as a percentage.</td>
-<td>number</td>
-</tr>
-<tr>
-<td><strong>id</strong>  <br><em>optional</em></td>
-<td>A unique ID for the investment.</td>
-<td>string (uuid)</td>
-</tr>
-<tr>
-<td><strong>productTermId</strong>  <br><em>optional</em></td>
-<td>The product code for the investment.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>startDate</strong>  <br><em>optional</em></td>
-<td>The start date of the investment.</td>
-<td>string (date)</td>
-</tr>
-<tr>
-<td><strong>status</strong>  <br><em>optional</em></td>
-<td>The status of the investment.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="investmentdocument"></a></p>
-<h3 id='the-documents-related-to-a-given-product'>The documents related to a given product.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>fileName</strong>  <br><em>required</em></td>
-<td>The name of the file.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>fileUrl</strong>  <br><em>required</em></td>
-<td>The url of the document.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>investmentDocumentType</strong>  <br><em>required</em></td>
-<td>The type of document</td>
-<td>enum (INVESTMENT_BROCHURE, KEY_INFORMATION_DOCUMENT, INVESTMENT_MEMORANDUM, COMPLIANCE_NOTE)</td>
-</tr>
-</tbody></table>
-
-<p><a name="investmentproduct"></a></p>
-<h3 id='product'>Product</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>availableTerms</strong>  <br><em>optional</em></td>
-<td>The available terms, in months.</td>
-<td>&lt; integer &gt; array</td>
-</tr>
-<tr>
-<td><strong>product</strong>  <br><em>optional</em></td>
-<td>The product code.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="investmentproductslist"></a></p>
-<h3 id='investment-products'>Investment Products</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>availableProducts</strong>  <br><em>optional</em></td>
-<td>&lt; <a href="#investmentproduct">InvestmentProduct</a> &gt; array</td>
-</tr>
-</tbody></table>
-
-<p><a name="investor"></a></p>
-<h3 id='investor'>Investor</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accountTypes</strong>  <br><em>optional</em></td>
-<td>Investor&#39;s account types</td>
-<td>enum (GOJI_INVESTMENT, ISA)</td>
-</tr>
-<tr>
-<td><strong>address</strong>  <br><em>optional</em></td>
-<td></td>
-<td><a href="#address">Address</a></td>
-</tr>
-<tr>
-<td><strong>clientId</strong>  <br><em>optional</em></td>
-<td>The ID of the investor assigned by the platform.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>contactDetails</strong>  <br><em>optional</em></td>
-<td></td>
-<td><a href="#contactdetails">ContactDetails</a></td>
-</tr>
-<tr>
-<td><strong>corporateDetails</strong>  <br><em>optional</em></td>
-<td>only required for CORPORATE entityType.</td>
-<td><a href="#corporatedetails">CorporateDetails</a></td>
-</tr>
-<tr>
-<td><strong>dateOfBirth</strong>  <br><em>optional</em></td>
-<td>The date of birth of the investor.</td>
-<td>string (date)</td>
-</tr>
-<tr>
-<td><strong>employmentDetails</strong>  <br><em>optional</em></td>
-<td></td>
-<td><a href="#employmentdetails">EmploymentDetails</a></td>
-</tr>
-<tr>
-<td><strong>entityType</strong>  <br><em>optional</em></td>
-<td></td>
-<td>enum (INDIVIDUAL, CORPORATE)</td>
-</tr>
-<tr>
-<td><strong>firstName</strong>  <br><em>optional</em></td>
-<td>The first name of the investor.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>lastName</strong>  <br><em>optional</em></td>
-<td>The last name of the investor.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>nationalInsuranceNumber</strong>  <br><em>optional</em></td>
-<td>The national insurance number of the investor.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>title</strong>  <br><em>optional</em></td>
-<td>The title of the investor.</td>
-<td>enum (MISS, MR, MRS, MS, DR)</td>
-</tr>
-</tbody></table>
-
-<p><a name="investorrepayment"></a></p>
-<h3 id='the-repayment-to-be-added-to-the-investment-for-the-investor'>The repayment to be added to the investment for the investor.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>capitalAmount</strong>  <br><em>required</em></td>
-<td>The capital amount being repaid. May be zero.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>clientId</strong>  <br><em>required</em></td>
-<td>The ID of the client</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>interestAmount</strong>  <br><em>required</em></td>
-<td>The interest amount being repaid. May be zero.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-</tbody></table>
-
-<p><a name="kycdocuments"></a></p>
-<h3 id='kyc-documents'>KYC Documents</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>documents</strong>  <br><em>required</em></td>
-<td>The documents.</td>
-<td>&lt; <a href="#documentupload">DocumentUpload</a> &gt; array</td>
-</tr>
-</tbody></table>
-
-<p><a name="kycstatus"></a></p>
-<h3 id='kyc-status'>KYC Status</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>status</strong>  <br><em>optional</em></td>
-<td>The KYC status of the investor</td>
-<td>enum (IN_PROGRESS, DOCUMENTS_REQUIRED, VERIFIED)</td>
-</tr>
-</tbody></table>
-
-<p><a name="listinvestments"></a></p>
-<h3 id='investments'>Investments</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>investments</strong>  <br><em>optional</em></td>
-<td>The investments.</td>
-<td>&lt; <a href="#investment">Investment</a> &gt; array</td>
-</tr>
-</tbody></table>
-
-<p><a name="listregisteredproducts"></a></p>
-<h3 id='list-of-registered-products'>List of registered products</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>products</strong>  <br><em>optional</em></td>
-<td>&lt; <a href="#registeredproduct">RegisteredProduct</a> &gt; array</td>
-</tr>
-</tbody></table>
-
-<p><a name="maturity"></a></p>
-<h3 id='maturity-details'>Maturity Details</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>date</strong>  <br><em>optional</em></td>
-<td>The maturity date if type FIXED</td>
-<td>string (date)</td>
-</tr>
-<tr>
-<td><strong>maturityType</strong>  <br><em>optional</em></td>
-<td>The type of bond maturity</td>
-<td>enum (FIXED, DURATION)</td>
-</tr>
-<tr>
-<td><strong>months</strong>  <br><em>optional</em></td>
-<td>The number of months until maturity if type DURATION</td>
-<td>integer</td>
-</tr>
-</tbody></table>
-
-<p><a name="migrationdetails"></a></p>
-<h3 id='optional-details-to-migrate-an-existing-investor'>Optional details to migrate an existing investor.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>existingClientId</strong>  <br><em>optional</em></td>
-<td>The existing client ID for the investor to be migrated</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="monetaryamount"></a></p>
-<h3 id='monetary-amount'>Monetary Amount</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>amount</strong>  <br><em>required</em></td>
-<td>The amount.</td>
-<td>number</td>
-</tr>
-<tr>
-<td><strong>currency</strong>  <br><em>required</em></td>
-<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="paymentdestination"></a></p>
-<h3 id='the-payment-destination'>The payment destination.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accountName</strong>  <br><em>optional</em></td>
-<td>The bank account name.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>accountNumber</strong>  <br><em>required</em></td>
-<td>The bank account number.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>reference</strong>  <br><em>required</em></td>
-<td>The reference to be used when transferring funds.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>sortCode</strong>  <br><em>required</em></td>
-<td>The bank account sort code.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="paymentdestinationitem"></a></p>
-<h3 id='the-payment-destination-2'>The payment destination.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accountNumber</strong>  <br><em>optional</em></td>
-<td>The bank account number.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>id</strong>  <br><em>optional</em></td>
-<td>The id of the payment destination</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>reference</strong>  <br><em>optional</em></td>
-<td>The reference to be used when transferring funds.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>sortCode</strong>  <br><em>optional</em></td>
-<td>The bank account sort code.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="paymentdestinationresponse"></a></p>
-<h3 id='the-id-of-the-payment-destination'>The id of the payment destination.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>id</strong>  <br><em>optional</em></td>
-<td>The unique id of the payment destination</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="paymentdestinations"></a></p>
-<h3 id='the-list-of-the-payment-destinations'>The list of the payment destinations.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>paymentDestinations</strong>  <br><em>optional</em></td>
-<td>The payment destinations</td>
-<td>&lt; <a href="#paymentdestinationitem">PaymentDestinationItem</a> &gt; array</td>
-</tr>
-</tbody></table>
-
-<p><a name="product"></a></p>
-<h3 id='create-product'>Create Product.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>name</strong>  <br><em>required</em></td>
-<td>The name of the product.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>terms</strong>  <br><em>required</em></td>
-<td>The product terms.</td>
-<td>&lt; <a href="#productterm">ProductTerm</a> &gt; array</td>
-</tr>
-</tbody></table>
-
-<p><a name="productresponse"></a></p>
-<h3 id='the-ids-related-to-a-given-product'>The ids related to a given product.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>id</strong>  <br><em>optional</em></td>
-<td>The unique id of the product</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="productterm"></a></p>
-<h3 id='the-product-terms-used-to-configure-the-product'>The product terms used to configure the product.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>fixedLiveDate</strong>  <br><em>optional</em></td>
-<td>A fixed date in the future when the product goes live. If this is not set, and the maximum funding limit is not specified, the bond will run according to the schedule you agree with Goji.</td>
-<td>string (date)</td>
-</tr>
-<tr>
-<td><strong>fixedMaturityDate</strong>  <br><em>optional</em></td>
-<td>A fixed date at which point the product matures. <b>Note: fixedMaturityDate or term must be specified</b></td>
-<td>string (date)</td>
-</tr>
-<tr>
-<td><strong>interestRate</strong>  <br><em>required</em></td>
-<td>The interest rate of the product.</td>
-<td>number</td>
-</tr>
-<tr>
-<td><strong>interestType</strong>  <br><em>required</em></td>
-<td>The type of interest to be returned.</td>
-<td>enum (FIXED, TARGET)</td>
-</tr>
-<tr>
-<td><strong>investmentDocuments</strong>  <br><em>required</em></td>
-<td>The investment documents relating to the product.</td>
-<td>&lt; <a href="#investmentdocument">InvestmentDocument</a> &gt; array</td>
-</tr>
-<tr>
-<td><strong>maximumFundingLimit</strong>  <br><em>optional</em></td>
-<td>The maximum amount allowed for the product before it goes live. <b>Note: The bond will NOT run until this limit is reached. ie. this is both a maximum limt and also the amount that must be filled for the bond to run.&lt;/&gt;</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>minimumInvestment</strong>  <br><em>required</em></td>
-<td>The minimum individual investment allowed for the product.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>repaymentProfiles</strong>  <br><em>required</em></td>
-<td>The investment documents relating to the product.</td>
-<td>&lt; enum (STANDARD_ANNUALLY_REINVESTMENT, STANDARD_ON_MATURITY, STANDARD_QUARTERLY_BLENDED, STANDARD_QUARTERLY_PAYOUT, STANDARD_QUARTERLY_PAYOUT_OFFSET_BY_1MTH, STANDARD_QUARTERLY_REINVESTMENT, STANDARD_SIX_MTH_PAYOUT, STANDARD_SIX_MTH_PAYOUT_OFFSET_BY_3MTH, STANDARD_SIX_MTH_REINVESTMENT) &gt; array</td>
-</tr>
-<tr>
-<td><strong>term</strong>  <br><em>optional</em></td>
-<td>The term length of the product in months. <b>Note: term or fixedMaturityDate must be specified</b></td>
-<td>integer</td>
-</tr>
-</tbody></table>
-
-<p><a name="registeredproduct"></a></p>
-<h3 id='registered-product'>Registered product</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>id</strong>  <br><em>required</em></td>
-<td>The unique ID of the product</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>investmentDocument</strong>  <br><em>required</em></td>
-<td>A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>isaEligible</strong>  <br><em>required</em></td>
-<td>True if the investment can be included in an IF ISA.</td>
-<td>boolean</td>
-</tr>
-</tbody></table>
-
-<p><a name="registeredproductupdate"></a></p>
-<h3 id='registered-product-2'>Registered product</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>investmentDocument</strong>  <br><em>required</em></td>
-<td>A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>isaEligible</strong>  <br><em>required</em></td>
-<td>True if the investment can be included in an IF ISA.</td>
-<td>boolean</td>
-</tr>
-</tbody></table>
-
-<p><a name="repaymentreference"></a></p>
-<h3 id='the-repayment-reference'>The repayment reference.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accountNumber</strong>  <br><em>optional</em></td>
-<td>The account number for the repayment deposit.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>reference</strong>  <br><em>optional</em></td>
-<td>The bank reference to be used when depositing the repayment.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>sortCode</strong>  <br><em>optional</em></td>
-<td>The sort code for the repayment deposit.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="repaymentsaccrual"></a></p>
-<h3 id='the-details-for-configuring-the-repayment-accruals'>The details for configuring the repayment accruals.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accrualDate</strong>  <br><em>optional</em></td>
-<td>The date up to which accruals will be generated</td>
-<td>string (date)</td>
-</tr>
-</tbody></table>
-
-<p><a name="settlesecondarymarkettrade"></a></p>
-<h3 id='record-the-settlement-of-a-secondary-market-trade'>Record the settlement of a secondary market trade.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>buySide</strong>  <br><em>required</em></td>
-<td>Details of the buy side.</td>
-<td><a href="#settlesecondarymarkettradebuyside">SettleSecondaryMarketTradeBuySide</a></td>
-</tr>
-<tr>
-<td><strong>sellSide</strong>  <br><em>required</em></td>
-<td>Details of the sell side.</td>
-<td><a href="#settlesecondarymarkettradesellside">SettleSecondaryMarketTradeSellSide</a></td>
-</tr>
-</tbody></table>
-
-<p><a name="settlesecondarymarkettradebuyside"></a></p>
-<h3 id='details-of-the-secondary-market-buy-side'>Details of the secondary market buy side</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>accountType</strong>  <br><em>required</em></td>
-<td>The account purchasing the investment</td>
-<td>enum (GOJI_INVESTMENT, ISA, SIPP)</td>
-</tr>
-<tr>
-<td><strong>bankAccountId</strong>  <br><em>optional</em></td>
-<td>The ID of the bank account details to send fees to</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>clientId</strong>  <br><em>required</em></td>
-<td>The client ID of the buyer</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>fee</strong>  <br><em>optional</em></td>
-<td>The fee being paid by the buyer. In addition to the totalPurchaseAmount.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>feePaymentDestination (Deprecated)</strong>  <br><em>optional</em></td>
-<td>The ID of the payment destination to send fees to. This has been deprecated, please use the bankAccountId field</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>newInvestmentId</strong>  <br><em>required</em></td>
-<td>The ID for the investment being held by the buy side investor</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>reference</strong>  <br><em>required</em></td>
+<td><strong>Body</strong></td>
+<td><strong>reference</strong></td>
 <td>The bank reference for the funds transfer</td>
 <td>string</td>
 </tr>
 <tr>
-<td><strong>totalPurchaseAmount</strong>  <br><em>required</em></td>
-<td>The total amount being paid for the investment. This must equal the sum of the remainingCapitalAmount plus premium on the sell side.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-</tbody></table>
-
-<p><a name="settlesecondarymarkettradesellside"></a></p>
-<h3 id='details-of-the-secondary-market-sell-side'>Details of the secondary market sell side</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>bankAccountId</strong>  <br><em>optional</em></td>
-<td>The ID of the bank account details to send fees to</td>
-<td>string</td>
+<td><strong>Body</strong></td>
+<td><strong>totalAmount.amount</strong></td>
+<td>The total amount being invested</td>
+<td>number</td>
 </tr>
 <tr>
-<td><strong>clientId</strong>  <br><em>required</em></td>
-<td>The client ID of the seller</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>fee</strong>  <br><em>optional</em></td>
-<td>The fee being paid by the seller. Deducted from the total sales price.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>feePaymentDestination (Deprecated)</strong>  <br><em>optional</em></td>
-<td>The ID of the payment destination to send fees to. This has been deprecated, please use the bankAccountId field</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>investmentId</strong>  <br><em>required</em></td>
-<td>The ID of the investment being sold</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>premium</strong>  <br><em>optional</em></td>
-<td>The premium (positive or negative) added to the remaining capital amount to get the total sales price.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>reference</strong>  <br><em>required</em></td>
-<td>The bank reference for the funds transfer</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>remainingCapitalAmount</strong>  <br><em>required</em></td>
-<td>The remaining capital amount of the investment being sold.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-</tbody></table>
-
-<p><a name="terms"></a></p>
-<h3 id='terms-and-conditions'>Terms and Conditions</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>termsAndConditions</strong>  <br><em>optional</em></td>
-<td>The terms and conditions in HTML format.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>version</strong>  <br><em>optional</em></td>
-<td>The version of the terms and conditions.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="testdeposit"></a></p>
-<h3 id='a-test-deposit'>A test deposit</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>amount</strong>  <br><em>required</em></td>
-<td>The amount to deposit.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>clientId</strong>  <br><em>required</em></td>
-<td>The client ID</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>paymentReference</strong>  <br><em>required</em></td>
-<td>The reference. Set to ISA if the funds should be credited to the ISA account.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>paymentType</strong>  <br><em>required</em></td>
-<td>Should be set to DEPOSIT</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="testinvestmentcycle"></a></p>
-<h3 id='the-details-for-configuring-the-investment-cycle-run'>The details for configuring the investment cycle run.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>minimumRequiredForNewBond</strong>  <br><em>optional</em></td>
-<td>The minimum amount required for the new bond.</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-</tbody></table>
-
-<p><a name="transferinui"></a></p>
-<h3 id='transfer-in-ui'>Transfer In UI</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>apiUrl</strong>  <br><em>optional</em></td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>scriptSrc</strong>  <br><em>optional</em></td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>styleSrc</strong>  <br><em>optional</em></td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>token</strong>  <br><em>optional</em></td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="updateinvestor"></a></p>
-<h3 id='update-investor'>Update Investor</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>address</strong>  <br><em>required</em></td>
-<td></td>
-<td><a href="#address">Address</a></td>
-</tr>
-<tr>
-<td><strong>contactDetails</strong>  <br><em>required</em></td>
-<td></td>
-<td><a href="#contactdetails">ContactDetails</a></td>
-</tr>
-<tr>
-<td><strong>corporateDetails</strong>  <br><em>optional</em></td>
-<td>only required for CORPORATE entityType.</td>
-<td><a href="#corporatedetails">CorporateDetails</a></td>
-</tr>
-<tr>
-<td><strong>dateOfBirth</strong>  <br><em>required</em></td>
-<td>The date of birth of the investor.</td>
-<td>string (date)</td>
-</tr>
-<tr>
-<td><strong>employmentDetails</strong>  <br><em>optional</em></td>
-<td></td>
-<td><a href="#employmentdetails">EmploymentDetails</a></td>
-</tr>
-<tr>
-<td><strong>entityType</strong>  <br><em>optional</em></td>
-<td></td>
-<td>enum (INDIVIDUAL, CORPORATE)</td>
-</tr>
-<tr>
-<td><strong>firstName</strong>  <br><em>required</em></td>
-<td>The first name of the investor.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>investorDeclarationType</strong>  <br><em>optional</em></td>
-<td>must be SOPHISTICATED for an investor with entityType CORPORATE</td>
-<td>enum (RESTRICTED, HIGH_NET_WORTH, INVESTMENT_PROFESSIONAL, SOPHISTICATED)</td>
-</tr>
-<tr>
-<td><strong>lastName</strong>  <br><em>required</em></td>
-<td>The last name of the investor.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>nationalInsuranceNumber</strong>  <br><em>optional</em></td>
-<td>The national insurance number of the investor. Only required if opening an ISA.</td>
-<td>string</td>
-</tr>
-<tr>
-<td><strong>title</strong>  <br><em>required</em></td>
-<td>The title of the investor.</td>
-<td>enum (MISS, MR, MRS, MS, DR)</td>
-</tr>
-</tbody></table>
-
-<p><a name="webhook"></a></p>
-<h3 id='the-url-for-configuring-the-webhook'>The url for configuring the webhook.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>url</strong>  <br><em>optional</em></td>
-<td>The url to dispatch the webhook to.</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<p><a name="withdrawal"></a></p>
-<h3 id='the-amount-to-withdraw'>The amount to withdraw.</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>amount</strong>  <br><em>optional</em></td>
-<td>The amount of the residual income payment</td>
-<td><a href="#monetaryamount">MonetaryAmount</a></td>
-</tr>
-<tr>
-<td><strong>reference</strong>  <br><em>optional</em></td>
-<td>An optional reference to be used when withdrawing funds.</td>
+<td><strong>Body</strong></td>
+<td><strong>totalAmount.currency</strong></td>
+<td>The ISO currency code for the investment amount</td>
 <td>string</td>
 </tr>
 </tbody></table>
@@ -13188,6 +11677,64 @@ This endpoint creates the new investment associated with the reinvestment.</p>
 <td><strong>reference</strong>  <br><em>optional</em></td>
 <td>An optional reference to be used when withdrawing funds.</td>
 <td>string</td>
+</tr>
+</tbody></table>
+<h1 id='errors'>Errors</h1>
+<aside class="notice">
+This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified kitten could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone -- The kitten requested has been removed from our servers.</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&#39;m a teapot.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
 
