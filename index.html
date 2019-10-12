@@ -284,6 +284,12 @@
             <a href="#investors" class="toc-h1 toc-link" data-title="Investors">Investors</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#creating-an-investor" class="toc-h2 toc-link" data-title="Creating an investor">Creating an investor</a>
+                  </li>
+                  <li>
+                    <a href="#checking-the-kyc-details" class="toc-h2 toc-link" data-title="Checking the KYC details">Checking the KYC details</a>
+                  </li>
+                  <li>
                     <a href="#get-terms" class="toc-h2 toc-link" data-title="GET /terms">GET /terms</a>
                   </li>
                   <li>
@@ -1009,7 +1015,52 @@ If an invalid version header is specified, a 404 response code will be returned.
 }
 </code></pre>
 <p><a href="/#post-investors-clientid-accounts-accounttype-withdrawal">https://api-sandbox.goji.investments/platformApi/investors/{clientId}/accounts/{accountType}/withdrawal</a></p>
-<h1 id='investors'>Investors</h1><h2 id='get-terms'>GET /terms</h2><pre class="highlight http tab-http"><code><span class="err">
+<h1 id='investors'>Investors</h1>
+<p>The Investors API allows you to onboard, conduct KYC checks, open general/ISA accounts for your investors. You can also retrieve and update investor data.</p>
+<h2 id='creating-an-investor'>Creating an investor</h2>
+<p>To create an investor, the investor must first agree to the terms and conditions and optionally the ISA declaration if the investor is opening an ISA.</p>
+
+<p>The terms and conditions can be hosted by Goji, in which case they can be retrieved by calling <a href="/#get-terms">GET https://api-sandbox.goji.investments/platformApi/terms</a>.</p>
+
+<p>The ISA Declaration can be retrieved by calling <a href="/#get-isadeclaration">GET https://api-sandbox.goji.investments/platformApi/isaDeclaration</a></p>
+
+<blockquote>
+<p>Create investor</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "title": "MS",
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "accountTypes": [
+        "GOJI_INVESTMENT", "ISA"
+    ],
+    "address": {
+        "country": "GBR",
+        "lineOne": "1 The High Street",
+        "lineTwo": "",
+        "lineThree": "",
+        "postcode": "AA1 1AA",
+        "region": "County",
+        "townCity": "Town"
+    },
+    "contactDetails": {
+        "emailAddress": "me@email.com",
+        "telephoneNumber": "01234567890"
+    },
+    "dateOfBirth": "1970-01-01",
+    "entityType": "INDIVIDUAL",
+    "investorDeclarationType": "RESTRICTED",
+    "nationalInsuranceNumber": "JT123456D"
+}
+</code></pre>
+<p>An investor is created by posting to <a href="/#post-investors">https://api-sandbox.goji.investments/platformApi/investors</a> with example <code>POST</code> body:</p>
+
+<p>The Goji Platform will generate a <code>clientId</code> which should be persisted as this is used for subsequent calls.</p>
+<h2 id='checking-the-kyc-details'>Checking the KYC details</h2>
+<p>Once the investor has been created, a KYC check is done in the background and the status can be checked by calling <a href="/#get-investors-clientid-kyc">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/kyc</a></p>
+
+<p>In the sandbox environment, all investors are considered verified unless the <code>lastName</code> contains <code>referred</code>.</p>
+<h2 id='get-terms'>GET /terms</h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/terms</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -1060,6 +1111,7 @@ If an invalid version header is specified, a 404 response code will be returned.
   </span><span class="s2">"declaration"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"declaration"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"version"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"version"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre><h3 id='description-2'>Description</h3>
 <p>Loads the current ISA declaration.</p>
 <h3 id='response-2'>Response</h3>
@@ -1161,7 +1213,7 @@ If an invalid version header is specified, a 404 response code will be returned.
   </span><span class="s2">"investmentDeclarationType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"RESTRICTED"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='description-3'>Description</h3>
-<p>null</p>
+<p>Creates an investor and triggers a KYC check.</p>
 <h3 id='request'>Request</h3>
 <table><thead>
 <tr>
@@ -1174,7 +1226,7 @@ If an invalid version header is specified, a 404 response code will be returned.
 <tr>
 <td>title</td>
 <td>string</td>
-<td>The title of the investor.</td>
+<td>The title of the investor. Possible values are: <code>MISS</code> <code>MR</code> <code>MRS</code> <code>MS</code> <code>DR</code></td>
 <td>optional</td>
 </tr>
 <tr>
@@ -1288,31 +1340,31 @@ If an invalid version header is specified, a 404 response code will be returned.
 <tr>
 <td>employmentDetails.employmentStatus</td>
 <td>string</td>
-<td>The employment status.</td>
+<td>The employment status. Possible values are: <code>EMPLOYED_FULL_TIME</code> <code>EMPLOYED_PART_TIME</code> <code>SELF_EMPLOYED</code> <code>UNEMPLOYED</code> <code>HOUSE_PERSON</code> <code>EDUCATION</code> <code>RETIRED</code> <code>NOT_WORKING_ILLNESS_DISABILITY</code></td>
 <td></td>
 </tr>
 <tr>
 <td>entityType</td>
 <td>string</td>
-<td></td>
+<td>The entity type. Possible values are: <code>INDIVIDUAL</code> <code>CORPORATE</code></td>
 <td>required</td>
 </tr>
 <tr>
 <td>investorDeclarationType</td>
 <td>string</td>
-<td>All investors must complete a declaration to confirm the kind of investor they are.</td>
-<td>required</td>
+<td>All investors must complete a declaration to confirm the kind of investor they are. Possible values are: <code>RESTRICTED</code> <code>HIGH_NET_WORTH</code> <code>INVESTMENT_PROFESSIONAL</code> <code>SOPHISTICATED</code>                    required</td>
+<td></td>
 </tr>
 <tr>
 <td>accountTypes</td>
 <td>array</td>
-<td>defaults to [GOJI_INVESTMENT, ISA] if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType</td>
+<td>Possible values are: <code>GOJI_INVESTMENT</code> <code>ISA</code> Defaults to <code>[GOJI_INVESTMENT, ISA]</code> if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType</td>
 <td>optional</td>
 </tr>
 <tr>
 <td>corporateDetails</td>
 <td>ref</td>
-<td>only required for CORPORATE entityType.</td>
+<td>Only required for CORPORATE entityType.</td>
 <td>optional</td>
 </tr>
 <tr>
@@ -2443,7 +2495,14 @@ If an invalid version header is specified, a 404 response code will be returned.
 </span></code></pre><h3 id='description-11'>Description</h3>
 <p>Returns аll opened transfers in.</p>
 <h3 id='response-11'>Response</h3>
-<p>| Name | Type | Description || ---- | ---- | ----------- |</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
 <h2 id='get-investors-clientid-transferout'>GET /investors/{clientId}/transferOut</h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/transferOut</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
@@ -2459,7 +2518,14 @@ If an invalid version header is specified, a 404 response code will be returned.
 </span></code></pre><h3 id='description-12'>Description</h3>
 <p>Lists transfers out for the investor.</p>
 <h3 id='response-12'>Response</h3>
-<p>| Name | Type | Description || ---- | ---- | ----------- |</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
 <h2 id='get-investors-clientid-transferin'>GET /investors/{clientId}/transferIn</h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/transferIn</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
@@ -2475,7 +2541,14 @@ If an invalid version header is specified, a 404 response code will be returned.
 </span></code></pre><h3 id='description-13'>Description</h3>
 <p>Lists transfers in for the investor.</p>
 <h3 id='response-13'>Response</h3>
-<p>| Name | Type | Description || ---- | ---- | ----------- |</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
 <h2 id='get-investors-clientid-transferin-transferinid'>GET /investors/{clientId}/transferIn/{transferInId}</h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/transferIn/{transferInId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
@@ -2654,7 +2727,14 @@ If an invalid version header is specified, a 404 response code will be returned.
 </span></code></pre><h3 id='description-16'>Description</h3>
 <p>Lists all transfers out for all investors.</p>
 <h3 id='response-16'>Response</h3>
-<p>| Name | Type | Description || ---- | ---- | ----------- |</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
 <h1 id='payments'>Payments</h1><h2 id='get-investors-clientid-banktransferdetails'>GET /investors/{clientId}/bankTransferDetails</h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/bankTransferDetails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
