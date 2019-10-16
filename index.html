@@ -2439,6 +2439,27 @@ migrate existing investors.</p>
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"overallStatus"</span><span class="p">:</span><span class="s2">"overallStatus"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"documentsRequired"</span><span class="p">:[</span><span class="s2">"documentsRequired"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"documentsPendingApproval"</span><span class="p">:[</span><span class="s2">"documentsPendingApproval"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"documentsApproved"</span><span class="p">:[</span><span class="s2">"documentsApproved"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"lastFailure"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"failureDate"</span><span class="p">:</span><span class="s2">"failureDate"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rejectedDocuments"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"type"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"reason"</span><span class="p">:</span><span class="s2">"reason"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notes"</span><span class="p">:</span><span class="s2">"notes"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"requirements"</span><span class="p">:[{</span><span class="w">
+    </span><span class="s2">"requirementType"</span><span class="p">:</span><span class="s2">"requirementType"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"status"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"checkType"</span><span class="p">:</span><span class="s2">"checkType"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workflowId"</span><span class="p">:</span><span class="s2">"workflowId"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='description-8'>Description</h3>
 <p>Add an investor&#39;s KYC documents.</p>
@@ -2471,7 +2492,89 @@ migrate existing investors.</p>
 </tr>
 </tbody></table>
 <h3 id='response-8'>Response</h3>
-<p>| Name | Type | Description || ---- | ---- | ----------- |</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>overallStatus</td>
+<td>string</td>
+<td>The overall status of the KYC status of the investor</td>
+</tr>
+<tr>
+<td>documentsRequired</td>
+<td>array</td>
+<td>The documents that are required</td>
+</tr>
+<tr>
+<td>documentsPendingApproval</td>
+<td>array</td>
+<td>The documents that have been uploaded and are pending approval.</td>
+</tr>
+<tr>
+<td>documentsApproved</td>
+<td>array</td>
+<td>The documents that have been approved.</td>
+</tr>
+<tr>
+<td>lastFailure</td>
+<td>ref</td>
+<td>The most recent failed document upload</td>
+</tr>
+<tr>
+<td>lastFailure.failureDate</td>
+<td>string</td>
+<td>The date of the failed upload</td>
+</tr>
+<tr>
+<td>lastFailure.rejectedDocuments</td>
+<td>array</td>
+<td>List of rejected documents</td>
+</tr>
+<tr>
+<td>lastFailure.rejectedDocuments[].type</td>
+<td>string</td>
+<td>The type of document that was rejected</td>
+</tr>
+<tr>
+<td>lastFailure.rejectedDocuments[].reason</td>
+<td>string</td>
+<td>The reason for the rejection</td>
+</tr>
+<tr>
+<td>lastFailure.rejectedDocuments[].notes</td>
+<td>string</td>
+<td>Accompanying notes to the rejection reason</td>
+</tr>
+<tr>
+<td>requirements</td>
+<td>array</td>
+<td>The documents that are required</td>
+</tr>
+<tr>
+<td>requirements[].requirementType</td>
+<td>string</td>
+<td>The type of the requirement</td>
+</tr>
+<tr>
+<td>requirements[].status</td>
+<td>string</td>
+<td>The status of this requirement</td>
+</tr>
+<tr>
+<td>requirements[].checkType</td>
+<td>string</td>
+<td>The type of the check</td>
+</tr>
+<tr>
+<td>requirements[].workflowId</td>
+<td>string</td>
+<td>The ID of the attached workflow</td>
+</tr>
+</tbody></table>
 <h2 id='post-investors-clientid-accounts-isa'>POST /investors/{clientId}/accounts/ISA</h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/investors/{clientId}/accounts/ISA</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
@@ -6201,6 +6304,10 @@ that their account has been credited.</p>
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='description-4'>Description</h3>
 <p>Simulates interest repayment accruals.</p>
+
+<aside class="notice">
+This is a test endpoint and only works in the sandbox environment.
+</aside>
 <h3 id='request-3'>Request</h3>
 <table><thead>
 <tr>
@@ -6218,7 +6325,7 @@ that their account has been credited.</p>
 </tr>
 </tbody></table>
 <h3 id='response-4'>Response</h3>
-<p>| Name | Type | Description || ---- | ---- | ----------- |</p>
+<p>The response body is empty.</p>
 <h2 id='get-investors-clientid-accounts-accounttype-investments'>GET /investors/{clientId}/accounts/{accountType}/investments</h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/accounts/{accountType}/investments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
@@ -6351,6 +6458,10 @@ that their account has been credited.</p>
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='description-6'>Description</h3>
 <p>Adds an investment to the account.</p>
@@ -6385,17 +6496,29 @@ that their account has been credited.</p>
 <td>amount.amount</td>
 <td>number</td>
 <td>The amount.</td>
-<td></td>
+<td>required</td>
 </tr>
 <tr>
 <td>amount.currency</td>
 <td>string</td>
 <td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
-<td></td>
+<td>required</td>
 </tr>
 </tbody></table>
 <h3 id='response-6'>Response</h3>
-<p>| Name | Type | Description || ---- | ---- | ----------- |</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The ID of the created investment</td>
+</tr>
+</tbody></table>
 <h2 id='get-investments-products'>GET /investments/products</h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investments/products</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
