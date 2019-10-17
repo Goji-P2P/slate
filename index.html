@@ -346,6 +346,9 @@
                   <li>
                     <a href="#get-transfersout" class="toc-h2 toc-link" data-title="GET /transfersOut">GET /transfersOut</a>
                   </li>
+                  <li>
+                    <a href="#get-investors-clientid-transactions" class="toc-h2 toc-link" data-title="GET /investors/{clientId}/transactions">GET /investors/{clientId}/transactions</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1169,7 +1172,7 @@ If these checks are successful, the ISA is opened immediately and isavailable to
 
 <p>You can verify the KYC details by calling <code>GET /investors/{clientId}/kyc</code>. Alternatively, you can register a webhook and a call will be made to your system when the KYC status changes.</p>
 
-<p>When there are documents required, identity documents must be uploaded. Supported formats are pdf, png and jpeg. The documents are uploaded as <code>Base64</code> encoded strings (maximum size 10MB) using <code>POST /investors/{clientId}/kyc/documents</code>.</p>
+<p>When documents are required, identity documents must be uploaded. Supported formats are pdf, png and jpeg. The documents are uploaded as <code>Base64</code> encoded strings (maximum size 10MB) using <code>POST /investors/{clientId}/kyc/documents</code>.</p>
 
 <p>The supported documents are:</p>
 
@@ -1420,6 +1423,10 @@ migrate existing investors.</p>
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"nationality"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nationality"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nationalities"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nationality"</span><span class="p">:</span><span class="s2">"nationality"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
   </span><span class="s2">"nationalInsuranceNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nationalInsuranceNumber"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"accountTypes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1478,9 +1485,21 @@ migrate existing investors.</p>
 <td>optional</td>
 </tr>
 <tr>
-<td>nationality</td>
+<td>nationality(deprecated)</td>
 <td>string</td>
-<td>The nationality of the investor in 2 character ISO country code eg. GB for British.</td>
+<td>The nationality of the investor in 2 character ISO country code eg. GB for British. This has been deprecated and replaced by the nationalities field.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>nationalities</td>
+<td>array</td>
+<td>The list of nationalities associated with an investor. More than one nationality can be specified for a given investor i.e. if they are dual-nationality.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>nationalities[].nationality</td>
+<td>string</td>
+<td>The ISO country code. e.g GB.</td>
 <td>required</td>
 </tr>
 <tr>
@@ -1612,7 +1631,7 @@ migrate existing investors.</p>
 <tr>
 <td>corporateDetails</td>
 <td>ref</td>
-<td>Only required for CORPORATE entityType.</td>
+<td>Required for CORPORATE entityType.</td>
 <td>optional</td>
 </tr>
 <tr>
@@ -3085,6 +3104,140 @@ migrate existing investors.</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+</tbody></table>
+<h2 id='get-investors-clientid-transactions'>GET /investors/{clientId}/transactions</h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/transactions</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">
+
+</span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dateTime"</span><span class="p">:</span><span class="s2">"dateTime"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"type"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cashBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"investedBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"totalBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"account"</span><span class="p">:</span><span class="s2">"account"</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"status"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='description-17'>Description</h3>
+<p>Lists the cash transactions for the investor.</p>
+<h3 id='response-17'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The ID of the transaction</td>
+</tr>
+<tr>
+<td>dateTime</td>
+<td>string</td>
+<td>The date-time of the transaction</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>ref</td>
+<td>The amount of the transaction</td>
+</tr>
+<tr>
+<td>amount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>amount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>The type of the cash transaction.</td>
+</tr>
+<tr>
+<td>cashBalance</td>
+<td>ref</td>
+<td>The running total cash balance</td>
+</tr>
+<tr>
+<td>cashBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>cashBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>investedBalance</td>
+<td>ref</td>
+<td>The running total invested balance</td>
+</tr>
+<tr>
+<td>investedBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>investedBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalBalance</td>
+<td>ref</td>
+<td>The running total balance</td>
+</tr>
+<tr>
+<td>totalBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>totalBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>account</td>
+<td>string</td>
+<td>The account</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>The status of the transaction</td>
+</tr>
 </tbody></table>
 <h1 id='payments'>Payments</h1><h2 id='depositing-funds'>Depositing funds</h2>
 <p>Once an investor has completed the KYC checks and has optionally opened an ISA, they can deposit funds.
