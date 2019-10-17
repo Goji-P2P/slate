@@ -795,7 +795,11 @@ The ISA administration API is a standalone API and is not used in conjunction wi
 <p>The result is then Base64 encoded to produce a string.</p>
 
 <p>The encrypted string is then UTF-8 URL encoded.</p>
-<h4 id='introduction-authentication-building-the-signature-string-examples'>Examples</h4><pre class="highlight java tab-java"><code>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">hashSignature</span><span class="o">(</span><span class="n">String</span> <span class="n">signatureToHash</span><span class="o">,</span> <span class="n">String</span> <span class="n">apiSecret</span><span class="o">)</span> <span class="o">{</span>
+<h4 id='introduction-authentication-building-the-signature-string-examples'>Examples</h4>
+<blockquote>
+<p>Java and C# examples provided - click on the tabs above</p>
+</blockquote>
+<pre class="highlight java tab-java"><code>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">hashSignature</span><span class="o">(</span><span class="n">String</span> <span class="n">signatureToHash</span><span class="o">,</span> <span class="n">String</span> <span class="n">apiSecret</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">try</span> <span class="o">{</span>
         <span class="n">Mac</span> <span class="n">sha256HMAC</span> <span class="o">=</span> <span class="n">Mac</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"HmacSHA256"</span><span class="o">);</span>
         <span class="n">SecretKeySpec</span> <span class="n">secretKey</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SecretKeySpec</span><span class="o">(</span><span class="n">apiSecret</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">"UTF-8"</span><span class="o">),</span> <span class="s">"HmacSHA256"</span><span class="o">);</span>
