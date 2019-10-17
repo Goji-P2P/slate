@@ -741,13 +741,21 @@
 <h3 id='payments-api'><a href="#payments">Payments API</a></h3>
 <p>The Payments API allows you to retrieve bank details and balance information for investors who have passed KYC. You can also transfer funds between accounts and execute withdrawals.</p>
 <h3 id='bond-management-api'><a href="#bond-management">Bond management API</a></h3>
+<aside class="notice">
+Most platforms do not require this module. Please speak to the Goji integrations team before using this API.
+</aside>
+
 <p>The Goji Platform can be used to issue fixed term, fixed rate bonds (debt based securities). The Bond management API allows you to configure these products and determine who has invested in each bond and when repayments are due.</p>
 <h3 id='settlement-api'><a href="#settlement">Settlement API</a></h3>
 <p>The Settlement API allows you to settle investments in securities that are not being managed by the Bond management module. These might be P2P loans, bonds etc. This API can be used where the securitiy itself is being controlled by your platform and the Goji platform is being used to control the movement of client money.</p>
 <h3 id='webhooks-api'><a href="#webhooks">Webhooks API</a></h3>
 <p>Many events in the Goji platform publish events which can be consumed as a webhook.</p>
 <h3 id='isa-administration-api'><a href="#isa-administration">ISA administration API</a></h3>
-<p>The ISA administration API is a standalone API and is not used in conjunction with any of the other APIs detailed above. The ISA administration API allows you to interact with the Goji platform for the purpose of administering an IF ISA.</p>
+<aside class="notice">
+The ISA administration API is a standalone API and is not used in conjunction with any of the other APIs detailed above.
+</aside>
+
+<p>The ISA administration API allows you to interact with the Goji platform for the purpose of administering an IF ISA.</p>
 <h3 id='error-handling-and-retry-policy'>Error handling and retry policy</h3>
 <p>It is recommended that clients use circuit breakers and a retry policy to make connections to the Goji API resilient to failure.</p>
 
@@ -4595,6 +4603,10 @@ account numbers as these are validated to ensure they accept faster payments pri
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='description-18'>Description</h3>
 <p>Simulate depositing cash in an investor&#39;s account.</p>
+
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
 <h3 id='request-10'>Request</h3>
 <table><thead>
 <tr>
@@ -6353,6 +6365,10 @@ that their account has been credited.</p>
   </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='description-3'>Description</h3>
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+
 <p>Runs a simulated investment cycle. This simulates funds being invested and being sent to the investment manager.</p>
 <h3 id='request-2'>Request</h3>
 <table><thead>
@@ -6456,11 +6472,11 @@ that their account has been credited.</p>
 
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='description-4'>Description</h3>
-<p>Simulates interest repayment accruals.</p>
-
 <aside class="notice">
-This is a test endpoint and only works in the sandbox environment.
+Please note this is a test endpoint and is only available in the sandbox environment.
 </aside>
+
+<p>Simulates interest repayment accruals.</p>
 <h3 id='request-3'>Request</h3>
 <table><thead>
 <tr>
@@ -10660,11 +10676,13 @@ Checks performed:
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='description-22'>Description</h3>
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+
 <p>Deletes all, or a matched set of, investments belonging to the ISA.</p>
 
 <p>Currently if the investment has been previously modified this won&#39;t work and this test endpoint shouldn&#39;t be used.</p>
-
-<p><strong>For testing use only.</strong></p>
 <h3 id='request-13'>Request</h3>
 <table><thead>
 <tr>
@@ -13308,9 +13326,11 @@ Please see <a href="/isa-administration-api/guides/Error%20Codes">cash transacti
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='description-29'>Description</h3>
-<p>Deletes all, or a matched set of, cash transactions belonging to the ISA.</p>
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
 
-<p><strong>For testing use only.</strong></p>
+<p>Deletes all, or a matched set of, cash transactions belonging to the ISA.</p>
 <h3 id='request-19'>Request</h3>
 <table><thead>
 <tr>
