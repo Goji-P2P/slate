@@ -236,7 +236,7 @@ The following event `type`s will be supported, along with the content as `JSON`.
         "currency": "GBP"
       }
     },
-    "transferOutFee: {
+    "transferOutFee": {
       "id": "string",
       "transferOutId": "string",
       "transferOutFee": {
