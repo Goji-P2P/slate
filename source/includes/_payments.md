@@ -471,9 +471,6 @@ Create a wallet
 | Name       | Type   | Description     | Required |
 | ---------- | ------ | --------------- | -------- |
 | walletName | string | New wallet name | required |
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
 
 ## `GET /wallet/{id}`
 
@@ -530,7 +527,43 @@ Delete wallet
 | -------------------- | ------ | --------------------------------------------- |
 | originatorId         | string | The originator ID registered for the wallet . |
 | bankAccountDetailsId | string | The bank account details ID                   |
-## `POST /wallet/company/registration`
+## `POST /wallet/{id}/payment`
+
+```http
+
+POST /wallet/{id}/payment HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "destinationBankAccountId" : "walletName",
+  "amount" : {
+    "amount" : 10.45,
+    "currency" : "GBP"
+  },
+  "reference" : "reference",
+  "narrative" : "narrative"
+}
+
+HTTP/1.1 202 OK
+Content-Type: application/json
+
+""
+```
+### Description
+Create a payment instruction from a wallet
+### Request
+| Name       | Type   | Description     | Required |
+| ---------- | ------ | --------------- | -------- |
+| destinationBankAccountId | string | The ID of the destination bank account | required |
+| amount                        | ref    | The total cash balance.                     | required |
+| amount.amount                 | number | The amount.                                 | required |
+| amount.currency               | string | The ISO 4217 three character codes eg 'GBP' | required |
+| reference                     | string | The bank rederence used for the transfer    | required |
+| narrative                     | string | The reason for the wallet transfer          |
+
+## POST /wallet/company/registration
 
 ```http
 
@@ -626,9 +659,6 @@ Register a corporate for wallet management
 | companyProfile.sicCodes      | array  | standard industrial classification (sic) codes ||
 | officerList                  | ref    |                                                | required |
 | officerList.officers         | array  | Officers                                       ||
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
 
 ## `GET /bankAccountDetails`
 
@@ -648,9 +678,7 @@ Content-Type: application/json
 ```
 ### Description
 List of bank accounts we hold in the system for sending money to.
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `POST /bankAccountDetails`
 
@@ -746,9 +774,6 @@ Updates a specific set of stored account details. This will trigger an AML check
 | accountNumber | string | The account number. | required |
 | sortCode      | string | The sort code.      | required |
 | accountName   | string | The account name.   | required |
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
 
 ## `POST /test/payment`
 
@@ -789,7 +814,3 @@ Please note this is a test endpoint and is only available in the sandbox environ
 | amount.currency  | string | The ISO 4217 three character codes eg 'GBP'                                   ||
 | paymentReference | string | The reference. Set to ISA if the funds should be credited to the ISA account. | required |
 | paymentType      | string | Should be set to DEPOSIT                                                      | required |
-| clientId         | string | The client ID                                                                 | required |
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
