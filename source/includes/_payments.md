@@ -528,7 +528,6 @@ Delete wallet
 | originatorId         | string | The originator ID registered for the wallet . |
 | bankAccountDetailsId | string | The bank account details ID                   |
 ## `POST /wallet/{id}/payment`
-
 ```http
 
 POST /wallet/{id}/payment HTTP/1.1
@@ -560,8 +559,53 @@ Create a payment instruction from a wallet
 | amount                        | ref    | The total cash balance.                     | required |
 | amount.amount                 | number | The amount.                                 | required |
 | amount.currency               | string | The ISO 4217 three character codes eg 'GBP' | required |
-| reference                     | string | The bank rederence used for the transfer    | required |
+| reference                     | string | The bank reference used for the transfer    | required |
 | narrative                     | string | The reason for the wallet transfer          |
+
+## GET /wallet/{id}/transactions
+
+```http
+
+GET /wallet/{id}/transactions HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+  {
+    "id": "id,",
+    "amount": {
+      "amount": 123.50,
+      "currency": "GBP"
+    },
+    "type": "type",
+    "status": "PENDING",
+    "reference": "reference",
+    "narrative": "Solicitor Fees",
+    "createdDateTime": "2019-01-01T12:33:00Z",
+    "clearedDateTime": "2019-01-01T12:33:30Z"
+  }
+]
+
+```
+### Description
+Retrieve a list of transactions for a given wallet.
+### Response
+| Name                 | Type   | Description                                   |
+| -------------------- | ------ | --------------------------------------------- |
+| id         | string | The id of the transaction |
+| amount                        | ref    | The total cash balance.                     |
+| amount.amount                 | number | The amount.                                 |
+| amount.currency               | string | The ISO 4217 three character codes eg 'GBP' |
+| type                          | string | The type of wallet instruction              |
+| status                        | string | The status of the wallet transfer. PENDING, CLEARED |
+| reference                     | string | The bank reference used for the transfer    |
+| narrative                     | string | The reason for the wallet transfer          |
+| createdDateTime               | date/time | The date / time the transaction was created          |
+| clearedDateTime               | date/time | The date / time the transaction was cleared          |
 
 ## POST /wallet/company/registration
 
