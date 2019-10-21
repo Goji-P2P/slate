@@ -814,3 +814,4 @@ Please note this is a test endpoint and is only available in the sandbox environ
 | amount.currency  | string | The ISO 4217 three character codes eg 'GBP'                                   ||
 | paymentReference | string | The reference. Set to ISA if the funds should be credited to the ISA account. | required |
 | paymentType      | string | Should be set to DEPOSIT                                                      | required |
+| clientId         | string | The client ID                                                                 | required
