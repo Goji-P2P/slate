@@ -378,3 +378,35 @@ The following event `type`s will be supported, along with the content as `JSON`.
   "companyName" : "string",
 }
 ```
+
+
+>WALLET_TRANSFER_CLEARED
+><br>This is fired when a wallet transfer is completed. This Webhook is currently not in use.
+
+```json
+{
+  "destinationBankAccountDetails" : {
+    "bankAccountId" : "string",
+    "bankDetails" : {
+      "accountName" : "string",
+      "accountNumber" : "string",
+      "sortCode" : "string",
+    }
+  },
+  "sourceWallet" : {
+    "walletId" : "string",
+    "bankDetails" : {
+      "accountName" : "string",
+      "accountNumber" : "string",
+      "sortCode" : "string",
+    }
+  },
+  "amount" : {
+    "amount": 0.00,
+    "currency": "GBP"
+  },
+  "success" : "boolean",
+  "narrative" : "string",
+  "reference" : "string"
+}
+```
