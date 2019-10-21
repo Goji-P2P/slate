@@ -48,9 +48,7 @@ Register a webhook url.
 | Name | Type   | Description                         | Required |
 | ---- | ------ | ----------------------------------- | -------- |
 | url  | string | The url to dispatch the webhook to. | optional |
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## Webhook Types
 
