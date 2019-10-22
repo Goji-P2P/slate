@@ -576,7 +576,7 @@ Content-Type: application/json
 
 [
   {
-    "id": "id,",
+    "id": "id",
     "amount": {
       "amount": 123.50,
       "currency": "GBP"
