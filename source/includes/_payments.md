@@ -452,7 +452,7 @@ Transfer cash to another account.
 ```http
 
 POST /wallet HTTP/1.1
-Host: api-sandbox.goji.investments
+Host: api-sandbox.goji.investments/platformApi
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -477,7 +477,7 @@ Create a wallet
 ```http
 
 GET /wallet/{id} HTTP/1.1
-Host: api-sandbox.goji.investments
+Host: api-sandbox.goji.investments/platformApi
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -503,7 +503,7 @@ Wallet Details
 ```http
 
 DELETE /wallet/{id} HTTP/1.1
-Host: api-sandbox.goji.investments
+Host: api-sandbox.goji.investments/platformApi
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -531,7 +531,7 @@ Delete wallet
 ```http
 
 POST /wallet/{id}/payment HTTP/1.1
-Host: api-sandbox.goji.investments
+Host: api-sandbox.goji.investments/platformApi
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -567,7 +567,7 @@ Create a payment instruction from a wallet
 ```http
 
 GET /wallet/{id}/transactions HTTP/1.1
-Host: api-sandbox.goji.investments
+Host: api-sandbox.goji.investments/platformApi
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -612,7 +612,7 @@ Retrieve a list of transactions for a given wallet.
 ```http
 
 POST /wallet/company/registration HTTP/1.1
-Host: api-sandbox.goji.investments
+Host: api-sandbox.goji.investments/platformApi
 Content-Type: application/json
 Authorization: Basic ...
 
