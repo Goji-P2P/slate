@@ -457,14 +457,14 @@ Content-Type: application/json
 Authorization: Basic ...
 
 {
-  "walletName" : "walletName"
+  "walletName" : "Housing Project 22"
 }
 
 HTTP/1.1 202 OK
 Content-Type: application/json
 
 {
-  "id" : "walletId"
+  "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213"
 }
 ```
 ### Description
