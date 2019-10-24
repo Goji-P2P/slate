@@ -391,6 +391,9 @@
                     <a href="#payments-post-investors-clientid-accounts-accounttype-transfer" class="toc-h2 toc-link" data-title="POST /investors/{clientId}/accounts/{accountType}/transfer"><code>POST /investors/{clientId}/accounts/{accountType}/transfer</code></a>
                   </li>
                   <li>
+                    <a href="#payments-post-wallet-company-registration" class="toc-h2 toc-link" data-title="POST /wallet/company/registration"><code>POST /wallet/company/registration</code></a>
+                  </li>
+                  <li>
                     <a href="#payments-post-wallet" class="toc-h2 toc-link" data-title="POST /wallet"><code>POST /wallet</code></a>
                   </li>
                   <li>
@@ -400,7 +403,10 @@
                     <a href="#payments-delete-wallet-id" class="toc-h2 toc-link" data-title="DELETE /wallet/{id}"><code>DELETE /wallet/{id}</code></a>
                   </li>
                   <li>
-                    <a href="#payments-post-wallet-company-registration" class="toc-h2 toc-link" data-title="POST /wallet/company/registration"><code>POST /wallet/company/registration</code></a>
+                    <a href="#payments-post-wallet-id-payment" class="toc-h2 toc-link" data-title="POST /wallet/{id}/payment"><code>POST /wallet/{id}/payment</code></a>
+                  </li>
+                  <li>
+                    <a href="#payments-get-wallet-id-transactions" class="toc-h2 toc-link" data-title="GET /wallet/{id}/transactions"><code>GET /wallet/{id}/transactions</code></a>
                   </li>
                   <li>
                     <a href="#payments-get-bankaccountdetails" class="toc-h2 toc-link" data-title="GET /bankAccountDetails"><code>GET /bankAccountDetails</code></a>
@@ -4165,123 +4171,7 @@ account numbers as these are validated to ensure they accept faster payments pri
 <td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
 </tr>
 </tbody></table>
-<h2 id='payments-post-wallet'><code>POST /wallet</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">POST</span> <span class="nn">/wallet</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
-
-<span class="p">{</span><span class="w">
-  </span><span class="s2">"walletName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"walletName"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">202</span><span class="w"> </span><span class="err">OK</span><span class="w">
-</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
-
-</span><span class="s2">""</span><span class="w">
-</span></code></pre><h3 id='payments-code-post-wallet-code-description'>Description</h3>
-<p>Create a wallet</p>
-<h3 id='payments-code-post-wallet-code-request'>Request</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>walletName</td>
-<td>string</td>
-<td>New wallet name</td>
-<td>required</td>
-</tr>
-</tbody></table>
-<h3 id='payments-code-post-wallet-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
-<h2 id='payments-get-wallet-id'><code>GET /wallet/{id}</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">GET</span> <span class="nn">/wallet/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
-
-<span class="w">
-
-</span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
-</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"bankAccountDetailsId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountDetailsId"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"originatorId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"originatorId"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='payments-code-get-wallet-id-code-description'>Description</h3>
-<p>Wallet Details</p>
-<h3 id='payments-code-get-wallet-id-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>originatorId</td>
-<td>string</td>
-<td>The originator ID registered for the wallet .</td>
-</tr>
-<tr>
-<td>bankAccountDetailsId</td>
-<td>string</td>
-<td>The bank account details ID</td>
-</tr>
-</tbody></table>
-<h2 id='payments-delete-wallet-id'><code>DELETE /wallet/{id}</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">DELETE</span> <span class="nn">/wallet/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
-
-<span class="s2">""</span><span class="w">
-
-</span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
-</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"bankAccountDetailsId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountDetailsId"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"originatorId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"originatorId"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='payments-code-delete-wallet-id-code-description'>Description</h3>
-<p>Delete wallet</p>
-<h3 id='payments-code-delete-wallet-id-code-request'>Request</h3>
-<p>| Name | Type | Description | Required || ---- | ---- | ----------- | -------- |</p>
-<h3 id='payments-code-delete-wallet-id-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>originatorId</td>
-<td>string</td>
-<td>The originator ID registered for the wallet .</td>
-</tr>
-<tr>
-<td>bankAccountDetailsId</td>
-<td>string</td>
-<td>The bank account details ID</td>
-</tr>
-</tbody></table>
-<h2 id='payments-post-wallet-company-registration'><code>POST /wallet/company/registration</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">POST</span> <span class="nn">/wallet/company/registration</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-post-wallet-company-registration'><code>POST /wallet/company/registration</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/wallet/company/registration</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -4350,7 +4240,6 @@ account numbers as these are validated to ensure they accept faster payments pri
 
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
-
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='payments-code-post-wallet-company-registration-code-description'>Description</h3>
 <p>Register a corporate for wallet management</p>
@@ -4454,7 +4343,45 @@ account numbers as these are validated to ensure they accept faster payments pri
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='payments-code-post-wallet-company-registration-code-response'>Response</h3>
+<h2 id='payments-post-wallet'><code>POST /wallet</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/wallet</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"walletName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">202</span><span class="w"> </span><span class="err">OK</span><span class="w">
+</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+Prior to creating a wallet you need to have registered your company as the wallet holder using /wallet/company/registration
+</aside>
+<h3 id='payments-code-post-wallet-code-description'>Description</h3>
+<p>Create a wallet</p>
+<h3 id='payments-code-post-wallet-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>walletName</td>
+<td>string</td>
+<td>New wallet name</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h3 id='payments-code-post-wallet-code-response'>Response</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -4462,6 +4389,239 @@ account numbers as these are validated to ensure they accept faster payments pri
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The unique identifier for the created wallet</td>
+</tr>
+</tbody></table>
+<h2 id='payments-get-wallet-id'><code>GET /wallet/{id}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/wallet/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">
+
+</span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"bankAccountDetailsId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountDetailsId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"originatorId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"originatorId"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-code-get-wallet-id-code-description'>Description</h3>
+<p>Wallet Details</p>
+<h3 id='payments-code-get-wallet-id-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>originatorId</td>
+<td>string</td>
+<td>The originator ID registered for the wallet .</td>
+</tr>
+<tr>
+<td>bankAccountDetailsId</td>
+<td>string</td>
+<td>The bank account details ID</td>
+</tr>
+</tbody></table>
+<h2 id='payments-delete-wallet-id'><code>DELETE /wallet/{id}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">DELETE</span> <span class="nn">/wallet/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="s2">""</span><span class="w">
+
+</span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"bankAccountDetailsId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountDetailsId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"originatorId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"originatorId"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-code-delete-wallet-id-code-description'>Description</h3>
+<p>Delete wallet</p>
+<h3 id='payments-code-delete-wallet-id-code-request'>Request</h3>
+<p>| Name | Type | Description | Required || ---- | ---- | ----------- | -------- |</p>
+<h3 id='payments-code-delete-wallet-id-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>originatorId</td>
+<td>string</td>
+<td>The originator ID registered for the wallet .</td>
+</tr>
+<tr>
+<td>bankAccountDetailsId</td>
+<td>string</td>
+<td>The bank account details ID</td>
+</tr>
+</tbody></table>
+<h2 id='payments-post-wallet-id-payment'><code>POST /wallet/{id}/payment</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/wallet/{id}/payment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"destinationBankAccountId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"walletName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"narrative"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"narrative"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">202</span><span class="w"> </span><span class="err">OK</span><span class="w">
+</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
+
+</span><span class="s2">""</span><span class="w">
+</span></code></pre><h3 id='payments-code-post-wallet-id-payment-code-description'>Description</h3>
+<p>Create a payment instruction from a wallet</p>
+<h3 id='payments-code-post-wallet-id-payment-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>destinationBankAccountId</td>
+<td>string</td>
+<td>The ID of the destination bank account</td>
+<td>required</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>ref</td>
+<td>The total cash balance.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>amount.amount</td>
+<td>number</td>
+<td>The amount.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>amount.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+<td>required</td>
+</tr>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>The bank reference used for the transfer</td>
+<td>required</td>
+</tr>
+<tr>
+<td>narrative</td>
+<td>string</td>
+<td>The reason for the wallet transfer</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='payments-get-wallet-id-transactions'><code>GET /wallet/{id}/transactions</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/wallet/{id}/transactions</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
+
+</span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.50</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"type"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"narrative"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Solicitor Fees"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T12:33:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clearedDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T12:33:30Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre><h3 id='payments-code-get-wallet-id-transactions-code-description'>Description</h3>
+<p>Retrieve a list of transactions for a given wallet.</p>
+<h3 id='payments-code-get-wallet-id-transactions-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The id of the transaction</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>ref</td>
+<td>The total cash balance.</td>
+</tr>
+<tr>
+<td>amount.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>amount.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>The type of wallet instruction</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>The status of the wallet transfer. PENDING, CLEARED</td>
+</tr>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>The bank reference used for the transfer</td>
+</tr>
+<tr>
+<td>narrative</td>
+<td>string</td>
+<td>The reason for the wallet transfer</td>
+</tr>
+<tr>
+<td>createdDateTime</td>
+<td>date/time</td>
+<td>The date / time the transaction was created</td>
+</tr>
+<tr>
+<td>clearedDateTime</td>
+<td>date/time</td>
+<td>The date / time the transaction was cleared</td>
+</tr>
 </tbody></table>
 <h2 id='payments-get-bankaccountdetails'><code>GET /bankAccountDetails</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/bankAccountDetails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -4477,15 +4637,6 @@ account numbers as these are validated to ensure they accept faster payments pri
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='payments-code-get-bankaccountdetails-code-description'>Description</h3>
 <p>List of bank accounts we hold in the system for sending money to.</p>
-<h3 id='payments-code-get-bankaccountdetails-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='payments-post-bankaccountdetails'><code>POST /bankAccountDetails</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/bankAccountDetails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
@@ -4648,15 +4799,6 @@ account numbers as these are validated to ensure they accept faster payments pri
 <td>required</td>
 </tr>
 </tbody></table>
-<h3 id='payments-code-put-bankaccountdetails-id-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='payments-post-test-payment'><code>POST /test/payment</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/test/payment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
@@ -4728,15 +4870,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td>The client ID</td>
 <td>required</td>
 </tr>
-</tbody></table>
-<h3 id='payments-code-post-test-payment-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
 </tbody></table>
 <h1 id='settlement'>Settlement</h1>
 <p>The Settlement API allows the investment manager to record trades that have been executed.</p>
@@ -5018,15 +5151,6 @@ transactions are recorded and funds are moved to the seller&#39;s account.</p>
 <td>The amount of tax being withheld from this repayment</td>
 <td>optional</td>
 </tr>
-</tbody></table>
-<h3 id='settlement-code-post-settlement-repayment-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
 </tbody></table>
 <h2 id='settlement-get-settlement-repayment-reference'><code>GET /settlement/repayment/reference</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/settlement/repayment/reference</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -5508,15 +5632,6 @@ transactions are recorded and funds are moved to the seller&#39;s account.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='settlement-code-post-settlement-secondary-market-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='settlement-get-settlement-product'><code>GET /settlement/product</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/settlement/product</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
@@ -5762,15 +5877,6 @@ You should verify that the `Authorization` header matches the expected signature
 <td>optional</td>
 </tr>
 </tbody></table>
-<h3 id='webhooks-code-post-webhooks-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='webhooks-webhook-types'>Webhook Types</h2>
 <p>When certain events are triggered in the Goji system, a call can be made to your system to inform you of this event.</p>
 
@@ -5942,26 +6048,26 @@ The following event <code>type</code>s will be supported, along with the content
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"transferOutFee: {
-      "</span><span class="err">id</span><span class="s2">": "</span><span class="err">string</span><span class="s2">",
-      "</span><span class="err">transferOutId</span><span class="s2">": "</span><span class="err">string</span><span class="s2">",
-      "</span><span class="err">transferOutFee</span><span class="s2">": {
-        "</span><span class="err">amount</span><span class="s2">": 0.00,
-        "</span><span class="err">currency</span><span class="s2">": "</span><span class="err">GBP</span><span class="s2">"
-      },
-      "</span><span class="err">dateTime</span><span class="s2">": "</span><span class="mi">2017-12-12</span><span class="err">T</span><span class="mi">14</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">23</span><span class="s2">"
-    },
-    "</span><span class="err">dateTimeStarted</span><span class="s2">": "</span><span class="mi">2017-12-12</span><span class="err">T</span><span class="mi">14</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">23</span><span class="s2">",
-    "</span><span class="err">amountToTransfer</span><span class="s2">": {
-      "</span><span class="err">amount</span><span class="s2">": 0.00,
-      "</span><span class="err">currency</span><span class="s2">": "</span><span class="err">GBP</span><span class="s2">"
-    },
-    "</span><span class="err">amountSubscribedInCurrentYear</span><span class="s2">": {
-      "</span><span class="err">amount</span><span class="s2">": 0.00,
-      "</span><span class="err">currency</span><span class="s2">": "</span><span class="err">GBP</span><span class="s2">"
-    },
-    "</span><span class="err">dateOfFirstSubscriptionInCurrentYear</span><span class="s2">": "</span><span class="mi">2017-12-12</span><span class="s2">"
-  }
+    </span><span class="s2">"transferOutFee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transferOutId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transferOutFee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"dateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-12T14:34:23"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"dateTimeStarted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-12T14:34:23"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amountToTransfer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"amountSubscribedInCurrentYear"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"dateOfFirstSubscriptionInCurrentYear"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-12"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>TRANSFER_IN_FUNDS_RECEIVED
@@ -6074,6 +6180,36 @@ The following event <code>type</code>s will be supported, along with the content
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"companyName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>WALLET_TRANSFER_CLEARED
+<br>This is fired when a wallet transfer is completed. This Webhook is currently not in use.</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"destinationBankAccountDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"bankAccountId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"sourceWallet"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"walletId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"success"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"boolean"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"narrative"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='bond-management'>Bond management</h1>
 <aside class="notice">
@@ -8221,15 +8357,6 @@ Checks performed:
 <td>required</td>
 </tr>
 </tbody></table>
-<h3 id='isa-administration-code-post-investors-validisaapplication-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='isa-administration-get-investors-investorid'><code>GET /investors/{investorId}</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{investorId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -9129,15 +9256,6 @@ Checks performed:
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-transferin-investors-clientid-open-code-description'>Description</h3>
 <p>Used to find an overview of all transfer in workflows for a particular investor. It should be understood that the existence of the TransferDate determines whether the transfer history form has been submitted</p>
-<h3 id='isa-administration-code-get-transferin-investors-clientid-open-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='isa-administration-get-investors-clientid-isa-subscriptionstatus'><code>GET /investors/{clientId}/isa/subscriptionStatus</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/isa/subscriptionStatus</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -10129,15 +10247,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-audit-investors-investorid-code-description'>Description</h3>
 <p>Returns an audit record of HTTP requests relating to the investor.</p>
-<h3 id='isa-administration-code-get-audit-investors-investorid-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='isa-administration-post-investors-investorid-investment'><code>POST /investors/{investorId}/investment</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/investors/{investorId}/investment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -11585,15 +11694,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td>The date and time of the repayment</td>
 <td>required</td>
 </tr>
-</tbody></table>
-<h3 id='isa-administration-code-post-investors-investorid-investment-investmentid-repayment-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
 </tbody></table>
 <h2 id='isa-administration-post-investors-investorid-investment-investmentid-reinvestment'><code>POST /investors/{investorId}/investment/{investmentId}/reinvestment</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/investors/{investorId}/investment/{investmentId}/reinvestment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -14269,15 +14369,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='isa-administration-code-post-investors-investorid-transferin-transferinid-cash-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='isa-administration-post-investors-investorid-transferin-transferinid-residualincome'><code>POST /investors/{investorId}/transferIn/{transferInId}/residualIncome</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/investors/{investorId}/transferIn/{transferInId}/residualIncome</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -14340,15 +14431,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td>The date time the residual income payment was received.</td>
 <td>optional</td>
 </tr>
-</tbody></table>
-<h3 id='isa-administration-code-post-investors-investorid-transferin-transferinid-residualincome-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
 </tbody></table>
 <h2 id='isa-administration-post-investors-investorid-transferin-transferinid-cash-validation'><code>POST /investors/{investorId}/transferIn/{transferInId}/cash/validation</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/investors/{investorId}/transferIn/{transferInId}/cash/validation</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -14450,15 +14532,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='isa-administration-code-post-investors-investorid-transferin-transferinid-cash-validation-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='isa-administration-get-investors-clientid-transferinsummary'><code>GET /investors/{clientId}/transferInSummary</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/transferInSummary</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -14473,15 +14546,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-investors-clientid-transferinsummary-code-description'>Description</h3>
 <p>Returns the in progress transfers in for the specified investor</p>
-<h3 id='isa-administration-code-get-investors-clientid-transferinsummary-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='isa-administration-get-investors-clientid-transferin-transferinid-summary'><code>GET /investors/{clientId}/transferIn/{transferInId}/summary</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/transferIn/{transferInId}/summary</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -14659,15 +14723,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-transferin-open-summary-code-description'>Description</h3>
 <p>Returns аll opened transfers in.</p>
-<h3 id='isa-administration-code-get-transferin-open-summary-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='isa-administration-get-isareconciliation'><code>GET /isaReconciliation</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/isaReconciliation</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -14682,15 +14737,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-isareconciliation-code-description'>Description</h3>
 <p>Returns a reconciliation summary for all investors</p>
-<h3 id='isa-administration-code-get-isareconciliation-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='isa-administration-get-investorreconciliation'><code>GET /investorReconciliation</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investorReconciliation</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -14705,15 +14751,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-investorreconciliation-code-description'>Description</h3>
 <p>Returns a reconciliation summary of investor name and address data</p>
-<h3 id='isa-administration-code-get-investorreconciliation-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='isa-administration-get-investors-investorid-transferin-uidata'><code>GET /investors/{investorId}/transferIn/uiData</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{investorId}/transferIn/uiData</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -14788,15 +14825,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-investors-investorid-transferout-code-description'>Description</h3>
 <p>Lists transfers out for the investor.</p>
-<h3 id='isa-administration-code-get-investors-investorid-transferout-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='isa-administration-get-transfersout'><code>GET /transfersOut</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/transfersOut</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -14811,15 +14839,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-transfersout-code-description'>Description</h3>
 <p>Lists all transfers out for all investors.</p>
-<h3 id='isa-administration-code-get-transfersout-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 <h2 id='isa-administration-post-investors-investorid-transferout-transferoutid-cash'><code>POST /investors/{investorId}/transferOut/{transferOutId}/cash</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/investors/{investorId}/transferOut/{transferOutId}/cash</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -14873,15 +14892,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
 <td></td>
 </tr>
-</tbody></table>
-<h3 id='isa-administration-code-post-investors-investorid-transferout-transferoutid-cash-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
 </tbody></table>
 <h2 id='isa-administration-post-investors-investorid-transferout-transferoutid-fee'><code>POST /investors/{investorId}/transferOut/{transferOutId}/fee</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/investors/{investorId}/transferOut/{transferOutId}/fee</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
