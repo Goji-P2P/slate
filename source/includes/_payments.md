@@ -468,6 +468,11 @@ Content-Type: application/json
 }
 ```
 ### Description
+
+<aside class="notice">
+Prior to creating a wallet you need to have registered your company as the wallet holder using ...
+</aside>
+
 Create a wallet
 ### Request
 | Name       | Type   | Description     | Required |
