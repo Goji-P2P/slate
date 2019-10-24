@@ -447,8 +447,101 @@ Transfer cash to another account.
 | isaRemainingSubscriptionAmount          | ref    | The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance |
 | isaRemainingSubscriptionAmount.amount   | number | The amount.                                                                                              |
 | isaRemainingSubscriptionAmount.currency | string | The ISO 4217 three character codes eg 'GBP'                                                              |
-## `POST /wallet`
+## `POST /wallet/company/registration`
+```http
+POST /wallet/company/registration HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+{
+  "companyProfile" : {
+    "sicCodes" : [ "sicCodes", "sicCodes" ],
+    "address" : {
+      "country" : "country",
+      "poBox" : "poBox",
+      "careOf" : "careOf",
+      "postalCode" : "postalCode",
+      "locality" : "locality",
+      "addressLine1" : "addressLine1",
+      "addressLine2" : "addressLine2",
+      "region" : "region"
+    },
+    "companyNumber" : "companyNumber",
+    "companyName" : "companyName",
+    "type" : "type"
+  },
+  "officerList" : {
+    "officers" : [ {
+      "officerRole" : "officerRole",
+      "firstName" : "firstName",
+      "lastName" : "lastName",
+      "emailAddress" : "emailAddress",
+      "address" : {
+        "country" : "country",
+        "poBox" : "poBox",
+        "careOf" : "careOf",
+        "postalCode" : "postalCode",
+        "locality" : "locality",
+        "addressLine1" : "addressLine1",
+        "addressLine2" : "addressLine2",
+        "region" : "region"
+      },
+      "phoneNumber" : "phoneNumber",
+      "resignedOn" : "resignedOn",
+      "dateOfBirth" : "dateOfBirth",
+      "countryOfResidence" : "countryOfResidence",
+      "appointedOn" : "appointedOn"
+    }, {
+      "officerRole" : "officerRole",
+      "firstName" : "firstName",
+      "lastName" : "lastName",
+      "emailAddress" : "emailAddress",
+      "address" : {
+        "country" : "country",
+        "poBox" : "poBox",
+        "careOf" : "careOf",
+        "postalCode" : "postalCode",
+        "locality" : "locality",
+        "addressLine1" : "addressLine1",
+        "addressLine2" : "addressLine2",
+        "region" : "region"
+      },
+      "phoneNumber" : "phoneNumber",
+      "resignedOn" : "resignedOn",
+      "dateOfBirth" : "dateOfBirth",
+      "countryOfResidence" : "countryOfResidence",
+      "appointedOn" : "appointedOn"
+    } ]
+  }
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+""
+```
+### Description
+Register a corporate for wallet management
+### Request
+| Name                         | Type   | Description                                    | Required |
+| ---------------------------- | ------ | ---------------------------------------------- | -------- |
+| companyProfile               | ref    |                                                | required |
+| companyProfile.companyName   | string | Company Name                                   ||
+| address.addressLine1         | string | Address Line 1                                 ||
+| address.addressLine2         | string | Address Line 2                                 ||
+| address.careOf               | string | Care Of                                        ||
+| address.country              | string | Country                                        ||
+| address.locality             | string | Locality                                       ||
+| address.poBox                | string | Po Box                                         ||
+| address.postalCode           | string | Postal Code                                    ||
+| address.region               | string | Region                                         ||
+| companyProfile.type          | string | Company type                                   ||
+| companyProfile.companyNumber | string | Company Number                                 ||
+| companyProfile.sicCodes      | array  | standard industrial classification (sic) codes ||
+| officerList                  | ref    |                                                | required |
+| officerList.officers         | array  | Officers                                       ||
+
+## `POST /wallet`
 ```http
 
 POST /wallet HTTP/1.1
@@ -467,12 +560,10 @@ Content-Type: application/json
   "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213"
 }
 ```
-### Description
-
 <aside class="notice">
-Prior to creating a wallet you need to have registered your company as the wallet holder using ...
+Prior to creating a wallet you need to have registered your company as the wallet holder using /wallet/company/registration
 </aside>
-
+### Description
 Create a wallet
 ### Request
 | Name       | Type   | Description     | Required |
@@ -572,7 +663,7 @@ Create a payment instruction from a wallet
 | reference                     | string | The bank reference used for the transfer    | required |
 | narrative                     | string | The reason for the wallet transfer          |
 
-## GET /wallet/{id}/transactions
+## `GET /wallet/{id}/transactions`
 
 ```http
 
@@ -616,106 +707,7 @@ Retrieve a list of transactions for a given wallet.
 | narrative                     | string | The reason for the wallet transfer          |
 | createdDateTime               | date/time | The date / time the transaction was created          |
 | clearedDateTime               | date/time | The date / time the transaction was cleared          |
-
-## POST /wallet/company/registration
-
-```http
-
-POST /wallet/company/registration HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
-Content-Type: application/json
-Authorization: Basic ...
-
-{
-  "companyProfile" : {
-    "sicCodes" : [ "sicCodes", "sicCodes" ],
-    "address" : {
-      "country" : "country",
-      "poBox" : "poBox",
-      "careOf" : "careOf",
-      "postalCode" : "postalCode",
-      "locality" : "locality",
-      "addressLine1" : "addressLine1",
-      "addressLine2" : "addressLine2",
-      "region" : "region"
-    },
-    "companyNumber" : "companyNumber",
-    "companyName" : "companyName",
-    "type" : "type"
-  },
-  "officerList" : {
-    "officers" : [ {
-      "officerRole" : "officerRole",
-      "firstName" : "firstName",
-      "lastName" : "lastName",
-      "emailAddress" : "emailAddress",
-      "address" : {
-        "country" : "country",
-        "poBox" : "poBox",
-        "careOf" : "careOf",
-        "postalCode" : "postalCode",
-        "locality" : "locality",
-        "addressLine1" : "addressLine1",
-        "addressLine2" : "addressLine2",
-        "region" : "region"
-      },
-      "phoneNumber" : "phoneNumber",
-      "resignedOn" : "resignedOn",
-      "dateOfBirth" : "dateOfBirth",
-      "countryOfResidence" : "countryOfResidence",
-      "appointedOn" : "appointedOn"
-    }, {
-      "officerRole" : "officerRole",
-      "firstName" : "firstName",
-      "lastName" : "lastName",
-      "emailAddress" : "emailAddress",
-      "address" : {
-        "country" : "country",
-        "poBox" : "poBox",
-        "careOf" : "careOf",
-        "postalCode" : "postalCode",
-        "locality" : "locality",
-        "addressLine1" : "addressLine1",
-        "addressLine2" : "addressLine2",
-        "region" : "region"
-      },
-      "phoneNumber" : "phoneNumber",
-      "resignedOn" : "resignedOn",
-      "dateOfBirth" : "dateOfBirth",
-      "countryOfResidence" : "countryOfResidence",
-      "appointedOn" : "appointedOn"
-    } ]
-  }
-}
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-""
-```
-### Description
-Register a corporate for wallet management
-### Request
-| Name                         | Type   | Description                                    | Required |
-| ---------------------------- | ------ | ---------------------------------------------- | -------- |
-| companyProfile               | ref    |                                                | required |
-| companyProfile.companyName   | string | Company Name                                   ||
-| address.addressLine1         | string | Address Line 1                                 ||
-| address.addressLine2         | string | Address Line 2                                 ||
-| address.careOf               | string | Care Of                                        ||
-| address.country              | string | Country                                        ||
-| address.locality             | string | Locality                                       ||
-| address.poBox                | string | Po Box                                         ||
-| address.postalCode           | string | Postal Code                                    ||
-| address.region               | string | Region                                         ||
-| companyProfile.type          | string | Company type                                   ||
-| companyProfile.companyNumber | string | Company Number                                 ||
-| companyProfile.sicCodes      | array  | standard industrial classification (sic) codes ||
-| officerList                  | ref    |                                                | required |
-| officerList.officers         | array  | Officers                                       ||
-
 ## `GET /bankAccountDetails`
-
 ```http
 
 GET /bankAccountDetails HTTP/1.1
@@ -732,8 +724,6 @@ Content-Type: application/json
 ```
 ### Description
 List of bank accounts we hold in the system for sending money to.
-
-
 ## `POST /bankAccountDetails`
 
 ```http
