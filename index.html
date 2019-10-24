@@ -698,6 +698,9 @@
             <a href="#instruments" class="toc-h1 toc-link" data-title="Instruments 🚧">Instruments 🚧</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#instruments-instrument-creation" class="toc-h2 toc-link" data-title="Instrument Creation">Instrument Creation</a>
+                  </li>
+                  <li>
                     <a href="#instruments-instrument-model" class="toc-h2 toc-link" data-title="Instrument Model">Instrument Model</a>
                   </li>
                   <li>
@@ -705,6 +708,18 @@
                   </li>
                   <li>
                     <a href="#instruments-get-instruments-instrumentsymbol" class="toc-h2 toc-link" data-title="GET /instruments/{InstrumentSymbol}"><code>GET /instruments/{InstrumentSymbol}</code></a>
+                  </li>
+                  <li>
+                    <a href="#instruments-issuing-allocating-shares" class="toc-h2 toc-link" data-title="Issuing / Allocating Shares">Issuing / Allocating Shares</a>
+                  </li>
+                  <li>
+                    <a href="#instruments-allocation-model" class="toc-h2 toc-link" data-title="Allocation Model">Allocation Model</a>
+                  </li>
+                  <li>
+                    <a href="#instruments-post-allocations" class="toc-h2 toc-link" data-title="POST /allocations"><code>POST /allocations</code></a>
+                  </li>
+                  <li>
+                    <a href="#instruments-get-allocations-allocationid" class="toc-h2 toc-link" data-title="GET /allocations/{AllocationId}"><code>GET /allocations/{AllocationId}</code></a>
                   </li>
               </ul>
           </li>
@@ -14990,7 +15005,8 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </tr>
 </tbody></table>
 <h1 id='instruments'>Instruments 🚧</h1>
-<p>The Instruments API allows an Investment Manager to create new Instruments, and issue/allocate shares of that instrument.</p>
+<p>The Instruments API allows an Investment Manager to <a href="/#instruments-instrument-creation">create new Instruments</a>, and 
+<a href="/#instruments-issuing-allocating-shares">issue/allocate shares</a> of that instrument.</p>
 
 <p>This instrument can then be used for:</p>
 
@@ -14998,17 +15014,14 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <li><a href="/#trade-settlement">Trade Settlement</a></li>
 <li><a href="/#corporate-actions">Corporate Actions</a></li>
 </ul>
+<h2 id='instruments-instrument-creation'>Instrument Creation</h2>
+<p>Instrument creation allows registering a new <a href="/#instruments-instrument-model">Instrument</a>, which is later referenced
+by the <code>InstrumentSymbol</code>.  Currently only equity instruments are supported.</p>
 <h2 id='instruments-instrument-model'>Instrument Model</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"investmentDocumentUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://path.to/the/kiid.pdf"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"isaEligible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"assetClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQUITY"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"primaryMarketBankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"feeTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STAMP_DUTY"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"bankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMMISSION"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"bankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="w">
@@ -15036,7 +15049,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td>assetClass</td>
 <td>String</td>
 <td>AssetClass</td>
-<td>Values: DEBT, EQUITY</td>
+<td>Values: EQUITY</td>
 </tr>
 <tr>
 <td>primaryMarketBankAccountId</td>
@@ -15090,7 +15103,18 @@ Please note this is a test endpoint and is only available in the sandbox environ
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='instruments-code-post-instruments-code-description'>Description</h3>
-<p>Registers a new instrument which can then be referenced by it&#39;s symbol in other APIs which require an InstrumentSymbol.</p>
+<p>Registers a new instrument which can then be referenced by its symbol in other APIs which require an <code>InstrumentSymbol</code>.</p>
+
+<p>The instrument can then be referenced by the <code>InstrumentSymbol</code> in the following APIs:</p>
+
+<ul>
+<li><a href="/#trade-settlement">Trade Settlement API</a></li>
+<li><a href="/#corporate-actions">Corporate Actions API</a></li>
+</ul>
+
+<p>In addition to defining the instrument, a list of fees that will apply to any trade settlement for this instrument 
+must be specified.  The <code>FeeSymbol</code>s that have been registered will later be specified in the
+<a href="/#trade-settlement">Trade Settlement API</a> to charge fees to the investors at settlement time.</p>
 <h3 id='instruments-code-post-instruments-code-request'>Request</h3>
 <p>Body: <a href="/#instruments-instrument-model">Instrument Model</a></p>
 <h3 id='instruments-code-post-instruments-code-response'>Response</h3>
@@ -15183,6 +15207,202 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>404 Not Found</td>
 <td>No instrument with this symbol is registered</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+</tbody></table>
+<h2 id='instruments-issuing-allocating-shares'>Issuing / Allocating Shares</h2>
+<p>After an instrument has been created, a number of shares must be issued to the nominee company.  This can be achieved
+using <a href="/#instruments-post-allocations"><code>POST /allocations</code></a>.</p>
+
+<p>Alternatively, if this instrument is created during migration of asset custody to Goji Nominee Ltd, and shares have 
+already been sold to investors, the <a href="/#instruments-post-allocations"><code>POST /allocations</code></a> can be used to allocate 
+each investor&#39;s shares.</p>
+<h2 id='instruments-allocation-model'>Allocation Model</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>JSON Type</th>
+<th>Value Type</th>
+<th>Value Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>UUID</td>
+<td>A UUID for this allocation.</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Number</td>
+<td>Number</td>
+<td>The (whole) number of shares to allocate.</td>
+</tr>
+<tr>
+<td>instrumentId</td>
+<td>String</td>
+<td>InstrumentSymbol</td>
+<td>Property Partner generated unique ID of the instrument.</td>
+</tr>
+<tr>
+<td>investor</td>
+<td>Object</td>
+<td>Object</td>
+<td>Null for non-investor allocation, or the fields below.</td>
+</tr>
+<tr>
+<td>investor.clientId</td>
+<td>String</td>
+<td>ClientId</td>
+<td>Either the client ID for the investor.</td>
+</tr>
+<tr>
+<td>investor.accountType</td>
+<td>String</td>
+<td>Enum</td>
+<td>Values: GIA, ISA.</td>
+</tr>
+<tr>
+<td>nominee</td>
+<td>Object</td>
+<td>Object</td>
+<td>Null when not allocating to a nominee, else fields below.</td>
+</tr>
+<tr>
+<td>nominee.accountType</td>
+<td>String</td>
+<td>Enum</td>
+<td>The nominee involved in the alloc. Values: GOJI, ORIGINATOR.</td>
+</tr>
+</tbody></table>
+<h2 id='instruments-post-allocations'><code>POST /allocations</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/allocations</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+<span class="na">X-GOJI-CLIENT-ID</span><span class="p">:</span> <span class="s">59425d3d-cf73-44ff-aecb-590cd198a4bc</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dd40510-810e-4a55-a395-04819fd915b9"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"allocation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"investor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nominee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORIGINATOR"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"instrumentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dd40510-810e-4a55-a395-04819fd915b9"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"allocation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"investor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nominee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORIGINATOR"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"instrumentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='instruments-code-post-allocations-code-description'>Description</h3>
+<p>Creates a new allocation of shares.</p>
+
+<p>When initially issuing shares, the <code>nominee</code> must be specified.
+When migrating shares, the <code>investor</code> must be specified.</p>
+<h3 id='instruments-code-post-allocations-code-request'>Request</h3>
+<p>Body: <a href="/#instruments-allocation-model">Allocation Model</a></p>
+<h3 id='instruments-code-post-allocations-code-response'>Response</h3>
+<p>Body: <a href="/#instruments-allocation-model">Allocation Model</a></p>
+
+<p>Http Status: </p>
+
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Description</th>
+<th>Body</th>
+<th>Content-Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201 Created</td>
+<td>Allocation created successfully</td>
+<td>Allocation</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>The request was malformed.  See response body</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>401 Unauthorized</td>
+<td>No auth provided, auth failed, or not authorized</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+</tbody></table>
+<h2 id='instruments-get-allocations-allocationid'><code>GET /allocations/{AllocationId}</code></h2><pre class="highlight http tab-http"><code><span class="err">GET /allocations/5dd40510-810e-4a55-a395-04819fd915b9
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+X-GOJI-CLIENT-ID: 59425d3d-cf73-44ff-aecb-590cd198a4bc
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dd40510-810e-4a55-a395-04819fd915b9"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"allocation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"investor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nominee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORIGINATOR"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"instrumentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='instruments-code-get-allocations-allocationid-code-description'>Description</h3>
+<p>Retrieves the details of an existing allocation.</p>
+<h3 id='instruments-code-get-allocations-allocationid-code-request'>Request</h3>
+<p>Body: <a href="/#instruments-allocation-model">Allocation Model</a></p>
+<h3 id='instruments-code-get-allocations-allocationid-code-response'>Response</h3>
+<p>Body: <a href="/#instruments-allocation-model">Allocation Model</a></p>
+
+<p>Http Status: </p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Body</th>
+<th>Content-Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200 Created</td>
+<td>Allocation exists and is return in the body</td>
+<td>Allocation</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>The request was malformed.  See response body</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>401 Unauthorized</td>
+<td>No auth provided, auth failed, or not authorized</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>No allocation with this UUID exists</td>
 <td>None</td>
 <td>n/a</td>
 </tr>
