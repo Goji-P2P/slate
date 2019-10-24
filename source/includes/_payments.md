@@ -463,7 +463,9 @@ Authorization: Basic ...
 HTTP/1.1 202 OK
 Content-Type: application/json
 
-""
+{
+  "id" : "walletId"
+}
 ```
 ### Description
 Create a wallet
@@ -472,8 +474,11 @@ Create a wallet
 | ---------- | ------ | --------------- | -------- |
 | walletName | string | New wallet name | required |
 
+### Response
+| Name       | Type   | Description
+| ---------- | ------ | ---------------
+| id | string | The unique identifier for the created wallet
 ## `GET /wallet/{id}`
-
 ```http
 
 GET /wallet/{id} HTTP/1.1
