@@ -6378,7 +6378,7 @@ that their account has been credited.</p>
 <tr>
 <td>bonds[].status</td>
 <td>string</td>
-<td>The status of the bond.</td>
+<td>The status of the bond. Possible values are: <br><code>QUEUED</code><br><code>LIVE</code><br><code>MATURED</code><br></td>
 </tr>
 <tr>
 <td>bonds[].startDate</td>
@@ -6526,7 +6526,7 @@ that their account has been credited.</p>
 <tr>
 <td>terms[].interestType</td>
 <td>string</td>
-<td>The type of interest to be returned.</td>
+<td>The type of interest to be returned. Possible values are: <br><code>FIXED</code><br></td>
 <td>required</td>
 </tr>
 <tr>
@@ -6693,7 +6693,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>bonds[].status</td>
 <td>string</td>
-<td>The status of the bond.</td>
+<td>The status of the bond. Possible values are: <br><code>QUEUED</code><br><code>LIVE</code><br><code>MATURED</code><br></td>
 </tr>
 <tr>
 <td>bonds[].startDate</td>
@@ -6762,8 +6762,8 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td>optional</td>
 </tr>
 </tbody></table>
-<h3 id='bond-management-code-post-test-bondmanagement-investmentcycle-repaymentsaccrual-code-response'>Response</h3>
-<p>The response body is empty.</p>
+
+<p>api-sandbox.goji.investments</p>
 <h2 id='bond-management-get-investors-clientid-accounts-accounttype-investments'><code>GET /investors/{clientId}/accounts/{accountType}/investments</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/accounts/{accountType}/investments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
@@ -6845,7 +6845,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>investments[].status</td>
 <td>string</td>
-<td>The status of the investment.</td>
+<td>The status of the investment. Possible values are: <br><code>PENDING</code><br><code>PROCESSING</code><br><code>COMPLETED</code><br><code>MATURED</code><br><code>REDEEMED</code><br><code>CANCELLED</code><br></td>
 </tr>
 <tr>
 <td>investments[].gainToDateAsPercentage</td>
@@ -6899,8 +6899,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
-</span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='bond-management-code-post-investors-clientid-accounts-accounttype-investments-code-description'>Description</h3>
 <p>Adds an investment to the account.</p>
 <h3 id='bond-management-code-post-investors-clientid-accounts-accounttype-investments-code-request'>Request</h3>
