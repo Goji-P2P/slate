@@ -795,17 +795,32 @@
 <h2 id='introduction-getting-started'>Getting started</h2>
 <p>To make use of the Goji platform you will want to use one or more of the APIs described below.</p>
 <h3 id='introduction-getting-started-investors-api'><a href="#investors">Investors API</a></h3>
-<p>The Investors API allows you to onboard, conduct KYC checks, open general/ISA accounts for your investors. You can also retrieve and update investor data.</p>
+<p>The Investors API can:
+* Onboard Investors
+* Conduct KYC checks (normally automatically)
+* Open general/ISA accounts for your Investors
+* Retrieve and update Investor data</p>
 <h3 id='introduction-getting-started-payments-api'><a href="#payments">Payments API</a></h3>
-<p>The Payments API allows you to retrieve bank details and balance information for investors who have passed KYC. You can also transfer funds between accounts and execute withdrawals.</p>
+<p>For Investors who have passed KYC checks, the Payments API can:
+* Retrieve Investors bank details
+* Retrieve Investors balance information
+* Transfer funds between accounts
+* Execute withdrawals</p>
 <h3 id='introduction-getting-started-bond-management-api'><a href="#bond-management">Bond management API</a></h3>
 <aside class="notice">
 Most platforms do not require this module. Please speak to the Goji integrations team before using this API.
 </aside>
 
-<p>The Goji Platform can be used to issue fixed term, fixed rate bonds (debt based securities). The Bond management API allows you to configure these products and determine who has invested in each bond and when repayments are due.</p>
+<p>The Goji Platform supports issuing:
+* Fixed term bonds
+* Fixed rate bonds (debt based securities)
+The Bond management API allows you to configure these products, determine who has invested in each bond and when repayments are due.</p>
 <h3 id='introduction-getting-started-settlement-api'><a href="#settlement">Settlement API</a></h3>
-<p>The Settlement API allows you to settle investments in securities that are not being managed by the Bond management module. These might be P2P loans, bonds etc. This API can be used where the securitiy itself is being controlled by your platform and the Goji platform is being used to control the movement of client money.</p>
+<p>The Settlement API supports settling investments in securities that are not being managed by the Bond management module. Examples include:
+* P2P loans
+* Bonds
+* etc.
+This API can be used where the securitiy itself is being controlled by your platform and the Goji platform is being used to control the movement of client money.</p>
 <h3 id='introduction-getting-started-webhooks-api'><a href="#webhooks">Webhooks API</a></h3>
 <p>Many events in the Goji platform publish events which can be consumed as a webhook.</p>
 <h3 id='introduction-getting-started-isa-administration-api'><a href="#isa-administration">ISA administration API</a></h3>
@@ -814,39 +829,39 @@ The ISA administration API is a standalone API and is not used in conjunction wi
 </aside>
 
 <p>The ISA administration API allows you to interact with the Goji platform for the purpose of administering an IF ISA.</p>
-<h3 id='introduction-getting-started-error-handling-and-retry-policy'>Error handling and retry policy</h3>
-<p>It is recommended that clients use circuit breakers and a retry policy to make connections to the Goji API resilient to failure.</p>
+<h3 id='introduction-getting-started-error-handling-and-retry-policy'>Error Handling and Retry Policy</h3>
+<p>Improving resilience: We recommend Clients use circuit breakers and a retry policy to make connections to the Goji API.</p>
 
-<p>Including a unique <code>X-CLIENT-REQUEST-ID</code> header with each request will ensure <code>POST</code> and <code>PUT</code> requests are idempotent. If a call is made with a <code>X-CLIENT-REQUEST-ID</code> that has been seen in the last 24 hours, no modifications will be made and a <code>200</code> response code returned. This will allow a client to retry a request in the event of a timeout or network failure with confidence that the action will only be carried out once.</p>
+<p>Retries: Including a unique <code>X-CLIENT-REQUEST-ID</code> header with each request will ensure <code>POST</code> and <code>PUT</code> requests are idempotent. If a call is made with a <code>X-CLIENT-REQUEST-ID</code> that has been seen in the last 24 hours, no modifications will be made and a <code>200</code> response code returned. This will allow a client to retry a request in the event of a timeout or network failure with confidence that the action will only be carried out once.</p>
 <h3 id='introduction-getting-started-request-ids'>Request IDs</h3>
-<p>All responses will include a header <code>X-GOJI-REQUEST-ID</code>. Please include this in all correspondence to assist with our investigation.</p>
+<p>All responses include a header <code>X-GOJI-REQUEST-ID</code>. When requesting support, please include the request ID to assist with our investigation.</p>
 <h3 id='introduction-getting-started-test-environment'>Test Environment</h3>
 <p>Goji supports a Sandbox environment which can be used for integration testing.</p>
 
-<p>The url for the sandbox environment is <code>https://api-sandbox.goji.investment</code>.</p>
+<p>The URL for the sandbox environment is <code>https://api-sandbox.goji.investment</code>.</p>
 <h3 id='introduction-getting-started-dates'>Dates</h3>
-<p>Dates and time are in ISO 8601 format eg 2015-02-18 or 2015-02-18T04:57:56Z</p>
+<p>Dates and time are in ISO 8601 format eg <code>2015-02-18</code> or <code>2015-02-18T04:57:56Z</code></p>
 <h2 id='introduction-authentication'>Authentication</h2>
 <p>Authentication to the API is via an HMAC mechanism.</p>
 
-<p>A basic HTTP API key and password will also be made available to make it easy to prototype against the sandbox environment.</p>
+<p>A basic HTTP API key and password is also available for easier prototyping against Goji&#39;s sandbox environment.</p>
 <h3 id='introduction-authentication-hmac-authentication'>HMAC Authentication</h3>
 <p>HMAC authentication is a mechanism where each HTTP request made by the client of the API is cryptographically signed.</p>
 
-<p>By signing the request with a secret key known only to the API client and the API itself it means that the authenticity of the request can be established.</p>
-<h3 id='introduction-authentication-how-to-sign-the-request'>How to sign the request</h3>
+<p>By signing the request with a secret key, known only to the API client and the API itself, the authenticity of the request can be established.</p>
+<h3 id='introduction-authentication-how-to-sign-the-request'>How to Sign the Request</h3>
 <p>The request is signed by including three headers:</p>
 
 <p><code>x-nonce</code> A unique string for every request. This will also be included in the signature string (see below) and is used to prevent replay attacks.</p>
 
 <p><code>x-timestamp</code> Milliseconds since epoch. This will also be included in the signature string (see below) and is used to prevent replay attacks.</p>
 
-<p><code>Authorization</code> In the format <code>&lt;api-key&gt;:&lt;signature-string&gt;</code> See below for how to build the <code>signature-string</code> .</p>
-<h3 id='introduction-authentication-building-the-signature-string'>Building the signature string</h3>
+<p><code>Authorization</code> In the format <code>&lt;api-key&gt;:&lt;signature-string&gt;</code> See below for how to build the <code>signature-string</code>.</p>
+<h3 id='introduction-authentication-building-the-signature-string'>Building the Signature String</h3>
 <p>The following details are concatenated together:</p>
 
-<p>nonce + \n
-    timestamp</p>
+<p><code>nonce + \n</code>
+    <code>timestamp</code></p>
 
 <p>The string is then encrypted using <code>HMAC-SHA256</code> using the private key.</p>
 
@@ -897,8 +912,8 @@ The ISA administration API is a standalone API and is not used in conjunction wi
 
 <p>The signature string would be as follows:</p>
 
-<p>67681625-d7f9-43e3-859a-25e634c203c2
-    1474982268271</p>
+<p><code>67681625-d7f9-43e3-859a-25e634c203c2</code>
+    <code>1474982268271</code></p>
 
 <p>Assuming a secret key of <code>abcd1234</code>, this will produce a signature equal to: <code>q0AdIAm6SphhgN/VxjMiE9UEd3uZRca9gjJXQ5+dyNI=</code> which is then URL encoded to <code>q0AdIAm6SphhgN%2FVxjMiE9UEd3uZRca9gjJXQ5%2BdyNI%3D</code></p>
 <h2 id='introduction-versioning'>Versioning</h2><pre class="highlight java tab-java"><code><span class="o">&gt;</span><span class="n">If</span> <span class="n">Jackson</span> <span class="n">is</span> <span class="n">being</span> <span class="n">used</span><span class="o">,</span> <span class="n">the</span> <span class="n">following</span> <span class="kd">class</span> <span class="nc">level</span> <span class="n">annotation</span> <span class="n">can</span> <span class="n">be</span> <span class="nl">added:</span>
@@ -913,18 +928,18 @@ The ISA administration API is a standalone API and is not used in conjunction wi
 <li>Breaking change in structure of response body</li>
 </ul>
 
-<p>The version of the endpoint to use is specified in a header named version e.g. version : 2
+<p>The version of the endpoint to use is specified in a header named version e.g. <code>version : 2</code>
 If no version header is specified, version one of the endpoint will be used.
 If an invalid version header is specified, a 404 response code will be returned.</p>
 
 <p>A breaking change to the request or response body is defined as the following:</p>
 
 <ul>
-<li>renaming a field</li>
-<li>changing the type of a field e.g. from string to decimal</li>
-<li>changing the format of a field e.g. changing a date format representation</li>
-<li>removing a field</li>
-<li>restructuring the request/response object</li>
+<li>Renaming a field</li>
+<li>Changing the type of a field e.g. from string to decimal</li>
+<li>Changing the format of a field e.g. changing a date format representation</li>
+<li>Removing a field</li>
+<li>Restructuring the request/response object</li>
 </ul>
 
 <p>The following changes are not considered breaking changes:</p>
@@ -932,26 +947,27 @@ If an invalid version header is specified, a 404 response code will be returned.
 <ul>
 <li>Adding a new field to a response object</li>
 <li>Adding a new, optional field to a request object</li>
-<li>Adding a new, optional query parameter to a url</li>
+<li>Adding a new, optional query parameter to a URL</li>
 </ul>
 
 <p>It is therefore important that clients of the API are liberal in the way they parse response objects such that new fields do not cause the process to fail.</p>
 <h2 id='introduction-email-integration'>Email integration</h2>
 <p>Goji can send a emails on behalf of the Platform at various points in the ISA lifecycle. When you completed the onboarding questionnaire, you will have specified which emails you want Goji to send.</p>
 
-<p>In order to complete the email integration you will need to:</p>
-
-<p>Specify the email address emails should be sent from eg isa@platform.com
-    Create a forwarding rule so that emails sent to the address specified above are forwarded to platformsupport@gojip2p.com
-    Specify the email address Goji should send notifications of inound transfer in funds to eg isa-transfer-notifications@platform.com</p>
+<p>In order to complete the email integration you will need to:
+1. Specify the email address emails should be sent from e.g. <code>isa@platform.com</code>
+2. Create a forwarding rule, so that emails sent to the address specified above are forwarded to <code>platformsupport@gojip2p.com</code>
+3. Specify the email address Goji should send notifications of inound transfer in funds to e.g. <code>isa-transfer-notifications@platform.com</code></p>
 
 <p>In order to permission our email provider (Mandrill) to send emails using your domain you will be required to make the following DNS changes:</p>
 <h3 id='introduction-email-integration-dkim'>DKIM</h3>
-<p>`v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB;</p>
+<p><code>v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB;</code></p>
 
 <p><code>v=DKIM1\; k=rsa\; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB\;</code></p>
 
-<p>DKIM is a DNS-based email authentication mechanism that helps Mandrill more effectively send mail on your behalf by allowing receivers to verify that we have permission to send your email. To enable DKIM, create a TXT record for mandrill._domainkey.yourdomain.com (just replace yourdomain.com with the domain you&#39;re setting up) with the following value.</p>
+<p>DKIM is a DNS-based email authentication mechanism that helps Mandrill more effectively send mail on your behalf by allowing receivers to verify that we have permission to send your email.</p>
+
+<p>To enable DKIM, create a <code>TXT</code> record for <code>mandrill._domainkey.yourdomain.com</code> (replace <code>yourdomain.com</code> with the domain you&#39;re setting up).</p>
 
 <p>Some DNS providers require that semicolons be escaped. If your provider requires escaping, use this value instead.</p>
 <h3 id='introduction-email-integration-spf'>SPF</h3>
@@ -959,8 +975,8 @@ If an invalid version header is specified, a 404 response code will be returned.
 
 <p>SPF is another DNS-based email authentication mechanism. If you don&#39;t yet have an SPF record, you&#39;ll want to add one for your domain. At a minimum, the value should be the following if you&#39;re only sending mail through Mandrill for that domain.</p>
 
-<p>If you already have a TXT record with SPF information, you&#39;ll need to add Mandrill&#39;s servers to that record by adding include:spf.mandrillapp.com in the record (before the last operator, which is usually ?all, ~all, or -all).</p>
-<h3 id='introduction-email-integration-domain-ownership-verification'>Domain ownership verification</h3>
+<p>If you already have a <code>TXT</code> record with SPF information, you&#39;ll need to add Mandrill&#39;s servers to that record by adding <code>include:spf.mandrillapp.com</code> in the record (before the last operator, which is usually <code>?all</code>, <code>~all</code>, or <code>-all</code>).</p>
+<h3 id='introduction-email-integration-domain-ownership-verification'>Domain Ownership Verification</h3>
 <p>Additionally, we need to send a verification email to verify your ownership of the domain. Please let us know which email address to send this to and when you receive the email from Mandrill, please forward it to <a href="mailto:techsupport@goji.investments">techsupport@goji.investments</a></p>
 <h1 id='quickstart-settlement'>Quickstart (Settlement)</h1>
 <p>This guide gives a brief overview to how to onboard an investor, deposit funds, settle an investment and repay using the settlement API.</p>
