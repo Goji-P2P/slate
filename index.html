@@ -246,37 +246,37 @@
                     <a href="#quickstart-settlement-authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
                   </li>
                   <li>
-                    <a href="#quickstart-settlement-registering-a-webhook" class="toc-h2 toc-link" data-title="Registering a webhook">Registering a webhook</a>
+                    <a href="#quickstart-settlement-registering-a-webhook" class="toc-h2 toc-link" data-title="Registering a Webhook">Registering a Webhook</a>
                   </li>
                   <li>
-                    <a href="#quickstart-settlement-creating-an-investor" class="toc-h2 toc-link" data-title="Creating an investor">Creating an investor</a>
+                    <a href="#quickstart-settlement-creating-an-investor" class="toc-h2 toc-link" data-title="Creating an Investor">Creating an Investor</a>
                   </li>
                   <li>
                     <a href="#quickstart-settlement-checking-the-kyc-details" class="toc-h2 toc-link" data-title="Checking the KYC details">Checking the KYC details</a>
                   </li>
                   <li>
-                    <a href="#quickstart-settlement-depositing-test-funds" class="toc-h2 toc-link" data-title="Depositing test funds">Depositing test funds</a>
+                    <a href="#quickstart-settlement-depositing-test-funds" class="toc-h2 toc-link" data-title="Depositing Test Funds">Depositing Test Funds</a>
                   </li>
                   <li>
-                    <a href="#quickstart-settlement-settling-an-investment" class="toc-h2 toc-link" data-title="Settling an investment">Settling an investment</a>
+                    <a href="#quickstart-settlement-settling-an-investment" class="toc-h2 toc-link" data-title="Settling an Investment">Settling an Investment</a>
                   </li>
                   <li>
-                    <a href="#quickstart-settlement-register-the-investment-product" class="toc-h2 toc-link" data-title="Register the investment product">Register the investment product</a>
+                    <a href="#quickstart-settlement-register-the-investment-product" class="toc-h2 toc-link" data-title="Register the Investment Product">Register the Investment Product</a>
                   </li>
                   <li>
-                    <a href="#quickstart-settlement-register-a-payment-destination" class="toc-h2 toc-link" data-title="Register a payment destination">Register a payment destination</a>
+                    <a href="#quickstart-settlement-register-a-payment-destination" class="toc-h2 toc-link" data-title="Register a Payment Destination">Register a Payment Destination</a>
                   </li>
                   <li>
-                    <a href="#quickstart-settlement-repaying-the-investment" class="toc-h2 toc-link" data-title="Repaying the investment">Repaying the investment</a>
+                    <a href="#quickstart-settlement-repaying-the-investment" class="toc-h2 toc-link" data-title="Repaying the Investment">Repaying the Investment</a>
                   </li>
                   <li>
-                    <a href="#quickstart-settlement-withdrawing-funds" class="toc-h2 toc-link" data-title="Withdrawing funds">Withdrawing funds</a>
+                    <a href="#quickstart-settlement-withdrawing-funds" class="toc-h2 toc-link" data-title="Withdrawing Funds">Withdrawing Funds</a>
                   </li>
                   <li>
-                    <a href="#quickstart-settlement-register-withdrawal-bank-details" class="toc-h2 toc-link" data-title="Register withdrawal bank details">Register withdrawal bank details</a>
+                    <a href="#quickstart-settlement-register-withdrawal-bank-details" class="toc-h2 toc-link" data-title="Register Withdrawal Bank Details">Register Withdrawal Bank Details</a>
                   </li>
                   <li>
-                    <a href="#quickstart-settlement-process-withdrawal" class="toc-h2 toc-link" data-title="Process withdrawal">Process withdrawal</a>
+                    <a href="#quickstart-settlement-process-withdrawal" class="toc-h2 toc-link" data-title="Process Withdrawal">Process Withdrawal</a>
                   </li>
               </ul>
           </li>
@@ -997,18 +997,27 @@ If an invalid version header is specified, a <code>404</code> response code will
 <h3 id='introduction-email-integration-domain-ownership-verification'>Domain Ownership Verification</h3>
 <p>Additionally, we need to send a verification email to verify your ownership of the domain. Please let us know which email address to send this to and when you receive the email from Mandrill, please forward it to <a href="mailto:techsupport@goji.investments">techsupport@goji.investments</a></p>
 <h1 id='quickstart-settlement'>Quickstart (Settlement)</h1>
-<p>This guide gives a brief overview to how to onboard an investor, deposit funds, settle an investment and repay using the settlement API.</p>
+<p>This guide gives a brief overview to how to:</p>
+
+<ul>
+<li>Onboard an Investor</li>
+<li>Deposit funds</li>
+<li>Settle an investment</li>
+<li>Repay using the Settlement API</li>
+</ul>
 
 <p>Please ensure you also read the complete documentation for each API.</p>
 
 <ul>
-<li><a href="/#investors">Investors</a> API</li>
-<li><a href="/#payments">Payments</a> API</li>
-<li><a href="/#settlement">Settlement</a> API</li>
+<li><a href="/#investors">Investors API</a></li>
+<li><a href="/#payments">Payments API</a></li>
+<li><a href="/#settlement">Settlement API</a></li>
 </ul>
 <h2 id='quickstart-settlement-authentication'>Authentication</h2>
-<p>API calls in production need to be cryptograpjically signed. You can find more information <a href="/#authentication">here</a>. In Sandbox, <code>Basic Auth</code> can be used to help you prototype integrations.</p>
-<h2 id='quickstart-settlement-registering-a-webhook'>Registering a webhook</h2>
+<p>API calls in production need to be cryptographically signed. You can find more information <a href="/#introduction-authentication">here</a>.</p>
+
+<p>In Sandbox, <code>Basic Auth</code> can be used to help you prototype integrations.</p>
+<h2 id='quickstart-settlement-registering-a-webhook'>Registering a Webhook</h2>
 <blockquote>
 <p>Create webhook</p>
 </blockquote>
@@ -1019,10 +1028,10 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>Webhooks are fired to inform you whenever specific events are fired in the Goji Platform.</p>
 
 <p>You can register a URL to receive webhooks by calling <a href="/#post-webhooks">POST https://api-sandbox.goji.investments/platformApi/webhooks</a> with example <code>POST</code> body:</p>
-<h2 id='quickstart-settlement-creating-an-investor'>Creating an investor</h2>
-<p>To create an investor, the investor must first agree to the terms and conditions and optionally the ISA declaration if the investor is opening an ISA.</p>
+<h2 id='quickstart-settlement-creating-an-investor'>Creating an Investor</h2>
+<p>To create an investor, the investor must first agree to the Terms and Conditions, and optionally the ISA declaration if the Investor is opening an ISA.</p>
 
-<p>The terms and conditions can be hosted by Goji, in which case they can be retrieved by calling <a href="/#get-terms">GET https://api-sandbox.goji.investments/platformApi/terms</a>.</p>
+<p>Goji supports hosting the Terms and Conditions, retrieved by calling <a href="/#get-terms">GET https://api-sandbox.goji.investments/platformApi/terms</a>.</p>
 
 <p>The ISA Declaration can be retrieved by calling <a href="/#get-isadeclaration">GET https://api-sandbox.goji.investments/platformApi/isaDeclaration</a></p>
 
@@ -1062,7 +1071,7 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>Once the investor has been created, a KYC check is done in the background and the status can be checked by calling <a href="/#get-investors-clientid-kyc">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/kyc</a></p>
 
 <p>In the sandbox environment, all investors are considered verified unless the <code>lastName</code> contains <code>referred</code>.</p>
-<h2 id='quickstart-settlement-depositing-test-funds'>Depositing test funds</h2>
+<h2 id='quickstart-settlement-depositing-test-funds'>Depositing Test Funds</h2>
 <p>Once an investor is KYC approved, funds can be deposited.</p>
 
 <p>The investor&#39;s unique bank details for depositing funds can be retrieved by calling</p>
@@ -1095,9 +1104,9 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>An investor&#39;s balance can be queried by calling:</p>
 
 <p><a href="/#get-investors-clientid-accounts-balances">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/accounts/balances</a></p>
-<h2 id='quickstart-settlement-settling-an-investment'>Settling an investment</h2>
+<h2 id='quickstart-settlement-settling-an-investment'>Settling an Investment</h2>
 <p>Once an investor has a cash balance, the funds can be invested by calling the settlement API. This will move the funds from one or more investors to a predetermined account. This account may be with the investment manager, a solicitors or the borrower directly.</p>
-<h2 id='quickstart-settlement-register-the-investment-product'>Register the investment product</h2>
+<h2 id='quickstart-settlement-register-the-investment-product'>Register the Investment Product</h2>
 <blockquote>
 <p>Investment product</p>
 </blockquote>
@@ -1110,7 +1119,7 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>First register the investment product. This can be reused multiple times:</p>
 
 <p><a href="/#post-settlement-product">POST https://api-sandbox.goji.investments/platformApi/settlement/product</a></p>
-<h2 id='quickstart-settlement-register-a-payment-destination'>Register a payment destination</h2>
+<h2 id='quickstart-settlement-register-a-payment-destination'>Register a Payment Destination</h2>
 <blockquote>
 <p>Payment destination</p>
 </blockquote>
@@ -1158,7 +1167,7 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>The investor&#39;s investment can be queried by calling:</p>
 
 <p><a href="/#get-settlement-investors-clientid-accounts-accounttype-investments">https://api-sandbox.goji.investments/platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments</a></p>
-<h2 id='quickstart-settlement-repaying-the-investment'>Repaying the investment</h2>
+<h2 id='quickstart-settlement-repaying-the-investment'>Repaying the Investment</h2>
 <p>To record a repayment against an investment, firstly generate a unique reference that will be used when sending the funds to the Goji Platform.</p>
 
 <p><a href="/#get-settlement-repayment-reference">GET https://api-sandbox.goji.investments/platformApi/settlement/repayment/reference</a></p>
@@ -1204,9 +1213,9 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p><a href="/#post-settlement-repayment">POST https://api-sandbox.goji.investments/platformApi/settlement/repayment</a></p>
 
 <p>This will ensure that £123.45 has been deposited with reference <code>some-ref</code> which was generated by the previous call. If this check passes, the funds will be credited to the investor and recorded as an interest repayment against <code>client-investment-1</code>.  </p>
-<h2 id='quickstart-settlement-withdrawing-funds'>Withdrawing funds</h2>
+<h2 id='quickstart-settlement-withdrawing-funds'>Withdrawing Funds</h2>
 <p>An investor can withdraw funds by firstly registering bank account details:</p>
-<h2 id='quickstart-settlement-register-withdrawal-bank-details'>Register withdrawal bank details</h2>
+<h2 id='quickstart-settlement-register-withdrawal-bank-details'>Register Withdrawal Bank Details</h2>
 <blockquote>
 <p>Register bank details</p>
 </blockquote>
@@ -1217,7 +1226,7 @@ If an invalid version header is specified, a <code>404</code> response code will
 }
 </code></pre>
 <p><a href="/#post-investors-clientid-bankdetails">POST https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankDetails</a></p>
-<h2 id='quickstart-settlement-process-withdrawal'>Process withdrawal</h2>
+<h2 id='quickstart-settlement-process-withdrawal'>Process Withdrawal</h2>
 <p>Then the funds can be withdrawn:</p>
 
 <blockquote>
