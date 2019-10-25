@@ -272,12 +272,6 @@
                   <li>
                     <a href="#quickstart-settlement-withdrawing-funds" class="toc-h2 toc-link" data-title="Withdrawing Funds">Withdrawing Funds</a>
                   </li>
-                  <li>
-                    <a href="#quickstart-settlement-register-withdrawal-bank-details" class="toc-h2 toc-link" data-title="Register Withdrawal Bank Details">Register Withdrawal Bank Details</a>
-                  </li>
-                  <li>
-                    <a href="#quickstart-settlement-process-withdrawal" class="toc-h2 toc-link" data-title="Process Withdrawal">Process Withdrawal</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -997,7 +991,7 @@ If an invalid version header is specified, a <code>404</code> response code will
 <h3 id='introduction-email-integration-domain-ownership-verification'>Domain Ownership Verification</h3>
 <p>Additionally, we need to send a verification email to verify your ownership of the domain. Please let us know which email address to send this to and when you receive the email from Mandrill, please forward it to <a href="mailto:techsupport@goji.investments">techsupport@goji.investments</a></p>
 <h1 id='quickstart-settlement'>Quickstart (Settlement)</h1>
-<p>This guide gives a brief overview to how to:</p>
+<p>This guide gives a brief overview on how to:</p>
 
 <ul>
 <li>Onboard an Investor</li>
@@ -1019,7 +1013,7 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>In Sandbox, <code>Basic Auth</code> can be used to help you prototype integrations.</p>
 <h2 id='quickstart-settlement-registering-a-webhook'>Registering a Webhook</h2>
 <blockquote>
-<p>Create webhook</p>
+<p>Create Webhook</p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
     "url": "https://webhook.site/44e66f2d-eaac-4225-86aa-7549f628c5d0"
@@ -1029,14 +1023,8 @@ If an invalid version header is specified, a <code>404</code> response code will
 
 <p>You can register a URL to receive webhooks by calling <a href="/#post-webhooks">POST https://api-sandbox.goji.investments/platformApi/webhooks</a> with example <code>POST</code> body:</p>
 <h2 id='quickstart-settlement-creating-an-investor'>Creating an Investor</h2>
-<p>To create an investor, the investor must first agree to the Terms and Conditions, and optionally the ISA declaration if the Investor is opening an ISA.</p>
-
-<p>Goji supports hosting the Terms and Conditions, retrieved by calling <a href="/#get-terms">GET https://api-sandbox.goji.investments/platformApi/terms</a>.</p>
-
-<p>The ISA Declaration can be retrieved by calling <a href="/#get-isadeclaration">GET https://api-sandbox.goji.investments/platformApi/isaDeclaration</a></p>
-
 <blockquote>
-<p>Create investor</p>
+<p>Create Investor</p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
     "title": "MS",
@@ -1064,26 +1052,22 @@ If an invalid version header is specified, a <code>404</code> response code will
     "nationalInsuranceNumber": "JT123456D"
 }
 </code></pre>
-<p>An investor is created by posting to <a href="/#post-investors">https://api-sandbox.goji.investments/platformApi/investors</a> with example <code>POST</code> body:</p>
+<p>To create an Investor, the Investor must first agree to the Terms and Conditions, and optionally the ISA declaration if the Investor is opening an ISA.</p>
+
+<p>Goji supports hosting the Terms and Conditions, retrieved by calling <a href="/#get-terms">GET https://api-sandbox.goji.investments/platformApi/terms</a>.</p>
+
+<p>The ISA Declaration can be retrieved by calling <a href="/#get-isadeclaration">GET https://api-sandbox.goji.investments/platformApi/isaDeclaration</a></p>
+
+<p>An Investor is created by posting to <a href="/#post-investors">https://api-sandbox.goji.investments/platformApi/investors</a> with example <code>POST</code> body:</p>
 
 <p>The Goji Platform will generate a <code>clientId</code> which should be saved as this is used for subsequent calls.</p>
 <h2 id='quickstart-settlement-checking-the-kyc-details'>Checking the KYC details</h2>
-<p>Once the investor has been created, a KYC check is done in the background and the status can be checked by calling <a href="/#get-investors-clientid-kyc">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/kyc</a></p>
+<p>Once the Investor has been created, a KYC check is done in the background and the status can be checked by calling <a href="/#get-investors-clientid-kyc">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/kyc</a></p>
 
-<p>In the sandbox environment, all investors are considered verified unless the <code>lastName</code> contains <code>referred</code>.</p>
+<p>In the sandbox environment, all Investors are considered verified unless the <code>lastName</code> contains <code>referred</code>.</p>
 <h2 id='quickstart-settlement-depositing-test-funds'>Depositing Test Funds</h2>
-<p>Once an investor is KYC approved, funds can be deposited.</p>
-
-<p>The investor&#39;s unique bank details for depositing funds can be retrieved by calling</p>
-
-<p><a href="/#get-investors-clientid-banktransferdetails">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails</a></p>
-
-<p>For an ISA account, use</p>
-
-<p><a href="/#get-investors-clientid-banktransferdetails-isa">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails/isa</a></p>
-
 <blockquote>
-<p>Bank transfer details</p>
+<p>Bank Transfer Details</p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
     "amount": {
@@ -1095,20 +1079,26 @@ If an invalid version header is specified, a <code>404</code> response code will
     "paymentType": "DEPOSIT"
 }
 </code></pre>
+<p>Once an Investor is KYC approved, funds can be deposited.</p>
+<h3 id='quickstart-settlement-depositing-test-funds-an-investor-39-s-bank-details'>An Investor&#39;s Bank Details</h3>
+<p>The Investor&#39;s unique bank details for depositing funds can be retrieved by calling: <a href="/#get-investors-clientid-banktransferdetails">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails</a></p>
+<h3 id='quickstart-settlement-depositing-test-funds-an-isa-investor-39-s-bank-details'>An ISA Investor&#39;s Bank Details</h3>
+<p>For an ISA account, use: <a href="/#get-investors-clientid-banktransferdetails-isa">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails/isa</a></p>
+<h3 id='quickstart-settlement-depositing-test-funds-testing'>Testing</h3>
 <p>You can simulate depositing funds by calling <a href="/#post-test-payment">POST https://api-sandbox.goji.investments/platformApi/test/payment</a> with a example <code>POST</code> body:</p>
 
 <p>The payment reference must start with <code>ISA</code> if the funds are to be deposited to the ISA account.</p>
 
 <p>Once funds are deposited, a webhook will be fired with type <code>INVESTOR_FUNDS_RECEIVED</code>.</p>
-
-<p>An investor&#39;s balance can be queried by calling:</p>
+<h3 id='quickstart-settlement-depositing-test-funds-an-investor-39-s-balance'>An Investor&#39;s Balance</h3>
+<p>An Investor&#39;s balance can be queried by calling:</p>
 
 <p><a href="/#get-investors-clientid-accounts-balances">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/accounts/balances</a></p>
 <h2 id='quickstart-settlement-settling-an-investment'>Settling an Investment</h2>
-<p>Once an investor has a cash balance, the funds can be invested by calling the settlement API. This will move the funds from one or more investors to a predetermined account. This account may be with the investment manager, a solicitors or the borrower directly.</p>
+<p>Once an Investor has a cash balance, the funds can be invested by calling the settlement API. This will move the funds from one or more investors to a predetermined account. This account may be with the Investment Manager, a Solicitor or the borrower directly.</p>
 <h2 id='quickstart-settlement-register-the-investment-product'>Register the Investment Product</h2>
 <blockquote>
-<p>Investment product</p>
+<p>Investment Product</p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
     "id": "PRODUCT-1",
@@ -1116,12 +1106,14 @@ If an invalid version header is specified, a <code>404</code> response code will
     "isaEligible": "true"
 }
 </code></pre>
-<p>First register the investment product. This can be reused multiple times:</p>
+<p>First register the investment product:</p>
 
 <p><a href="/#post-settlement-product">POST https://api-sandbox.goji.investments/platformApi/settlement/product</a></p>
+
+<p><em>This can be reused multiple times.</em></p>
 <h2 id='quickstart-settlement-register-a-payment-destination'>Register a Payment Destination</h2>
 <blockquote>
-<p>Payment destination</p>
+<p>Payment Destination</p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
     "accountName": "Account name",
@@ -1130,20 +1122,23 @@ If an invalid version header is specified, a <code>404</code> response code will
     "sortCode": "112233"
 }
 </code></pre>
-<p>Then register a payment destination - this is where the funds will be sent to.</p>
+<p>Next, register a payment destination. This is where the funds will be sent.</p>
 
 <p><a href="/#post-settlement-payment-destination">POST https://api-sandbox.goji.investments/platformApi/settlement/payment-destination</a></p>
 
 <p>This returns a payment destination ID which must be saved and used for the subsequent call.</p>
 
-<p>To ensure the payment is processed correctly, please the following test account number/sort code:</p>
+<p>To ensure the payment is processed correctly, please the following test account number and sort code:</p>
 
-<p><code>00004588/203002</code></p>
+<p><code>accountNumber: 00004588</code>
+<code>sortCode: 203002</code></p>
 
-<p>Then settle the investment. The following example includes a single investment from a single investor:</p>
+<p>Then settle the investment.</p>
+
+<p>The following example includes a single investment from a single Investor:</p>
 
 <blockquote>
-<p>Settle investment</p>
+<p>Settle Investment</p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
     "id": "investment1",
@@ -1168,56 +1163,52 @@ If an invalid version header is specified, a <code>404</code> response code will
 
 <p><a href="/#get-settlement-investors-clientid-accounts-accounttype-investments">https://api-sandbox.goji.investments/platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments</a></p>
 <h2 id='quickstart-settlement-repaying-the-investment'>Repaying the Investment</h2>
+<blockquote>
+<p>Repaying Investment</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "accountNumber": "123456",
+    "reference": "some-ref",
+    "sortCode": "112233"
+}
+</code></pre>
 <p>To record a repayment against an investment, firstly generate a unique reference that will be used when sending the funds to the Goji Platform.</p>
 
 <p><a href="/#get-settlement-repayment-reference">GET https://api-sandbox.goji.investments/platformApi/settlement/repayment/reference</a></p>
-
-<blockquote>
-<p>Repaying investment
-<code>
-{
-    &quot;accountNumber&quot;: &quot;123456&quot;,
-    &quot;reference&quot;: &quot;some-ref&quot;,
-    &quot;sortCode&quot;: &quot;112233&quot;
-}
-</code></p>
-</blockquote>
 
 <p>This will return the account details to use when sending the funds to repay:</p>
 
 <p>Once the funds have been sent to this destination and the funds have cleared, call the Settlement API to distribute the funds.</p>
 
 <blockquote>
-<p>Record repayment
-<code>
-{
-    &quot;investorRepayments&quot;: [
+<p>Record Repayment</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "investorRepayments": [
         {
-            &quot;amount&quot;: {
-                &quot;amount&quot;: 123.45,
-                &quot;currency&quot;: &quot;GBP&quot;
+            "amount": {
+                "amount": 123.45,
+                "currency": "GBP"
             },
-            &quot;investmentId&quot;: &quot;client-investment-1&quot;,
-            &quot;tax&quot;: {
-                &quot;amount&quot;: 0.00,
-                &quot;currency&quot;: &quot;GBP&quot;
+            "investmentId": "client-investment-1",
+            "tax": {
+                "amount": 0.00,
+                "currency": "GBP"
             },
-            &quot;type&quot;: &quot;INTEREST&quot;
+            "type": "INTEREST"
         }
     ],
-    &quot;reference&quot;: &quot;some-ref&quot;
+    "reference": "some-ref"
 }
-</code></p>
-</blockquote>
-
+</code></pre>
 <p><a href="/#post-settlement-repayment">POST https://api-sandbox.goji.investments/platformApi/settlement/repayment</a></p>
 
-<p>This will ensure that £123.45 has been deposited with reference <code>some-ref</code> which was generated by the previous call. If this check passes, the funds will be credited to the investor and recorded as an interest repayment against <code>client-investment-1</code>.  </p>
+<p>This will ensure that <code>£123.45</code> has been deposited with reference <code>some-ref</code> which was generated by the previous call. If this check passes, the funds will be credited to the Investor and recorded as an interest repayment against <code>client-investment-1</code>.  </p>
 <h2 id='quickstart-settlement-withdrawing-funds'>Withdrawing Funds</h2>
-<p>An investor can withdraw funds by firstly registering bank account details:</p>
-<h2 id='quickstart-settlement-register-withdrawal-bank-details'>Register Withdrawal Bank Details</h2>
+<p>An Investor can withdraw funds by firstly registering bank account details:</p>
+<h3 id='quickstart-settlement-withdrawing-funds-register-withdrawal-bank-details'>Register Withdrawal Bank Details</h3>
 <blockquote>
-<p>Register bank details</p>
+<p>Register Bank Details</p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
     "accountName": "Jane Doe",
@@ -1226,11 +1217,11 @@ If an invalid version header is specified, a <code>404</code> response code will
 }
 </code></pre>
 <p><a href="/#post-investors-clientid-bankdetails">POST https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankDetails</a></p>
-<h2 id='quickstart-settlement-process-withdrawal'>Process Withdrawal</h2>
+<h3 id='quickstart-settlement-withdrawing-funds-process-withdrawal'>Process Withdrawal</h3>
 <p>Then the funds can be withdrawn:</p>
 
 <blockquote>
-<p>Withdraw funds</p>
+<p>Withdraw Funds</p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
     "amount": {
