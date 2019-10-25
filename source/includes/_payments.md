@@ -619,9 +619,6 @@ Content-Type: application/json
 ```
 ### Description
 Delete wallet
-### Request
-| Name | Type | Description | Required || ---- | ---- | ----------- | -------- |
-
 ### Response
 | Name                 | Type   | Description                                   |
 | -------------------- | ------ | --------------------------------------------- |
