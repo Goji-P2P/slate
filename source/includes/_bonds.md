@@ -449,8 +449,8 @@ Adds an investment to the account.
 | productTermId      | string  | The product code for the investment.        | required |
 | repaymentProfileId | integer | The repayment profile ID.                   | required |
 | amount             | ref     | The amount invested.                        | required |
-| amount.amount      | number  | The amount.                                 ||
-| amount.currency    | string  | The ISO 4217 three character codes eg 'GBP' ||
+| amount.amount      | number  | The amount.                                 | required |
+| amount.currency    | string  | The ISO 4217 three character codes eg 'GBP' | required |
 ### Response
 | Name | Type | Description |
 | ---- | ---- | ----------- |
