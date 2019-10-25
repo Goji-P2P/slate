@@ -564,9 +564,6 @@
                     <a href="#isa-administration-repairing-voiding-isas" class="toc-h2 toc-link" data-title="Repairing / voiding ISAs">Repairing / voiding ISAs</a>
                   </li>
                   <li>
-                    <a href="#isa-administration-get-terms" class="toc-h2 toc-link" data-title="GET /terms"><code>GET /terms</code></a>
-                  </li>
-                  <li>
                     <a href="#isa-administration-post-terms" class="toc-h2 toc-link" data-title="POST /terms"><code>POST /terms</code></a>
                   </li>
                   <li>
@@ -7210,7 +7207,7 @@ can then be requested.</p>
 
 <p>The ISA declaration token can then be included in the request to create the Investor (and their ISA).</p>
 <h3 id='isa-administration-opening-an-isa-isa-and-investor-creation'>ISA and Investor creation</h3>
-<p>Once these documents have been agreed to, the Investor can be created 
+<p>Once these documents have been agreed to, the Investor can be created
 on the Goji Platform by calling:</p>
 
 <p>POST /investors</p>
@@ -7311,7 +7308,7 @@ The amount that can be withdrawn is available from the ISA details:</p>
 <h2 id='isa-administration-editing-investor-details'>Editing investor details</h2>
 <p>If an Investor&#39;s details need to be updated eg they change address, this needs to be reflected on the Goji platform:</p>
 
-<p>PUT /investors/{investorId}     </p>
+<p>PUT /investors/{investorId}</p>
 <h2 id='isa-administration-transfers-in'>Transfers In</h2>
 <p>A &#39;transfer in&#39; is the process where an Investor moves the cash balance of an existing Cash and/or stocks and shares ISA from another ISA Manager to the Originator&#39;s platform.</p>
 
@@ -7574,9 +7571,10 @@ For each possible way of integrating with the application, you will need to firs
 <li>Goji/Originator will contact the investor to determine how the funds should be removed from the wrapper eg withdrawing cash, selling investments, moving in specie</li>
 <li>Any cash on account is withdrawn using <code>/cash</code> with type set to <code>CUSTOMER_WITHDRAWAL</code></li>
 <li>If investments are to be removed from the tax wrapper, call <code>DELETE /investors/{investorId}/investment/{investmentId}/investment</code>. This reduces the ISA balance by the outstanding capital amount.</li>
-<li>Once this process is complete, Goji will email the investor with details of the taxable income that needs to be declared in their tax return.</li>
+<li>Once this process is complete, Goji will email the investor with details of the taxable income that needs to be declared in their tax return.
+## <code>GET /terms</code></li>
 </ul>
-<h2 id='isa-administration-get-terms'><code>GET /terms</code></h2><pre class="highlight http tab-http"><code><span class="err">
+<pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/terms</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -7591,11 +7589,11 @@ For each possible way of integrating with the application, you will need to firs
   </span><span class="s2">"version"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"version"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"termsAndConditions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"termsAndConditions"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='isa-administration-code-get-terms-code-description'>Description</h3>
+</span></code></pre><h3 id='isa-administration-repairing-voiding-isas-description'>Description</h3>
 <p>Returns the Terms and Conditions to show to the investor.</p>
-<h4 id='isa-administration-code-get-terms-code-description-investor-lifecycle'>Investor Lifecycle</h4>
+<h4 id='isa-administration-repairing-voiding-isas-description-investor-lifecycle'>Investor Lifecycle</h4>
 <p>This endpoint should be called to return the Terms and Conditions that the investor must agree to before they can open an IF ISA.</p>
-<h3 id='isa-administration-code-get-terms-code-response'>Response</h3>
+<h3 id='isa-administration-repairing-voiding-isas-response'>Response</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7756,7 +7754,7 @@ For each possible way of integrating with the application, you will need to firs
 <tr>
 <td>status</td>
 <td>string</td>
-<td>The status.</td>
+<td>The status. Possible values are: <br><code>UNSIGNED</code><br><code>PREVIOUS_VERSION_SIGNED</code><br><code>CURRENT_VERSION_SIGNED</code><br></td>
 </tr>
 </tbody></table>
 <h2 id='isa-administration-put-investors-clientid-terms-agreement-token'><code>PUT /investors/{clientId}/terms/agreement/token</code></h2><pre class="highlight http tab-http"><code><span class="err">
@@ -9047,7 +9045,7 @@ Checks performed:
 <tr>
 <td>investments[].investmentType</td>
 <td>string</td>
-<td>The type of the investment. Currently only loans are supported.</td>
+<td>The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br></td>
 </tr>
 <tr>
 <td>investments[].originalAmount</td>
@@ -9152,7 +9150,7 @@ Checks performed:
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA.</td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -9313,7 +9311,7 @@ Checks performed:
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA.</td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
 </tr>
 </tbody></table>
 <h2 id='isa-administration-put-investors-investorid-isa-status'><code>PUT /investors/{investorId}/isa/status</code></h2><pre class="highlight http tab-http"><code><span class="err">
@@ -9372,7 +9370,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>isaSubscriptionStatus</td>
 <td>string</td>
-<td>The status to change this ISA to.</td>
+<td>The status to change this ISA to. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
 <td>required</td>
 </tr>
 </tbody></table>
@@ -10140,7 +10138,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>investments[].investmentType</td>
 <td>string</td>
-<td>The type of the investment. Currently only loans are supported.</td>
+<td>The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br></td>
 </tr>
 <tr>
 <td>investments[].originalAmount</td>
@@ -10245,7 +10243,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA.</td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -10506,7 +10504,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>investmentType</td>
 <td>string</td>
-<td>The type of the investment. Currently only loans are supported.</td>
+<td>The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br></td>
 <td>required</td>
 </tr>
 <tr>
@@ -10639,7 +10637,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>investments[].investmentType</td>
 <td>string</td>
-<td>The type of the investment. Currently only loans are supported.</td>
+<td>The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br></td>
 </tr>
 <tr>
 <td>investments[].originalAmount</td>
@@ -10744,7 +10742,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA.</td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -11066,7 +11064,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>investments[].investmentType</td>
 <td>string</td>
-<td>The type of the investment. Currently only loans are supported.</td>
+<td>The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br></td>
 </tr>
 <tr>
 <td>investments[].originalAmount</td>
@@ -11171,7 +11169,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA.</td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -11515,7 +11513,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>investments[].investmentType</td>
 <td>string</td>
-<td>The type of the investment. Currently only loans are supported.</td>
+<td>The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br></td>
 </tr>
 <tr>
 <td>investments[].originalAmount</td>
@@ -11620,7 +11618,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA.</td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -12032,7 +12030,7 @@ This endpoint creates the new investment associated with the reinvestment.</p>
 <tr>
 <td>investments[].investmentType</td>
 <td>string</td>
-<td>The type of the investment. Currently only loans are supported.</td>
+<td>The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br></td>
 <td>required</td>
 </tr>
 <tr>
@@ -12141,7 +12139,7 @@ This endpoint creates the new investment associated with the reinvestment.</p>
 <tr>
 <td>investments[].investmentType</td>
 <td>string</td>
-<td>The type of the investment. Currently only loans are supported.</td>
+<td>The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br></td>
 </tr>
 <tr>
 <td>investments[].originalAmount</td>
@@ -12246,7 +12244,7 @@ This endpoint creates the new investment associated with the reinvestment.</p>
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA.</td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -12586,7 +12584,7 @@ This endpoint creates the new investment associated with the reinvestment.</p>
 <tr>
 <td>investments[].investmentType</td>
 <td>string</td>
-<td>The type of the investment. Currently only loans are supported.</td>
+<td>The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br></td>
 </tr>
 <tr>
 <td>investments[].originalAmount</td>
@@ -12691,7 +12689,7 @@ This endpoint creates the new investment associated with the reinvestment.</p>
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA.</td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -13024,7 +13022,7 @@ This endpoint creates the new investment associated with the reinvestment.</p>
 <tr>
 <td>investments[].investmentType</td>
 <td>string</td>
-<td>The type of the investment. Currently only loans are supported.</td>
+<td>The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br></td>
 </tr>
 <tr>
 <td>investments[].originalAmount</td>
@@ -13129,7 +13127,7 @@ This endpoint creates the new investment associated with the reinvestment.</p>
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA.</td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -13356,56 +13354,56 @@ This endpoint creates the new investment associated with the reinvestment.</p>
 #### Possible Error Codes
 Please see <a href="/isa-administration-api/guides/Error%20Codes">cash transaction errors</a>
 ### Request
-| Name                  | Type   | Description                                             | Required |
-| --------------------- | ------ | ------------------------------------------------------- | -------- |
-| clientTransactionId   | string | The ID of the transaction assigned by the P2P platform  | required |
-| amount                | ref    | The amount of the cash transaction                      | required |
-| amount.amount         | number | The amount                                              ||
-| amount.currency       | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39; ||
-| dateTimeOfTransaction | string | The date and time of the transaction                    | required |
-| type                  | string | Indicates the type of the cash transaction.             | required |
+| Name                  | Type   | Description                                                                                                                                                                                                                                   | Required |
+| --------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| clientTransactionId   | string | The ID of the transaction assigned by the P2P platform                                                                                                                                                                                        | required |
+| amount                | ref    | The amount of the cash transaction                                                                                                                                                                                                            | required |
+| amount.amount         | number | The amount                                                                                                                                                                                                                                    ||
+| amount.currency       | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                       ||
+| dateTimeOfTransaction | string | The date and time of the transaction                                                                                                                                                                                                          | required |
+| type                  | string | Indicates the type of the cash transaction. Possible values are: <br><code>CUSTOMER_DEPOSIT</code><br><code>CUSTOMER_WITHDRAWAL</code><br><code>ADDITIONAL_PERMITTED_SUBSCRIPTION</code><br><code>DEFAULTED_INVESTMENT_SUBSCRIPTION</code><br><code>RESIDUAL_INCOME</code><br><code>FEE</code><br><code>PREMIUM</code><br> | required |
 ### Response
-| Name                                               | Type   | Description                                                                                                   |
-| -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
-| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                 |
-| totalIsaBalance.amount                             | number | The amount                                                                                                    |
-| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                       |
-| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                 |
-| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                    |
-| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                       |
-| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                           |
-| totalCashBalance.amount                            | number | The amount                                                                                                    |
-| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                       |
-| dateCreated                                        | string | Date the ISA was created                                                                                      |
-| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                              |
-| investments                                        | array  | The list of investments that make up the ISA                                                                  |
-| investments[].id                                   | string | The ID of the loan defined by Goji                                                                            |
-| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                |
-| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported.                                               |
-| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                |
-| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                             |
-| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                      |
-| investments[].termOfInvestment                     | number | The term of the investment in months                                                                          |
-| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically. |
-| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.    |
-| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                  |
-| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                        |
-| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                            |
-| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                          |
-| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                   |
-| totalInterestReceived                              | ref    |                                                                                                               |
-| totalInterestReceived.amount                       | number | The amount                                                                                                    |
-| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                       |
-| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                               |
-| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                    |
-| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                       |
-| totalInvestedBalance                               | ref    |                                                                                                               |
-| totalInvestedBalance.amount                        | number | The amount                                                                                                    |
-| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                       |
-| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA.                                        |
-| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
-| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
-| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                       |
+| Name                                               | Type   | Description                                                                                                                                                                                                                                                                             |
+| -------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                                                                                                                                                                                           |
+| totalIsaBalance.amount                             | number | The amount                                                                                                                                                                                                                                                                              |
+| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                                                                 |
+| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                                                                                                                                                                                           |
+| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                                                                                                                                                                                              |
+| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                                                                 |
+| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                                                                                                                                                                                                     |
+| totalCashBalance.amount                            | number | The amount                                                                                                                                                                                                                                                                              |
+| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                                                                 |
+| dateCreated                                        | string | Date the ISA was created                                                                                                                                                                                                                                                                |
+| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                                                                                                                                                                                                        |
+| investments                                        | array  | The list of investments that make up the ISA                                                                                                                                                                                                                                            |
+| investments[].id                                   | string | The ID of the loan defined by Goji                                                                                                                                                                                                                                                      |
+| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                                                                                                                                                                                          |
+| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br>                                                                                                                                                                                     |
+| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                                                                                                                                                                                          |
+| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                                                                                                                                                                                                       |
+| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                                                                                                                                                                                                |
+| investments[].termOfInvestment                     | number | The term of the investment in months                                                                                                                                                                                                                                                    |
+| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically.                                                                                                                                                                           |
+| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.                                                                                                                                                                              |
+| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                                                                                                                                                                                            |
+| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                                                                                                                                                                                                  |
+| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                                                                                                                                                                                                      |
+| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                                                                                                                                                                                                    |
+| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                                                                                                                                                                                             |
+| totalInterestReceived                              | ref    |                                                                                                                                                                                                                                                                                         |
+| totalInterestReceived.amount                       | number | The amount                                                                                                                                                                                                                                                                              |
+| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                                                                 |
+| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                                                                                                                                                                                                         |
+| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                                                                                                                                                                                              |
+| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                                                                 |
+| totalInvestedBalance                               | ref    |                                                                                                                                                                                                                                                                                         |
+| totalInvestedBalance.amount                        | number | The amount                                                                                                                                                                                                                                                                              |
+| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                                                                 |
+| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br> |
+| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                                                                                                                                                                                                    |
+| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                                                                                                                                                                                              |
+| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                                                                 |
 ## <code>DELETE /investors/{investorId}/cash</code></li>
 </ul>
 <pre class="highlight http tab-http"><code><span class="err">
@@ -13724,7 +13722,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>investments[].investmentType</td>
 <td>string</td>
-<td>The type of the investment. Currently only loans are supported.</td>
+<td>The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br></td>
 </tr>
 <tr>
 <td>investments[].originalAmount</td>
@@ -13829,7 +13827,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA.</td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -14091,7 +14089,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>type</td>
 <td>string</td>
-<td>Indicates the type of the corrective cash transaction.</td>
+<td>Indicates the type of the corrective cash transaction. Possible values are: <br><code>INTEREST_REPAYMENT_CORRECTION</code><br></td>
 <td>required</td>
 </tr>
 </tbody></table>
@@ -14176,7 +14174,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>investments[].investmentType</td>
 <td>string</td>
-<td>The type of the investment. Currently only loans are supported.</td>
+<td>The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br></td>
 </tr>
 <tr>
 <td>investments[].originalAmount</td>
@@ -14281,7 +14279,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA.</td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
