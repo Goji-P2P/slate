@@ -296,6 +296,9 @@ Content-Type: application/json
 }
 ```
 ### Description
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
 Runs a simulated investment cycle. This simulates funds being invested and being sent to the investment manager.
 ### Request
 | Name                               | Type   | Description                                   | Required |
@@ -335,6 +338,9 @@ Content-Type: application/json
 ""
 ```
 ### Description
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
 Simulates interest repayment accruals.
 ### Request
 | Name        | Type   | Description                                     | Required |
@@ -431,7 +437,9 @@ Authorization: Basic ...
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-""
+{
+  "id": "id"
+}
 ```
 ### Description
 Adds an investment to the account.
@@ -443,8 +451,10 @@ Adds an investment to the account.
 | amount             | ref     | The amount invested.                        | required |
 | amount.amount      | number  | The amount.                                 ||
 | amount.currency    | string  | The ISO 4217 three character codes eg 'GBP' ||
-api-sandbox.goji.investments
-
+### Response
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| id   | string | The ID of the created investment |
 ## `GET /investments/products`
 
 ```http
