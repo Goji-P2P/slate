@@ -748,7 +748,6 @@ Content-Type: application/json
 ```
 ### Description
 Retrieves a list of cash transactions associated with a given investor.
-api-sandbox.goji.investments
 
 ## `POST /investors/{clientId}/accounts/ISA`
 
