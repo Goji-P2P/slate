@@ -795,32 +795,44 @@
 <h2 id='introduction-getting-started'>Getting started</h2>
 <p>To make use of the Goji platform you will want to use one or more of the APIs described below.</p>
 <h3 id='introduction-getting-started-investors-api'><a href="#investors">Investors API</a></h3>
-<p>The Investors API can:
-* Onboard Investors
-* Conduct KYC checks (normally automatically)
-* Open general/ISA accounts for your Investors
-* Retrieve and update Investor data</p>
+<p>The Investors API can:</p>
+
+<ul>
+<li>Onboard Investors</li>
+<li>Conduct KYC checks (normally automatically)</li>
+<li>Open general/ISA accounts for your Investors</li>
+<li>Retrieve and update Investor data</li>
+</ul>
 <h3 id='introduction-getting-started-payments-api'><a href="#payments">Payments API</a></h3>
-<p>For Investors who have passed KYC checks, the Payments API can:
-* Retrieve Investors bank details
-* Retrieve Investors balance information
-* Transfer funds between accounts
-* Execute withdrawals</p>
+<p>For Investors who have passed KYC checks, the Payments API can:</p>
+
+<ul>
+<li>Retrieve Investors bank details</li>
+<li>Retrieve Investors balance information</li>
+<li>Transfer funds between accounts</li>
+<li>Execute withdrawals</li>
+</ul>
 <h3 id='introduction-getting-started-bond-management-api'><a href="#bond-management">Bond management API</a></h3>
 <aside class="notice">
 Most platforms do not require this module. Please speak to the Goji integrations team before using this API.
 </aside>
 
-<p>The Goji Platform supports issuing:
-* Fixed term bonds
-* Fixed rate bonds (debt based securities)
-The Bond management API allows you to configure these products, determine who has invested in each bond and when repayments are due.</p>
+<p>The Goji Platform supports issuing:</p>
+
+<ul>
+<li>Fixed term bonds</li>
+<li>Fixed rate bonds (debt based securities)
+The Bond management API allows you to configure these products, determine who has invested in each bond and when repayments are due.</li>
+</ul>
 <h3 id='introduction-getting-started-settlement-api'><a href="#settlement">Settlement API</a></h3>
-<p>The Settlement API supports settling investments in securities that are not being managed by the Bond management module. Examples include:
-* P2P loans
-* Bonds
-* etc.
-This API can be used where the securitiy itself is being controlled by your platform and the Goji platform is being used to control the movement of client money.</p>
+<p>The Settlement API supports settling investments in securities that are not being managed by the Bond management module. Examples include:</p>
+
+<ul>
+<li>P2P loans</li>
+<li>Bonds</li>
+<li>etc.
+This API can be used where the securitiy itself is being controlled by your platform and the Goji platform is being used to control the movement of client money.</li>
+</ul>
 <h3 id='introduction-getting-started-webhooks-api'><a href="#webhooks">Webhooks API</a></h3>
 <p>Many events in the Goji platform publish events which can be consumed as a webhook.</p>
 <h3 id='introduction-getting-started-isa-administration-api'><a href="#isa-administration">ISA administration API</a></h3>
@@ -954,10 +966,13 @@ If an invalid version header is specified, a 404 response code will be returned.
 <h2 id='introduction-email-integration'>Email integration</h2>
 <p>Goji can send a emails on behalf of the Platform at various points in the ISA lifecycle. When you completed the onboarding questionnaire, you will have specified which emails you want Goji to send.</p>
 
-<p>In order to complete the email integration you will need to:
-1. Specify the email address emails should be sent from e.g. <code>isa@platform.com</code>
-2. Create a forwarding rule, so that emails sent to the address specified above are forwarded to <code>platformsupport@gojip2p.com</code>
-3. Specify the email address Goji should send notifications of inound transfer in funds to e.g. <code>isa-transfer-notifications@platform.com</code></p>
+<p>In order to complete the email integration you will need to:</p>
+
+<ol>
+<li>Specify the email address emails should be sent from e.g. <code>isa@platform.com</code></li>
+<li>Create a forwarding rule, so that emails sent to the address specified above are forwarded to <code>platformsupport@gojip2p.com</code></li>
+<li>Specify the email address Goji should send notifications of inound transfer in funds to e.g. <code>isa-transfer-notifications@platform.com</code></li>
+</ol>
 
 <p>In order to permission our email provider (Mandrill) to send emails using your domain you will be required to make the following DNS changes:</p>
 <h3 id='introduction-email-integration-dkim'>DKIM</h3>
