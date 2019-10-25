@@ -17,7 +17,7 @@ To retrieve an existing trade, the [`GET /trades/{tradeId}`](#instruments-get-tr
 |---------------------------|-----------|------------|----------------------------------------------------------------------------|
 | id                        | String    | UUID       | A UUID of the trade.                                                       |
 | quantity                  | Number    | Number     | The number of shares being bought/sold.                                    |
-| instrumentId              | String    | ID/Symbol  | The platform generated unique ID/symbol of the instrument.                 |
+| instrumentSymbol          | String    | ID/Symbol  | The platform generated unique ID/symbol of the instrument.                 |
 | price                     | Object    | Object     | The price the instrument is being traded at.                               |
 | price.currency            | String    | ISO 4217   | The currency that `price.amount` is expressed in.                          |
 | price.amount              | Number    | Number     | The cost per share in `price.currency`.                                    |
@@ -27,7 +27,7 @@ To retrieve an existing trade, the [`GET /trades/{tradeId}`](#instruments-get-tr
 | buy.investor.accountType  | String    | Enum       | Values: GIA, ISA.                                                          |
 | buy.nominee               | Object    | Object     | Null when the buyer is not a nominee, else field below.                    |
 | buy.nominee.accountType   | String    | Enum       | The nominee involved in the buy. Values: GOJI, ORIGINATOR.                 |
-| buy.fees[]                | String    | String     | Fields below detail a fee type symbol registered at `POST /instrument`.    |
+| buy.fees[]                | FeeSymbol | FeeSymbol  | Fields below detail a FeeSymbol registered at `POST /instrument`.          |
 | buy.fees[].symbol         | String    | String     | Optional. Fee type symbol registered at `POST /instrument`.                |
 | buy.fees[].cost.currency  | Number    | Number     | The currency of the fee.                                                   |
 | buy.fees[].cost.amount    | Number    | Number     | The amount of the fee in `cost.currency`. (not per share)                  |
@@ -37,8 +37,8 @@ To retrieve an existing trade, the [`GET /trades/{tradeId}`](#instruments-get-tr
 | sell.investor.accountType | String    | Enum       | Values: GIA, ISA.                                                          |
 | sell.nominee              | Object    | Object     | Null when the seller is not a nominee, else fields below.                  |
 | sell.nominee.accountType  | String    | Enum       | The nominee involved in the sell. Values: GOJI, ORIGINATOR.                |
-| sell.fees[]               | String    | String     | Fields below detail a fee type symbol registered at `POST /instrument`.    |
-| sell.fees[].symbol        | String    | String     | Optional. Fee type symbol registered at `POST /instrument`.                |
+| sell.fees[]               | String    | String     | Fields below detail a FeeSymbol registered at `POST /instrument`.          |
+| sell.fees[].symbol        | FeeSymbol | FeeSymbol  | Optional. Fee type symbol registered at `POST /instrument`.                |
 | sell.fees[].cost.currency | Number    | Number     | The currency of the fee.                                                   |
 | sell.fees[].cost.amount   | Number    | Number     | The amount of the fee in `cost.currency`.                                  |
 
@@ -162,13 +162,13 @@ Content-Type: application/json
 
 ### Description
 
-Retrieves the details of an existing trade
+Retrieves the details of an existing trade.
 
 ### Request
 
 Body: None
 
-### Response
+### Response *r6TH_.r.-zF4-syEEW8
 
 Body: [Trade Model](/#trade-settlement-trade-model)
 
