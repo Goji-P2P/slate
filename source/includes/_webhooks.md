@@ -48,9 +48,7 @@ Register a webhook url.
 | Name | Type   | Description                         | Required |
 | ---- | ------ | ----------------------------------- | -------- |
 | url  | string | The url to dispatch the webhook to. | optional |
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## Webhook Types
 
@@ -236,7 +234,7 @@ The following event `type`s will be supported, along with the content as `JSON`.
         "currency": "GBP"
       }
     },
-    "transferOutFee: {
+    "transferOutFee": {
       "id": "string",
       "transferOutId": "string",
       "transferOutFee": {
@@ -363,6 +361,7 @@ The following event `type`s will be supported, along with the content as `JSON`.
 {
   "walletId" : "string",
   "bankDetails" : {
+    "id" : "f5d57a4a-a6cc-4b5f-8ef0-09e09b02de28",
     "accountName" : "string",
     "accountNumber" : "string",
     "sortCode" : "string",
@@ -376,5 +375,37 @@ The following event `type`s will be supported, along with the content as `JSON`.
 ```json
 {
   "companyName" : "string",
+}
+```
+
+
+>WALLET_TRANSFER_CLEARED
+><br>This is fired when a wallet transfer is completed. This Webhook is currently not in use.
+
+```json
+{
+  "destinationBankAccountDetails" : {
+    "bankAccountId" : "string",
+    "bankDetails" : {
+      "accountName" : "string",
+      "accountNumber" : "string",
+      "sortCode" : "string",
+    }
+  },
+  "sourceWallet" : {
+    "walletId" : "string",
+    "bankDetails" : {
+      "accountName" : "string",
+      "accountNumber" : "string",
+      "sortCode" : "string",
+    }
+  },
+  "amount" : {
+    "amount": 0.00,
+    "currency": "GBP"
+  },
+  "success" : "boolean",
+  "narrative" : "string",
+  "reference" : "string"
 }
 ```
