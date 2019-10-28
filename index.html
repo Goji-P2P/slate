@@ -867,7 +867,7 @@ The ISA administration API is a standalone API and is not used in conjunction wi
 <h3 id='introduction-authentication-building-the-signature-string'>Building the Signature String</h3>
 <p>The following details are concatenated together:</p>
 
-<p>nonce+\ntimestamp</p>
+<p><code>nonce</code> +<code>\n</code> + <code>timestamp</code></p>
 
 <p>The string is then encrypted using <code>HMAC-SHA256</code> using the private key.</p>
 
