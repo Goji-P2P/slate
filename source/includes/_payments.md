@@ -509,20 +509,20 @@ Register a corporate for wallet management
 ### Request
 | Name                                        | Type   | Description                                    | Required |
 | ------------------------------------------- | ------ | ---------------------------------------------- | -------- |
-| companyProfile                              | ref    |                                                | required |
-| companyProfile.companyName                  | string | Company Name                                   | required |
-| companyProfile.type                         | string | Company Type                                   | required |
-| companyProfile.companyNumber                | string | Company Number                                 | required |
-| companyProfile.sicCodes                     | array  | Standard industrial classification (sic) codes | required |
-| companyProfile.address                      | ref    |                                                | required |
-| companyProfile.address.addressLine1         | string | Address Line 1                                 | required |
-| companyProfile.address.addressLine2         | string | Address Line 2                                 | required |
-| companyProfile.address.careOf               | string | Care Of                                        | required |
-| companyProfile.address.country              | string | Country                                        | required |
-| companyProfile.address.locality             | string | Locality                                       | required |
-| companyProfile.address.poBox                | string | Po Box                                         | required |
-| companyProfile.address.postalCode           | string | Postal Code                                    | required |
-| companyProfile.address.region               | string | Region                                         | required |
+| profile                                     | ref    |                                                | required |
+| profile.companyName                         | string | Company Name                                   | required |
+| profile.type                                | string | Company Type                                   | required |
+| profile.companyNumber                       | string | Company Number                                 | required |
+| profile.sicCodes                            | array  | Standard industrial classification (sic) codes | required |
+| profile.address                             | ref    |                                                | required |
+| profile.address.addressLine1                | string | Address Line 1                                 | required |
+| profile.address.addressLine2                | string | Address Line 2                                 | required |
+| profile.address.careOf                      | string | Care Of                                        | required |
+| profile.address.country                     | string | Country                                        | required |
+| profile.address.locality                    | string | Locality                                       | required |
+| profile.address.poBox                       | string | Po Box                                         | required |
+| profile.address.postalCode                  | string | Postal Code                                    | required |
+| profile.address.region                      | string | Region                                         | required |
 | officerList                                 | ref    |                                                | required |
 | officerList.items                           | array  | Officers                                       | required |
 | officerList.items.appointedOn               | string |                                                | required |
