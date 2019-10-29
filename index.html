@@ -4182,64 +4182,49 @@ account numbers as these are validated to ensure they accept faster payments pri
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"companyProfile"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"sicCodes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"sicCodes"</span><span class="p">,</span><span class="w"> </span><span class="s2">"sicCodes"</span><span class="w"> </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"poBox"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"poBox"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"careOf"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"careOf"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"postalCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"postalCode"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"locality"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"locality"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"addressLine1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"addressLine1"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"addressLine2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"addressLine2"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
+  </span><span class="s2">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"companyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"companyName"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"poBox"</span><span class="p">:</span><span class="w"> </span><span class="s2">"poBox"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"careOf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"careOf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postalCode"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"locality"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"addressLine1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addressLine1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"addressLine2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addressLine2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"companyNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"companyNumber"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"companyName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"companyName"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"type"</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"type"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"companyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"companyNumber"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sicCodes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"sicCode"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"officerList"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"items"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"officerRole"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"officerRole"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lastName"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"emailAddress"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"emailAddress"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"poBox"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"poBox"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"careOf"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"careOf"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"postalCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"postalCode"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"locality"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"locality"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"addressLine1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"addressLine1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"addressLine2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"addressLine2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"phoneNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"phoneNumber"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"resignedOn"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"resignedOn"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"dateOfBirth"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"dateOfBirth"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"countryOfResidence"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"countryOfResidence"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"appointedOn"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"appointedOn"</span><span class="w">
-    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"officerRole"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"officerRole"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lastName"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"emailAddress"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"emailAddress"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"poBox"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"poBox"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"careOf"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"careOf"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"postalCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"postalCode"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"locality"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"locality"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"addressLine1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"addressLine1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"addressLine2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"addressLine2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"phoneNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"phoneNumber"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"resignedOn"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"resignedOn"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"dateOfBirth"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"dateOfBirth"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"countryOfResidence"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"countryOfResidence"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"appointedOn"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"appointedOn"</span><span class="w">
-    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"officerList"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"officerRole"</span><span class="p">:</span><span class="w"> </span><span class="s2">"officerRole"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lastName"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"emailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"emailAddress"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"poBox"</span><span class="p">:</span><span class="w"> </span><span class="s2">"poBox"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"careOf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"careOf"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postalCode"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"locality"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"addressLine1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addressLine1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"addressLine2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addressLine2"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phoneNumber"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"resignedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resignedOn"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dateOfBirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-03-29"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"countryOfResidence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"countryOfResidence"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"appointedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appointedOn"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"percentageOwnership"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -4258,82 +4243,88 @@ account numbers as these are validated to ensure they accept faster payments pri
 </tr>
 </thead><tbody>
 <tr>
-<td>companyProfile</td>
+<td>profile</td>
 <td>ref</td>
 <td></td>
 <td>required</td>
 </tr>
 <tr>
-<td>companyProfile.companyName</td>
+<td>profile.companyName</td>
 <td>string</td>
 <td>Company Name</td>
-<td></td>
+<td>required</td>
 </tr>
 <tr>
-<td>address.addressLine1</td>
+<td>profile.type</td>
 <td>string</td>
-<td>Address Line 1</td>
-<td></td>
+<td>Company Type</td>
+<td>required</td>
 </tr>
 <tr>
-<td>address.addressLine2</td>
-<td>string</td>
-<td>Address Line 2</td>
-<td></td>
-</tr>
-<tr>
-<td>address.careOf</td>
-<td>string</td>
-<td>Care Of</td>
-<td></td>
-</tr>
-<tr>
-<td>address.country</td>
-<td>string</td>
-<td>Country</td>
-<td></td>
-</tr>
-<tr>
-<td>address.locality</td>
-<td>string</td>
-<td>Locality</td>
-<td></td>
-</tr>
-<tr>
-<td>address.poBox</td>
-<td>string</td>
-<td>Po Box</td>
-<td></td>
-</tr>
-<tr>
-<td>address.postalCode</td>
-<td>string</td>
-<td>Postal Code</td>
-<td></td>
-</tr>
-<tr>
-<td>address.region</td>
-<td>string</td>
-<td>Region</td>
-<td></td>
-</tr>
-<tr>
-<td>companyProfile.type</td>
-<td>string</td>
-<td>Company type</td>
-<td></td>
-</tr>
-<tr>
-<td>companyProfile.companyNumber</td>
+<td>profile.companyNumber</td>
 <td>string</td>
 <td>Company Number</td>
-<td></td>
+<td>required</td>
 </tr>
 <tr>
-<td>companyProfile.sicCodes</td>
+<td>profile.sicCodes</td>
 <td>array</td>
-<td>standard industrial classification (sic) codes</td>
+<td>Standard industrial classification (sic) codes</td>
+<td>required</td>
+</tr>
+<tr>
+<td>profile.address</td>
+<td>ref</td>
 <td></td>
+<td>required</td>
+</tr>
+<tr>
+<td>profile.address.addressLine1</td>
+<td>string</td>
+<td>Address Line 1</td>
+<td>required</td>
+</tr>
+<tr>
+<td>profile.address.addressLine2</td>
+<td>string</td>
+<td>Address Line 2</td>
+<td>required</td>
+</tr>
+<tr>
+<td>profile.address.careOf</td>
+<td>string</td>
+<td>Care Of</td>
+<td>required</td>
+</tr>
+<tr>
+<td>profile.address.country</td>
+<td>string</td>
+<td>Country</td>
+<td>required</td>
+</tr>
+<tr>
+<td>profile.address.locality</td>
+<td>string</td>
+<td>Locality</td>
+<td>required</td>
+</tr>
+<tr>
+<td>profile.address.poBox</td>
+<td>string</td>
+<td>Po Box</td>
+<td>required</td>
+</tr>
+<tr>
+<td>profile.address.postalCode</td>
+<td>string</td>
+<td>Postal Code</td>
+<td>required</td>
+</tr>
+<tr>
+<td>profile.address.region</td>
+<td>string</td>
+<td>Region</td>
+<td>required</td>
 </tr>
 <tr>
 <td>officerList</td>
@@ -4345,7 +4336,121 @@ account numbers as these are validated to ensure they accept faster payments pri
 <td>officerList.items</td>
 <td>array</td>
 <td>Officers</td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.appointedOn</td>
+<td>string</td>
 <td></td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.countryOfResidence</td>
+<td>string</td>
+<td></td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.dateOfBirth</td>
+<td>string</td>
+<td>ISO-8601 format date</td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.firstName</td>
+<td>string</td>
+<td></td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.lastName</td>
+<td>string</td>
+<td></td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.resignedOn</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>officerList.items.officerRole</td>
+<td>string</td>
+<td></td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.emailAddress</td>
+<td>string</td>
+<td></td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.phoneNumber</td>
+<td>string</td>
+<td></td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.percentageOwnership</td>
+<td>number</td>
+<td></td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.address</td>
+<td>ref</td>
+<td></td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.address.addressLine1</td>
+<td>string</td>
+<td>Address Line 1</td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.address.addressLine2</td>
+<td>string</td>
+<td>Address Line 2</td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.address.careOf</td>
+<td>string</td>
+<td>Care Of</td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.address.country</td>
+<td>string</td>
+<td>Country</td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.address.locality</td>
+<td>string</td>
+<td>Locality</td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.address.poBox</td>
+<td>string</td>
+<td>Po Box</td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.address.postalCode</td>
+<td>string</td>
+<td>Postal Code</td>
+<td>required</td>
+</tr>
+<tr>
+<td>officerList.items.address.region</td>
+<td>string</td>
+<td>Region</td>
+<td>required</td>
 </tr>
 </tbody></table>
 <h2 id='payments-post-wallet'><code>POST /wallet</code></h2><pre class="highlight http tab-http"><code><span class="err">
