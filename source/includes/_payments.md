@@ -454,64 +454,49 @@ Content-Type: application/json
 Authorization: Basic ...
 
 {
-  "companyProfile" : {
-    "sicCodes" : [ "sicCodes", "sicCodes" ],
-    "address" : {
-      "country" : "country",
-      "poBox" : "poBox",
-      "careOf" : "careOf",
-      "postalCode" : "postalCode",
-      "locality" : "locality",
-      "addressLine1" : "addressLine1",
-      "addressLine2" : "addressLine2",
-      "region" : "region"
+  "profile": {
+    "companyName": "companyName",
+    "address": {
+      "country": "country",
+      "poBox": "poBox",
+      "careOf": "careOf",
+      "postalCode": "postalCode",
+      "locality": "locality",
+      "addressLine1": "addressLine1",
+      "addressLine2": "addressLine2",
+      "region": "region"
     },
-    "companyNumber" : "companyNumber",
-    "companyName" : "companyName",
-    "type" : "type"
+    "type": "type",
+    "companyNumber": "companyNumber",
+    "sicCodes": [
+      "sicCode"
+    ]
   },
-  "officerList" : {
-    "items" : [ {
-      "officerRole" : "officerRole",
-      "firstName" : "firstName",
-      "lastName" : "lastName",
-      "emailAddress" : "emailAddress",
-      "address" : {
-        "country" : "country",
-        "poBox" : "poBox",
-        "careOf" : "careOf",
-        "postalCode" : "postalCode",
-        "locality" : "locality",
-        "addressLine1" : "addressLine1",
-        "addressLine2" : "addressLine2",
-        "region" : "region"
-      },
-      "phoneNumber" : "phoneNumber",
-      "resignedOn" : "resignedOn",
-      "dateOfBirth" : "dateOfBirth",
-      "countryOfResidence" : "countryOfResidence",
-      "appointedOn" : "appointedOn"
-    }, {
-      "officerRole" : "officerRole",
-      "firstName" : "firstName",
-      "lastName" : "lastName",
-      "emailAddress" : "emailAddress",
-      "address" : {
-        "country" : "country",
-        "poBox" : "poBox",
-        "careOf" : "careOf",
-        "postalCode" : "postalCode",
-        "locality" : "locality",
-        "addressLine1" : "addressLine1",
-        "addressLine2" : "addressLine2",
-        "region" : "region"
-      },
-      "phoneNumber" : "phoneNumber",
-      "resignedOn" : "resignedOn",
-      "dateOfBirth" : "dateOfBirth",
-      "countryOfResidence" : "countryOfResidence",
-      "appointedOn" : "appointedOn"
-    } ]
+  "officerList": {
+    "items": [
+      {
+        "officerRole": "officerRole",
+        "firstName": "firstName",
+        "lastName": "lastName",
+        "emailAddress": "emailAddress",
+        "address": {
+          "country": "country",
+          "poBox": "poBox",
+          "careOf": "careOf",
+          "postalCode": "postalCode",
+          "locality": "locality",
+          "addressLine1": "addressLine1",
+          "addressLine2": "addressLine2",
+          "region": "region"
+        },
+        "phoneNumber": "phoneNumber",
+        "resignedOn": "resignedOn",
+        "dateOfBirth": "1970-03-29",
+        "countryOfResidence": "countryOfResidence",
+        "appointedOn": "appointedOn",
+        "percentageOwnership": 12
+      }
+    ]
   }
 }
 
@@ -522,23 +507,43 @@ Content-Type: application/json
 ### Description
 Register a corporate for wallet management
 ### Request
-| Name                         | Type   | Description                                    | Required |
-| ---------------------------- | ------ | ---------------------------------------------- | -------- |
-| companyProfile               | ref    |                                                | required |
-| companyProfile.companyName   | string | Company Name                                   ||
-| address.addressLine1         | string | Address Line 1                                 ||
-| address.addressLine2         | string | Address Line 2                                 ||
-| address.careOf               | string | Care Of                                        ||
-| address.country              | string | Country                                        ||
-| address.locality             | string | Locality                                       ||
-| address.poBox                | string | Po Box                                         ||
-| address.postalCode           | string | Postal Code                                    ||
-| address.region               | string | Region                                         ||
-| companyProfile.type          | string | Company type                                   ||
-| companyProfile.companyNumber | string | Company Number                                 ||
-| companyProfile.sicCodes      | array  | standard industrial classification (sic) codes ||
-| officerList                  | ref    |                                                | required |
-| officerList.items            | array  | Officers                                       ||
+| Name                                        | Type   | Description                                    | Required |
+| ------------------------------------------- | ------ | ---------------------------------------------- | -------- |
+| companyProfile                              | ref    |                                                | required |
+| companyProfile.companyName                  | string | Company Name                                   | required |
+| companyProfile.type                         | string | Company Type                                   | required |
+| companyProfile.companyNumber                | string | Company Number                                 | required |
+| companyProfile.sicCodes                     | array  | Standard industrial classification (sic) codes | required |
+| companyProfile.address                      | ref    |                                                | required |
+| companyProfile.address.addressLine1         | string | Address Line 1                                 | required |
+| companyProfile.address.addressLine2         | string | Address Line 2                                 | required |
+| companyProfile.address.careOf               | string | Care Of                                        | required |
+| companyProfile.address.country              | string | Country                                        | required |
+| companyProfile.address.locality             | string | Locality                                       | required |
+| companyProfile.address.poBox                | string | Po Box                                         | required |
+| companyProfile.address.postalCode           | string | Postal Code                                    | required |
+| companyProfile.address.region               | string | Region                                         | required |
+| officerList                                 | ref    |                                                | required |
+| officerList.items                           | array  | Officers                                       | required |
+| officerList.items.appointedOn               | string |                                                | required |
+| officerList.items.countryOfResidence        | string |                                                | required |
+| officerList.items.dateOfBirth               | string | ISO-8601 format date                           | required |
+| officerList.items.firstName                 | string |                                                | required |
+| officerList.items.lastName                  | string |                                                | required |
+| officerList.items.resignedOn                | string |                                                | |
+| officerList.items.officerRole               | string |                                                | required |
+| officerList.items.emailAddress              | string |                                                | required |
+| officerList.items.phoneNumber               | string |                                                | required |
+| officerList.items.percentageOwnership       | number |                                                | required |
+| officerList.items.address                   | ref    |                                                | required |
+| officerList.items.address.addressLine1      | string | Address Line 1                                 | required |
+| officerList.items.address.addressLine2      | string | Address Line 2                                 | required |
+| officerList.items.address.careOf            | string | Care Of                                        | required |
+| officerList.items.address.country           | string | Country                                        | required |
+| officerList.items.address.locality          | string | Locality                                       | required |
+| officerList.items.address.poBox             | string | Po Box                                         | required |
+| officerList.items.address.postalCode        | string | Postal Code                                    | required |
+| officerList.items.address.region            | string | Region                                         | required |
 
 ## `POST /wallet`
 ```http
