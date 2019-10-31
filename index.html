@@ -346,9 +346,6 @@
                   <li>
                     <a href="#investors-get-transfersout" class="toc-h2 toc-link" data-title="GET /transfersOut"><code>GET /transfersOut</code></a>
                   </li>
-                  <li>
-                    <a href="#investors-get-investors-clientid-transactions" class="toc-h2 toc-link" data-title="GET /investors/{clientId}/transactions"><code>GET /investors/{clientId}/transactions</code></a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -600,6 +597,9 @@
                     <a href="#isa-administration-get-transferin-investors-clientid-open" class="toc-h2 toc-link" data-title="GET /transferIn/investors/{clientId}/open"><code>GET /transferIn/investors/{clientId}/open</code></a>
                   </li>
                   <li>
+                    <a href="#isa-administration-get-transferin-investors-clientid-closed" class="toc-h2 toc-link" data-title="GET /transferIn/investors/{clientId}/closed"><code>GET /transferIn/investors/{clientId}/closed</code></a>
+                  </li>
+                  <li>
                     <a href="#isa-administration-get-investors-clientid-isa-subscriptionstatus" class="toc-h2 toc-link" data-title="GET /investors/{clientId}/isa/subscriptionStatus"><code>GET /investors/{clientId}/isa/subscriptionStatus</code></a>
                   </li>
                   <li>
@@ -640,6 +640,9 @@
                   </li>
                   <li>
                     <a href="#isa-administration-post-investors-investorid-cash" class="toc-h2 toc-link" data-title="POST /investors/{investorId}/cash"><code>POST /investors/{investorId}/cash</code></a>
+                  </li>
+                  <li>
+                    <a href="#isa-administration-delete-investors-investorid-cash" class="toc-h2 toc-link" data-title="DELETE /investors/{investorId}/cash"><code>DELETE /investors/{investorId}/cash</code></a>
                   </li>
                   <li>
                     <a href="#isa-administration-post-investors-investorid-cashcorrection" class="toc-h2 toc-link" data-title="POST /investors/{investorId}/cashCorrection"><code>POST /investors/{investorId}/cashCorrection</code></a>
@@ -2685,9 +2688,125 @@ migrate existing investors.</p>
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
-</span><span class="s2">""</span><span class="w">
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"dateTime"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"dateTime"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"cashBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"investedBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DEPOSIT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"account"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"account"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CLEARED"</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='investors-code-get-investors-clientid-transactions-code-description'>Description</h3>
 <p>Retrieves a list of cash transactions associated with a given investor.</p>
+<h3 id='investors-code-get-investors-clientid-transactions-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].id</td>
+<td>string</td>
+<td>The ID of the cash transaction</td>
+</tr>
+<tr>
+<td>[].dateTime</td>
+<td>string</td>
+<td>The datetime the cash transaction occurred</td>
+</tr>
+<tr>
+<td>[].amount</td>
+<td>ref</td>
+<td>The total amount involved in the cash transaction</td>
+</tr>
+<tr>
+<td>[].amount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].amount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].type</td>
+<td>string</td>
+<td>The transaction type Possible values are: <br><code>DEPOSIT</code><br><code>BONUS</code><br><code>WITHDRAWAL</code><br><code>INVESTMENT</code><br><code>CANCELLED_INVESTMENT</code><br><code>TRANSFER_INVESTMENT_OUT</code><br><code>TRANSFER_INVESTMENT_IN</code><br><code>INTEREST_REPAYMENT</code><br><code>CAPITAL_REPAYMENT</code><br><code>FEES</code><br><code>WITHHOLDING_TAX</code><br><code>ACCOUNT_TRANSFER_IN</code><br><code>ACCOUNT_TRANSFER_OUT</code><br><code>ISA_TRANSFER_IN</code><br><code>ISA_TRANSFER_IN_RESIDUAL_INCOME</code><br><code>ISA_TRANSFER_IN_REPAIR</code><br><code>ISA_TRANSFER_IN_REPAIR_DEDUCTION_FROM_ISA</code><br><code>ISA_TRANSFER_OUT</code><br><code>SIPP_TRANSFER_IN</code><br><code>BUY_PREMIUM</code><br><code>SELL_PREMIUM</code><br></td>
+</tr>
+<tr>
+<td>[].cashBalance</td>
+<td>ref</td>
+<td>The cash balance</td>
+</tr>
+<tr>
+<td>[].cashBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].cashBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].investedBalance</td>
+<td>ref</td>
+<td>The invested balance</td>
+</tr>
+<tr>
+<td>[].investedBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].investedBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].totalBalance</td>
+<td>ref</td>
+<td>The total balance</td>
+</tr>
+<tr>
+<td>[].totalBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].totalBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].account</td>
+<td>string</td>
+<td>The transaction account</td>
+</tr>
+<tr>
+<td>[].status</td>
+<td>string</td>
+<td>The transaction status Possible values are: <br><code>ASSIGNED</code><br><code>PENDING</code><br><code>CLEARED</code><br></td>
+</tr>
+</tbody></table>
 <h2 id='investors-post-investors-clientid-accounts-isa'><code>POST /investors/{clientId}/accounts/ISA</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/investors/{clientId}/accounts/ISA</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
@@ -2955,9 +3074,87 @@ migrate existing investors.</p>
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
-</span><span class="s2">""</span><span class="w">
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"totalTransferAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"transferInDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"repairAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"bankReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankReference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fundsTransferType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"fundsTransferType"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='investors-code-get-transferin-open-summary-code-description'>Description</h3>
 <p>Returns аll opened transfers in.</p>
+<h3 id='investors-code-get-transferin-open-summary-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].id</td>
+<td>string</td>
+<td>The ID of the transfer in</td>
+</tr>
+<tr>
+<td>[].clientId</td>
+<td>string</td>
+<td>The ID of client</td>
+</tr>
+<tr>
+<td>[].totalTransferAmount</td>
+<td>ref</td>
+<td>The total amount being transferred</td>
+</tr>
+<tr>
+<td>[].totalTransferAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].totalTransferAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].repairAmount</td>
+<td>ref</td>
+<td>The repair amount</td>
+</tr>
+<tr>
+<td>[].repairAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].repairAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].fundsTransferType</td>
+<td>string</td>
+<td>The funds transfer type</td>
+</tr>
+<tr>
+<td>[].bankReference</td>
+<td>string</td>
+<td>The bank reference</td>
+</tr>
+<tr>
+<td>[].transferInDate</td>
+<td>string</td>
+<td>The date stated on the transfer history form</td>
+</tr>
+</tbody></table>
 <h2 id='investors-get-investors-clientid-transferout'><code>GET /investors/{clientId}/transferOut</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/transferOut</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
@@ -2969,9 +3166,188 @@ migrate existing investors.</p>
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
-</span><span class="s2">""</span><span class="w">
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"dateFundsTransferred"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amountToTransfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"isaManager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lineTwo"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineTwo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"townCity"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"townCity"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postcode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"postcode"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lineOne"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineOne"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lineThree"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineThree"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"bankReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankReference"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"transferDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"transferCurrentYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferAllPriorYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferAll"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferDateFromNewIsaManager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferPriorYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"priorYearAmountToTransfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"dateTAFReceived"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amountToTransferAlert"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='investors-code-get-investors-clientid-transferout-code-description'>Description</h3>
 <p>Lists transfers out for the investor.</p>
+<h3 id='investors-code-get-investors-clientid-transferout-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].id</td>
+<td>string</td>
+<td>The ID Goji assigns to the Transfer Out request.</td>
+</tr>
+<tr>
+<td>[].isaManager</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>[].isaManager.name</td>
+<td>string</td>
+<td>The name of the ISA manager.</td>
+</tr>
+<tr>
+<td>[].address.lineOne</td>
+<td>string</td>
+<td>Line one of the address.</td>
+</tr>
+<tr>
+<td>[].address.lineTwo</td>
+<td>string</td>
+<td>Line two of the address.</td>
+</tr>
+<tr>
+<td>[].address.lineThree</td>
+<td>string</td>
+<td>Line three of the address.</td>
+</tr>
+<tr>
+<td>[].address.townCity</td>
+<td>string</td>
+<td>The town/city of the address.</td>
+</tr>
+<tr>
+<td>[].address.region</td>
+<td>string</td>
+<td>The region of the address eg county.</td>
+</tr>
+<tr>
+<td>[].address.postcode</td>
+<td>string</td>
+<td>The post code of the address.</td>
+</tr>
+<tr>
+<td>[].address.country</td>
+<td>string</td>
+<td>The country of the investor&#39;s address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.</td>
+</tr>
+<tr>
+<td>[].isaManager.accountNumber</td>
+<td>string</td>
+<td>The account number to transfer the funds to.</td>
+</tr>
+<tr>
+<td>[].isaManager.sortCode</td>
+<td>string</td>
+<td>The sort code to transfer the funds to.</td>
+</tr>
+<tr>
+<td>[].isaManager.bankReference</td>
+<td>string</td>
+<td>The reference to use for the bank transfer.</td>
+</tr>
+<tr>
+<td>[].transferDetails</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>[].transferDetails.dateTAFReceived</td>
+<td>string</td>
+<td>The date the transfer authority form was received from the ISA manager.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferDateFromNewIsaManager</td>
+<td>string</td>
+<td>The date the ISA manager has said they will accept subscriptions from.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferCurrentYearSubscriptions</td>
+<td>boolean</td>
+<td>True if current year subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferPriorYearSubscriptions</td>
+<td>boolean</td>
+<td>True if prior year subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferAllPriorYearSubscriptions</td>
+<td>boolean</td>
+<td>True if all prior year subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferAll</td>
+<td>boolean</td>
+<td>True if all ISA subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].priorYearAmountToTransfer.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].priorYearAmountToTransfer.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].amountToTransfer</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>[].amountToTransfer.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].amountToTransfer.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].amountToTransferAlert</td>
+<td>boolean</td>
+<td>True if the amount requested to be transferred cannot be satisfied. If this is true, the transfer cannot be processed until it is resolved.</td>
+</tr>
+<tr>
+<td>[].dateFundsTransferred</td>
+<td>string</td>
+<td>The date the funds were transferred to the new ISA manager.</td>
+</tr>
+</tbody></table>
 <h2 id='investors-get-investors-clientid-transferin'><code>GET /investors/{clientId}/transferIn</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/transferIn</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
@@ -2983,9 +3359,87 @@ migrate existing investors.</p>
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
-</span><span class="s2">""</span><span class="w">
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"totalTransferAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"transferInDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"repairAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"bankReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankReference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fundsTransferType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"fundsTransferType"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='investors-code-get-investors-clientid-transferin-code-description'>Description</h3>
 <p>Lists transfers in for the investor.</p>
+<h3 id='investors-code-get-investors-clientid-transferin-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].id</td>
+<td>string</td>
+<td>The ID of the transfer in</td>
+</tr>
+<tr>
+<td>[].clientId</td>
+<td>string</td>
+<td>The ID of client</td>
+</tr>
+<tr>
+<td>[].totalTransferAmount</td>
+<td>ref</td>
+<td>The total amount being transferred</td>
+</tr>
+<tr>
+<td>[].totalTransferAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].totalTransferAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].repairAmount</td>
+<td>ref</td>
+<td>The repair amount</td>
+</tr>
+<tr>
+<td>[].repairAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].repairAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].fundsTransferType</td>
+<td>string</td>
+<td>The funds transfer type</td>
+</tr>
+<tr>
+<td>[].bankReference</td>
+<td>string</td>
+<td>The bank reference</td>
+</tr>
+<tr>
+<td>[].transferInDate</td>
+<td>string</td>
+<td>The date stated on the transfer history form</td>
+</tr>
+</tbody></table>
 <h2 id='investors-get-investors-clientid-transferin-transferinid'><code>GET /investors/{clientId}/transferIn/{transferInId}</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/transferIn/{transferInId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
@@ -3160,7 +3614,42 @@ migrate existing investors.</p>
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
-</span><span class="s2">""</span><span class="w">
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"dateFundsTransferred"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amountToTransfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"isaManager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lineTwo"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineTwo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"townCity"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"townCity"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postcode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"postcode"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lineOne"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineOne"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lineThree"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineThree"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"bankReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankReference"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"transferDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"transferCurrentYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferAllPriorYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferAll"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferDateFromNewIsaManager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferPriorYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"priorYearAmountToTransfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"dateTAFReceived"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amountToTransferAlert"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='investors-code-get-transfersout-code-description'>Description</h3>
 <p>Lists all transfers out for all investors.</p>
 <h3 id='investors-code-get-transfersout-code-response'>Response</h3>
@@ -3171,139 +3660,140 @@ migrate existing investors.</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
-</tbody></table>
-<h2 id='investors-get-investors-clientid-transactions'><code>GET /investors/{clientId}/transactions</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/transactions</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
-
-<span class="w">
-
-</span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
-</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-  </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"id"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"dateTime"</span><span class="p">:</span><span class="s2">"dateTime"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                  </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"currency"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"type"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"cashBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                  </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"currency"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"investedBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                  </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"currency"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"totalBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                  </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"currency"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"account"</span><span class="p">:</span><span class="s2">"account"</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"status"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='investors-code-get-investors-clientid-transactions-code-description'>Description</h3>
-<p>Lists the cash transactions for the investor.</p>
-<h3 id='investors-code-get-investors-clientid-transactions-code-response'>Response</h3>
-<table><thead>
 <tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
+<td>[].id</td>
 <td>string</td>
-<td>The ID of the transaction</td>
+<td>The ID Goji assigns to the Transfer Out request.</td>
 </tr>
 <tr>
-<td>dateTime</td>
-<td>string</td>
-<td>The date-time of the transaction</td>
-</tr>
-<tr>
-<td>amount</td>
+<td>[].isaManager</td>
 <td>ref</td>
-<td>The amount of the transaction</td>
+<td></td>
 </tr>
 <tr>
-<td>amount.amount</td>
+<td>[].isaManager.name</td>
+<td>string</td>
+<td>The name of the ISA manager.</td>
+</tr>
+<tr>
+<td>[].address.lineOne</td>
+<td>string</td>
+<td>Line one of the address.</td>
+</tr>
+<tr>
+<td>[].address.lineTwo</td>
+<td>string</td>
+<td>Line two of the address.</td>
+</tr>
+<tr>
+<td>[].address.lineThree</td>
+<td>string</td>
+<td>Line three of the address.</td>
+</tr>
+<tr>
+<td>[].address.townCity</td>
+<td>string</td>
+<td>The town/city of the address.</td>
+</tr>
+<tr>
+<td>[].address.region</td>
+<td>string</td>
+<td>The region of the address eg county.</td>
+</tr>
+<tr>
+<td>[].address.postcode</td>
+<td>string</td>
+<td>The post code of the address.</td>
+</tr>
+<tr>
+<td>[].address.country</td>
+<td>string</td>
+<td>The country of the investor&#39;s address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.</td>
+</tr>
+<tr>
+<td>[].isaManager.accountNumber</td>
+<td>string</td>
+<td>The account number to transfer the funds to.</td>
+</tr>
+<tr>
+<td>[].isaManager.sortCode</td>
+<td>string</td>
+<td>The sort code to transfer the funds to.</td>
+</tr>
+<tr>
+<td>[].isaManager.bankReference</td>
+<td>string</td>
+<td>The reference to use for the bank transfer.</td>
+</tr>
+<tr>
+<td>[].transferDetails</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>[].transferDetails.dateTAFReceived</td>
+<td>string</td>
+<td>The date the transfer authority form was received from the ISA manager.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferDateFromNewIsaManager</td>
+<td>string</td>
+<td>The date the ISA manager has said they will accept subscriptions from.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferCurrentYearSubscriptions</td>
+<td>boolean</td>
+<td>True if current year subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferPriorYearSubscriptions</td>
+<td>boolean</td>
+<td>True if prior year subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferAllPriorYearSubscriptions</td>
+<td>boolean</td>
+<td>True if all prior year subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferAll</td>
+<td>boolean</td>
+<td>True if all ISA subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].priorYearAmountToTransfer.amount</td>
 <td>number</td>
 <td>The amount</td>
 </tr>
 <tr>
-<td>amount.currency</td>
+<td>[].priorYearAmountToTransfer.currency</td>
 <td>string</td>
 <td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
 </tr>
 <tr>
-<td>type</td>
-<td>string</td>
-<td>The type of the cash transaction.</td>
-</tr>
-<tr>
-<td>cashBalance</td>
+<td>[].amountToTransfer</td>
 <td>ref</td>
-<td>The running total cash balance</td>
+<td></td>
 </tr>
 <tr>
-<td>cashBalance.amount</td>
+<td>[].amountToTransfer.amount</td>
 <td>number</td>
 <td>The amount</td>
 </tr>
 <tr>
-<td>cashBalance.currency</td>
+<td>[].amountToTransfer.currency</td>
 <td>string</td>
 <td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
 </tr>
 <tr>
-<td>investedBalance</td>
-<td>ref</td>
-<td>The running total invested balance</td>
+<td>[].amountToTransferAlert</td>
+<td>boolean</td>
+<td>True if the amount requested to be transferred cannot be satisfied. If this is true, the transfer cannot be processed until it is resolved.</td>
 </tr>
 <tr>
-<td>investedBalance.amount</td>
-<td>number</td>
-<td>The amount</td>
-</tr>
-<tr>
-<td>investedBalance.currency</td>
+<td>[].dateFundsTransferred</td>
 <td>string</td>
-<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
-</tr>
-<tr>
-<td>totalBalance</td>
-<td>ref</td>
-<td>The running total balance</td>
-</tr>
-<tr>
-<td>totalBalance.amount</td>
-<td>number</td>
-<td>The amount</td>
-</tr>
-<tr>
-<td>totalBalance.currency</td>
-<td>string</td>
-<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
-</tr>
-<tr>
-<td>account</td>
-<td>string</td>
-<td>The account</td>
-</tr>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>The status of the transaction</td>
+<td>The date the funds were transferred to the new ISA manager.</td>
 </tr>
 </tbody></table>
 <h1 id='payments'>Payments</h1><h2 id='payments-depositing-funds'>Depositing funds</h2>
@@ -4742,9 +5232,49 @@ Prior to creating a wallet you need to have registered your company as the walle
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
-</span><span class="s2">""</span><span class="w">
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"status"</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='payments-code-get-bankaccountdetails-code-description'>Description</h3>
 <p>List of bank accounts we hold in the system for sending money to.</p>
+<h3 id='payments-code-get-bankaccountdetails-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].id</td>
+<td>string</td>
+<td>The bank account details ID.</td>
+</tr>
+<tr>
+<td>[].accountNumber</td>
+<td>string</td>
+<td>The account number.</td>
+</tr>
+<tr>
+<td>[].sortCode</td>
+<td>string</td>
+<td>The sort code.</td>
+</tr>
+<tr>
+<td>[].accountName</td>
+<td>string</td>
+<td>The account name.</td>
+</tr>
+<tr>
+<td>[].status</td>
+<td>string</td>
+<td>Whether or not the account has passed AML.</td>
+</tr>
+</tbody></table>
 <h2 id='payments-post-bankaccountdetails'><code>POST /bankAccountDetails</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/bankAccountDetails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments/platformApi</span>
@@ -9361,9 +9891,254 @@ Checks performed:
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
-</span><span class="s2">""</span><span class="w">
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"isaManagerName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"isaManagerName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transferSummary"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"previousYearsSubscriptionAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"totalIsaTransferAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"repairAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"currentYearSubscriptionAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"cashArrived"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previousYearsAmountType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"previousYearsAmountType"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"isaType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"isaType"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transferDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"includeCurrentYear"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-transferin-investors-clientid-open-code-description'>Description</h3>
-<p>Used to find an overview of all transfer in workflows for a particular investor. It should be understood that the existence of the TransferDate determines whether the transfer history form has been submitted</p>
+<p>Returns an overview of all open transfers in for a particular investor. 
+The <code>transferDate</code> is only non-null if the transfer history form has been received.</p>
+<h3 id='isa-administration-code-get-transferin-investors-clientid-open-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].id</td>
+<td>string</td>
+<td>The id</td>
+</tr>
+<tr>
+<td>[].isaType</td>
+<td>string</td>
+<td>The type of ISA the investor holds</td>
+</tr>
+<tr>
+<td>[].isaManagerName</td>
+<td>string</td>
+<td>The name of the ISA manager involved with the Transfer In</td>
+</tr>
+<tr>
+<td>[].transferSummary</td>
+<td>ref</td>
+<td>Details of the amounts being transferred</td>
+</tr>
+<tr>
+<td>[].currentYearSubscriptionAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].currentYearSubscriptionAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].previousYearsSubscriptionAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].previousYearsSubscriptionAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].repairAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].repairAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].totalIsaTransferAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].totalIsaTransferAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].includeCurrentYear</td>
+<td>boolean</td>
+<td>True if current year subscriptions should be transferred</td>
+</tr>
+<tr>
+<td>[].previousYearsAmountType</td>
+<td>string</td>
+<td>Determines how much prior year subscription should be included in the transfer</td>
+</tr>
+<tr>
+<td>[].transferDate</td>
+<td>string</td>
+<td>The date on which the transfer should occur</td>
+</tr>
+<tr>
+<td>[].cashArrived</td>
+<td>boolean</td>
+<td>True if the cash for the Transfer In has arrived</td>
+</tr>
+</tbody></table>
+<h2 id='isa-administration-get-transferin-investors-clientid-closed'><code>GET /transferIn/investors/{clientId}/closed</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/transferIn/investors/{clientId}/closed</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">
+
+</span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+</span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
+
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"isaManagerName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"isaManagerName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transferSummary"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"previousYearsSubscriptionAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"totalIsaTransferAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"repairAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"currentYearSubscriptionAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"cashArrived"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previousYearsAmountType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"previousYearsAmountType"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"isaType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"isaType"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transferDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"includeCurrentYear"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='isa-administration-code-get-transferin-investors-clientid-closed-code-description'>Description</h3>
+<p>Returns an overview of all closed transfers in for a particular investor.</p>
+<h3 id='isa-administration-code-get-transferin-investors-clientid-closed-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].id</td>
+<td>string</td>
+<td>The id</td>
+</tr>
+<tr>
+<td>[].isaType</td>
+<td>string</td>
+<td>The type of ISA the investor holds</td>
+</tr>
+<tr>
+<td>[].isaManagerName</td>
+<td>string</td>
+<td>The name of the ISA manager involved with the Transfer In</td>
+</tr>
+<tr>
+<td>[].transferSummary</td>
+<td>ref</td>
+<td>Details of the amounts being transferred</td>
+</tr>
+<tr>
+<td>[].currentYearSubscriptionAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].currentYearSubscriptionAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].previousYearsSubscriptionAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].previousYearsSubscriptionAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].repairAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].repairAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].totalIsaTransferAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].totalIsaTransferAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].includeCurrentYear</td>
+<td>boolean</td>
+<td>True if current year subscriptions should be transferred</td>
+</tr>
+<tr>
+<td>[].previousYearsAmountType</td>
+<td>string</td>
+<td>Determines how much prior year subscription should be included in the transfer</td>
+</tr>
+<tr>
+<td>[].transferDate</td>
+<td>string</td>
+<td>The date on which the transfer should occur</td>
+</tr>
+<tr>
+<td>[].cashArrived</td>
+<td>boolean</td>
+<td>True if the cash for the Transfer In has arrived</td>
+</tr>
+</tbody></table>
 <h2 id='isa-administration-get-investors-clientid-isa-subscriptionstatus'><code>GET /investors/{clientId}/isa/subscriptionStatus</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/isa/subscriptionStatus</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -10135,8 +10910,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-post-investors-investorid-declaration-agreement-code-description'>Description</h3>
 <p>Used to record an investor agreeing to the ISA declaration after the ISA has been opened. Can be used for tax year breaks.</p>
-<h3 id='isa-administration-code-post-investors-investorid-declaration-agreement-code-request'>Request</h3>
-<p>| Name | Type | Description | Required || ---- | ---- | ----------- | -------- |</p>
 <h3 id='isa-administration-code-post-investors-investorid-declaration-agreement-code-response'>Response</h3>
 <table><thead>
 <tr>
@@ -10352,9 +11125,72 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
-</span><span class="s2">""</span><span class="w">
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"dateTime"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23T04:56:07.000+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"responseBody"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"responseBody"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"queryParameters"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"queryParameters"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"requestBody"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"requestBody"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"requestId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"requestId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"httpMethod"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"url"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"responseCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"responseCode"</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-audit-investors-investorid-code-description'>Description</h3>
 <p>Returns an audit record of HTTP requests relating to the investor.</p>
+<h3 id='isa-administration-code-get-audit-investors-investorid-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].requestId</td>
+<td>string</td>
+<td>The Goji request ID assigned to the HTTP request.</td>
+</tr>
+<tr>
+<td>[].dateTime</td>
+<td>string</td>
+<td>The time the request was received.</td>
+</tr>
+<tr>
+<td>[].httpMethod</td>
+<td>string</td>
+<td>The HTTP method of the request. Possible values are: <br><code>GET</code><br><code>POST</code><br><code>PUT</code><br><code>DELETE</code><br></td>
+</tr>
+<tr>
+<td>[].url</td>
+<td>string</td>
+<td>The URL of the request.</td>
+</tr>
+<tr>
+<td>[].queryParameters</td>
+<td>string</td>
+<td>Any optional query parameters supplied with the request.</td>
+</tr>
+<tr>
+<td>[].responseCode</td>
+<td>string</td>
+<td>The HTTP status code of the response.</td>
+</tr>
+<tr>
+<td>[].requestBody</td>
+<td>string</td>
+<td>The JSON payload supplied with the request if applicable.</td>
+</tr>
+<tr>
+<td>[].responseBody</td>
+<td>string</td>
+<td>The JSON payload returned.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='isa-administration-post-investors-investorid-investment'><code>POST /investors/{investorId}/investment</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/investors/{investorId}/investment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -13429,64 +14265,262 @@ This endpoint creates the new investment associated with the reinvestment.</p>
 <p>This endpoint should be called whenever the user deposits or withdraws cash from the ISA.</p>
 <h4 id='isa-administration-code-post-investors-investorid-cash-code-description-validation'>Validation</h4>
 <ul>
-<li>There must be a cash balance greater than or equal to any amount being withdrawn (debited).</li>
-<li>The amount deposited must not exceed the annual subscription amount
-#### Possible Error Codes
-Please see <a href="/isa-administration-api/guides/Error%20Codes">cash transaction errors</a>
-### Request
-| Name                  | Type   | Description                                                                                                                                                                                                                                   | Required |
-| --------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| clientTransactionId   | string | The ID of the transaction assigned by the P2P platform                                                                                                                                                                                        | required |
-| amount                | ref    | The amount of the cash transaction                                                                                                                                                                                                            | required |
-| amount.amount         | number | The amount                                                                                                                                                                                                                                    ||
-| amount.currency       | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                       ||
-| dateTimeOfTransaction | string | The date and time of the transaction                                                                                                                                                                                                          | required |
-| type                  | string | Indicates the type of the cash transaction. Possible values are: <br><code>CUSTOMER_DEPOSIT</code><br><code>CUSTOMER_WITHDRAWAL</code><br><code>ADDITIONAL_PERMITTED_SUBSCRIPTION</code><br><code>DEFAULTED_INVESTMENT_SUBSCRIPTION</code><br><code>RESIDUAL_INCOME</code><br><code>FEE</code><br><code>PREMIUM</code><br> | required |
-### Response
-| Name                                               | Type   | Description                                                                                                                                                                                                                                                                             |
-| -------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                                                                                                                                                                                           |
-| totalIsaBalance.amount                             | number | The amount                                                                                                                                                                                                                                                                              |
-| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                                                                 |
-| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                                                                                                                                                                                           |
-| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                                                                                                                                                                                              |
-| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                                                                 |
-| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                                                                                                                                                                                                     |
-| totalCashBalance.amount                            | number | The amount                                                                                                                                                                                                                                                                              |
-| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                                                                 |
-| dateCreated                                        | string | Date the ISA was created                                                                                                                                                                                                                                                                |
-| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                                                                                                                                                                                                        |
-| investments                                        | array  | The list of investments that make up the ISA                                                                                                                                                                                                                                            |
-| investments[].id                                   | string | The ID of the loan defined by Goji                                                                                                                                                                                                                                                      |
-| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                                                                                                                                                                                          |
-| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br>                                                                                                                                                                                     |
-| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                                                                                                                                                                                          |
-| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                                                                                                                                                                                                       |
-| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                                                                                                                                                                                                |
-| investments[].termOfInvestment                     | number | The term of the investment in months                                                                                                                                                                                                                                                    |
-| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically.                                                                                                                                                                           |
-| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.                                                                                                                                                                              |
-| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                                                                                                                                                                                            |
-| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                                                                                                                                                                                                  |
-| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                                                                                                                                                                                                      |
-| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                                                                                                                                                                                                    |
-| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                                                                                                                                                                                             |
-| totalInterestReceived                              | ref    |                                                                                                                                                                                                                                                                                         |
-| totalInterestReceived.amount                       | number | The amount                                                                                                                                                                                                                                                                              |
-| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                                                                 |
-| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                                                                                                                                                                                                         |
-| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                                                                                                                                                                                              |
-| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                                                                 |
-| totalInvestedBalance                               | ref    |                                                                                                                                                                                                                                                                                         |
-| totalInvestedBalance.amount                        | number | The amount                                                                                                                                                                                                                                                                              |
-| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                                                                 |
-| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br> |
-| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                                                                                                                                                                                                    |
-| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                                                                                                                                                                                              |
-| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg &#39;GBP&#39;                                                                                                                                                                                                                                 |
-## <code>DELETE /investors/{investorId}/cash</code></li>
+<li>There must be a cash balance greater than or equal to any amount being withdrawn (debited)</li>
+<li>The amount deposited must not exceed the annual subscription amount</li>
 </ul>
-<pre class="highlight http tab-http"><code><span class="err">
+<h4 id='isa-administration-code-post-investors-investorid-cash-code-description-possible-error-codes'>Possible Error Codes</h4>
+<p>Please see <a href="/#errors">cash transaction errors</a></p>
+<h3 id='isa-administration-code-post-investors-investorid-cash-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>clientTransactionId</td>
+<td>string</td>
+<td>The ID of the transaction assigned by the P2P platform</td>
+<td>required</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>ref</td>
+<td>The amount of the cash transaction</td>
+<td>required</td>
+</tr>
+<tr>
+<td>amount.amount</td>
+<td>number</td>
+<td>The amount</td>
+<td></td>
+</tr>
+<tr>
+<td>amount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+<td></td>
+</tr>
+<tr>
+<td>dateTimeOfTransaction</td>
+<td>string</td>
+<td>The date and time of the transaction</td>
+<td>required</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>Indicates the type of the cash transaction. Possible values are: <br><code>CUSTOMER_DEPOSIT</code><br><code>CUSTOMER_WITHDRAWAL</code><br><code>ADDITIONAL_PERMITTED_SUBSCRIPTION</code><br><code>DEFAULTED_INVESTMENT_SUBSCRIPTION</code><br><code>RESIDUAL_INCOME</code><br><code>FEE</code><br><code>PREMIUM</code><br></td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h3 id='isa-administration-code-post-investors-investorid-cash-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>totalIsaBalance</td>
+<td>ref</td>
+<td>The total current balance in the ISA, inclusive of all years.</td>
+</tr>
+<tr>
+<td>totalIsaBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>totalIsaBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>remainingSubscriptionAmount</td>
+<td>ref</td>
+<td>The amount remaining that can be invested in the ISA in the current tax year.</td>
+</tr>
+<tr>
+<td>remainingSubscriptionAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>remainingSubscriptionAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalCashBalance</td>
+<td>ref</td>
+<td>The total amount of cash in the ISA that is not currently invested.</td>
+</tr>
+<tr>
+<td>totalCashBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>totalCashBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>dateCreated</td>
+<td>string</td>
+<td>Date the ISA was created</td>
+</tr>
+<tr>
+<td>coolingOffPeriodEnds</td>
+<td>string</td>
+<td>Date the cooling off period ends</td>
+</tr>
+<tr>
+<td>investments</td>
+<td>array</td>
+<td>The list of investments that make up the ISA</td>
+</tr>
+<tr>
+<td>investments[].id</td>
+<td>string</td>
+<td>The ID of the loan defined by Goji</td>
+</tr>
+<tr>
+<td>investments[].clientInvestmentId</td>
+<td>string</td>
+<td>The ID of the loan defined by the P2P platform</td>
+</tr>
+<tr>
+<td>investments[].investmentType</td>
+<td>string</td>
+<td>The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br></td>
+</tr>
+<tr>
+<td>investments[].originalAmount</td>
+<td>ref</td>
+<td>The original capital amount of the investment.</td>
+</tr>
+<tr>
+<td>investments[].expectedInterest</td>
+<td>ref</td>
+<td>The expected interest to receive over the life of the investment.</td>
+</tr>
+<tr>
+<td>investments[].dateTimeOfInvestment</td>
+<td>string</td>
+<td>The date and time the investment started</td>
+</tr>
+<tr>
+<td>investments[].termOfInvestment</td>
+<td>number</td>
+<td>The term of the investment in months</td>
+</tr>
+<tr>
+<td>investments[].repayments</td>
+<td>array</td>
+<td>Repayments that have been made against the investment by the borrower that were not reinvested automatically.</td>
+</tr>
+<tr>
+<td>investments[].reinvestments</td>
+<td>array</td>
+<td>Repayments that have been made against the instruments by the borrower that were reinvested automatically.</td>
+</tr>
+<tr>
+<td>cashTransactions</td>
+<td>array</td>
+<td>Cash transactions on the ISA</td>
+</tr>
+<tr>
+<td>cashTransactions[].clientTransactionId</td>
+<td>string</td>
+<td>The ID of the transaction assigned by the P2P platform</td>
+</tr>
+<tr>
+<td>cashTransactions[].amount</td>
+<td>ref</td>
+<td>The amount of the cash transaction</td>
+</tr>
+<tr>
+<td>cashTransactions[].dateTimeOfTransaction</td>
+<td>string</td>
+<td>The date and time of the transaction</td>
+</tr>
+<tr>
+<td>cashTransactions[].type</td>
+<td>ref</td>
+<td>Indicates the type of the cash transaction.</td>
+</tr>
+<tr>
+<td>totalInterestReceived</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>totalInterestReceived.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>totalInterestReceived.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalInterestReceivedThisTaxYear</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>totalInterestReceivedThisTaxYear.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>totalInterestReceivedThisTaxYear.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalInvestedBalance</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>totalInvestedBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>totalInvestedBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>subscriptionStatus</td>
+<td>string</td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+</tr>
+<tr>
+<td>remainingAdditionalPermittedSubscriptions</td>
+<td>ref</td>
+<td>The remaining amount that can be subscribed as an Additional Permitted Subscription.</td>
+</tr>
+<tr>
+<td>remainingAdditionalPermittedSubscriptions.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>remainingAdditionalPermittedSubscriptions.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+</tbody></table>
+<h2 id='isa-administration-delete-investors-investorid-cash'><code>DELETE /investors/{investorId}/cash</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">DELETE</span> <span class="nn">/investors/{investorId}/cash</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -13681,13 +14715,13 @@ Please see <a href="/isa-administration-api/guides/Error%20Codes">cash transacti
     </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='isa-administration-code-post-investors-investorid-cash-code-description'>Description</h3>
+</span></code></pre><h3 id='isa-administration-code-delete-investors-investorid-cash-code-description'>Description</h3>
 <aside class="notice">
 Please note this is a test endpoint and is only available in the sandbox environment.
 </aside>
 
 <p>Deletes all, or a matched set of, cash transactions belonging to the ISA.</p>
-<h3 id='isa-administration-code-post-investors-investorid-cash-code-request'>Request</h3>
+<h3 id='isa-administration-code-delete-investors-investorid-cash-code-request'>Request</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -13721,7 +14755,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td>optional</td>
 </tr>
 </tbody></table>
-<h3 id='isa-administration-code-post-investors-investorid-cash-code-response'>Response</h3>
+<h3 id='isa-administration-code-delete-investors-investorid-cash-code-response'>Response</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -14651,9 +15685,87 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
-</span><span class="s2">""</span><span class="w">
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"totalTransferAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"transferInDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"repairAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"bankReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankReference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fundsTransferType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"fundsTransferType"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-investors-clientid-transferinsummary-code-description'>Description</h3>
 <p>Returns the in progress transfers in for the specified investor</p>
+<h3 id='isa-administration-code-get-investors-clientid-transferinsummary-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].id</td>
+<td>string</td>
+<td>The ID of the transfer in</td>
+</tr>
+<tr>
+<td>[].clientId</td>
+<td>string</td>
+<td>The ID of client</td>
+</tr>
+<tr>
+<td>[].totalTransferAmount</td>
+<td>ref</td>
+<td>The total amount being transferred</td>
+</tr>
+<tr>
+<td>[].totalTransferAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].totalTransferAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].repairAmount</td>
+<td>ref</td>
+<td>The repair amount</td>
+</tr>
+<tr>
+<td>[].repairAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].repairAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].fundsTransferType</td>
+<td>string</td>
+<td>The funds transfer type</td>
+</tr>
+<tr>
+<td>[].bankReference</td>
+<td>string</td>
+<td>The bank reference</td>
+</tr>
+<tr>
+<td>[].transferInDate</td>
+<td>string</td>
+<td>The date stated on the transfer history form</td>
+</tr>
+</tbody></table>
 <h2 id='isa-administration-get-investors-clientid-transferin-transferinid-summary'><code>GET /investors/{clientId}/transferIn/{transferInId}/summary</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{clientId}/transferIn/{transferInId}/summary</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -14828,9 +15940,87 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
-</span><span class="s2">""</span><span class="w">
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"totalTransferAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"transferInDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"repairAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"bankReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankReference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fundsTransferType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"fundsTransferType"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-transferin-open-summary-code-description'>Description</h3>
 <p>Returns аll opened transfers in.</p>
+<h3 id='isa-administration-code-get-transferin-open-summary-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].id</td>
+<td>string</td>
+<td>The ID of the transfer in</td>
+</tr>
+<tr>
+<td>[].clientId</td>
+<td>string</td>
+<td>The ID of client</td>
+</tr>
+<tr>
+<td>[].totalTransferAmount</td>
+<td>ref</td>
+<td>The total amount being transferred</td>
+</tr>
+<tr>
+<td>[].totalTransferAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].totalTransferAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].repairAmount</td>
+<td>ref</td>
+<td>The repair amount</td>
+</tr>
+<tr>
+<td>[].repairAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].repairAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].fundsTransferType</td>
+<td>string</td>
+<td>The funds transfer type</td>
+</tr>
+<tr>
+<td>[].bankReference</td>
+<td>string</td>
+<td>The bank reference</td>
+</tr>
+<tr>
+<td>[].transferInDate</td>
+<td>string</td>
+<td>The date stated on the transfer history form</td>
+</tr>
+</tbody></table>
 <h2 id='isa-administration-get-isareconciliation'><code>GET /isaReconciliation</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/isaReconciliation</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -14842,9 +16032,82 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
-</span><span class="s2">""</span><span class="w">
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalIsaBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalCashBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalAmountInvested"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-isareconciliation-code-description'>Description</h3>
 <p>Returns a reconciliation summary for all investors</p>
+<h3 id='isa-administration-code-get-isareconciliation-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].clientId</td>
+<td>string</td>
+<td>The P2PP ID for the investor</td>
+</tr>
+<tr>
+<td>[].totalCashBalance</td>
+<td>ref</td>
+<td>The total loose cash in the ISA</td>
+</tr>
+<tr>
+<td>[].totalCashBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].totalCashBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].totalAmountInvested</td>
+<td>ref</td>
+<td>The total amount from the ISA that is invested in loans</td>
+</tr>
+<tr>
+<td>[].totalAmountInvested.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].totalAmountInvested.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].totalIsaBalance</td>
+<td>ref</td>
+<td>The total balance of the ISA</td>
+</tr>
+<tr>
+<td>[].totalIsaBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].totalIsaBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+</tbody></table>
 <h2 id='isa-administration-get-investorreconciliation'><code>GET /investorReconciliation</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investorReconciliation</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -14856,9 +16119,123 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
-</span><span class="s2">""</span><span class="w">
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lastName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineTwo"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineTwo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"townCity"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"townCity"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postcode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"postcode"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineOne"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineOne"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineThree"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineThree"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"nationalInsuranceNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nationalInsuranceNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"middleName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"middleName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dateOfBirth"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contactDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"emailAddress"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"emailAddress"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telephoneNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"telephoneNumber"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-investorreconciliation-code-description'>Description</h3>
 <p>Returns a reconciliation summary of investor name and address data</p>
+<h3 id='isa-administration-code-get-investorreconciliation-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].clientId</td>
+<td>string</td>
+<td>The P2PP provided ID of the investor</td>
+</tr>
+<tr>
+<td>[].firstName</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>[].middleName</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>[].lastName</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>[].dateOfBirth</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>[].nationalInsuranceNumber</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>[].address</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>[].address.lineOne</td>
+<td>string</td>
+<td>The first line of the investor&#39;s address.</td>
+</tr>
+<tr>
+<td>[].address.lineTwo</td>
+<td>string</td>
+<td>The second line of the investor&#39;s address. NOT the town or region.</td>
+</tr>
+<tr>
+<td>[].address.lineThree</td>
+<td>string</td>
+<td>The third line of the investor&#39;s address. NOT the town or region.</td>
+</tr>
+<tr>
+<td>[].address.townCity</td>
+<td>string</td>
+<td>The town of the investor&#39;s address.</td>
+</tr>
+<tr>
+<td>[].address.region</td>
+<td>string</td>
+<td>The region of the investor&#39;s address.</td>
+</tr>
+<tr>
+<td>[].address.country</td>
+<td>string</td>
+<td>The country of the investor&#39;s address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.</td>
+</tr>
+<tr>
+<td>[].address.postcode</td>
+<td>string</td>
+<td>The Post Code of the investor&#39;s address.</td>
+</tr>
+<tr>
+<td>[].contactDetails</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>[].contactDetails.emailAddress</td>
+<td>string</td>
+<td>The investor&#39;s email address.</td>
+</tr>
+<tr>
+<td>[].contactDetails.telephoneNumber</td>
+<td>string</td>
+<td>The investor&#39;s telephone number.</td>
+</tr>
+</tbody></table>
 <h2 id='isa-administration-get-investors-investorid-transferin-uidata'><code>GET /investors/{investorId}/transferIn/uiData</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/investors/{investorId}/transferIn/uiData</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -14930,9 +16307,188 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
-</span><span class="s2">""</span><span class="w">
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"dateFundsTransferred"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amountToTransfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"isaManager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lineTwo"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineTwo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"townCity"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"townCity"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postcode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"postcode"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lineOne"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineOne"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lineThree"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineThree"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"bankReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankReference"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"transferDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"transferCurrentYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferAllPriorYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferAll"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferDateFromNewIsaManager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferPriorYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"priorYearAmountToTransfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"dateTAFReceived"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amountToTransferAlert"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-investors-investorid-transferout-code-description'>Description</h3>
 <p>Lists transfers out for the investor.</p>
+<h3 id='isa-administration-code-get-investors-investorid-transferout-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].id</td>
+<td>string</td>
+<td>The ID Goji assigns to the Transfer Out request.</td>
+</tr>
+<tr>
+<td>[].isaManager</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>[].isaManager.name</td>
+<td>string</td>
+<td>The name of the ISA manager.</td>
+</tr>
+<tr>
+<td>[].address.lineOne</td>
+<td>string</td>
+<td>The first line of the investor&#39;s address.</td>
+</tr>
+<tr>
+<td>[].address.lineTwo</td>
+<td>string</td>
+<td>The second line of the investor&#39;s address. NOT the town or region.</td>
+</tr>
+<tr>
+<td>[].address.lineThree</td>
+<td>string</td>
+<td>The third line of the investor&#39;s address. NOT the town or region.</td>
+</tr>
+<tr>
+<td>[].address.townCity</td>
+<td>string</td>
+<td>The town of the investor&#39;s address.</td>
+</tr>
+<tr>
+<td>[].address.region</td>
+<td>string</td>
+<td>The region of the investor&#39;s address.</td>
+</tr>
+<tr>
+<td>[].address.country</td>
+<td>string</td>
+<td>The country of the investor&#39;s address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.</td>
+</tr>
+<tr>
+<td>[].address.postcode</td>
+<td>string</td>
+<td>The Post Code of the investor&#39;s address.</td>
+</tr>
+<tr>
+<td>[].isaManager.accountNumber</td>
+<td>string</td>
+<td>The account number to transfer the funds to.</td>
+</tr>
+<tr>
+<td>[].isaManager.sortCode</td>
+<td>string</td>
+<td>The sort code to transfer the funds to.</td>
+</tr>
+<tr>
+<td>[].isaManager.bankReference</td>
+<td>string</td>
+<td>The reference to use for the bank transfer.</td>
+</tr>
+<tr>
+<td>[].transferDetails</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>[].transferDetails.dateTAFReceived</td>
+<td>string</td>
+<td>The date the transfer authority form was received from the ISA manager.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferDateFromNewIsaManager</td>
+<td>string</td>
+<td>The date the ISA manager has said they will accept subscriptions from.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferCurrentYearSubscriptions</td>
+<td>boolean</td>
+<td>True if current year subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferPriorYearSubscriptions</td>
+<td>boolean</td>
+<td>True if prior year subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferAllPriorYearSubscriptions</td>
+<td>boolean</td>
+<td>True if all prior year subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferAll</td>
+<td>boolean</td>
+<td>True if all ISA subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].priorYearAmountToTransfer.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].priorYearAmountToTransfer.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].amountToTransfer</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>[].amountToTransfer.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].amountToTransfer.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].amountToTransferAlert</td>
+<td>boolean</td>
+<td>True if the amount requested to be transferred cannot be satisfied. If this is true, the transfer cannot be processed until it is resolved.</td>
+</tr>
+<tr>
+<td>[].dateFundsTransferred</td>
+<td>string</td>
+<td>The date the funds were transferred to the new ISA manager.</td>
+</tr>
+</tbody></table>
 <h2 id='isa-administration-get-transfersout'><code>GET /transfersOut</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/transfersOut</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -14944,9 +16500,188 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/json</span><span class="w">
 
-</span><span class="s2">""</span><span class="w">
+</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"dateFundsTransferred"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amountToTransfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"isaManager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lineTwo"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineTwo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"townCity"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"townCity"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postcode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"postcode"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lineOne"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineOne"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lineThree"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineThree"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"bankReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankReference"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"transferDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"transferCurrentYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferAllPriorYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferAll"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferDateFromNewIsaManager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferPriorYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"priorYearAmountToTransfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"dateTAFReceived"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amountToTransferAlert"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-get-transfersout-code-description'>Description</h3>
 <p>Lists all transfers out for all investors.</p>
+<h3 id='isa-administration-code-get-transfersout-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].id</td>
+<td>string</td>
+<td>The ID Goji assigns to the Transfer Out request.</td>
+</tr>
+<tr>
+<td>[].isaManager</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>[].isaManager.name</td>
+<td>string</td>
+<td>The name of the ISA manager.</td>
+</tr>
+<tr>
+<td>[].address.lineOne</td>
+<td>string</td>
+<td>The first line of the investor&#39;s address.</td>
+</tr>
+<tr>
+<td>[].address.lineTwo</td>
+<td>string</td>
+<td>The second line of the investor&#39;s address. NOT the town or region.</td>
+</tr>
+<tr>
+<td>[].address.lineThree</td>
+<td>string</td>
+<td>The third line of the investor&#39;s address. NOT the town or region.</td>
+</tr>
+<tr>
+<td>[].address.townCity</td>
+<td>string</td>
+<td>The town of the investor&#39;s address.</td>
+</tr>
+<tr>
+<td>[].address.region</td>
+<td>string</td>
+<td>The region of the investor&#39;s address.</td>
+</tr>
+<tr>
+<td>[].address.country</td>
+<td>string</td>
+<td>The country of the investor&#39;s address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.</td>
+</tr>
+<tr>
+<td>[].address.postcode</td>
+<td>string</td>
+<td>The Post Code of the investor&#39;s address.</td>
+</tr>
+<tr>
+<td>[].isaManager.accountNumber</td>
+<td>string</td>
+<td>The account number to transfer the funds to.</td>
+</tr>
+<tr>
+<td>[].isaManager.sortCode</td>
+<td>string</td>
+<td>The sort code to transfer the funds to.</td>
+</tr>
+<tr>
+<td>[].isaManager.bankReference</td>
+<td>string</td>
+<td>The reference to use for the bank transfer.</td>
+</tr>
+<tr>
+<td>[].transferDetails</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>[].transferDetails.dateTAFReceived</td>
+<td>string</td>
+<td>The date the transfer authority form was received from the ISA manager.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferDateFromNewIsaManager</td>
+<td>string</td>
+<td>The date the ISA manager has said they will accept subscriptions from.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferCurrentYearSubscriptions</td>
+<td>boolean</td>
+<td>True if current year subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferPriorYearSubscriptions</td>
+<td>boolean</td>
+<td>True if prior year subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferAllPriorYearSubscriptions</td>
+<td>boolean</td>
+<td>True if all prior year subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferAll</td>
+<td>boolean</td>
+<td>True if all ISA subscriptions should be transferred.</td>
+</tr>
+<tr>
+<td>[].priorYearAmountToTransfer.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].priorYearAmountToTransfer.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].amountToTransfer</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>[].amountToTransfer.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].amountToTransfer.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].amountToTransferAlert</td>
+<td>boolean</td>
+<td>True if the amount requested to be transferred cannot be satisfied. If this is true, the transfer cannot be processed until it is resolved.</td>
+</tr>
+<tr>
+<td>[].dateFundsTransferred</td>
+<td>string</td>
+<td>The date the funds were transferred to the new ISA manager.</td>
+</tr>
+</tbody></table>
 <h2 id='isa-administration-post-investors-investorid-transferout-transferoutid-cash'><code>POST /investors/{investorId}/transferOut/{transferOutId}/cash</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/investors/{investorId}/transferOut/{transferOutId}/cash</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
