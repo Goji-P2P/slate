@@ -17408,43 +17408,43 @@ X-GOJI-CLIENT-ID: 59425d3d-cf73-44ff-aecb-590cd198a4bc
 <td>The amount of the fee in <code>cost.currency</code>.</td>
 </tr>
 </tbody></table>
-<h2 id='trade-settlement-post-trades'><code>POST /trades</code></h2><pre class="highlight plaintext"><code>POST /trades HTTP/1.1
-Host: api-sandbox.goji.investments
-Content-Type: application/json
-Authorization: Basic ...
-X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
-{
-  "id": "cdfb86c8-1085-43ed-9839-f4c8e7267818",
-  "buy": {
-    "investor": {
-      "clientId": "PROP-12345",
-      "accountType": "GIA",
-    },
-    "nominee": null,
-    "fees": [
-      {
-        "symbol": "STAMP_DUTY",
-        "cost": {
-          "currency": "GBP",
-          "amount": 7.27
-        }
-      }
-    ]
-  },
-  "sell": {
-    "investor": null,
-    "nominee": {
-      "accountType": "ORIGINATOR"
-    },
-    "fees": []
-  },
-  "price": {
-    "amount": 4.99,
-    "currency": "GBP"
-  },
-  "quantity": 1000,
-  "instrumentId": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
-}
+<h2 id='trade-settlement-post-trades'><code>POST /trades</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/trades</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+<span class="na">X-GOJI-CLIENT-ID</span><span class="p">:</span> <span class="s">79f33f3c-86e0-4613-ba49-9fac3c6f0eab</span>
+<span class="s">{</span>
+<span class="s">  "id": "cdfb86c8-1085-43ed-9839-f4c8e7267818",</span>
+<span class="s">  "buy": {</span>
+<span class="s">    "investor": {</span>
+<span class="s">      "clientId": "PROP-12345",</span>
+<span class="s">      "accountType": "GIA",</span>
+<span class="s">    },</span>
+<span class="s">    "nominee": null,</span>
+<span class="s">    "fees": [</span>
+<span class="s">      {</span>
+<span class="s">        "symbol": "STAMP_DUTY",</span>
+<span class="s">        "cost": {</span>
+<span class="s">          "currency": "GBP",</span>
+<span class="s">          "amount": 7.27</span>
+<span class="s">        }</span>
+<span class="s">      }</span>
+<span class="s">    ]</span>
+<span class="s">  },</span>
+<span class="s">  "sell": {</span>
+<span class="s">    "investor": null,</span>
+<span class="s">    "nominee": {</span>
+<span class="s">      "accountType": "ORIGINATOR"</span>
+<span class="s">    },</span>
+<span class="s">    "fees": []</span>
+<span class="s">  },</span>
+<span class="s">  "price": {</span>
+<span class="s">    "amount": 4.99,</span>
+<span class="s">    "currency": "GBP"</span>
+<span class="s">  },</span>
+<span class="s">  "quantity": 1000,</span>
+<span class="s">  "instrumentId": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span>
+<span class="s">}</span>
 </code></pre><h3 id='trade-settlement-code-post-trades-code-description'>Description</h3>
 <p>Persists a new trade which will then undergo the settlement process.</p>
 
@@ -17496,47 +17496,47 @@ Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
-</span></code></pre><pre class="highlight plaintext"><code>HTTP/1.1 200 OK
-Content-Type: application/json
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-{
-  "id": "cdfb86c8-1085-43ed-9839-f4c8e7267818",
-  "status": "RECEIVED",
-  "buy": {
-    "investor": {
-      "clientId": "PROP-12345",
-      "accountType": "GIA",
-    },
-    "nominee": null,
-    "fees": [
-      {
-        "narrative": "Stamp Duty",
-        "cost": {
-          "currency": "GBP",
-          "amount": 5.00
-        }
-      }
-    ]
-  },
-  "sell": {
-    "investor": null,
-    "nominee": {
-      "accountType": "ORIGINATOR"
-    },
-    "fees": []
-  },
-  "price": {
-    "amount": 4.99,
-    "currency": "GBP"
-  },
-  "quantity": 1000,
-  "instrumentId": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
-}
-</code></pre><h3 id='trade-settlement-code-get-trades-tradeid-code-description'>Description</h3>
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cdfb86c8-1085-43ed-9839-f4c8e7267818"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RECEIVED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"buy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"investor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROP-12345"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIA"</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"nominee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fees"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"narrative"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stamp Duty"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.00</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"sell"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"investor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nominee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORIGINATOR"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"fees"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.99</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"instrumentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='trade-settlement-code-get-trades-tradeid-code-description'>Description</h3>
 <p>Retrieves the details of an existing trade.</p>
 <h3 id='trade-settlement-code-get-trades-tradeid-code-request'>Request</h3>
 <p>Body: None</p>
-<h3 id='trade-settlement-code-get-trades-tradeid-code-response-r6th_-r-zf4-syeew8'>Response *r6TH_.r.-zF4-syEEW8</h3>
+<h3 id='trade-settlement-code-get-trades-tradeid-code-response'>Response</h3>
 <p>Body: <a href="/#trade-settlement-trade-model">Trade Model</a></p>
 
 <p>Http Status: </p>
