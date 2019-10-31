@@ -8589,7 +8589,7 @@ For each possible way of integrating with the application, you will need to firs
 <h4 id='isa-administration-code-post-terms-agreement-code-description-investor-lifecycle'>Investor Lifecycle</h4>
 <p>This endpoint should be called before creating the investor and when the investor signs a new version of the terms and conditions.</p>
 <h4 id='isa-administration-code-post-terms-agreement-code-description-possible-error-codes'>Possible Error Codes:</h4>
-<p>Please see <a href="/isa-administration-api/guides/Error%20Codes">sign terms errors</a></p>
+<p>Please see <a href="#errors">sign terms errors</a></p>
 <h3 id='isa-administration-code-post-terms-agreement-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -8862,7 +8862,7 @@ For each possible way of integrating with the application, you will need to firs
 <h4 id='isa-administration-code-post-declaration-agreement-code-description-investor-lifecycle'>Investor Lifecycle</h4>
 <p>This endpoint should be called before creating the investor.</p>
 <h4 id='isa-administration-code-post-declaration-agreement-code-description-possible-error-codes'>Possible Error Codes:</h4>
-<p>Please see <a href="/isa-administration-api/guides/Error%20Codes">sign declaration errors</a></p>
+<p>Please see <a href="#errors">sign declaration errors</a></p>
 <h3 id='isa-administration-code-post-declaration-agreement-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -8964,7 +8964,7 @@ This creates an investor on the Goji platform and allocates it to the P2P platfo
 * ensure the National Insurance number is valid.
 * ensure the user complies with the ISA UK residency checks</p>
 <h4 id='isa-administration-code-post-investors-code-description-possible-error-codes'>Possible Error Codes</h4>
-<p>Please see <a href="/isa-administration-api/guides/Error%20Codes">create investor errors</a></p>
+<p>Please see <a href="#errors">create investor errors</a></p>
 <h3 id='isa-administration-code-post-investors-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -9213,7 +9213,7 @@ Checks performed:
 * UK residency check against the address
 * Age of investor</p>
 <h4 id='isa-administration-code-post-investors-validisaapplication-code-description-possible-error-codes'>Possible Error Codes</h4>
-<p>Please see <a href="/isa-administration-api/guides/Error%20Codes">validate investor errors</a></p>
+<p>Please see <a href="#errors">validate investor errors</a></p>
 <h3 id='isa-administration-code-post-investors-validisaapplication-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -11690,7 +11690,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <h4 id='isa-administration-code-post-investors-investorid-investment-code-description-validation'>Validation</h4>
 <p>The ISA must have a cash balance equal or greater to the amount of the investment.</p>
 <h4 id='isa-administration-code-post-investors-investorid-investment-code-description-possible-error-codes'>Possible Error Codes</h4>
-<p>Please see <a href="/isa-administration-api/guides/Error%20Codes">create investment errors</a></p>
+<p>Please see <a href="#errors">create investment errors</a></p>
 <h3 id='isa-administration-code-post-investors-investorid-investment-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -12596,7 +12596,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <h4 id='isa-administration-code-put-investors-investorid-investment-investmentid-code-description-validation'>Validation</h4>
 <p>The ISA must have a cash balance equal or greater to the amount of the investment.</p>
 <h4 id='isa-administration-code-put-investors-investorid-investment-investmentid-code-description-possible-error-codes'>Possible Error Codes</h4>
-<p>Please see <a href="/isa-administration-api/guides/Error%20Codes">create investment errors</a></p>
+<p>Please see <a href="#errors">create investment errors</a></p>
 <h3 id='isa-administration-code-put-investors-investorid-investment-investmentid-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -12869,7 +12869,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <h4 id='isa-administration-code-post-investors-investorid-investment-investmentid-repayment-code-description-investor-lifecycle'>Investor Lifecycle</h4>
 <p>This endpoint should be called whenever a repayment is received from the borrower against an investor&#39;s investment. This repayment increases the cash balance of the ISA as it is not automatically reinvested by the P2P Platform.</p>
 <h4 id='isa-administration-code-post-investors-investorid-investment-investmentid-repayment-code-description-possible-error-codes'>Possible Error Codes</h4>
-<p>Please see <a href="/isa-administration-api/guides/Error%20Codes">create repayment errors</a></p>
+<p>Please see <a href="#errors">create repayment errors</a></p>
 <h3 id='isa-administration-code-post-investors-investorid-investment-investmentid-repayment-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -13162,7 +13162,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <p>This endpoint should be called whenever a repayment is received from the borrower against an investor&#39;s investment. This amount is automatically reinvested by the P2P Platform and so does not increase the cash balance of the ISA, however the ISA balance is increased by the interest component of the reinvestment.
 This endpoint creates the new investment associated with the reinvestment.</p>
 <h4 id='isa-administration-code-post-investors-investorid-investment-investmentid-reinvestment-code-description-possible-error-codes'>Possible Error Codes</h4>
-<p>Please see <a href="/isa-administration-api/guides/Error%20Codes">create reinvestment errors</a></p>
+<p>Please see <a href="#errors">create reinvestment errors</a></p>
 <h3 id='isa-administration-code-post-investors-investorid-investment-investmentid-reinvestment-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -15729,7 +15729,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span></code></pre><h3 id='isa-administration-code-post-investors-investorid-transferin-transferinid-cash-code-description'>Description</h3>
 <p>This endpoint should be called by the P2PP when they have received the deposit for a transfer in and have confirmed the split between current/prior year subscriptions. The transfer amount is the value of the total amount received from the previus ISA manager. Either the repair amount or the subscribed amount needs to be specified. The subscribed amount is the portion allocated to the ISA. The repair amount is the amount that had to be credited to the non-ISA account. Please see the integration guide for more details.</p>
 <h4 id='isa-administration-code-post-investors-investorid-transferin-transferinid-cash-code-description-possible-error-codes'>Possible Error Codes</h4>
-<p>Please see <a href="/isa-administration-api/guides/Error%20Codes">transfer cash errors</a></p>
+<p>Please see <a href="#errors">transfer cash errors</a></p>
 <h3 id='isa-administration-code-post-investors-investorid-transferin-transferinid-cash-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -15822,7 +15822,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span></code></pre><h3 id='isa-administration-code-post-investors-investorid-transferin-transferinid-residualincome-code-description'>Description</h3>
 <p>This endpoint should be called by the P2PP when they have received a residual income payment for a transfer in. Please see the integration guide for more details.</p>
 <h4 id='isa-administration-code-post-investors-investorid-transferin-transferinid-residualincome-code-description-possible-error-codes'>Possible Error Codes</h4>
-<p>Please see <a href="/isa-administration-api/guides/Error%20Codes">transfer cash errors</a></p>
+<p>Please see <a href="#errors">transfer cash errors</a></p>
 <h3 id='isa-administration-code-post-investors-investorid-transferin-transferinid-residualincome-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -15892,7 +15892,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span></code></pre><h3 id='isa-administration-code-post-investors-investorid-transferin-transferinid-cash-validation-code-description'>Description</h3>
 <p>This endpoint should be called by the P2PP when they want to validate the transfer in cash transaction before processing it.</p>
 <h4 id='isa-administration-code-post-investors-investorid-transferin-transferinid-cash-validation-code-description-possible-error-codes'>Possible Error Codes</h4>
-<p>Please see <a href="/isa-administration-api/guides/Error%20Codes">transfer cash errors</a></p>
+<p>Please see <a href="#errors">transfer cash errors</a></p>
 <h3 id='isa-administration-code-post-investors-investorid-transferin-transferinid-cash-validation-code-request'>Request</h3>
 <table><thead>
 <tr>
