@@ -676,6 +676,35 @@ Delete wallet
 | -------------------- | ------ | --------------------------------------------- |
 | originatorId         | string | The originator ID registered for the wallet . |
 | bankAccountDetailsId | string | The bank account details ID                   |
+## `GET /platformApi/wallet/:id/balance`
+
+```http
+
+GET /platformApi/wallet/:id/balance HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "walletId" : "walletId",
+  "balance" : {
+      "amount" : 10.45,
+      "currency" : "GBP"
+    },
+}
+```
+### Description
+Get the total balance for a wallet
+### Response
+| Name                 | Type   | Description                                   |
+| -------------------- | ------ | --------------------------------------------- |
+| walletId             | string | The originator ID registered for the wallet   |
+| balance              | string | The bank account details ID                   |
 ## `POST /platformApi/wallet/{id}/payment`
 ```http
 
