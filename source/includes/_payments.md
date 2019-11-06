@@ -628,7 +628,7 @@ Create a wallet
 ## `GET /platformApi/wallet/{id}`
 ```http
 
-GET /platformApi/wallet/:id HTTP/1.1
+GET /platformApi/wallet/{id} HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
@@ -650,11 +650,11 @@ Wallet Details
 | -------------------- | ------ | --------------------------------------------- |
 | originatorId         | string | The originator ID registered for the wallet . |
 | bankAccountDetailsId | string | The bank account details ID                   |
-## `DELETE /platformApi/wallet/:id`
+## `DELETE /platformApi/wallet/{id}`
 
 ```http
 
-DELETE /platformApi/wallet/:id HTTP/1.1
+DELETE /platformApi/wallet/{id} HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
@@ -676,11 +676,11 @@ Delete wallet
 | -------------------- | ------ | --------------------------------------------- |
 | originatorId         | string | The originator ID registered for the wallet . |
 | bankAccountDetailsId | string | The bank account details ID                   |
-## `GET /platformApi/wallet/:id/balance`
+## `GET /platformApi/wallet/{id}/balance`
 
 ```http
 
-GET /platformApi/wallet/:id/balance HTTP/1.1
+GET /platformApi/wallet/{id}/balance HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
@@ -703,8 +703,10 @@ Get the total balance for a wallet
 ### Response
 | Name                 | Type   | Description                                   |
 | -------------------- | ------ | --------------------------------------------- |
-| walletId             | string | The originator ID registered for the wallet   |
-| balance              | string | The bank account details ID                   |
+| walletId             | string | The ID of the wallet                          |
+| balance              | ref    | The total cash balance for the wallet         |
+| balance.amount       | number | The amount.                                   |
+| balance.currency     | string | The ISO 4217 three character codes eg 'GBP'   |
 ## `POST /platformApi/wallet/{id}/payment`
 ```http
 
@@ -849,11 +851,11 @@ Create a set of bank details.
 | Name | Type   | Description          |
 | ---- | ------ | -------------------- |
 | id   | string | The bank account ID. |
-## `GET /platformApi/bankAccountDetails/:id`
+## `GET /platformApi/bankAccountDetails/{id}`
 
 ```http
 
-GET /platformApi/bankAccountDetails/:id HTTP/1.1
+GET /platformApi/bankAccountDetails/{id} HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
@@ -881,11 +883,11 @@ Get a specific bank account we hold in the system for sending money to.
 | sortCode      | string | The sort code.                             |
 | accountName   | string | The account name.                          |
 | status        | string | Whether or not the account has passed AML. |
-## `PUT /platformApi/bankAccountDetails/:id`
+## `PUT /platformApi/bankAccountDetails/{id}`
 
 ```http
 
-PUT /platformApi/bankAccountDetails/:id HTTP/1.1
+PUT /platformApi/bankAccountDetails/{id} HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
