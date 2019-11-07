@@ -6943,6 +6943,18 @@ The following event <code>type</code>s will be supported, along with the content
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
+<p>ISA_AUTO_REPAIRED
+<br>This is fired whenever an oversubscribed ISA has been auto repaired. Oversubscription happens when an investor deposits more than their allowed subscription limit. The overflowing amount will be automatically moved to the investment account.</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"repairedAmount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
 <p>INVESTOR_FUNDS_WITHDRAWN
 <br>This is fired whenever an investor withdraws funds.</p>
 </blockquote>
@@ -9013,10 +9025,13 @@ This creates an investor on the Goji platform and allocates it to the P2P platfo
 <h4 id='isa-administration-code-post-investors-code-description-investor-lifecycle'>Investor Lifecycle</h4>
 <p>This endpoint should be called whenever an investor wishes to create an IF ISA.</p>
 <h4 id='isa-administration-code-post-investors-code-description-validation'>Validation</h4>
-<p>In addition to checking the format of the supplied data, the following validation is applied:
-* ensure the investor has not already created an IF ISA via the Goji platform.
-* ensure the National Insurance number is valid.
-* ensure the user complies with the ISA UK residency checks</p>
+<p>In addition to checking the format of the supplied data, the following validation is applied:</p>
+
+<ul>
+<li>ensure the investor has not already created an IF ISA via the Goji platform.</li>
+<li>ensure the National Insurance number is valid.</li>
+<li>ensure the user complies with the ISA UK residency checks</li>
+</ul>
 <h4 id='isa-administration-code-post-investors-code-description-possible-error-codes'>Possible Error Codes</h4>
 <p>Please see <a href="#errors">create investor errors</a></p>
 <h3 id='isa-administration-code-post-investors-code-request'>Request</h3>
@@ -9262,10 +9277,14 @@ This creates an investor on the Goji platform and allocates it to the P2P platfo
 
 </span><span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='isa-administration-code-post-investors-validisaapplication-code-description'>Description</h3>
-<p>Validates the details of an investor to allow a P2PP to verify whether an investor is ellgibile for an ISA.
-Checks performed:
-* UK residency check against the address
-* Age of investor</p>
+<p>Validates the details of an investor to allow a P2PP to verify whether an investor is ellgibile for an ISA.</p>
+
+<p>Checks performed:</p>
+
+<ul>
+<li>UK residency check against the address</li>
+<li>Age of investor</li>
+</ul>
 <h4 id='isa-administration-code-post-investors-validisaapplication-code-description-possible-error-codes'>Possible Error Codes</h4>
 <p>Please see <a href="#errors">validate investor errors</a></p>
 <h3 id='isa-administration-code-post-investors-validisaapplication-code-request'>Request</h3>
