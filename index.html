@@ -2132,13 +2132,11 @@ migrate existing investors.</p>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
 
 <span class="p">{</span><span class="w">
+  </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MISS"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"middleName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"middleName"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lastName"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"corporateDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"companyType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"companyType"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"registrationNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"registrationNumber"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"companyName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"companyName"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"dateOfBirth"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"lineTwo"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineTwo"</span><span class="p">,</span><span class="w">
@@ -2148,19 +2146,11 @@ migrate existing investors.</p>
     </span><span class="s2">"lineThree"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineThree"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"nationalInsuranceNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nationalInsuranceNumber"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"entityType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"INDIVIDUAL"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"employmentDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"jobTitle"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"jobTitle"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"employmentStatus"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"EMPLOYED_FULL_TIME"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"dateOfBirth"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MISS"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"investorDeclarationType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"RESTRICTED"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"contactDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"emailAddress"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"emailAddress"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"telephoneNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"telephoneNumber"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"nationalInsuranceNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nationalInsuranceNumber"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
@@ -2220,6 +2210,12 @@ migrate existing investors.</p>
 <td>firstName</td>
 <td>string</td>
 <td>The first name of the investor.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>middleName</td>
+<td>string</td>
+<td>The middle name of the investor.</td>
 <td>required</td>
 </tr>
 <tr>
@@ -2305,60 +2301,6 @@ migrate existing investors.</p>
 <td>string</td>
 <td>The national insurance number of the investor. Only required if opening an ISA.</td>
 <td>optional</td>
-</tr>
-<tr>
-<td>employmentDetails</td>
-<td>ref</td>
-<td></td>
-<td>optional</td>
-</tr>
-<tr>
-<td>employmentDetails.jobTitle</td>
-<td>string</td>
-<td>The job title.</td>
-<td></td>
-</tr>
-<tr>
-<td>employmentDetails.employmentStatus</td>
-<td>string</td>
-<td>The employment status. Possible values are: <br><code>EMPLOYED_FULL_TIME</code><br><code>EMPLOYED_PART_TIME</code><br><code>SELF_EMPLOYED</code><br><code>UNEMPLOYED</code><br><code>HOUSE_PERSON</code><br><code>EDUCATION</code><br><code>RETIRED</code><br><code>NOT_WORKING_ILLNESS_DISABILITY</code><br></td>
-<td></td>
-</tr>
-<tr>
-<td>entityType</td>
-<td>string</td>
-<td>Possible values are: <br><code>INDIVIDUAL</code><br><code>CORPORATE</code><br></td>
-<td>optional</td>
-</tr>
-<tr>
-<td>investorDeclarationType</td>
-<td>string</td>
-<td>must be SOPHISTICATED for an investor with entityType CORPORATE Possible values are: <br><code>RESTRICTED</code><br><code>HIGH_NET_WORTH</code><br><code>INVESTMENT_PROFESSIONAL</code><br><code>SOPHISTICATED</code><br></td>
-<td>optional</td>
-</tr>
-<tr>
-<td>corporateDetails</td>
-<td>ref</td>
-<td>only required for CORPORATE entityType.</td>
-<td>optional</td>
-</tr>
-<tr>
-<td>corporateDetails.companyName</td>
-<td>string</td>
-<td>The company name.</td>
-<td></td>
-</tr>
-<tr>
-<td>corporateDetails.companyType</td>
-<td>string</td>
-<td>The company type.</td>
-<td></td>
-</tr>
-<tr>
-<td>corporateDetails.registrationNumber</td>
-<td>string</td>
-<td>The company registration number.</td>
-<td></td>
 </tr>
 </tbody></table>
 <h3 id='investors-code-put-platformapi-investors-clientid-code-response'>Response</h3>
