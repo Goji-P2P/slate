@@ -18,6 +18,7 @@ To retrieve an existing trade, the [`GET /trades/{tradeId}`](#settlement-equity-
 | id                        | String    | UUID       | A UUID of the trade.                                                       |
 | quantity                  | Number    | Number     | The number of shares being bought/sold.                                    |
 | instrumentSymbol          | String    | ID/Symbol  | The platform generated unique ID/symbol of the instrument.                 |
+| settlementStatus          | String    | Enum       | Response only.                                                             |
 | price                     | Object    | Object     | The price the instrument is being traded at.                               |
 | price.currency            | String    | ISO 4217   | The currency that `price.amount` is expressed in.                          |
 | price.amount              | Number    | Number     | The cost per share in `price.currency`.                                    |
@@ -114,7 +115,7 @@ Http Status:
 ## `GET /trades/{tradeId}`
 
 ```http
-GET /trades/cdfb86c8-1085-43ed-9839-f4c8e7267818
+GET /trades/cdfb86c8-1085-43ed-9839-f4c8e7267818 HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
