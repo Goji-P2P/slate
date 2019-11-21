@@ -161,7 +161,7 @@ Http Status:
 
 To see the current state of a dividend instruction, this endpoint can be used.  
 
-It will provide an overall `status`` of the dividend instruction.
+It will provide an overall `status` of the dividend instruction.
 A breakdown of the current `status` of each payment.
 
 
