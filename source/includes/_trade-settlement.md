@@ -50,6 +50,7 @@ Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
+
 {
   "id": "cdfb86c8-1085-43ed-9839-f4c8e7267818",
   "buy": {
