@@ -81,7 +81,7 @@ X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
     "currency": "GBP"
   },
   "quantity": 1000,
-  "instrumentId": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
 }
 ```
 ### Description
@@ -158,7 +158,7 @@ Content-Type: application/json
     "currency": "GBP"
   },
   "quantity": 1000,
-  "instrumentId": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
 }
 ```
 

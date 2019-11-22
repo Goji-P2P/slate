@@ -15,7 +15,7 @@ Said endpoint references an instrument, and takes a list of all the investors th
 The call to [`POST /corporate-actions/dividends`](/#settlement-equity-post-dividend) will return a 201 Created response
 with a `status` field in the body of 'AWAITING FUNDS'.
 
-Please note that this response only indicates that the dividend instruction has been received. 
+⚠️ Please note that this response only indicates that the dividend instruction has been received. 
 The distribution of the dividend to investors will not occur until the necessary funds are received. 
 
 The response will include a payTo section. Payment should be sent to the bank details specified, including the `payTo.reference`.
@@ -57,7 +57,7 @@ X-GOJI-REQUEST-ID: 49801f79-5347-4db5-a2b9-59e6cf3e0a22
 
 {
   "id": "627e27b2-75be-4673-ba5a-7f765a8ace89",
-  "instrumentId": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
   "totalPayout": {
     "currency": "GBP",
     "amount": 180
@@ -90,7 +90,7 @@ X-GOJI-REQUEST-ID: 49801f79-5347-4db5-a2b9-59e6cf3e0a22
 
 {
   "id": "627e27b2-75be-4673-ba5a-7f765a8ace89",
-  "instrumentId": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
   "status": "AWAITING_FUNDS",
   "dividendPerShare": {
     "currency": "GBP",
@@ -133,7 +133,7 @@ X-GOJI-REQUEST-ID: 49801f79-5347-4db5-a2b9-59e6cf3e0a22
 
 Creates a new dividend instruction for an existing instrument to a list of investors.
 
-Please ensure that the relevant instrument is already registered at the following endpoint before
+⚠️ Please ensure that the relevant instrument is already registered at the following endpoint before
 using the dividend endpoints:
 
  * [Instrument API](/#settlement-equity-instruments)
@@ -162,6 +162,7 @@ Http Status:
 To see the current state of a dividend instruction, this endpoint can be used.  
 
 It will provide two statuses:
+
 (1) An overall `status` of the dividend instruction.
 (2) A breakdown of the current `status` of each payment.
 
@@ -182,7 +183,7 @@ X-GOJI-REQUEST-ID: 6937bd3b-e3de-4fd6-9bd9-c87cd7305180
 
 {
   "id": "627e27b2-75be-4673-ba5a-7f765a8ace89",
-  "instrumentId": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
   "status": "DISTRIBUTING",
   "dividendPerShare": {
     "currency": "GBP",
