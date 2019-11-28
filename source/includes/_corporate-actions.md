@@ -164,6 +164,7 @@ To see the current state of a dividend instruction, this endpoint can be used.
 It will provide two statuses:
 
 (1) An overall `status` of the dividend instruction.
+
 (2) A breakdown of the current `status` of each payment.
 
 

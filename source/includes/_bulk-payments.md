@@ -28,26 +28,26 @@ The status of the money transfer is further broken down at a per investor level.
 
 ## Batch Model
 
-| Key                         | JSON Type | Value Type | Value Description                                               |
-|-----------------------------|-----------|------------|-----------------------------------------------------------------|
-| batchId                     | String    | UUID       | The platform generated UUID of the batch payment posting.       |
-| type                        | String    | Enum       | The type of batch payment. Values: MIGRATION, BONUS             |
-| status                      | String    | Enum       | Response Only. Values: AWAITING_FUNDS, DISTRIBUTING, COMPLETE.  |
-| totalPayout.currency        | String    | ISO 4217   | The currency that the total dividend payment is in.             |
-| totalPayout.amount          | Number    | Number     | The total amount to be paid out.                                |
-| payments[].clientId         | String    | Client ID  | The client ID for the batch payment.                            |
-| payments[].accountType      | String    | Enum       | The client's account to pay to. Values: GOJI_INVESTMENT, ISA.   |
-| payments[].amount.currency  | String    | ISO 4217   | The currency that the batch payment is paid in.                 |
-| payments[].amount.amount    | Number    | Number     | The total amount to be paid to this investor.                   |
-| payments[].status           | String    | Enum       | Response Only. Values: PENDING, PAID.                           |
-| payments[].sourceOfFunds    | Object    | Object     | Optional. The client's active bank account details.             |
-| sourceOfFunds.accountName   | String    | String     | The client's bank account name.                                 |
-| sourceOfFunds.accountNumber | String    | String     | The client's bank account number.                               |
-| sourceOfFunds.sortCode      | String    | String     | The client's bank account sort code.                            |
-| payTo.accountName           | String    | String     | Response Only. The account number to send payment to.           |
-| payTo.accountNumber         | String    | String     | Response Only. The account number to send payment to.           |
-| payTo.sortCode              | String    | String     | Response Only. The sort code to send payment to.                |
-| payTo.reference             | String    | String     | Response Only. The reference to use when sending payment.       |
+| Key                         | JSON Type | Value Type | Value Description                                                 |
+|-----------------------------|-----------|------------|-------------------------------------------------------------------|
+| batchId                     | String    | UUID       | The platform generated UUID of the batch payment posting.         |
+| type                        | String    | Enum       | The type of batch payment. Values: MIGRATION, BONUS, CARD_PAYMENTS|
+| status                      | String    | Enum       | Response Only. Values: AWAITING_FUNDS, DISTRIBUTING, COMPLETE.    |
+| totalPayout.currency        | String    | ISO 4217   | The currency that the total dividend payment is in.               |
+| totalPayout.amount          | Number    | Number     | The total amount to be paid out.                                  |
+| payments[].clientId         | String    | Client ID  | The client ID for the batch payment.                              |
+| payments[].accountType      | String    | Enum       | The client's account to pay to. Values: GOJI_INVESTMENT, ISA.     |
+| payments[].amount.currency  | String    | ISO 4217   | The currency that the batch payment is paid in.                   |
+| payments[].amount.amount    | Number    | Number     | The total amount to be paid to this investor.                     |
+| payments[].status           | String    | Enum       | Response Only. Values: PENDING, PAID.                             |
+| payments[].sourceOfFunds    | Object    | Object     | Optional. The client's active bank account details.               |
+| sourceOfFunds.accountName   | String    | String     | The client's bank account name.                                   |
+| sourceOfFunds.accountNumber | String    | String     | The client's bank account number.                                 |
+| sourceOfFunds.sortCode      | String    | String     | The client's bank account sort code.                              |
+| payTo.accountName           | String    | String     | Response Only. The account number to send payment to.             |
+| payTo.accountNumber         | String    | String     | Response Only. The account number to send payment to.             |
+| payTo.sortCode              | String    | String     | Response Only. The sort code to send payment to.                  |
+| payTo.reference             | String    | String     | Response Only. The reference to use when sending payment.         |
 
 
 
