@@ -404,6 +404,21 @@
                   <li>
                     <a href="#payments-manager-get-platformapi-wallet-id-transactions" class="toc-h2 toc-link" data-title="GET /platformApi/wallet/{id}/transactions"><code>GET /platformApi/wallet/{id}/transactions</code></a>
                   </li>
+                  <li>
+                    <a href="#payments-manager-bulk-payments" class="toc-h2 toc-link" data-title="Bulk Payments 🚧"><em>Bulk Payments 🚧</em></a>
+                  </li>
+                  <li>
+                    <a href="#payments-manager-batch-payments" class="toc-h2 toc-link" data-title="Batch Payments">Batch Payments</a>
+                  </li>
+                  <li>
+                    <a href="#payments-manager-batch-model" class="toc-h2 toc-link" data-title="Batch Model">Batch Model</a>
+                  </li>
+                  <li>
+                    <a href="#payments-manager-post-transfers-batch" class="toc-h2 toc-link" data-title="POST /transfers/batch"><code>POST /transfers/batch</code></a>
+                  </li>
+                  <li>
+                    <a href="#payments-manager-get-transfers-batch-batchid" class="toc-h2 toc-link" data-title="GET /transfers/batch/{batchId}"><code>GET /transfers/batch/{batchId}</code></a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -817,7 +832,7 @@
 <li>Create wallets to hold and move platform controlled money</li>
 <li>Transfer funds between wallets and beneficiaries.</li>
 </ul>
-<h3 id='introduction-getting-started-debt-settlement-api'><a href="#settlement-debt">Debt Settlement API</a></h3>
+<h3 id='introduction-getting-started-payments-bulk-api'><a href="#bulk-payments">Payments - Bulk API</a></h3><h3 id='introduction-getting-started-debt-settlement-api'><a href="#settlement-debt">Debt Settlement API</a></h3>
 <p>The Debt Settlement API supports settling investments in securities that are not being managed by the Bond management module. Examples include:</p>
 
 <ul>
@@ -5754,6 +5769,366 @@ Prior to creating a wallet you need to have registered your company as the walle
 <td>The date / time the transaction was cleared</td>
 </tr>
 </tbody></table>
+<h2 id='payments-manager-bulk-payments'><em>Bulk Payments 🚧</em></h2>
+<p>The Bulk Payments API allows an Investment Manager to specify a total amount of funds to distribute amongst their 
+individual investors. </p>
+
+<p>The API is currently under construction.</p>
+<h2 id='payments-manager-batch-payments'>Batch Payments</h2>
+<p>The <a href="/#payments-manager-post-transfers-batch"><code>POST /transfers/batch</code></a> endpoint can be used to 
+transfer money to multiple investors.</p>
+
+<p>Said endpoint references a <code>totalPayout</code> amount, and takes a list of all the investors and the amount each is due to be paid.</p>
+
+<p>The call to <a href="/#payments-manager-post-transfers-batch"><code>POST /transfers/batch</code></a> will return a 201 Created response
+with a <code>status</code> field in the body of &#39;AWAITING FUNDS&#39;.</p>
+
+<p>⚠️ Please note that this response only indicates that the batch payment instruction has been received. 
+The distribution of the batch to investors will not occur until the necessary funds are received. </p>
+
+<p>The response will include a payTo section. Payment should be sent to the bank details specified, including the <code>payTo.reference</code>.</p>
+
+<p>Once payment has been made, the <a href="/#payments-manager-get-transfers-batch-batchid"><code>GET /transfers/batch/{batchId}</code></a> 
+endpoint can be used to see the current status of the batch payment instruction.</p>
+
+<p>The status of the money transfer is further broken down at a per investor level. </p>
+<h2 id='payments-manager-batch-model'>Batch Model</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>JSON Type</th>
+<th>Value Type</th>
+<th>Value Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>batchId</td>
+<td>String</td>
+<td>UUID</td>
+<td>The platform generated UUID of the batch payment posting.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Enum</td>
+<td>The type of batch payment. Values: MIGRATION, BONUS, CARD_PAYMENTS</td>
+</tr>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>Enum</td>
+<td>Response Only. Values: AWAITING_FUNDS, DISTRIBUTING, COMPLETE.</td>
+</tr>
+<tr>
+<td>totalPayout.currency</td>
+<td>String</td>
+<td>ISO 4217</td>
+<td>The currency that the total dividend payment is in.</td>
+</tr>
+<tr>
+<td>totalPayout.amount</td>
+<td>Number</td>
+<td>Number</td>
+<td>The total amount to be paid out.</td>
+</tr>
+<tr>
+<td>payments[].clientId</td>
+<td>String</td>
+<td>Client ID</td>
+<td>The client ID for the batch payment.</td>
+</tr>
+<tr>
+<td>payments[].accountType</td>
+<td>String</td>
+<td>Enum</td>
+<td>The client&#39;s account to pay to. Values: GOJI_INVESTMENT, ISA.</td>
+</tr>
+<tr>
+<td>payments[].amount.currency</td>
+<td>String</td>
+<td>ISO 4217</td>
+<td>The currency that the batch payment is paid in.</td>
+</tr>
+<tr>
+<td>payments[].amount.amount</td>
+<td>Number</td>
+<td>Number</td>
+<td>The total amount to be paid to this investor.</td>
+</tr>
+<tr>
+<td>payments[].status</td>
+<td>String</td>
+<td>Enum</td>
+<td>Response Only. Values: PENDING, PAID.</td>
+</tr>
+<tr>
+<td>payments[].sourceOfFunds</td>
+<td>Object</td>
+<td>Object</td>
+<td>Optional. The client&#39;s active bank account details.</td>
+</tr>
+<tr>
+<td>sourceOfFunds.accountName</td>
+<td>String</td>
+<td>String</td>
+<td>The client&#39;s bank account name.</td>
+</tr>
+<tr>
+<td>sourceOfFunds.accountNumber</td>
+<td>String</td>
+<td>String</td>
+<td>The client&#39;s bank account number.</td>
+</tr>
+<tr>
+<td>sourceOfFunds.sortCode</td>
+<td>String</td>
+<td>String</td>
+<td>The client&#39;s bank account sort code.</td>
+</tr>
+<tr>
+<td>payTo.accountName</td>
+<td>String</td>
+<td>String</td>
+<td>Response Only. The account number to send payment to.</td>
+</tr>
+<tr>
+<td>payTo.accountNumber</td>
+<td>String</td>
+<td>String</td>
+<td>Response Only. The account number to send payment to.</td>
+</tr>
+<tr>
+<td>payTo.sortCode</td>
+<td>String</td>
+<td>String</td>
+<td>Response Only. The sort code to send payment to.</td>
+</tr>
+<tr>
+<td>payTo.reference</td>
+<td>String</td>
+<td>String</td>
+<td>Response Only. The reference to use when sending payment.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-post-transfers-batch'><code>POST /transfers/batch</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/transfers/batch</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+<span class="na">X-GOJI-REQUEST-ID</span><span class="p">:</span> <span class="s">49801f79-5347-4db5-a2b9-59e6cf3e0a22</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"batchId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4d8af0f8-26a1-4e06-bb1e-8225d1e36e2b"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIGRATION"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalPayout"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"sourceOfFunds"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account Name"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"sourceOfFunds"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">X-GOJI-REQUEST-ID</span><span class="p">:</span> <span class="s">49801f79-5347-4db5-a2b9-59e6cf3e0a22</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"batchId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4d8af0f8-26a1-4e06-bb1e-8225d1e36e2b"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIGRATION"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AWAITING_FUNDS"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalPayout"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sourceOfFunds"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account Name"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sourceOfFunds"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"payTo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platform 1 - Receiving"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OR8144E143"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-post-transfers-batch-code-description'>Description</h3>
+<p>Creates a new batch payment instruction to transfer money to a list of investors.</p>
+<h3 id='payments-manager-code-post-transfers-batch-code-request'>Request</h3>
+<p>Body: <a href="/#payments-manager-batch-payments-model">Batch Model</a></p>
+<h3 id='payments-manager-code-post-transfers-batch-code-response'>Response</h3>
+<p>Body: <a href="/#payments-manager-batch-payments-model">Batch Model</a></p>
+
+<p>Http Status: </p>
+
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Description</th>
+<th>Body</th>
+<th>Content-Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201 Created</td>
+<td>Batch payment posted created successfully</td>
+<td>Batch</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>The request was malformed.  See response body</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>401 Unauthorized</td>
+<td>No auth provided, auth failed, or not authorized</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-get-transfers-batch-batchid'><code>GET /transfers/batch/{batchId}</code></h2>
+<p>To see the current state of a batch payment instruction, this endpoint can be used.  </p>
+
+<p>It will provide two statuses:</p>
+
+<p>(1) An overall <code>status</code> of the batch payment instruction.</p>
+
+<p>(2) A breakdown of the current <code>status</code> of each individual payment.</p>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/transfers/batch/4d8af0f8-26a1-4e06-bb1e-8225d1e36e2b</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+<span class="na">X-GOJI-REQUEST-ID</span><span class="p">:</span> <span class="s">6937bd3b-e3de-4fd6-9bd9-c87cd7305180</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">X-GOJI-REQUEST-ID</span><span class="p">:</span> <span class="s">6937bd3b-e3de-4fd6-9bd9-c87cd7305180</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"batchId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4d8af0f8-26a1-4e06-bb1e-8225d1e36e2b"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIGRATION"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AWAITING_FUNDS"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalPayout"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sourceOfFunds"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account Name"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sourceOfFunds"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"payTo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platform 1 - Receiving"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OR8144E143"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-get-transfers-batch-batchid-code-description'>Description</h3>
+<p>Retrieves the details of an existing batch payment.</p>
+<h3 id='payments-manager-code-get-transfers-batch-batchid-code-request'>Request</h3>
+<p>Body: None</p>
+<h3 id='payments-manager-code-get-transfers-batch-batchid-code-response'>Response</h3>
+<p>Body: <a href="/#payments-manager-batch-payments-model">Batch Payment Model</a> </p>
+
+<p>Http Status: </p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Body</th>
+<th>Content-Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200 Created</td>
+<td>batch payment exists and is return in the body</td>
+<td>Batch</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>The request was malformed.  See response body</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>401 Unauthorized</td>
+<td>No auth provided, auth failed, or not authorized</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>No batch payment with this UUID exists</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+</tbody></table>
 <h1 id='settlement-debt'>Settlement - Debt</h1>
 <p>The Settlement API allows the investment manager to record trades that have been executed.</p>
 <h2 id='settlement-debt-recording-available-products'>Recording available products</h2>
@@ -7480,12 +7855,12 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 
 <p>The API is currently under construction.</p>
 <h2 id='settlement-equity-dividends'>Dividends</h2>
-<p>The <a href="/#settlement-equity-post-dividend"><code>POST /corporate-actions/dividends</code></a> endpoint can be used to pay dividends 
+<p>The <a href="/#settlement-equity-post-corporate-actions-dividends"><code>POST /corporate-actions/dividends</code></a> endpoint can be used to pay dividends 
 to investors that hold shares in an instrument.</p>
 
 <p>Said endpoint references an instrument, and takes a list of all the investors that are shareholders to be paid. </p>
 
-<p>The call to <a href="/#settlement-equity-post-dividend"><code>POST /corporate-actions/dividends</code></a> will return a 201 Created response
+<p>The call to <a href="/#settlement-equity-post-corporate-actions-dividends"><code>POST /corporate-actions/dividends</code></a> will return a 201 Created response
 with a <code>status</code> field in the body of &#39;AWAITING FUNDS&#39;.</p>
 
 <p>⚠️ Please note that this response only indicates that the dividend instruction has been received. 
@@ -7493,7 +7868,7 @@ The distribution of the dividend to investors will not occur until the necessary
 
 <p>The response will include a payTo section. Payment should be sent to the bank details specified, including the <code>payTo.reference</code>.</p>
 
-<p>Once payment has been made, the <a href="/#settlement-equity-get-dividend-by-id"><code>GET /corporate-actions/dividends/{dividendId}</code></a> 
+<p>Once payment has been made, the <a href="/#settlement-equity-get-corporate-actions-dividends-dividendid"><code>GET /corporate-actions/dividends/{dividendId}</code></a> 
 endpoint can be used to see the current status of the dividend instruction.</p>
 
 <p>The status of the money transfer is further broken down at a per investor level. </p>
@@ -7522,7 +7897,7 @@ endpoint can be used to see the current status of the dividend instruction.</p>
 <td>status</td>
 <td>String</td>
 <td>Enum</td>
-<td>Response Only. Values: AWAITING_FUNDS, DISTRIBUTING, PROCESSED.</td>
+<td>Response Only. Values: AWAITING_FUNDS, DISTRIBUTING, COMPLETE.</td>
 </tr>
 <tr>
 <td>totalPayout.currency</td>
@@ -7669,9 +8044,9 @@ using the dividend endpoints:</p>
 <li><a href="/#settlement-equity-instruments">Instrument API</a></li>
 </ul>
 <h3 id='settlement-equity-code-post-corporate-actions-dividends-code-request'>Request</h3>
-<p>Body: <a href="(/#settlement-equity-post-dividend)">Dividend Model</a></p>
+<p>Body: <a href="/#settlement-equity-dividends-model">Dividend Model</a></p>
 <h3 id='settlement-equity-code-post-corporate-actions-dividends-code-response'>Response</h3>
-<p>Body: <a href="(/#settlement-equity-post-dividend)">Dividend  Model</a></p>
+<p>Body: <a href="/#settlement-equity-dividends-model">Dividend  Model</a></p>
 
 <p>Http Status: </p>
 
@@ -7707,8 +8082,9 @@ using the dividend endpoints:</p>
 
 <p>It will provide two statuses:</p>
 
-<p>(1) An overall <code>status</code> of the dividend instruction.
-(2) A breakdown of the current <code>status</code> of each payment.</p>
+<p>(1) An overall <code>status</code> of the dividend instruction.</p>
+
+<p>(2) A breakdown of the current <code>status</code> of each payment.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/corporate-actions/dividends/627e27b2-75be-4673-ba5a-7f765a8ace89</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -7761,7 +8137,7 @@ using the dividend endpoints:</p>
 <h3 id='settlement-equity-code-get-corporate-actions-dividends-dividendid-code-request'>Request</h3>
 <p>Body: None</p>
 <h3 id='settlement-equity-code-get-corporate-actions-dividends-dividendid-code-response'>Response</h3>
-<p>Body: <a href="/#settlement-equity-get-dividend-by-id">Dividend Model</a> </p>
+<p>Body: <a href="/#settlement-equity-dividends-model">Dividend Model</a> </p>
 
 <p>Http Status: </p>
 
@@ -7775,8 +8151,8 @@ using the dividend endpoints:</p>
 </thead><tbody>
 <tr>
 <td>200 Created</td>
-<td>Trade exists and is return in the body</td>
-<td>Trade</td>
+<td>Dividend exists and is return in the body</td>
+<td>Dividend</td>
 <td>application/json</td>
 </tr>
 <tr>
@@ -7793,7 +8169,7 @@ using the dividend endpoints:</p>
 </tr>
 <tr>
 <td>404 Not Found</td>
-<td>No trade with this UUID exists</td>
+<td>No dividend with this UUID exists</td>
 <td>None</td>
 <td>n/a</td>
 </tr>
