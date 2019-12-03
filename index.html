@@ -1449,12 +1449,14 @@ For each possible way of integrating with the application, you will need to firs
 
 <p>3). The component will then render when the document&#39;s body has fully loaded.</p>
 <h2 id='investors-migrating-investors'>Migrating Investors</h2>
-<p>If you are upgrading from using the Goji ISA Administration API to the Goji Platform API, then you need to
-migrate existing investors.</p>
+<p>If you are migrating your existing investors over to Goji, then you need to <a href="#investors-post-platformapi-investors">onboard the investors in the usual way</a> but also specify <code>migrationDetails</code> data.</p>
 
-<p>This can be performed by onboarding an investor in the usual way and specifying the <code>migrationDetails</code>.</p>
+<p>The <code>migrationDetails</code> allows the platform to provide an existing investor ID where applicable and provide the dilligence status as agreed with Goji before migration takes place. </p>
+<h3 id='investors-migrating-investors-upgrading-investors-currently-using-the-isa-administration-api'>Upgrading investors currently using the ISA Administration API</h3>
+<p>When upgrading from using the Goji ISA Administration API to the Goji Platform API, the <code>existingClientId</code> in the 
+<code>migrationDetails</code> prompts the system looks for an investor with the <code>existingClientId</code> and upgrades the investor. </p>
 
-<p>If <code>migrationDetails</code> is specified, then the system looks for an investor with the <code>existingClientId</code> and upgrades the investor. This involves:</p>
+<p>This involves:</p>
 
 <ul>
 <li>Generating a new client ID</li>
@@ -1814,7 +1816,19 @@ migrate existing investors.</p>
 <tr>
 <td>migrationDetails.existingClientId</td>
 <td>string</td>
-<td>The existing client ID for the investor to be migrated</td>
+<td>The existing client ID for the investor to be migrated which can be useful for referencing any investor should issues occur or indeed must reference any ISA Administration investor&#39;s existing ID when applicable</td>
+<td></td>
+</tr>
+<tr>
+<td>migrationDetails.diligenceMigrationOption</td>
+<td>string</td>
+<td>The agreed KYC/B check requirements for the investor - Goji will work with the platform to review historical checks and determine what value should be specified. Possible values are: <br><code>FULL_CHECK</code><br><code>HISTORICAL_RELIANCE_WITH_MONITORING</code><br><code>EVENT_BASED_FULL_CHECK</code><br><code>EVENT_BASED_WITH_MONITORING</code></td>
+<td></td>
+</tr>
+<tr>
+<td>migrationDetails.previousCheckDate</td>
+<td>string</td>
+<td>The optional date when the previous diligence checks were performed against the investor if Goji is placing reliance on the historical checks</td>
 <td></td>
 </tr>
 </tbody></table>
