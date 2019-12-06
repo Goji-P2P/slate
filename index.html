@@ -278,6 +278,9 @@
                     <a href="#investors-post-platformapi-investors" class="toc-h2 toc-link" data-title="POST /platformApi/investors"><code>POST /platformApi/investors</code></a>
                   </li>
                   <li>
+                    <a href="#investors-post-platformapi-migrate" class="toc-h2 toc-link" data-title="POST /platformApi/migrate"><code>POST /platformApi/migrate</code></a>
+                  </li>
+                  <li>
                     <a href="#investors-get-platformapi-investors-clientid" class="toc-h2 toc-link" data-title="GET /platformApi/investors/{clientId}"><code>GET /platformApi/investors/{clientId}</code></a>
                   </li>
                   <li>
@@ -1312,7 +1315,7 @@ If these checks are successful, the ISA is opened immediately and isavailable to
 
 <p><img src="images/investors/images/add-isa.png" alt="Add isa" /></p>
 <h2 id='investors-onboarding-investors'>Onboarding investors</h2><h3 id='investors-onboarding-investors-registration'>Registration</h3>
-<p>To register an investor, <code>POST /investors</code> is called.</p>
+<p>To register an investor, <code>POST /investors</code> is called. Note that if the investor is being migrated to the Goji system from an existing record, the dedicated <a href="#investors-post-platformapi-migrate">investor migration endpoint</a> should be used instead.</p>
 
 <p>The investor must have previously agreed to the terms and conditions which can be accessed by calling <code>GET /platformApi/terms</code>.</p>
 
@@ -1449,7 +1452,7 @@ For each possible way of integrating with the application, you will need to firs
 
 <p>3). The component will then render when the document&#39;s body has fully loaded.</p>
 <h2 id='investors-migrating-investors'>Migrating Investors</h2>
-<p>If you are migrating your existing investors over to Goji, then you need to <a href="#investors-post-platformapi-investors">onboard the investors in the usual way</a> but also specify <code>migrationDetails</code> data.</p>
+<p>If you are migrating your existing investors over to Goji, then you need to onboard the existing investors using the dedicated <a href="#investors-post-platformapi-migrate">investor migration endpoint</a> and include <code>migrationDetails</code> data.</p>
 
 <p>The <code>migrationDetails</code> allows the platform to provide an existing investor ID where applicable and provide the dilligence status as agreed with Goji before migration takes place. </p>
 <h3 id='investors-migrating-investors-upgrading-investors-currently-using-the-isa-administration-api'>Upgrading investors currently using the ISA Administration API</h3>
@@ -1571,9 +1574,6 @@ For each possible way of integrating with the application, you will need to firs
     </span><span class="s2">"nationality"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CH"</span><span class="w">
   </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
   </span><span class="s2">"dateOfBirth"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"migrationDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"existingClientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"existingClientId"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
   </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MISS"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"investorDeclarationType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"RESTRICTED"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"contactDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1623,7 +1623,11 @@ For each possible way of integrating with the application, you will need to firs
   </span><span class="s2">"investmentDeclarationType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"RESTRICTED"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='investors-code-post-platformapi-investors-code-description'>Description</h3>
-<p>Creates an investor and triggers a KYC check.</p>
+<p>Creates a new investor and triggers a KYC check.</p>
+
+<aside class="warning">
+When migrating existing investors over to the Goji platform, the dedicated [investor migration endpoint](#investors-post-platformapi-migrate) should be used instead.
+</aside>
 <h3 id='investors-code-post-platformapi-investors-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -1807,32 +1811,441 @@ For each possible way of integrating with the application, you will need to firs
 <td>The company registration number.</td>
 <td></td>
 </tr>
+</tbody></table>
+<h3 id='investors-code-post-platformapi-investors-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>clientId</td>
+<td>string</td>
+<td>The ID of the investor assigned by the platform.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>The title of the investor. Possible values are: <br><code>MISS</code><br><code>MR</code><br><code>MRS</code><br><code>MS</code><br><code>DR</code><br></td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>string</td>
+<td>The first name of the investor.</td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>string</td>
+<td>The last name of the investor.</td>
+</tr>
+<tr>
+<td>dateOfBirth</td>
+<td>string</td>
+<td>The date of birth of the investor.</td>
+</tr>
+<tr>
+<td>address</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>address.lineOne</td>
+<td>string</td>
+<td>Line one of the address.</td>
+</tr>
+<tr>
+<td>address.lineTwo</td>
+<td>string</td>
+<td>Line two of the address.</td>
+</tr>
+<tr>
+<td>address.lineThree</td>
+<td>string</td>
+<td>Line three of the address.</td>
+</tr>
+<tr>
+<td>address.townCity</td>
+<td>string</td>
+<td>The town/city of the address.</td>
+</tr>
+<tr>
+<td>address.region</td>
+<td>string</td>
+<td>The region of the address eg county.</td>
+</tr>
+<tr>
+<td>address.postcode</td>
+<td>string</td>
+<td>The post code of the address.</td>
+</tr>
+<tr>
+<td>address.country</td>
+<td>string</td>
+<td>The country of the investor&#39;s address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.</td>
+</tr>
+<tr>
+<td>contactDetails</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>contactDetails.telephoneNumber</td>
+<td>string</td>
+<td>The telephone number.</td>
+</tr>
+<tr>
+<td>contactDetails.emailAddress</td>
+<td>string</td>
+<td>The email address.</td>
+</tr>
+<tr>
+<td>nationalInsuranceNumber</td>
+<td>string</td>
+<td>The national insurance number of the investor.</td>
+</tr>
+<tr>
+<td>employmentDetails</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>employmentDetails.jobTitle</td>
+<td>string</td>
+<td>The job title.</td>
+</tr>
+<tr>
+<td>employmentDetails.employmentStatus</td>
+<td>string</td>
+<td>The employment status. Possible values are: <br><code>EMPLOYED_FULL_TIME</code><br><code>EMPLOYED_PART_TIME</code><br><code>SELF_EMPLOYED</code><br><code>UNEMPLOYED</code><br><code>HOUSE_PERSON</code><br><code>EDUCATION</code><br><code>RETIRED</code><br><code>NOT_WORKING_ILLNESS_DISABILITY</code><br></td>
+</tr>
+<tr>
+<td>entityType</td>
+<td>string</td>
+<td>Possible values are: <br><code>INDIVIDUAL</code><br><code>CORPORATE</code><br></td>
+</tr>
+<tr>
+<td>accountTypes</td>
+<td>string</td>
+<td>Investor&#39;s account types Possible values are: <br><code>GOJI_INVESTMENT</code><br><code>ISA</code><br></td>
+</tr>
+<tr>
+<td>corporateDetails</td>
+<td>ref</td>
+<td>only required for CORPORATE entityType.</td>
+</tr>
+<tr>
+<td>corporateDetails.companyName</td>
+<td>string</td>
+<td>The company name.</td>
+</tr>
+<tr>
+<td>corporateDetails.companyType</td>
+<td>string</td>
+<td>The company type.</td>
+</tr>
+<tr>
+<td>corporateDetails.registrationNumber</td>
+<td>string</td>
+<td>The company registration number.</td>
+</tr>
+<tr>
+<td>investmentDeclarationType</td>
+<td>string</td>
+<td>The investor type declared by the investor Possible values are: <br><code>RESTRICTED</code><br><code>HIGH_NET_WORTH</code><br><code>INVESTMENT_PROFESSIONAL</code><br><code>SOPHISTICATED</code><br></td>
+</tr>
+</tbody></table>
+<h2 id='investors-post-platformapi-migrate'><code>POST /platformApi/migrate</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/platformApi/investors</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lastName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"corporateDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"companyType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"companyType"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"registrationNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"registrationNumber"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"companyName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"companyName"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineTwo"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineTwo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"townCity"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"townCity"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postcode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"postcode"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineOne"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineOne"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineThree"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineThree"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"entityType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"INDIVIDUAL"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"employmentDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"jobTitle"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"jobTitle"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"employmentStatus"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"EMPLOYED_FULL_TIME"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"nationalities"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"nationality"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"nationality"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CH"</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"dateOfBirth"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"migrationDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"existingClientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"existingClientId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"diligenceMigrationOption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FULL_CHECK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"previousCheckDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MISS"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"investorDeclarationType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"RESTRICTED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contactDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"emailAddress"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"emailAddress"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telephoneNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"telephoneNumber"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nationalInsuranceNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nationalInsuranceNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountTypes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lastName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"corporateDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"companyType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"companyType"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"registrationNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"registrationNumber"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"companyName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"companyName"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineTwo"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineTwo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"townCity"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"townCity"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postcode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"postcode"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineOne"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineOne"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineThree"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineThree"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"entityType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"INDIVIDUAL"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"employmentDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"jobTitle"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"jobTitle"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"employmentStatus"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"EMPLOYED_FULL_TIME"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"dateOfBirth"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MISS"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contactDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"emailAddress"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"emailAddress"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telephoneNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"telephoneNumber"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nationalInsuranceNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nationalInsuranceNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountTypes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"investmentDeclarationType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"RESTRICTED"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='investors-code-post-platformapi-migrate-code-description'>Description</h3>
+<p>Migrates an existing investor onto the Goji system.</p>
+<h3 id='investors-code-post-platformapi-migrate-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>The title of the investor. Possible values are: <br><code>MISS</code><br><code>MR</code><br><code>MRS</code><br><code>MS</code><br><code>DR</code><br></td>
+<td>optional</td>
+</tr>
+<tr>
+<td>nationalities</td>
+<td>array</td>
+<td>The list of nationalities associated with an investor. More than one nationality can be specified for a given investor i.e. if they are dual-nationality.</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>nationalities[].nationality</td>
+<td>string</td>
+<td>The ISO country code. e.g GB.</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>string</td>
+<td>The first name of the investor.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>string</td>
+<td>The last name of the investor.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>dateOfBirth</td>
+<td>string</td>
+<td>The date of birth of the investor.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>address</td>
+<td>ref</td>
+<td></td>
+<td>required</td>
+</tr>
+<tr>
+<td>address.lineOne</td>
+<td>string</td>
+<td>Line one of the address.</td>
+<td></td>
+</tr>
+<tr>
+<td>address.lineTwo</td>
+<td>string</td>
+<td>Line two of the address.</td>
+<td></td>
+</tr>
+<tr>
+<td>address.lineThree</td>
+<td>string</td>
+<td>Line three of the address.</td>
+<td></td>
+</tr>
+<tr>
+<td>address.townCity</td>
+<td>string</td>
+<td>The town/city of the address.</td>
+<td></td>
+</tr>
+<tr>
+<td>address.region</td>
+<td>string</td>
+<td>The region of the address eg county.</td>
+<td></td>
+</tr>
+<tr>
+<td>address.postcode</td>
+<td>string</td>
+<td>The post code of the address.</td>
+<td></td>
+</tr>
+<tr>
+<td>address.country</td>
+<td>string</td>
+<td>The country of the investor&#39;s address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.</td>
+<td></td>
+</tr>
+<tr>
+<td>contactDetails</td>
+<td>ref</td>
+<td></td>
+<td>required</td>
+</tr>
+<tr>
+<td>contactDetails.telephoneNumber</td>
+<td>string</td>
+<td>The telephone number.</td>
+<td></td>
+</tr>
+<tr>
+<td>contactDetails.emailAddress</td>
+<td>string</td>
+<td>The email address.</td>
+<td></td>
+</tr>
+<tr>
+<td>nationalInsuranceNumber</td>
+<td>string</td>
+<td>The national insurance number of the investor. Only required if opening an ISA.</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>employmentDetails</td>
+<td>ref</td>
+<td></td>
+<td>optional</td>
+</tr>
+<tr>
+<td>employmentDetails.jobTitle</td>
+<td>string</td>
+<td>The job title.</td>
+<td></td>
+</tr>
+<tr>
+<td>employmentDetails.employmentStatus</td>
+<td>string</td>
+<td>The employment status. Possible values are: <br><code>EMPLOYED_FULL_TIME</code><br><code>EMPLOYED_PART_TIME</code><br><code>SELF_EMPLOYED</code><br><code>UNEMPLOYED</code><br><code>HOUSE_PERSON</code><br><code>EDUCATION</code><br><code>RETIRED</code><br><code>NOT_WORKING_ILLNESS_DISABILITY</code><br></td>
+<td></td>
+</tr>
+<tr>
+<td>entityType</td>
+<td>string</td>
+<td>Possible values are: <br><code>INDIVIDUAL</code><br><code>CORPORATE</code><br></td>
+<td>required</td>
+</tr>
+<tr>
+<td>investorDeclarationType</td>
+<td>string</td>
+<td>All investors must complete a declaration to confirm the kind of investor they are. Possible values are: <br><code>RESTRICTED</code><br><code>HIGH_NET_WORTH</code><br><code>INVESTMENT_PROFESSIONAL</code><br><code>SOPHISTICATED</code><br></td>
+<td>required</td>
+</tr>
+<tr>
+<td>accountTypes</td>
+<td>array</td>
+<td>defaults to [GOJI_INVESTMENT, ISA] if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>corporateDetails</td>
+<td>ref</td>
+<td>only required for CORPORATE entityType.</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>corporateDetails.companyName</td>
+<td>string</td>
+<td>The company name.</td>
+<td></td>
+</tr>
+<tr>
+<td>corporateDetails.companyType</td>
+<td>string</td>
+<td>The company type.</td>
+<td></td>
+</tr>
+<tr>
+<td>corporateDetails.registrationNumber</td>
+<td>string</td>
+<td>The company registration number.</td>
+<td></td>
+</tr>
 <tr>
 <td>migrationDetails</td>
 <td>ref</td>
-<td>Optional. Only required if migrating an investor.</td>
-<td>optional</td>
+<td></td>
+<td>required</td>
 </tr>
 <tr>
 <td>migrationDetails.existingClientId</td>
 <td>string</td>
 <td>The existing client ID for the investor to be migrated which can be useful for referencing any investor should issues occur or indeed must reference any ISA Administration investor&#39;s existing ID when applicable</td>
-<td></td>
+<td>required</td>
 </tr>
 <tr>
 <td>migrationDetails.diligenceMigrationOption</td>
 <td>string</td>
-<td>The agreed KYC/B check requirements for the investor - Goji will work with the platform to review historical checks and determine what value should be specified. Possible values are: <br><code>FULL_CHECK</code><br><code>HISTORICAL_RELIANCE_WITH_MONITORING</code><br><code>EVENT_BASED_FULL_CHECK</code><br><code>EVENT_BASED_WITH_MONITORING</code><br><code>FULL_RELIANCE</code></td>
-<td></td>
+<td>The agreed KYC/B check requirements for the investor - Goji will work with the platform to review historical checks and determine what value should be specified. Possible values are: <br><code>FULL_CHECK</code>: Goji will perform a full diligence check<br><code>HISTORICAL_RELIANCE_WITH_MONITORING</code>: Goji will place reliance on previous checks (only when agreed beforehand) and perform ongoing monitoring<br><code>EVENT_BASED_FULL_CHECK</code>: Goji will only perform a full diligence check at the point the investor becomes active (most applicable for migrated who have a zero portfolio balance and are considered inactive)<br><code>EVENT_BASED_WITH_MONITORING</code>: Goji will place reliance on previous checks (only when agreed beforehand) but will only commence ongoing monitoring when  the investor becomes active (most applicable for migrated who have a zero portfolio balance and are considered inactive)<br><code>FULL_RELIANCE</code>: As agreed beforehand where Goji performs no upfront diligence checks and the platform takes on responsibility here</td>
+<td>required</td>
 </tr>
 <tr>
 <td>migrationDetails.previousCheckDate</td>
 <td>string</td>
 <td>The optional date when the previous diligence checks were performed against the investor if Goji is placing reliance on the historical checks</td>
-<td></td>
+<td>optional</td>
 </tr>
 </tbody></table>
-<h3 id='investors-code-post-platformapi-investors-code-response'>Response</h3>
+<h3 id='investors-code-post-platformapi-migrate-code-response'>Response</h3>
 <table><thead>
 <tr>
 <th>Name</th>
