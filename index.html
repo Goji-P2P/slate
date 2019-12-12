@@ -7952,7 +7952,7 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <td>id</td>
 <td>String</td>
 <td>UUID</td>
-<td>A UUID of the trade.</td>
+<td>The platform generated unique ID of the trade. Up to 100 characters.</td>
 </tr>
 <tr>
 <td>quantity</td>
@@ -7965,6 +7965,12 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <td>String</td>
 <td>ID/Symbol</td>
 <td>The platform generated unique ID/symbol of the instrument.</td>
+</tr>
+<tr>
+<td>sourceDateTime</td>
+<td>String</td>
+<td>ISO-8601</td>
+<td>The timestamp at which the trade was originally executed on the platform.</td>
 </tr>
 <tr>
 <td>settlementStatus</td>
@@ -8147,7 +8153,8 @@ When migrating shares, the <code>investor</code> must be specified.</p>
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="w">
+  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sourceDateTime"</span><span class="p">:</span><span class="s2">"2019-12-09T10:21:19.453Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='settlement-equity-code-post-trades-code-description'>Description</h3>
 <p>Persists a new trade which will then undergo the settlement process.</p>
@@ -8234,7 +8241,8 @@ When migrating shares, the <code>investor</code> must be specified.</p>
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="w">
+  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sourceDateTime"</span><span class="p">:</span><span class="s2">"2019-12-09T10:21:19.453Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='settlement-equity-code-get-trades-tradeid-code-description'>Description</h3>
 <p>Retrieves the details of an existing trade.</p>
