@@ -590,7 +590,7 @@ Authorization: Basic ...
 ```
 
 ```http 
-HTTP/1.1 200 OK
+HTTP/1.1 201 OK
 Content-Type: application/json
 
 {
@@ -626,4 +626,4 @@ Extract a fee from a specified investor's account cash balance
 | amount.currency  | string | The ISO 4217 three character codes eg 'GBP'                                   |
 | bankAccountId    | string | The ID of the bank account details the fees are being sent to                 |
 | reference        | string | The payment reference to be used for the fee transaction                      |
-| status           | string | The status of the fee transfer process                                        |
+| status           | string | The status of the fee transfer process. Possible values are: <br>`PENDING`<br>`CLEARED`<br>|
