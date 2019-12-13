@@ -23,7 +23,6 @@ endpoint can be used to see the current status of the batch payment instruction.
 
 The status of the money transfer is further broken down at a per investor level. 
 
-
 ## Batch Model
 
 | Key                         | JSON Type | Value Type | Value Description                                                 |
