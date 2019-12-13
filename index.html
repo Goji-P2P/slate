@@ -1569,12 +1569,13 @@ For each possible way of integrating with the application, you will need to firs
 
 <span class="s2">"SUCCESS"</span><span class="w">
 </span></code></pre><h3 id='investors-code-put-platformapi-investors-clientid-updateinvestmentdeclarationagreement-code-description'>Description</h3>
-<p>Loads the current ISA declaration.</p>
+<p>Update investor investment declaration</p>
 <h3 id='investors-code-put-platformapi-investors-clientid-updateinvestmentdeclarationagreement-code-request'>Request</h3>
 <table><thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
+<th>Value Type</th>
 <th>Description</th>
 <th>Required</th>
 </tr>
@@ -1582,19 +1583,22 @@ For each possible way of integrating with the application, you will need to firs
 <tr>
 <td>type</td>
 <td>string</td>
+<td>Enum</td>
 <td>The investor type declared by the investor Possible values are: <br><code>RESTRICTED</code><br><code>HIGH_NET_WORTH</code><br><code>INVESTMENT_PROFESSIONAL</code><br><code>SOPHISTICATED</code><br></td>
 <td>required</td>
 </tr>
 <tr>
 <td>dateTimeSigned</td>
 <td>string</td>
+<td>ISO-8601</td>
 <td>The date the new declaration has been signed</td>
 <td>required</td>
 </tr>
 <tr>
 <td>reason</td>
 <td>string</td>
-<td>The reason of the change</td>
+<td>string</td>
+<td>The reason for the change. Up to 300 characters.</td>
 <td>required</td>
 </tr>
 </tbody></table>
