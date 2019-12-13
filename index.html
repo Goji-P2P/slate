@@ -275,6 +275,9 @@
                     <a href="#investors-get-platformapi-isadeclaration" class="toc-h2 toc-link" data-title="GET /platformApi/isaDeclaration"><code>GET /platformApi/isaDeclaration</code></a>
                   </li>
                   <li>
+                    <a href="#investors-put-platformapi-investors-clientid-updateinvestmentdeclarationagreement" class="toc-h2 toc-link" data-title="PUT /platformApi/investors/{clientId}/updateInvestmentDeclarationAgreement"><code>PUT /platformApi/investors/{clientId}/updateInvestmentDeclarationAgreement</code></a>
+                  </li>
+                  <li>
                     <a href="#investors-post-platformapi-investors" class="toc-h2 toc-link" data-title="POST /platformApi/investors"><code>POST /platformApi/investors</code></a>
                   </li>
                   <li>
@@ -1542,6 +1545,57 @@ For each possible way of integrating with the application, you will need to firs
 <td>version</td>
 <td>string</td>
 <td>The version of the ISA declaration.</td>
+</tr>
+</tbody></table>
+<h2 id='investors-put-platformapi-investors-clientid-updateinvestmentdeclarationagreement'><code>PUT /platformApi/investors/{clientId}/updateInvestmentDeclarationAgreement</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/investors/{clientId}/updateInvestmentDeclarationAgreement</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOPHISTICATED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dateTimeSigned"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-13T14:10:30.00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reason of the change"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="s2">"SUCCESS"</span><span class="w">
+</span></code></pre><h3 id='investors-code-put-platformapi-investors-clientid-updateinvestmentdeclarationagreement-code-description'>Description</h3>
+<p>Loads the current ISA declaration.</p>
+<h3 id='investors-code-put-platformapi-investors-clientid-updateinvestmentdeclarationagreement-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>The investor type declared by the investor Possible values are: <br><code>RESTRICTED</code><br><code>HIGH_NET_WORTH</code><br><code>INVESTMENT_PROFESSIONAL</code><br><code>SOPHISTICATED</code><br></td>
+<td>required</td>
+</tr>
+<tr>
+<td>dateTimeSigned</td>
+<td>string</td>
+<td>The date the new declaration has been signed</td>
+<td>required</td>
+</tr>
+<tr>
+<td>reason</td>
+<td>string</td>
+<td>The reason of the change</td>
+<td>required</td>
 </tr>
 </tbody></table>
 <h2 id='investors-post-platformapi-investors'><code>POST /platformApi/investors</code></h2><pre class="highlight http tab-http"><code><span class="err">
