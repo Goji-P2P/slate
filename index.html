@@ -499,7 +499,7 @@
                     <a href="#settlement-equity-post-instruments" class="toc-h2 toc-link" data-title="POST /instruments"><code>POST /instruments</code></a>
                   </li>
                   <li>
-                    <a href="#settlement-equity-get-instruments-instrumentsymbol" class="toc-h2 toc-link" data-title="GET /instruments/{InstrumentSymbol}"><code>GET /instruments/{InstrumentSymbol}</code></a>
+                    <a href="#settlement-equity-get-instruments-symbol" class="toc-h2 toc-link" data-title="GET /instruments/{symbol}"><code>GET /instruments/{symbol}</code></a>
                   </li>
                   <li>
                     <a href="#settlement-equity-issuing-allocating-shares" class="toc-h2 toc-link" data-title="Issuing / Allocating Shares">Issuing / Allocating Shares</a>
@@ -511,7 +511,7 @@
                     <a href="#settlement-equity-post-allocations" class="toc-h2 toc-link" data-title="POST /allocations"><code>POST /allocations</code></a>
                   </li>
                   <li>
-                    <a href="#settlement-equity-get-allocations-allocationid" class="toc-h2 toc-link" data-title="GET /allocations/{AllocationId}"><code>GET /allocations/{AllocationId}</code></a>
+                    <a href="#settlement-equity-get-allocations-id" class="toc-h2 toc-link" data-title="GET /allocations/{id}"><code>GET /allocations/{id}</code></a>
                   </li>
                   <li>
                     <a href="#settlement-equity-trade-settlement" class="toc-h2 toc-link" data-title="Trade Settlement 🚧"><em>Trade Settlement 🚧</em></a>
@@ -526,7 +526,7 @@
                     <a href="#settlement-equity-post-trades" class="toc-h2 toc-link" data-title="POST /trades"><code>POST /trades</code></a>
                   </li>
                   <li>
-                    <a href="#settlement-equity-get-trades-tradeid" class="toc-h2 toc-link" data-title="GET /trades/{tradeId}"><code>GET /trades/{tradeId}</code></a>
+                    <a href="#settlement-equity-get-trades-id" class="toc-h2 toc-link" data-title="GET /trades/{id}"><code>GET /trades/{id}</code></a>
                   </li>
                   <li>
                     <a href="#settlement-equity-corporate-actions" class="toc-h2 toc-link" data-title="Corporate Actions 🚧"><em>Corporate Actions 🚧</em></a>
@@ -541,7 +541,7 @@
                     <a href="#settlement-equity-post-corporate-actions-dividends" class="toc-h2 toc-link" data-title="POST /corporate-actions/dividends"><code>POST /corporate-actions/dividends</code></a>
                   </li>
                   <li>
-                    <a href="#settlement-equity-get-corporate-actions-dividends-dividendid" class="toc-h2 toc-link" data-title="GET /corporate-actions/dividends/{dividendId}"><code>GET /corporate-actions/dividends/{dividendId}</code></a>
+                    <a href="#settlement-equity-get-corporate-actions-dividends-id" class="toc-h2 toc-link" data-title="GET /corporate-actions/dividends/{id}"><code>GET /corporate-actions/dividends/{id}</code></a>
                   </li>
               </ul>
           </li>
@@ -6391,7 +6391,7 @@ transfer money to multiple investors.</p>
 <p>Said endpoint references a <code>totalPayout</code> amount, and takes a list of all the investors and the amount each is due to be paid.</p>
 
 <p>The call to <a href="/#payments-manager-post-transfers-batch"><code>POST /transfers/batch</code></a> will return a 201 Created response
-with a <code>status</code> field in the body of &#39;AWAITING FUNDS&#39;.</p>
+with a <code>status</code> field in the body of <code>AWAITING_FUNDS</code>.</p>
 
 <p>⚠️ Please note that this response only indicates that the batch payment instruction has been received. 
 The distribution of the batch to investors will not occur until the necessary funds are received. </p>
@@ -6402,7 +6402,7 @@ The distribution of the batch to investors will not occur until the necessary fu
 endpoint can be used to see the current status of the batch payment instruction.</p>
 
 <p>The status of the money transfer is further broken down at a per investor level. </p>
-<h2 id='payments-manager-batch-model'>Batch Model</h2>
+<h2 id='payments-manager-batch-model'>Batch Model</h2><h3 id='payments-manager-batch-model-required-attributes'>Required Attributes</h3>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -6414,74 +6414,84 @@ endpoint can be used to see the current status of the batch payment instruction.
 <tr>
 <td>batchId</td>
 <td>String</td>
-<td>UUID</td>
+<td>BatchId</td>
 <td>The platform generated UUID of the batch payment posting.</td>
 </tr>
 <tr>
 <td>type</td>
 <td>String</td>
 <td>Enum</td>
-<td>The type of batch payment. Values: MIGRATION, BONUS, CARD_PAYMENTS</td>
+<td>The type of batch payment. Values: <code>MIGRATION</code>, <code>BONUS</code>, <code>CARD_PAYMENTS</code></td>
 </tr>
 <tr>
 <td>status</td>
 <td>String</td>
 <td>Enum</td>
-<td>Response Only. Values: AWAITING_FUNDS, DISTRIBUTING, COMPLETE.</td>
-</tr>
-<tr>
-<td>totalPayout.currency</td>
-<td>String</td>
-<td>ISO 4217</td>
-<td>The currency that the total dividend payment is in.</td>
+<td>Response Only. Values: <code>AWAITING_FUNDS</code>, <code>DISTRIBUTING</code>, <code>COMPLETE</code>.</td>
 </tr>
 <tr>
 <td>totalPayout.amount</td>
 <td>Number</td>
 <td>Number</td>
-<td>The total amount to be paid out.</td>
+<td>The total amount to be paid out to investors.</td>
+</tr>
+<tr>
+<td>totalPayout.currency</td>
+<td>String</td>
+<td>ISO 4217</td>
+<td>The currency that the <code>totalPayout.currency</code> is in.</td>
+</tr>
+<tr>
+<td>payments[]</td>
+<td>Array</td>
+<td>Object</td>
+<td>The list of payments to be made as part of this batch instruction.</td>
 </tr>
 <tr>
 <td>payments[].clientId</td>
 <td>String</td>
-<td>Client ID</td>
-<td>The client ID for the batch payment.</td>
+<td>Object</td>
+<td>The clientId of the investor associated with this individual payment.</td>
 </tr>
 <tr>
-<td>payments[].accountType</td>
+<td>payments[] .accountType</td>
 <td>String</td>
 <td>Enum</td>
-<td>The client&#39;s account to pay to. Values: GOJI_INVESTMENT, ISA.</td>
+<td>The client&#39;s account to pay to. Values: <code>GOJI_INVESTMENT</code>, <code>ISA</code>.</td>
 </tr>
 <tr>
-<td>payments[].amount.currency</td>
+<td>payments[] .amount.currency</td>
 <td>String</td>
 <td>ISO 4217</td>
-<td>The currency that the batch payment is paid in.</td>
+<td>The currency associated with a <code>payments[].amount.amount</code>.</td>
 </tr>
 <tr>
-<td>payments[].amount.amount</td>
+<td>payments[] .amount.amount</td>
 <td>Number</td>
 <td>Number</td>
 <td>The total amount to be paid to this investor.</td>
 </tr>
+</tbody></table>
+<h3 id='payments-manager-batch-model-optional-attributes'>Optional Attributes</h3>
+<table><thead>
 <tr>
-<td>payments[].status</td>
-<td>String</td>
-<td>Enum</td>
-<td>Response Only. Values: PENDING, PAID.</td>
+<th>Key</th>
+<th>JSON Type</th>
+<th>Value Type</th>
+<th>Value Description</th>
 </tr>
+</thead><tbody>
 <tr>
 <td>payments[].sourceOfFunds</td>
 <td>Object</td>
 <td>Object</td>
-<td>Optional. The client&#39;s active bank account details.</td>
+<td>Optional but inclusion preferred. The client&#39;s active bank account details.</td>
 </tr>
 <tr>
 <td>sourceOfFunds.accountName</td>
 <td>String</td>
 <td>String</td>
-<td>The client&#39;s bank account name.</td>
+<td>The investor&#39;s bank account name.</td>
 </tr>
 <tr>
 <td>sourceOfFunds.accountNumber</td>
@@ -6496,10 +6506,16 @@ endpoint can be used to see the current status of the batch payment instruction.
 <td>The client&#39;s bank account sort code.</td>
 </tr>
 <tr>
+<td>payments[].status</td>
+<td>String</td>
+<td>Enum</td>
+<td>Response Only. Values: <code>PENDING</code>, <code>DISTRIBUTED</code>.</td>
+</tr>
+<tr>
 <td>payTo.accountName</td>
 <td>String</td>
 <td>String</td>
-<td>Response Only. The account number to send payment to.</td>
+<td>Response Only. The name of the account to send payment to.</td>
 </tr>
 <tr>
 <td>payTo.accountNumber</td>
@@ -6606,9 +6622,9 @@ endpoint can be used to see the current status of the batch payment instruction.
 </span></code></pre><h3 id='payments-manager-code-post-transfers-batch-code-description'>Description</h3>
 <p>Creates a new batch payment instruction to transfer money to a list of investors.</p>
 <h3 id='payments-manager-code-post-transfers-batch-code-request'>Request</h3>
-<p>Body: <a href="/#payments-manager-batch-payments-model">Batch Model</a></p>
+<p>Body: <a href="/#payments-manager-batch-model">Batch Model</a></p>
 <h3 id='payments-manager-code-post-transfers-batch-code-response'>Response</h3>
-<p>Body: <a href="/#payments-manager-batch-payments-model">Batch Model</a></p>
+<p>Body: <a href="/#payments-manager-batch-model">Batch Model</a></p>
 
 <p>Http Status: </p>
 
@@ -6702,7 +6718,7 @@ endpoint can be used to see the current status of the batch payment instruction.
 <h3 id='payments-manager-code-get-transfers-batch-batchid-code-request'>Request</h3>
 <p>Body: None</p>
 <h3 id='payments-manager-code-get-transfers-batch-batchid-code-response'>Response</h3>
-<p>Body: <a href="/#payments-manager-batch-payments-model">Batch Payment Model</a> </p>
+<p>Body: <a href="/#payments-manager-batch-model">Batch Payment Model</a> </p>
 
 <p>Http Status: </p>
 
@@ -6715,7 +6731,7 @@ endpoint can be used to see the current status of the batch payment instruction.
 </tr>
 </thead><tbody>
 <tr>
-<td>200 Created</td>
+<td>200 OK</td>
 <td>batch payment exists and is return in the body</td>
 <td>Batch</td>
 <td>application/json</td>
@@ -7710,32 +7726,39 @@ avoid significant modification to published documentation, there is a chance som
  updates may take place.
 </aside>
 <h2 id='settlement-equity-instruments'><em>Instruments 🚧</em></h2>
-<p>The Instruments API allows an Investment Manager to <a href="/#settlement-equity-instrument-creation">create new Instruments</a>, and 
-<a href="/#settlement-equity-issuing-allocating-shares">issue/allocate shares</a> of that instrument.</p>
+<p>The Instruments API allows an Investment Manager to:</p>
 
-<p>This instrument can then be used for:</p>
+<p>(1) <a href="/#settlement-equity-instrument-creation">create new instruments</a> and (2) <a href="/#settlement-equity-issuing-allocating-shares">issue/ allocate shares</a> of that instrument.</p>
+
+<p>A registered instrument can then be used for:</p>
 
 <ul>
 <li><a href="/#settlement-equity-trade-settlement">Trade Settlement</a></li>
 <li><a href="/#settlement-equity-corporate-actions">Corporate Actions</a></li>
 </ul>
 <h2 id='settlement-equity-instrument-creation'>Instrument Creation</h2>
-<p>Instrument creation allows registering a new <a href="/#settlement-equity-instrument-model">Instrument</a>, which is later referenced
-by the <code>InstrumentSymbol</code>.  Currently only equity instruments are supported.</p>
-<h2 id='settlement-equity-instrument-model'>Instrument Model</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"assetClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQUITY"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"primaryMarketBankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"feeTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMMISSION"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"bankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>The Instrument model used for both the <a href="/#settlement-equity-post-instruments"><code>POST /instruments</code></a> and <a href="/#settlement-equity-get-instruments-instrumentsymbol"><code>GET /instruments/{InstrumentSymbol}</code></a> endpoints.</p>
+<p>Instrument creation allows registering a new <a href="/#settlement-equity-instrument-model">Instrument</a>.</p>
 
+<p>This instrument would then be referenced in requests to endpoints e.g. <a href="/#settlement-equity-trade-settlement">Trade Settlement</a> by instrument <code>symbol</code>.  </p>
+
+<p>Currently only equity instruments are supported.</p>
+<h2 id='settlement-equity-instrument-model'>Instrument Model</h2>
+<p>The Instrument model used for endpoints: </p>
+
+<p>(1) <a href="/#settlement-equity-post-instruments"><code>POST /instruments</code></a> </p>
+
+<p>(2) <a href="/#settlement-equity-get-instruments-symbol"><code>GET /instruments/{symbol}</code></a></p>
+
+<p>⚠️ Please note that before registering instruments, BankAccountIds have to be registered at the endpoint: </p>
+
+<p><a href="/#payments-manager-post-platformapi-bankaccountdetails"><code>POST /platformApi/bankAccountDetails</code></a></p>
+
+<p>before they can be used for the following instrument attributes: </p>
+
+<p>(1) <code>paymentInstructions.primaryMarketBankAccountId</code> </p>
+
+<p>(2) <code>feeTypes[].bankAccountId</code></p>
+<h3 id='settlement-equity-instrument-model-required-attributes'>Required Attributes</h3>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -7748,7 +7771,7 @@ by the <code>InstrumentSymbol</code>.  Currently only equity instruments are sup
 <td>symbol</td>
 <td>String</td>
 <td>InstrumentSymbol</td>
-<td>Unique symbol used to identify this instrument.</td>
+<td>Unique symbol used to identify this instrument. Max 100 characters.</td>
 </tr>
 <tr>
 <td>assetClass</td>
@@ -7757,22 +7780,44 @@ by the <code>InstrumentSymbol</code>.  Currently only equity instruments are sup
 <td>Values: EQUITY</td>
 </tr>
 <tr>
-<td>primaryMarketBankAccountId</td>
+<td>paymentInstructions</td>
+<td>Object</td>
+<td>Object</td>
+<td>Contains the attributes listed below.</td>
+</tr>
+<tr>
+<td>paymentInstructions. primaryMarketBankAccountId</td>
 <td>String</td>
 <td>BankAccountId</td>
-<td>The bank account ID to send primary market sale funds to.</td>
+<td>The BankAccountId to send primary market sale funds to.</td>
+</tr>
+</tbody></table>
+<h3 id='settlement-equity-instrument-model-optional-attributes'>Optional Attributes</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>JSON Type</th>
+<th>Value Type</th>
+<th>Value Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>paymentInstructions. feeTypes[]</td>
+<td>Array</td>
+<td>List</td>
+<td>A list of all additional fees associated with this instrument. Can be empty.</td>
 </tr>
 <tr>
 <td>feeTypes[].symbol</td>
 <td>String</td>
 <td>FeeSymbol</td>
-<td>A symbolic representation of the type of fee, i.e. STAMP_DUTY.</td>
+<td>A symbolic representation of the type of fee, i.e. STAMP_DUTY. Required if a feeType is specified.</td>
 </tr>
 <tr>
 <td>feeTypes[].bankAccountId</td>
 <td>String</td>
 <td>BankAccountId</td>
-<td>BankAccountID from <a href="/#payments-manager-post-bankaccountdetails"><code>POST /platformApi/bankAccountDetails</code></a>.</td>
+<td>The BankAccountId associated with the FeeSymbol.  Required if a feeType is specified.</td>
 </tr>
 </tbody></table>
 <h2 id='settlement-equity-post-instruments'><code>POST /instruments</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/instruments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -7782,35 +7827,41 @@ by the <code>InstrumentSymbol</code>.  Currently only equity instruments are sup
 <span class="na">X-GOJI-CLIENT-ID</span><span class="p">:</span> <span class="s">79f33f3c-86e0-4613-ba49-9fac3c6f0eab</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPV99"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPV1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy Parade - SPV1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"assetClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQUITY"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"primaryMarketBankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"feeTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMMISSION"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"bankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"paymentInstructions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"primaryMarketBankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"feeTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMMISSION"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">X-GOJI-REQUEST-ID</span><span class="p">:</span> <span class="s">79f33f3c-86e0-4613-ba49-9fac3c6f0eab</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPV99"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPV1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy Parade - SPV1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"assetClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQUITY"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"primaryMarketBankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"feeTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMMISSION"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"bankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"paymentInstructions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"primaryMarketBankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"feeTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMMISSION"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='settlement-equity-code-post-instruments-code-description'>Description</h3>
 <p>Registers a new instrument which can then be referenced by its symbol in other APIs which require an <code>InstrumentSymbol</code>.</p>
 
-<p>The instrument can then be referenced by the <code>InstrumentSymbol</code> in the following APIs:</p>
+<p>A registered instrument can be referenced by the <code>InstrumentSymbol</code> in the following APIs:</p>
 
 <ul>
 <li><a href="/#settlement-equity-trade-settlement">Trade Settlement API</a></li>
@@ -7854,7 +7905,7 @@ must be specified.  The <code>FeeSymbol</code>s that have been registered will l
 <td>n/a</td>
 </tr>
 </tbody></table>
-<h2 id='settlement-equity-get-instruments-instrumentsymbol'><code>GET /instruments/{InstrumentSymbol}</code></h2><h3 id='settlement-equity-code-get-instruments-instrumentsymbol-code-description'>Description</h3><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/instruments/SPV99</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='settlement-equity-get-instruments-symbol'><code>GET /instruments/{symbol}</code></h2><h3 id='settlement-equity-code-get-instruments-symbol-code-description'>Description</h3><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/instruments/SPV99</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -7864,21 +7915,24 @@ must be specified.  The <code>FeeSymbol</code>s that have been registered will l
 <span class="na">X-GOJI-REQUEST-ID</span><span class="p">:</span> <span class="s">79f33f3c-86e0-4613-ba49-9fac3c6f0eab</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPV99"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy Parade - SPV99"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"assetClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQUITY"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"primaryMarketBankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"feeTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMMISSION"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"bankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"paymentInstructions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"primaryMarketBankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"feeTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMMISSION"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Retrieves the details held about an instrument.</p>
-<h3 id='settlement-equity-code-get-instruments-instrumentsymbol-code-request'>Request</h3>
+<p>Retrieves the details held on an instrument given its <code>symbol</code> is supplied.</p>
+<h3 id='settlement-equity-code-get-instruments-symbol-code-request'>Request</h3>
 <p>Body: None</p>
-<h3 id='settlement-equity-code-get-instruments-instrumentsymbol-code-response'>Response</h3>
+<h3 id='settlement-equity-code-get-instruments-symbol-code-response'>Response</h3>
 <p>Body: <a href="/#settlement-equity-instrument-model">Instrument Model</a></p>
 
 <p>Http Status:</p>
@@ -7892,8 +7946,8 @@ must be specified.  The <code>FeeSymbol</code>s that have been registered will l
 </tr>
 </thead><tbody>
 <tr>
-<td>200 Created</td>
-<td>Instrument exists and is return in the body</td>
+<td>200 OK</td>
+<td>Instrument exists and is returned in the body</td>
 <td>Instrument</td>
 <td>application/json</td>
 </tr>
@@ -7945,10 +7999,10 @@ each investor&#39;s shares.</p>
 <td>The (whole) number of shares to allocate.</td>
 </tr>
 <tr>
-<td>instrumentId</td>
+<td>instrumentSymbol</td>
 <td>String</td>
 <td>InstrumentSymbol</td>
-<td>Property Partner generated unique ID of the instrument.</td>
+<td>Platform generated unique ID of the instrument.</td>
 </tr>
 <tr>
 <td>investor</td>
@@ -7966,7 +8020,7 @@ each investor&#39;s shares.</p>
 <td>investor.accountType</td>
 <td>String</td>
 <td>Enum</td>
-<td>Values: GIA, ISA.</td>
+<td>Values: <code>GIA</code>, <code>ISA</code>.</td>
 </tr>
 <tr>
 <td>nominee</td>
@@ -7978,7 +8032,7 @@ each investor&#39;s shares.</p>
 <td>nominee.accountType</td>
 <td>String</td>
 <td>Enum</td>
-<td>The nominee involved in the alloc. Values: GOJI, ORIGINATOR.</td>
+<td>The nominee involved in the alloc. Values: <code>GOJI</code>, <code>ORIGINATOR</code>.</td>
 </tr>
 </tbody></table>
 <h2 id='settlement-equity-post-allocations'><code>POST /allocations</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/allocations</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -7996,7 +8050,7 @@ each investor&#39;s shares.</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"instrumentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="w">
+  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -8010,7 +8064,7 @@ each investor&#39;s shares.</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"instrumentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="w">
+  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='settlement-equity-code-post-allocations-code-description'>Description</h3>
 <p>Creates a new allocation of shares.</p>
@@ -8051,7 +8105,7 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <td>n/a</td>
 </tr>
 </tbody></table>
-<h2 id='settlement-equity-get-allocations-allocationid'><code>GET /allocations/{AllocationId}</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/allocations/5dd40510-810e-4a55-a395-04819fd915b9</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='settlement-equity-get-allocations-id'><code>GET /allocations/{id}</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/allocations/5dd40510-810e-4a55-a395-04819fd915b9</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -8068,13 +8122,13 @@ When migrating shares, the <code>investor</code> must be specified.</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"instrumentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="w">
+  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='settlement-equity-code-get-allocations-allocationid-code-description'>Description</h3>
-<p>Retrieves the details of an existing allocation.</p>
-<h3 id='settlement-equity-code-get-allocations-allocationid-code-request'>Request</h3>
+</span></code></pre><h3 id='settlement-equity-code-get-allocations-id-code-description'>Description</h3>
+<p>Retrieves the details of an existing allocation given an allocation <code>id</code> is supplied.</p>
+<h3 id='settlement-equity-code-get-allocations-id-code-request'>Request</h3>
 <p>Body: <a href="/#settlement-equity-allocation-model">Allocation Model</a></p>
-<h3 id='settlement-equity-code-get-allocations-allocationid-code-response'>Response</h3>
+<h3 id='settlement-equity-code-get-allocations-id-code-response'>Response</h3>
 <p>Body: <a href="/#settlement-equity-allocation-model">Allocation Model</a></p>
 
 <p>Http Status: </p>
@@ -8088,7 +8142,7 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>200 Created</td>
+<td>200 OK</td>
 <td>Allocation exists and is return in the body</td>
 <td>Allocation</td>
 <td>application/json</td>
@@ -8119,8 +8173,8 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <h2 id='settlement-equity-trades'>Trades</h2>
 <p>Once an instrument has been created, it can then be traded. A trade can be submitted using <a href="/#settlement-equity-post-trades"><code>POST /trades</code></a>.</p>
 
-<p>To retrieve an existing trade, the <a href="#settlement-equity-get-trades-tradeid"><code>GET /trades/{tradeId}</code></a> endpoint can be used.</p>
-<h2 id='settlement-equity-trade-model'>Trade Model</h2>
+<p>To retrieve an existing trade, the <a href="#settlement-equity-get-trades-id"><code>GET /trades/{id}</code></a> endpoint can be used.</p>
+<h2 id='settlement-equity-trade-model'>Trade Model</h2><h3 id='settlement-equity-trade-model-required-attributes'>Required Attributes</h3>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -8132,14 +8186,8 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <tr>
 <td>id</td>
 <td>String</td>
-<td>UUID</td>
+<td>TradeId</td>
 <td>The platform generated unique ID of the trade. Up to 100 characters.</td>
-</tr>
-<tr>
-<td>quantity</td>
-<td>Number</td>
-<td>Number</td>
-<td>The number of shares being bought/sold.</td>
 </tr>
 <tr>
 <td>instrumentSymbol</td>
@@ -8148,16 +8196,10 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <td>The platform generated unique ID/symbol of the instrument.</td>
 </tr>
 <tr>
-<td>sourceDateTime</td>
-<td>String</td>
-<td>ISO-8601</td>
-<td>The timestamp at which the trade was originally executed on the platform.</td>
-</tr>
-<tr>
-<td>settlementStatus</td>
-<td>String</td>
-<td>Enum</td>
-<td>Response only.</td>
+<td>quantity</td>
+<td>Number</td>
+<td>Number</td>
+<td>The number of shares being bought/sold.</td>
 </tr>
 <tr>
 <td>price</td>
@@ -8166,16 +8208,22 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <td>The price the instrument is being traded at.</td>
 </tr>
 <tr>
+<td>price.amount</td>
+<td>Number</td>
+<td>Number</td>
+<td>The cost per share unit in <code>price.currency</code>.</td>
+</tr>
+<tr>
 <td>price.currency</td>
 <td>String</td>
 <td>ISO 4217</td>
 <td>The currency that <code>price.amount</code> is expressed in.</td>
 </tr>
 <tr>
-<td>price.amount</td>
-<td>Number</td>
-<td>Number</td>
-<td>The cost per share in <code>price.currency</code>.</td>
+<td>sourceDateTime</td>
+<td>String</td>
+<td>ISO 8601</td>
+<td>The timestamp at which the trade was originally executed on the platform.</td>
 </tr>
 <tr>
 <td>buy</td>
@@ -8187,55 +8235,37 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <td>buy.investor</td>
 <td>Object</td>
 <td>Object</td>
-<td>Null for non-investor, or details investor details.</td>
+<td>Set to null for non-investor, or details investor details.</td>
 </tr>
 <tr>
-<td>buy.investor.clientId</td>
+<td>buy.investor. clientId</td>
 <td>String</td>
-<td>Client ID</td>
-<td>The client ID of the investor, i.e. PROP-12345.</td>
+<td>String</td>
+<td>The registered clientId of the investor, i.e. PROP-12345.</td>
 </tr>
 <tr>
-<td>buy.investor.accountType</td>
+<td>buy.investor. accountType</td>
 <td>String</td>
 <td>Enum</td>
-<td>Values: GIA, ISA.</td>
+<td>Values: <code>GIA</code>, <code>ISA</code>.</td>
 </tr>
 <tr>
 <td>buy.nominee</td>
 <td>Object</td>
 <td>Object</td>
-<td>Null when the buyer is not a nominee, else field below.</td>
+<td>Set to null when the buyer is not a nominee, else field below.</td>
 </tr>
 <tr>
-<td>buy.nominee.accountType</td>
+<td>buy.nominee. accountType</td>
 <td>String</td>
 <td>Enum</td>
 <td>The nominee involved in the buy. Values: GOJI, ORIGINATOR.</td>
 </tr>
 <tr>
 <td>buy.fees[]</td>
-<td>FeeSymbol</td>
-<td>FeeSymbol</td>
-<td>Fields below detail a FeeSymbol registered at <code>POST /instrument</code>.</td>
-</tr>
-<tr>
-<td>buy.fees[].symbol</td>
-<td>String</td>
-<td>String</td>
-<td>Optional. Fee type symbol registered at <code>POST /instrument</code>.</td>
-</tr>
-<tr>
-<td>buy.fees[].cost.currency</td>
-<td>Number</td>
-<td>Number</td>
-<td>The currency of the fee.</td>
-</tr>
-<tr>
-<td>buy.fees[].cost.amount</td>
-<td>Number</td>
-<td>Number</td>
-<td>The amount of the fee in <code>cost.currency</code>. (not per share)</td>
+<td>Array</td>
+<td>List</td>
+<td>Required when fees exist on the instrument being traded that the buyer needs to pay. Otherwise leave empty.</td>
 </tr>
 <tr>
 <td>sell</td>
@@ -8247,55 +8277,101 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <td>sell.investor</td>
 <td>Object</td>
 <td>Object</td>
-<td>Null for non-investor, or details investor details.</td>
+<td>Set to null for non-investor, or details investor details.</td>
 </tr>
 <tr>
-<td>sell.investor.clientId</td>
+<td>sell.investor. clientId</td>
 <td>String</td>
-<td>Client ID</td>
-<td>The client ID of the investor, i.e. PROP-12345.</td>
+<td>String</td>
+<td>The registered clientId of the investor, i.e. PROP-12345.</td>
 </tr>
 <tr>
-<td>sell.investor.accountType</td>
+<td>sell.investor. accountType</td>
 <td>String</td>
 <td>Enum</td>
-<td>Values: GIA, ISA.</td>
+<td>Values: <code>GIA</code>, <code>ISA</code>.</td>
 </tr>
 <tr>
 <td>sell.nominee</td>
 <td>Object</td>
 <td>Object</td>
-<td>Null when the seller is not a nominee, else fields below.</td>
+<td>Set to null when the seller is not a nominee, else fields below.</td>
 </tr>
 <tr>
-<td>sell.nominee.accountType</td>
+<td>sell.nominee. accountType</td>
 <td>String</td>
 <td>Enum</td>
 <td>The nominee involved in the sell. Values: GOJI, ORIGINATOR.</td>
 </tr>
 <tr>
 <td>sell.fees[]</td>
+<td>Array</td>
+<td>List</td>
+<td>Required when fees exist on the instrument being traded that the seller needs to pay. Otherwise leave empty.</td>
+</tr>
+</tbody></table>
+<h3 id='settlement-equity-trade-model-optional-attributes'>Optional Attributes</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>JSON Type</th>
+<th>Value Type</th>
+<th>Value Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>buy.fees[]</td>
+<td>Array</td>
+<td>List</td>
+<td>Optional. Fields below detail a <code>FeeSymbol</code> registered at <code>POST /instrument</code>.</td>
+</tr>
+<tr>
+<td>buy.fees[] .symbol</td>
 <td>String</td>
+<td>FeeSymbol</td>
+<td>Fee type symbol registered at <code>POST /instrument</code>.</td>
+</tr>
+<tr>
+<td>buy.fees[] .cost.amount</td>
+<td>Number</td>
+<td>Number</td>
+<td>The amount to be charged associated with a specific <code>FeeSymbol</code></td>
+</tr>
+<tr>
+<td>buy.fees[] .cost.currency</td>
+<td>Number</td>
+<td>Number</td>
+<td>The currency that <code>cost.amount</code> is expressed in.</td>
+</tr>
+<tr>
+<td>sell.fees[]</td>
+<td>Array</td>
+<td>List</td>
+<td>Optional. Fields below detail a <code>FeeSymbol</code> registered at <code>POST /instrument</code>.</td>
+</tr>
+<tr>
+<td>sell.fees[] .symbol</td>
 <td>String</td>
-<td>Fields below detail a FeeSymbol registered at <code>POST /instrument</code>.</td>
-</tr>
-<tr>
-<td>sell.fees[].symbol</td>
 <td>FeeSymbol</td>
-<td>FeeSymbol</td>
-<td>Optional. Fee type symbol registered at <code>POST /instrument</code>.</td>
+<td>Fee type symbol registered at <code>POST /instrument</code>.</td>
 </tr>
 <tr>
-<td>sell.fees[].cost.currency</td>
+<td>sell.fees[] .cost.amount</td>
 <td>Number</td>
 <td>Number</td>
-<td>The currency of the fee.</td>
+<td>The amount to be charged associated with a specific <code>FeeSymbol</code></td>
 </tr>
 <tr>
-<td>sell.fees[].cost.amount</td>
+<td>sell.fees[] .cost.currency</td>
 <td>Number</td>
 <td>Number</td>
-<td>The amount of the fee in <code>cost.currency</code>.</td>
+<td>The currency that <code>cost.amount</code> is expressed in.</td>
+</tr>
+<tr>
+<td>settlementStatus</td>
+<td>String</td>
+<td>Enum</td>
+<td>Response only. Details the current settlement status of a trade.</td>
 </tr>
 </tbody></table>
 <h2 id='settlement-equity-post-trades'><code>POST /trades</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/trades</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -8306,10 +8382,17 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 
 <span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cdfb86c8-1085-43ed-9839-f4c8e7267818"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.99</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"sourceDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-09T10:21:19.453Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"buy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"investor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROP-12345"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIA"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"nominee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fees"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -8327,15 +8410,10 @@ When migrating shares, the <code>investor</code> must be specified.</p>
     </span><span class="s2">"nominee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORIGINATOR"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"fees"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.99</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sourceDateTime"</span><span class="p">:</span><span class="s2">"2019-12-09T10:21:19.453Z"</span><span class="w">
+    </span><span class="s2">"fees"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='settlement-equity-code-post-trades-code-description'>Description</h3>
 <p>Persists a new trade which will then undergo the settlement process.</p>
@@ -8366,7 +8444,7 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 </thead><tbody>
 <tr>
 <td>201 Created</td>
-<td>Trade      created successfully</td>
+<td>Trade created successfully</td>
 <td>Trade</td>
 <td>application/json</td>
 </tr>
@@ -8383,7 +8461,7 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <td>n/a</td>
 </tr>
 </tbody></table>
-<h2 id='settlement-equity-get-trades-tradeid'><code>GET /trades/{tradeId}</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/trades/cdfb86c8-1085-43ed-9839-f4c8e7267818</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='settlement-equity-get-trades-id'><code>GET /trades/{id}</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/trades/cdfb86c8-1085-43ed-9839-f4c8e7267818</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -8393,11 +8471,18 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 
 <span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cdfb86c8-1085-43ed-9839-f4c8e7267818"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RECEIVED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.99</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"sourceDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-09T10:21:19.453Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"settlementStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SETTLING"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"buy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"investor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROP-12345"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIA"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"nominee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fees"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -8405,7 +8490,7 @@ When migrating shares, the <code>investor</code> must be specified.</p>
         </span><span class="s2">"narrative"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stamp Duty"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.00</span><span class="w">
+          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -8415,21 +8500,16 @@ When migrating shares, the <code>investor</code> must be specified.</p>
     </span><span class="s2">"nominee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORIGINATOR"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"fees"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.99</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sourceDateTime"</span><span class="p">:</span><span class="s2">"2019-12-09T10:21:19.453Z"</span><span class="w">
+    </span><span class="s2">"fees"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='settlement-equity-code-get-trades-tradeid-code-description'>Description</h3>
-<p>Retrieves the details of an existing trade.</p>
-<h3 id='settlement-equity-code-get-trades-tradeid-code-request'>Request</h3>
+</span></code></pre><h3 id='settlement-equity-code-get-trades-id-code-description'>Description</h3>
+<p>Retrieves the details of an existing trade given trade <code>id</code>.</p>
+<h3 id='settlement-equity-code-get-trades-id-code-request'>Request</h3>
 <p>Body: None</p>
-<h3 id='settlement-equity-code-get-trades-tradeid-code-response'>Response</h3>
+<h3 id='settlement-equity-code-get-trades-id-code-response'>Response</h3>
 <p>Body: <a href="/#settlement-equity-trade-model">Trade Model</a></p>
 
 <p>Http Status: </p>
@@ -8443,7 +8523,7 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>200 Created</td>
+<td>200 OK</td>
 <td>Trade exists and is return in the body</td>
 <td>Trade</td>
 <td>application/json</td>
@@ -8476,21 +8556,21 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <p>The <a href="/#settlement-equity-post-corporate-actions-dividends"><code>POST /corporate-actions/dividends</code></a> endpoint can be used to pay dividends 
 to investors that hold shares in an instrument.</p>
 
-<p>Said endpoint references an instrument, and takes a list of all the investors that are shareholders to be paid. </p>
+<p>Said endpoint references a registered instrument, and takes a list of all the investors that are shareholders to be paid. </p>
 
 <p>The call to <a href="/#settlement-equity-post-corporate-actions-dividends"><code>POST /corporate-actions/dividends</code></a> will return a 201 Created response
-with a <code>status</code> field in the body of &#39;AWAITING FUNDS&#39;.</p>
+with a <code>status</code> field in the Dividend body of <code>AWAITING FUNDS</code>.</p>
 
 <p>⚠️ Please note that this response only indicates that the dividend instruction has been received. 
-The distribution of the dividend to investors will not occur until the necessary funds are received. </p>
+The distribution of the dividend to investors will not occur until the necessary funds have been sent. </p>
 
-<p>The response will include a payTo section. Payment should be sent to the bank details specified, including the <code>payTo.reference</code>.</p>
+<p>Funds should be sent to the bank details specified in the <code>PayTo</code> section of the response, including the <code>payTo.reference</code>.</p>
 
-<p>Once payment has been made, the <a href="/#settlement-equity-get-corporate-actions-dividends-dividendid"><code>GET /corporate-actions/dividends/{dividendId}</code></a> 
+<p>Once payment has been made, the <a href="/#settlement-equity-get-corporate-actions-dividends-id"><code>GET /corporate-actions/dividends/{id}</code></a> 
 endpoint can be used to see the current status of the dividend instruction.</p>
 
 <p>The status of the money transfer is further broken down at a per investor level. </p>
-<h2 id='settlement-equity-dividends-model'>Dividends Model</h2>
+<h2 id='settlement-equity-dividends-model'>Dividends Model</h2><h3 id='settlement-equity-dividends-model-required-attributes'>Required Attributes</h3>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -8502,62 +8582,86 @@ endpoint can be used to see the current status of the dividend instruction.</p>
 <tr>
 <td>id</td>
 <td>String</td>
-<td>UUID</td>
+<td>DividendId</td>
 <td>The platform generated UUID of the dividend posting.</td>
 </tr>
 <tr>
 <td>instrumentSymbol</td>
 <td>String</td>
-<td>UUID</td>
-<td>The platform generated unique ID/symbol of the instrument.</td>
+<td>InstrumentSymbol</td>
+<td>The unique ID/symbol of the instrument registered by the platform.</td>
 </tr>
 <tr>
-<td>status</td>
-<td>String</td>
-<td>Enum</td>
-<td>Response Only. Values: AWAITING_FUNDS, DISTRIBUTING, COMPLETE.</td>
-</tr>
-<tr>
-<td>totalPayout.currency</td>
+<td>totalPayout. currency</td>
 <td>String</td>
 <td>ISO 4217</td>
 <td>The currency that the total dividend payment is in.</td>
 </tr>
 <tr>
-<td>totalPayout.amount</td>
+<td>totalPayout. amount</td>
 <td>Number</td>
 <td>Number</td>
-<td>The total amount to be paid out.</td>
+<td>The overall amount to be paid out.</td>
 </tr>
 <tr>
-<td>payments[].clientId</td>
+<td>payments[]</td>
+<td>Array</td>
+<td>List</td>
+<td>The list of all individual payments due to be paid out.</td>
+</tr>
+<tr>
+<td>payments[]. clientId</td>
 <td>String</td>
-<td>Client ID</td>
-<td>The client ID for the dividend payment.</td>
+<td>String</td>
+<td>The investor&#39;s clientId for a dividend payment.</td>
 </tr>
 <tr>
-<td>payments[].accountType</td>
+<td>payments[]. accountType</td>
 <td>String</td>
 <td>Enum</td>
-<td>The account to pay the dividend to. Values: GIA, ISA.</td>
+<td>The account type to pay the dividend to for some <code>clientId</code>. Values: <code>GIA</code>, <code>ISA</code>.</td>
 </tr>
 <tr>
-<td>payments[].payment.currency</td>
+<td>payments[]. payment.amount</td>
+<td>Number</td>
+<td>Number</td>
+<td>The total amount to be paid to a <code>clientId</code> in the given <code>payment.currency</code>.</td>
+</tr>
+<tr>
+<td>payments[]. payment.currency</td>
 <td>String</td>
 <td>ISO 4217</td>
-<td>The currency that the dividend is paid in.</td>
+<td>The currency corresponding to the <code>payment.amount</code> to be paid.</td>
 </tr>
+</tbody></table>
+<h3 id='settlement-equity-dividends-model-additional-response-attributes'>Additional Response Attributes</h3>
+<p>The following list of attributes are response-only and are expected to always be present on a response.</p>
+
+<table><thead>
 <tr>
-<td>payments[].payment.amount</td>
-<td>Number</td>
-<td>Number</td>
-<td>The total amount to be paid to this investor.</td>
+<th>Key</th>
+<th>JSON Type</th>
+<th>Value Type</th>
+<th>Value Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>Enum</td>
+<td>Response Only. The status of the overall dividend instruction. Values: <code>AWAITING_FUNDS</code>, <code>DISTRIBUTING</code>, <code>COMPLETE</code>.</td>
 </tr>
 <tr>
 <td>payments[].status</td>
 <td>String</td>
 <td>Enum</td>
-<td>Response Only. Values: PENDING, PAID.</td>
+<td>Response Only. The status of an individual payment under <code>payments</code>. Values: <code>PENDING</code>, <code>COMPLETE</code>.</td>
+</tr>
+<tr>
+<td>payTo.accountName</td>
+<td>String</td>
+<td>String</td>
+<td>Response Only. The account name associated with the <code>accountNumber</code> and <code>sortCode</code> below.</td>
 </tr>
 <tr>
 <td>payTo.accountNumber</td>
@@ -8586,14 +8690,14 @@ endpoint can be used to see the current status of the dividend instruction.</p>
 
 <span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"627e27b2-75be-4673-ba5a-7f765a8ace89"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"instrument1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"totalPayout"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROP-12345"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIA"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
@@ -8601,7 +8705,7 @@ endpoint can be used to see the current status of the dividend instruction.</p>
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROP-23456"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId2"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIA"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
@@ -8616,19 +8720,15 @@ endpoint can be used to see the current status of the dividend instruction.</p>
 
 <span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"627e27b2-75be-4673-ba5a-7f765a8ace89"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"instrument1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AWAITING_FUNDS"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"dividendPerShare"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.12</span><span class="w">
-  </span><span class="p">},</span><span class="w">
   </span><span class="s2">"totalPayout"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROP-12345"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIA"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
@@ -8637,7 +8737,7 @@ endpoint can be used to see the current status of the dividend instruction.</p>
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROP-23456"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId2"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIA"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
@@ -8646,10 +8746,11 @@ endpoint can be used to see the current status of the dividend instruction.</p>
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"pay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"040004"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123def456"</span><span class="w">
+  </span><span class="s2">"payTo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platform1 - Receiving"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OR0CE628FF"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='settlement-equity-code-post-corporate-actions-dividends-code-description'>Description</h3>
@@ -8695,7 +8796,7 @@ using the dividend endpoints:</p>
 <td>n/a</td>
 </tr>
 </tbody></table>
-<h2 id='settlement-equity-get-corporate-actions-dividends-dividendid'><code>GET /corporate-actions/dividends/{dividendId}</code></h2>
+<h2 id='settlement-equity-get-corporate-actions-dividends-id'><code>GET /corporate-actions/dividends/{id}</code></h2>
 <p>To see the current state of a dividend instruction, this endpoint can be used.  </p>
 
 <p>It will provide two statuses:</p>
@@ -8714,28 +8815,24 @@ using the dividend endpoints:</p>
 
 <span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"627e27b2-75be-4673-ba5a-7f765a8ace89"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"446ca5fc-4d38-4706-a50b-5b3a64d3f703"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISTRIBUTING"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"dividendPerShare"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.12</span><span class="w">
-  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"instrument1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AWAITING_FUNDS"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"totalPayout"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROP-12345"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIA"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PAID"</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROP-23456"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId2"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIA"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
@@ -8744,17 +8841,18 @@ using the dividend endpoints:</p>
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"pay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"040004"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123def456"</span><span class="w">
+  </span><span class="s2">"payTo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platform1 - Receiving"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OR0CE628FF"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='settlement-equity-code-get-corporate-actions-dividends-dividendid-code-description'>Description</h3>
-<p>Retrieves the details of an existing dividend.</p>
-<h3 id='settlement-equity-code-get-corporate-actions-dividends-dividendid-code-request'>Request</h3>
+</span></code></pre><h3 id='settlement-equity-code-get-corporate-actions-dividends-id-code-description'>Description</h3>
+<p>Retrieves the details of an existing dividend given a dividend <code>id</code> is supplied.</p>
+<h3 id='settlement-equity-code-get-corporate-actions-dividends-id-code-request'>Request</h3>
 <p>Body: None</p>
-<h3 id='settlement-equity-code-get-corporate-actions-dividends-dividendid-code-response'>Response</h3>
+<h3 id='settlement-equity-code-get-corporate-actions-dividends-id-code-response'>Response</h3>
 <p>Body: <a href="/#settlement-equity-dividends-model">Dividend Model</a> </p>
 
 <p>Http Status: </p>
@@ -8768,7 +8866,7 @@ using the dividend endpoints:</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>200 Created</td>
+<td>200 OK</td>
 <td>Dividend exists and is return in the body</td>
 <td>Dividend</td>
 <td>application/json</td>
