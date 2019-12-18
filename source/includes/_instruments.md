@@ -197,16 +197,16 @@ each investor's shares.
 
 ## Allocation Model
 
-| Key                  | JSON Type | Value Type       | Value Description                                              |
-|----------------------|-----------|------------------|----------------------------------------------------------------|
-| id                   | String    | UUID             | A UUID for this allocation.                                    |
-| quantity             | Number    | Number           | The (whole) number of shares to allocate.                      |
-| instrumentId         | String    | InstrumentSymbol | Property Partner generated unique ID of the instrument.        |
-| investor             | Object    | Object           | Null for non-investor allocation, or the fields below.         |
-| investor.clientId    | String    | ClientId         | Either the client ID for the investor.                         |
-| investor.accountType | String    | Enum             | Values: GIA, ISA.                                              |
-| nominee              | Object    | Object           | Null when not allocating to a nominee, else fields below.      |
-| nominee.accountType  | String    | Enum             | The nominee involved in the alloc. Values: GOJI, ORIGINATOR.   |
+| Key                  | JSON Type | Value Type       | Value Description                                               |
+|----------------------|-----------|------------------|-----------------------------------------------------------------|
+| id                   | String    | UUID             | A UUID for this allocation.                                     |
+| quantity             | Number    | Number           | The (whole) number of shares to allocate.                       |
+| instrumentSymbol     | String    | InstrumentSymbol | Platform generated unique ID of the instrument.                 |
+| investor             | Object    | Object           | Null for non-investor allocation, or the fields below.          |
+| investor.clientId    | String    | ClientId         | Either the client ID for the investor.                          |
+| investor.accountType | String    | Enum             | Values: `GIA`, `ISA`.                                           |
+| nominee              | Object    | Object           | Null when not allocating to a nominee, else fields below.       |
+| nominee.accountType  | String    | Enum             | The nominee involved in the alloc. Values: `GOJI`, `ORIGINATOR`.|
 
 ## `POST /allocations`
 
@@ -226,7 +226,7 @@ X-GOJI-CLIENT-ID: 59425d3d-cf73-44ff-aecb-590cd198a4bc
     }
   },
   "quantity": 1000000,
-  "instrumentId": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
 }
 ```
 
@@ -243,7 +243,7 @@ Content-Type: application/json
     }
   },
   "quantity": 1000000,
-  "instrumentId": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
 }
 ```
 
@@ -293,7 +293,7 @@ Content-Type: application/json
     }
   },
   "quantity": 1000000,
-  "instrumentId": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
 }
 ```
 
@@ -313,7 +313,7 @@ Http Status:
 
 | Code             | Description                                      | Body       | Content-Type     |
 |------------------|--------------------------------------------------|------------|------------------|
-| 200 Created      | Allocation exists and is return in the body      | Allocation | application/json |
+| 200 OK           | Allocation exists and is return in the body      | Allocation | application/json |
 | 400 Bad Request  | The request was malformed.  See response body    | None       | n/a              |
 | 401 Unauthorized | No auth provided, auth failed, or not authorized | None       | n/a              |
 | 404 Not Found    | No allocation with this UUID exists              | None       | n/a              |
