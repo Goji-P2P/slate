@@ -8,7 +8,7 @@ The API is currently under construction.
 
 Once an instrument has been created, it can then be traded. A trade can be submitted using [`POST /trades`](/#settlement-equity-post-trades).
 
-To retrieve an existing trade, the [`GET /trades/{tradeId}`](#settlement-equity-get-trades-tradeid) endpoint can be used.
+To retrieve an existing trade, the [`GET /trades/{id}`](#settlement-equity-get-trades-id) endpoint can be used.
 
 
 ## Trade Model
@@ -26,14 +26,14 @@ To retrieve an existing trade, the [`GET /trades/{tradeId}`](#settlement-equity-
 | sourceDateTime            | String    | ISO 8601   | The timestamp at which the trade was originally executed on the platform.                                   |
 | buy                       | Object    | Object     | Represents the buy-side details of a trade                                                                  |
 | buy.investor              | Object    | Object     | Set to null for non-investor, or details investor details.                                                  |
-| buy.investor. clientId    | String    | Object     | The registered clientId of the investor, i.e. PROP-12345.                                                   |
+| buy.investor. clientId    | String    | String     | The registered clientId of the investor, i.e. PROP-12345.                                                   |
 | buy.investor. accountType | String    | Enum       | Values: `GIA`, `ISA`.                                                                                       |
 | buy.nominee               | Object    | Object     | Set to null when the buyer is not a nominee, else field below.                                              |
 | buy.nominee. accountType  | String    | Enum       | The nominee involved in the buy. Values: GOJI, ORIGINATOR.                                                  |
 | buy.fees[]                | Array     | List       | Required when fees exist on the instrument being traded that the buyer needs to pay. Otherwise leave empty. |
 | sell                      | Object    | Object     | Represents the sell-side details of a trade                                                                 |
 | sell.investor             | Object    | Object     | Set to null for non-investor, or details investor details.                                                  |
-| sell.investor. clientId   | String    | Client ID  | The registered clientId of the investor, i.e. PROP-12345.                                                   |
+| sell.investor. clientId   | String    | String     | The registered clientId of the investor, i.e. PROP-12345.                                                   |
 | sell.investor. accountType| String    | Enum       | Values: `GIA`, `ISA`.                                                                                       |
 | sell.nominee              | Object    | Object     | Set to null when the seller is not a nominee, else fields below.                                            |
 | sell.nominee. accountType | String    | Enum       | The nominee involved in the sell. Values: GOJI, ORIGINATOR.                                                 |
@@ -122,12 +122,12 @@ Http Status:
 
 | HTTP Status Code | Description                                      | Body       | Content-Type     |
 |------------------|--------------------------------------------------|------------|------------------|
-| 201 Created      | Trade      created successfully                  | Trade      | application/json |
+| 201 Created      | Trade created successfully                       | Trade      | application/json |
 | 400 Bad Request  | The request was malformed.  See response body    | None       | n/a              |
 | 401 Unauthorized | No auth provided, auth failed, or not authorized | None       | n/a              |
 
 
-## `GET /trades/{tradeId}`
+## `GET /trades/{id}`
 
 ```http
 GET /trades/cdfb86c8-1085-43ed-9839-f4c8e7267818 HTTP/1.1
@@ -181,7 +181,7 @@ Content-Type: application/json
 
 ### Description
 
-Retrieves the details of an existing trade.
+Retrieves the details of an existing trade given trade `id`.
 
 ### Request
 

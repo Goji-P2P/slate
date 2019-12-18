@@ -20,7 +20,7 @@ The distribution of the dividend to investors will not occur until the necessary
 
 Funds should be sent to the bank details specified in the `PayTo` section of the response, including the `payTo.reference`.
 
-Once payment has been made, the [`GET /corporate-actions/dividends/{dividendId}`](/#settlement-equity-get-corporate-actions-dividends-dividendid) 
+Once payment has been made, the [`GET /corporate-actions/dividends/{id}`](/#settlement-equity-get-corporate-actions-dividends-id) 
 endpoint can be used to see the current status of the dividend instruction.
 
 The status of the money transfer is further broken down at a per investor level. 
@@ -38,7 +38,7 @@ The status of the money transfer is further broken down at a per investor level.
 | totalPayout. currency        | String    | ISO 4217        | The currency that the total dividend payment is in.                               |
 | totalPayout. amount          | Number    | Number          | The overall amount to be paid out.                                                |
 | payments[]                   | Array     | List            | The list of all individual payments due to be paid out.                           |
-| payments[]. clientId         | String    | Object          | The investor's clientId for a dividend payment.                                   |
+| payments[]. clientId         | String    | String          | The investor's clientId for a dividend payment.                                   |
 | payments[]. accountType      | String    | Enum            | The account type to pay the dividend to for some `clientId`. Values: `GIA`, `ISA`.|
 | payments[]. payment.amount   | Number    | Number          | The total amount to be paid to a `clientId` in the given `payment.currency`.      |
 | payments[]. payment.currency | String    | ISO 4217        | The currency corresponding to the `payment.amount` to be paid.                    |
@@ -165,7 +165,7 @@ Http Status:
 
 
 
-## `GET /corporate-actions/dividends/{dividendId}`
+## `GET /corporate-actions/dividends/{id}`
 
 To see the current state of a dividend instruction, this endpoint can be used.  
 
@@ -229,7 +229,7 @@ X-GOJI-REQUEST-ID: 6937bd3b-e3de-4fd6-9bd9-c87cd7305180
 
 ### Description
 
-Retrieves the details of an existing dividend.
+Retrieves the details of an existing dividend given a dividend `id` is supplied.
 
 ### Request
 

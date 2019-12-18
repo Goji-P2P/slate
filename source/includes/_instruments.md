@@ -2,11 +2,9 @@
 
 The Instruments API allows an Investment Manager to:
  
- (1) [create new instruments](/#settlement-equity-instrument-creation) and...
- 
- (2) [issue/ allocate shares](/#settlement-equity-issuing-allocating-shares) of that instrument
+ (1) [create new instruments](/#settlement-equity-instrument-creation) and (2) [issue/ allocate shares](/#settlement-equity-issuing-allocating-shares) of that instrument.
 
-This instrument can then be used for:
+A registered instrument can then be used for:
 
  * [Trade Settlement](/#settlement-equity-trade-settlement)
  * [Corporate Actions](/#settlement-equity-corporate-actions)
@@ -15,7 +13,7 @@ This instrument can then be used for:
 
 Instrument creation allows registering a new [Instrument](/#settlement-equity-instrument-model).
 
-This instrument would then be referenced in other documented requests by the `InstrumentSymbol` specified.  
+This instrument would then be referenced in requests to endpoints e.g. [Trade Settlement](/#settlement-equity-trade-settlement) by instrument `symbol`.  
 
 Currently only equity instruments are supported.
 
@@ -25,13 +23,13 @@ The Instrument model used for endpoints:
 
 (1) [`POST /instruments`](/#settlement-equity-post-instruments) 
 
-(2) [`GET /instruments/{InstrumentSymbol}`](/#settlement-equity-get-instruments-instrumentsymbol)
+(2) [`GET /instruments/{symbol}`](/#settlement-equity-get-instruments-symbol)
 
 ⚠️ Please note that before registering instruments, BankAccountIds have to be registered at the endpoint: 
 
 [`POST /platformApi/bankAccountDetails`](/#payments-manager-post-platformapi-bankaccountdetails)
 
-before they can be used for the following instrument model attributes: 
+before they can be used for the following instrument attributes: 
 
 (1) `paymentInstructions.primaryMarketBankAccountId` 
 
@@ -107,7 +105,7 @@ X-GOJI-REQUEST-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
 Registers a new instrument which can then be referenced by its symbol in other APIs which require an `InstrumentSymbol`.
 
 
-The instrument can then be referenced by the `InstrumentSymbol` in the following APIs:
+A registered instrument can be referenced by the `InstrumentSymbol` in the following APIs:
 
  * [Trade Settlement API](/#settlement-equity-trade-settlement)
  * [Corporate Actions API](/#settlement-equity-corporate-actions)
@@ -132,7 +130,7 @@ Http Status:
 | 400 Bad Request  | The request was malformed.  See response body    | None       | n/a              |
 | 401 Unauthorized | No auth provided, auth failed, or not authorized | None       | n/a              |
 
-## `GET /instruments/{InstrumentSymbol}`
+## `GET /instruments/{symbol}`
 
 ### Description
 
@@ -165,7 +163,7 @@ X-GOJI-REQUEST-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
 }
 ```
 
-Retrieves the details held on an instrument.
+Retrieves the details held on an instrument given its `symbol` is supplied.
 
 ### Request
 
@@ -270,7 +268,7 @@ Http Status:
 | 400 Bad Request  | The request was malformed.  See response body    | None       | n/a              |
 | 401 Unauthorized | No auth provided, auth failed, or not authorized | None       | n/a              |
 
-## `GET /allocations/{AllocationId}`
+## `GET /allocations/{id}`
 
 ```http
 GET /allocations/5dd40510-810e-4a55-a395-04819fd915b9 HTTP/1.1
@@ -299,7 +297,7 @@ Content-Type: application/json
 
 ### Description
 
-Retrieves the details of an existing allocation.
+Retrieves the details of an existing allocation given an allocation `id` is supplied.
 
 ### Request
 
