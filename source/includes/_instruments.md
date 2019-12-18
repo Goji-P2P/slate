@@ -1,7 +1,10 @@
 ## <em>Instruments 🚧</em>
 
-The Instruments API allows an Investment Manager to [create new Instruments](/#settlement-equity-instrument-creation), and 
-[issue/allocate shares](/#settlement-equity-issuing-allocating-shares) of that instrument.
+The Instruments API allows an Investment Manager to:
+ 
+ (1) [create new instruments](/#settlement-equity-instrument-creation) and...
+ 
+ (2) [issue/ allocate shares](/#settlement-equity-issuing-allocating-shares) of that instrument
 
 This instrument can then be used for:
 
@@ -10,33 +13,48 @@ This instrument can then be used for:
 
 ## Instrument Creation
 
-Instrument creation allows registering a new [Instrument](/#settlement-equity-instrument-model), which is later referenced
-by the `InstrumentSymbol`.  Currently only equity instruments are supported.
+Instrument creation allows registering a new [Instrument](/#settlement-equity-instrument-model).
+
+This instrument would then be referenced in other documented requests by the `InstrumentSymbol` specified.  
+
+Currently only equity instruments are supported.
 
 ## Instrument Model
-```json
-{
-  "id": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
-  "assetClass": "EQUITY",
-  "primaryMarketBankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41",
-  "feeTypes": [
-    {
-      "symbol": "COMMISSION",
-      "bankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41"
-    }
-  ]
-}
-```
 
-The Instrument model used for both the [`POST /instruments`](/#settlement-equity-post-instruments) and [`GET /instruments/{InstrumentSymbol}`](/#settlement-equity-get-instruments-instrumentsymbol) endpoints.
+The Instrument model used for endpoints: 
 
-| Key                        | JSON Type | Value Type       | Value Description                                                                                |
-|----------------------------|-----------|------------------|--------------------------------------------------------------------------------------------------|
-| symbol                     | String    | InstrumentSymbol | Unique symbol used to identify this instrument.                                                  |
-| assetClass                 | String    | AssetClass       | Values: EQUITY                                                                                   |
-| primaryMarketBankAccountId | String    | BankAccountId    | The bank account ID to send primary market sale funds to.                                        |
-| feeTypes[].symbol          | String    | FeeSymbol        | A symbolic representation of the type of fee, i.e. STAMP_DUTY.                                   |
-| feeTypes[].bankAccountId   | String    | BankAccountId    | BankAccountID from [`POST /platformApi/bankAccountDetails`](/#payments-manager-post-bankaccountdetails). |
+(1) [`POST /instruments`](/#settlement-equity-post-instruments) 
+
+(2) [`GET /instruments/{InstrumentSymbol}`](/#settlement-equity-get-instruments-instrumentsymbol)
+
+⚠️ Please note that before registering instruments, BankAccountIds have to be registered at the endpoint: 
+
+[`POST /platformApi/bankAccountDetails`](/#payments-manager-post-platformapi-bankaccountdetails)
+
+before they can be used for the following instrument model attributes: 
+
+(1) `paymentInstructions.primaryMarketBankAccountId` 
+
+(2) `feeTypes[].bankAccountId`
+
+
+### Required Attributes
+
+| Key                                             | JSON Type | Value Type       | Value Description                                                                                                    |
+|-------------------------------------------------|-----------|------------------|----------------------------------------------------------------------------------------------------------------------|
+| symbol                                          | String    | InstrumentSymbol | Unique symbol used to identify this instrument. Max 100 characters.                                                  |
+| assetClass                                      | String    | AssetClass       | Values: EQUITY                                                                                                       |
+| paymentInstructions                             | Object    | Object           | Contains the attributes listed below.                                                                                |
+| paymentInstructions. primaryMarketBankAccountId | String    | BankAccountId    | The BankAccountId to send primary market sale funds to.                                                              |
+
+
+### Optional Attributes
+
+| Key                                            | JSON Type | Value Type       | Value Description                                                                                                    |
+|------------------------------------------------|-----------|------------------|----------------------------------------------------------------------------------------------------------------------|
+| paymentInstructions. feeTypes[]                | Array     | List             | A list of all additional fees associated with this instrument. Can be empty.                                         |
+| feeTypes[].symbol                              | String    | FeeSymbol        | A symbolic representation of the type of fee, i.e. STAMP_DUTY. Required if a feeType is specified.                   |
+| feeTypes[].bankAccountId                       | String    | BankAccountId    | The BankAccountId associated with the FeeSymbol.  Required if a feeType is specified.                                |
 
 ## `POST /instruments`
 
@@ -48,15 +66,18 @@ Authorization: Basic ...
 X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
 
 {
-  "id": "SPV99",
+  "symbol": "SPV1",
+  "name": "Happy Parade - SPV1",
   "assetClass": "EQUITY",
-  "primaryMarketBankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41",
-  "feeTypes": [
-    {
-      "symbol": "COMMISSION",
-      "bankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41"
-    }
-  ]
+  "paymentInstructions": {
+    "primaryMarketBankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41",
+    "feeTypes": [
+      {
+        "symbol": "COMMISSION",
+        "bankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41"
+      }
+    ]
+  }
 }
 ```
 
@@ -66,15 +87,18 @@ Content-Type: application/json
 X-GOJI-REQUEST-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
 
 {
-  "id": "SPV99",
+  "symbol": "SPV1",
+  "name": "Happy Parade - SPV1",
   "assetClass": "EQUITY",
-  "primaryMarketBankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41",
-  "feeTypes": [
-    {
-      "symbol": "COMMISSION",
-      "bankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41"
-    }
-  ]
+  "paymentInstructions": {
+    "primaryMarketBankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41",
+    "feeTypes": [
+      {
+        "symbol": "COMMISSION",
+        "bankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41"
+      }
+    ]
+  }
 }
 ```
 
@@ -126,19 +150,22 @@ Content-Type: application/json
 X-GOJI-REQUEST-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
 
 {
-  "id": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
+  "symbol": "SPV99",
+  "name": "Happy Parade - SPV99",
   "assetClass": "EQUITY",
-  "primaryMarketBankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41",
-  "feeTypes": [
-    {
-      "symbol": "COMMISSION",
-      "bankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41"
-    }
-  ]
+  "paymentInstructions": {
+    "primaryMarketBankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41",
+    "feeTypes": [
+      {
+        "symbol": "COMMISSION",
+        "bankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41"
+      }
+    ]
+  }
 }
 ```
 
-Retrieves the details held about an instrument.
+Retrieves the details held on an instrument.
 
 ### Request
 
@@ -152,10 +179,12 @@ Http Status:
 
 | Code             | Description                                      | Body       | Content-Type     |
 |------------------|--------------------------------------------------|------------|------------------|
-| 200 Created      | Instrument exists and is return in the body      | Instrument | application/json |
+| 200 OK           | Instrument exists and is returned in the body    | Instrument | application/json |
 | 400 Bad Request  | The request was malformed.  See response body    | None       | n/a              |
 | 401 Unauthorized | No auth provided, auth failed, or not authorized | None       | n/a              |
 | 404 Not Found    | No instrument with this symbol is registered     | None       | n/a              |
+
+
 
 ## Issuing / Allocating Shares
 
