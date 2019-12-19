@@ -302,6 +302,9 @@
                     <a href="#investors-post-platformapi-investors-clientid-accounts-isa" class="toc-h2 toc-link" data-title="POST /platformApi/investors/{clientId}/accounts/ISA"><code>POST /platformApi/investors/{clientId}/accounts/ISA</code></a>
                   </li>
                   <li>
+                    <a href="#investors-get-platformapi-investors-clientid-isa" class="toc-h2 toc-link" data-title="GET /platformApi/investors/{clientId}/isa"><code>GET /platformApi/investors/{clientId}/isa</code></a>
+                  </li>
+                  <li>
                     <a href="#investors-get-platformapi-investors-clientid-accounts-isa-transferin-ui" class="toc-h2 toc-link" data-title="GET /platformApi/investors/{clientId}/accounts/ISA/transferIn/UI"><code>GET /platformApi/investors/{clientId}/accounts/ISA/transferIn/UI</code></a>
                   </li>
                   <li>
@@ -3345,6 +3348,402 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
 <td>investmentDeclarationType</td>
 <td>string</td>
 <td>The investor type declared by the investor Possible values are: <br><code>RESTRICTED</code><br><code>HIGH_NET_WORTH</code><br><code>INVESTMENT_PROFESSIONAL</code><br><code>SOPHISTICATED</code><br></td>
+</tr>
+</tbody></table>
+<h2 id='investors-get-platformapi-investors-clientid-isa'><code>GET /platformApi/investors/{clientId}/isa</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/investors/{clientId}/isa</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"totalInterestReceived"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"remainingSubscriptionAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"dateCreated"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"remainingAdditionalPermittedSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"cashTransactions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"clientTransactionId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientTransactionId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"dateTimeOfTransaction"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23T04:56:07.000+00:00"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"clientTransactionId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientTransactionId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"dateTimeOfTransaction"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23T04:56:07.000+00:00"</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"subscriptionStatus"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"VALID"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalIsaBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalInterestReceivedThisTaxYear"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalCashBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"investments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"clientInvestmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientInvestmentId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expectedInterest"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"termOfInvestment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.15</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"reinvestments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientReinvestmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientReinvestmentId"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"interestAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"capitalAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"dateTimeOfReinvestment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23T04:56:07.000+00:00"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientReinvestmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientReinvestmentId"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"interestAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"capitalAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"dateTimeOfReinvestment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23T04:56:07.000+00:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"investmentType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"LOAN"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dateTimeOfInvestment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23T04:56:07.000+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"repayments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"dateTimeOfRepayment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23T04:56:07.000+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"interestAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientRepaymentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientRepaymentId"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"capitalAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"dateTimeOfRepayment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23T04:56:07.000+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"interestAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientRepaymentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientRepaymentId"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"capitalAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"clientInvestmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientInvestmentId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expectedInterest"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"termOfInvestment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.15</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"reinvestments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientReinvestmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientReinvestmentId"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"interestAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"capitalAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"dateTimeOfReinvestment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23T04:56:07.000+00:00"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientReinvestmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientReinvestmentId"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"interestAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"capitalAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"dateTimeOfReinvestment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23T04:56:07.000+00:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"investmentType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"LOAN"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dateTimeOfInvestment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23T04:56:07.000+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"repayments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"dateTimeOfRepayment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23T04:56:07.000+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"interestAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientRepaymentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientRepaymentId"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"capitalAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"dateTimeOfRepayment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23T04:56:07.000+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"interestAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientRepaymentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientRepaymentId"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"capitalAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"coolingOffPeriodEnds"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalInvestedBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='investors-code-get-platformapi-investors-clientid-isa-code-description'>Description</h3>
+<p>Returns details of the investor&#39;s ISA if applicable.</p>
+<h3 id='investors-code-get-platformapi-investors-clientid-isa-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>totalIsaBalance</td>
+<td>ref</td>
+<td>The total current balance in the ISA, inclusive of all years.</td>
+</tr>
+<tr>
+<td>totalIsaBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>totalIsaBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>remainingSubscriptionAmount</td>
+<td>ref</td>
+<td>The amount remaining that can be invested in the ISA in the current tax year.</td>
+</tr>
+<tr>
+<td>remainingSubscriptionAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>remainingSubscriptionAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalCashBalance</td>
+<td>ref</td>
+<td>The total amount of cash in the ISA that is not currently invested.</td>
+</tr>
+<tr>
+<td>totalCashBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>totalCashBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>dateCreated</td>
+<td>string</td>
+<td>Date the ISA was created</td>
+</tr>
+<tr>
+<td>coolingOffPeriodEnds</td>
+<td>string</td>
+<td>Date the cooling off period ends</td>
+</tr>
+<tr>
+<td>investments</td>
+<td>array</td>
+<td>The list of investments that make up the ISA</td>
+</tr>
+<tr>
+<td>investments[].id</td>
+<td>string</td>
+<td>The ID of the loan defined by Goji</td>
+</tr>
+<tr>
+<td>investments[].clientInvestmentId</td>
+<td>string</td>
+<td>The ID of the loan defined by the P2P platform</td>
+</tr>
+<tr>
+<td>investments[].investmentType</td>
+<td>string</td>
+<td>The type of the investment. Currently only loans are supported. Possible values are: <br><code>LOAN</code><br></td>
+</tr>
+<tr>
+<td>investments[].originalAmount</td>
+<td>ref</td>
+<td>The original capital amount of the investment.</td>
+</tr>
+<tr>
+<td>investments[].expectedInterest</td>
+<td>ref</td>
+<td>The expected interest to receive over the life of the investment.</td>
+</tr>
+<tr>
+<td>investments[].dateTimeOfInvestment</td>
+<td>string</td>
+<td>The date and time the investment started</td>
+</tr>
+<tr>
+<td>investments[].termOfInvestment</td>
+<td>number</td>
+<td>The term of the investment in months</td>
+</tr>
+<tr>
+<td>investments[].repayments</td>
+<td>array</td>
+<td>Repayments that have been made against the investment by the borrower that were not reinvested automatically.</td>
+</tr>
+<tr>
+<td>investments[].reinvestments</td>
+<td>array</td>
+<td>Repayments that have been made against the instruments by the borrower that were reinvested automatically.</td>
+</tr>
+<tr>
+<td>cashTransactions</td>
+<td>array</td>
+<td>Cash transactions on the ISA</td>
+</tr>
+<tr>
+<td>cashTransactions[].clientTransactionId</td>
+<td>string</td>
+<td>The ID of the transaction assigned by the P2P platform</td>
+</tr>
+<tr>
+<td>cashTransactions[].amount</td>
+<td>ref</td>
+<td>The amount of the cash transaction</td>
+</tr>
+<tr>
+<td>cashTransactions[].dateTimeOfTransaction</td>
+<td>string</td>
+<td>The date and time of the transaction</td>
+</tr>
+<tr>
+<td>cashTransactions[].type</td>
+<td>ref</td>
+<td>Indicates the type of the cash transaction.</td>
+</tr>
+<tr>
+<td>totalInterestReceived</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>totalInterestReceived.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>totalInterestReceived.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalInterestReceivedThisTaxYear</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>totalInterestReceivedThisTaxYear.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>totalInterestReceivedThisTaxYear.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalInvestedBalance</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>totalInvestedBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>totalInvestedBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>subscriptionStatus</td>
+<td>string</td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+</tr>
+<tr>
+<td>remainingAdditionalPermittedSubscriptions</td>
+<td>ref</td>
+<td>The remaining amount that can be subscribed as an Additional Permitted Subscription.</td>
+</tr>
+<tr>
+<td>remainingAdditionalPermittedSubscriptions.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>remainingAdditionalPermittedSubscriptions.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
 </tr>
 </tbody></table>
 <h2 id='investors-get-platformapi-investors-clientid-accounts-isa-transferin-ui'><code>GET /platformApi/investors/{clientId}/accounts/ISA/transferIn/UI</code></h2><pre class="highlight http tab-http"><code><span class="err">
