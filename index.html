@@ -4299,7 +4299,8 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
   </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"isaType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"isaType"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"transferDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"includeCurrentYear"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="s2">"includeCurrentYear"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fundsTransferType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BANK_TRANSFER"</span><span class="w">
 </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='investors-code-get-transferin-investors-clientid-open-code-description'>Description</h3>
 <p>Returns an overview of all open transfers in for a particular investor. 
@@ -4392,6 +4393,11 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 <td>boolean</td>
 <td>True if the cash for the Transfer In has arrived</td>
 </tr>
+<tr>
+<td>[].fundsTransferType</td>
+<td>string</td>
+<td>The funds transfer type. Possible values are: <br><code>CHEQUE</code><br><code>BANK_TRANSFER</code><br></td>
+</tr>
 </tbody></table>
 <h2 id='investors-get-transferin-investors-clientid-closed'><code>GET /transferIn/investors/{clientId}/closed</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/transferIn/investors/{clientId}/closed</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -4429,7 +4435,8 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
   </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"isaType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"isaType"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"transferDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"includeCurrentYear"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="s2">"includeCurrentYear"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fundsTransferType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BANK_TRANSFER"</span><span class="w">
 </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='investors-code-get-transferin-investors-clientid-closed-code-description'>Description</h3>
 <p>Returns an overview of all closed transfers in for a particular investor.</p>
@@ -4520,6 +4527,11 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 <td>[].cashArrived</td>
 <td>boolean</td>
 <td>True if the cash for the Transfer In has arrived</td>
+</tr>
+<tr>
+<td>[].fundsTransferType</td>
+<td>string</td>
+<td>The funds transfer type. Possible values are: <br><code>CHEQUE</code><br><code>BANK_TRANSFER</code><br></td>
 </tr>
 </tbody></table>
 <h2 id='investors-get-platformapi-transferin-deposits-date'><code>GET /platformApi/transferIn/deposits/{date}</code></h2><pre class="highlight http tab-http"><code><span class="err">
