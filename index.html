@@ -8388,7 +8388,15 @@ using <a href="/#settlement-equity-post-allocations"><code>POST /allocations</co
 <p>Alternatively, if this instrument is created during migration of asset custody to Goji Nominee Ltd, and shares have 
 already been sold to investors, the <a href="/#settlement-equity-post-allocations"><code>POST /allocations</code></a> can be used to allocate 
 each investor&#39;s shares.</p>
-<h2 id='settlement-equity-allocation-model'>Allocation Model</h2>
+<h2 id='settlement-equity-allocation-model'>Allocation Model</h2><h3 id='settlement-equity-allocation-model-required-attributes'>Required Attributes</h3>
+<p>All of the following attributes of the Allocation Model are considered &#39;required&#39; attributes. </p>
+
+<p>⚠️ In the case of the <code>investor</code> and <code>nominee</code> attributes specified below however, it may be more apt to call them &#39;conditional&#39; attributes. </p>
+
+<p>If an allocation request is specified as being to an <code>investor</code>, it cannot simultaneously be to the <code>nominee</code> company. </p>
+
+<p>Please specify either one or the other when sending an allocation instruction.</p>
+
 <table><thead>
 <tr>
 <th>Key</th>
@@ -8401,7 +8409,7 @@ each investor&#39;s shares.</p>
 <td>id</td>
 <td>String</td>
 <td>UUID</td>
-<td>A UUID for this allocation.</td>
+<td>A platform-generated UUID for this allocation.</td>
 </tr>
 <tr>
 <td>quantity</td>
@@ -8419,31 +8427,31 @@ each investor&#39;s shares.</p>
 <td>investor</td>
 <td>Object</td>
 <td>Object</td>
-<td>Null for non-investor allocation, or the fields below.</td>
+<td>Set to null for non-investor allocations, else populated with the fields below.</td>
 </tr>
 <tr>
 <td>investor.clientId</td>
 <td>String</td>
 <td>ClientId</td>
-<td>Either the client ID for the investor.</td>
+<td>Either the client ID for the investor. Required if <code>investor</code> specified on the allocation.</td>
 </tr>
 <tr>
 <td>investor.accountType</td>
 <td>String</td>
 <td>Enum</td>
-<td>Values: <code>GIA</code>, <code>ISA</code>.</td>
+<td>The investor&#39;s account to allocate to. Values: <code>GIA</code>, <code>ISA</code>. Required if <code>investor</code> specified on the allocation.</td>
 </tr>
 <tr>
 <td>nominee</td>
 <td>Object</td>
 <td>Object</td>
-<td>Null when not allocating to a nominee, else fields below.</td>
+<td>Set to null when not allocating to a nominee, else fields below.</td>
 </tr>
 <tr>
 <td>nominee.accountType</td>
 <td>String</td>
 <td>Enum</td>
-<td>The nominee involved in the alloc. Values: <code>GOJI</code>, <code>ORIGINATOR</code>.</td>
+<td>The nominee involved in the alloc. Value: <code>ORIGINATOR</code>. Required if <code>nominee</code> specified on the allocation.</td>
 </tr>
 </tbody></table>
 <h2 id='settlement-equity-post-allocations'><code>POST /allocations</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/allocations</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -8670,7 +8678,7 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <td>buy.nominee. accountType</td>
 <td>String</td>
 <td>Enum</td>
-<td>The nominee involved in the buy. Values: GOJI, ORIGINATOR.</td>
+<td>The nominee involved in the buy. Value: <code>ORIGINATOR</code>.</td>
 </tr>
 <tr>
 <td>buy.fees[]</td>
@@ -8712,7 +8720,7 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <td>sell.nominee. accountType</td>
 <td>String</td>
 <td>Enum</td>
-<td>The nominee involved in the sell. Values: GOJI, ORIGINATOR.</td>
+<td>The nominee involved in the sell. Values: <code>ORIGINATOR</code>.</td>
 </tr>
 <tr>
 <td>sell.fees[]</td>
