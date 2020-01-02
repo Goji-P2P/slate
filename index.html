@@ -431,6 +431,9 @@
                   <li>
                     <a href="#payments-manager-get-transfers-batch-batchid" class="toc-h2 toc-link" data-title="GET /transfers/batch/{batchId}"><code>GET /transfers/batch/{batchId}</code></a>
                   </li>
+                  <li>
+                    <a href="#payments-manager-post-test-account-topup" class="toc-h2 toc-link" data-title="POST /test/account/topup">POST /test/account/topup</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -7166,7 +7169,93 @@ endpoint can be used to see the current status of the batch payment instruction.
 <td>n/a</td>
 </tr>
 </tbody></table>
-<h1 id='settlement-debt'>Settlement - Debt</h1>
+<h2 id='payments-manager-post-test-account-topup'>POST /test/account/topup</h2><h3 id='payments-manager-post-test-account-topup-description'>Description</h3>
+<p>Simulate depositing cash in an investor&#39;s account.</p>
+
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+<h3 id='payments-manager-post-test-account-topup-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>Ref</td>
+<td>The amount to deposit.</td>
+</tr>
+<tr>
+<td>amount.amount</td>
+<td>Number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>amount.currency</td>
+<td>String</td>
+<td>The ISO 4217 three character codes e.g. &#39;GBP&#39;.</td>
+</tr>
+<tr>
+<td>accountNumber</td>
+<td>String</td>
+<td>The account number.</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>String</td>
+<td>The sort code.</td>
+</tr>
+<tr>
+<td>paymentReference</td>
+<td>String</td>
+<td>The reference for the batch payment.</td>
+</tr>
+</tbody></table>
+<pre class="highlight plaintext"><code>GET /test/account/topup HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+X-GOJI-REQUEST-ID: 6937bd3b-e3de-4fd6-9bd9-c87cd7305180
+
+{
+    "amount": {
+        "amount": 1000,
+        "currency": "GBP"
+    },
+    "accountNumber": "accountNumber",
+    "sortCode": "sortCode",
+    "paymentReference": "PAYMENT_REFERENCE"
+}
+</code></pre><h3 id='payments-manager-post-test-account-topup-response'>Response</h3><pre class="highlight plaintext"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+
+"SUCCESS"
+</code></pre><pre class="highlight plaintext"><code>HTTP/1.1 400 
+Content-Type: application/json
+
+{
+    "errors": [
+        {
+            "errorCode": "INVALID_DATA",
+            "message": "Payment address not found for accountNumber=12345678, sortCode=123456"
+        }
+    ]
+}
+</code></pre><pre class="highlight plaintext"><code>HTTP/1.1 400 
+Content-Type: application/json
+
+{
+    "errors": [
+        {
+            "errorCode": "SYSTEM_ERROR",
+            "message": "An unexpected error has occurred"
+        }
+    ]
+}
+</code></pre><h1 id='settlement-debt'>Settlement - Debt</h1>
 <p>The Settlement API allows the investment manager to record trades that have been executed.</p>
 <h2 id='settlement-debt-recording-available-products'>Recording available products</h2>
 <p>The investment manager must record what investments are going to be available to investors and whether
