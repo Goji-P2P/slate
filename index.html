@@ -567,6 +567,21 @@
                   <li>
                     <a href="#settlement-equity-get-corporate-actions-dividends-id" class="toc-h2 toc-link" data-title="GET /corporate-actions/dividends/{id}"><code>GET /corporate-actions/dividends/{id}</code></a>
                   </li>
+                  <li>
+                    <a href="#settlement-equity-asset-reconciliation" class="toc-h2 toc-link" data-title="Asset Reconciliation 🚧"><em>Asset Reconciliation 🚧</em></a>
+                  </li>
+                  <li>
+                    <a href="#settlement-equity-asset-reconciliation-reporting" class="toc-h2 toc-link" data-title="Asset Reconciliation Reporting">Asset Reconciliation Reporting</a>
+                  </li>
+                  <li>
+                    <a href="#settlement-equity-asset-reconciliation-reporting-model" class="toc-h2 toc-link" data-title="Asset Reconciliation Reporting Model">Asset Reconciliation Reporting Model</a>
+                  </li>
+                  <li>
+                    <a href="#settlement-equity-post-instruments-reporting" class="toc-h2 toc-link" data-title="POST /instruments/reporting"><code>POST /instruments/reporting</code></a>
+                  </li>
+                  <li>
+                    <a href="#settlement-equity-get-instruments-reporting-reportid-instrumentsymbol" class="toc-h2 toc-link" data-title="GET /instruments/reporting/{reportId}/{instrumentSymbol}"><code>GET /instruments/reporting/{reportId}/{instrumentSymbol}</code></a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1312,6 +1327,7 @@ If an invalid version header is specified, a <code>404</code> response code will
 <li><a href="/#settlement-equity-instruments">Instruments API</a></li>
 <li><a href="/#settlement-equity-trade-settlement">Trade Settlement API</a></li>
 <li><a href="/#settlement-equity-corporate-actions">Corporate Actions API</a></li>
+<li><a href="/#settlement-equity-asset-reconciliation">Asset Reconciliation API</a></li>
 </ul>
 <h1 id='investors'>Investors</h1>
 <p>The Investors API allows you to onboard investors, run KYC/AML checks and open an ISA account.</p>
@@ -9968,6 +9984,222 @@ using the dividend endpoints:</p>
 <tr>
 <td>404 Not Found</td>
 <td>No dividend with this UUID exists</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-equity-asset-reconciliation'><em>Asset Reconciliation 🚧</em></h2>
+<p>The Asset Reconciliation API allows an Investment Manager to communicate the expected distribution of equity, held by their investors, on a per-instrument basis.</p>
+
+<p>This information will then be used by Goji for reconciliation purposes.</p>
+
+<p>The API is currently under construction.</p>
+<h2 id='settlement-equity-asset-reconciliation-reporting'>Asset Reconciliation Reporting</h2>
+<p>The <a href="/#settlement-equity-post-instruments-reporting"><code>POST /instruments/reporting</code></a> endpoint allows platforms to report their system&#39;s view on equity allocation for reconcillation purposes.</p>
+
+<p>Equity allocation can be communicated to Goji as a snapshot via multiple calls to <a href="/#settlement-equity-post-instruments-reporting"><code>POST /instruments/reporting</code></a> describing investor holdings on a per-instrument basis. </p>
+
+<p>⚠️ All instruments that are part of the same snapshot should share the same <code>reportId</code>.</p>
+<h2 id='settlement-equity-asset-reconciliation-reporting-model'>Asset Reconciliation Reporting Model</h2><h3 id='settlement-equity-asset-reconciliation-reporting-model-required-attributes'>Required Attributes</h3>
+<p>All of the following attributes of the Asset Reconciliation Reporting Model are considered &#39;required&#39; attributes. </p>
+
+<p>⚠️ In the case of an instrument that has not yet been issued or traded to investors - the holdings section can be left empty. The expectation is that this will still be reported to Goji.</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>JSON Type</th>
+<th>Value Type</th>
+<th>Value Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reportId</td>
+<td>String</td>
+<td>UUID</td>
+<td>A platform-generated UUID for this snapshot, shared between all instruments included in this snapshot.</td>
+</tr>
+<tr>
+<td>instrumentSymbol</td>
+<td>String</td>
+<td>InstrumentSymbol</td>
+<td>The unique ID/symbol of the instrument registered by the platform.</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>String</td>
+<td>ISO 8601</td>
+<td>The time at which the snapshot of all instruments&#39; holdings was originally taken. The very first snapshot is expected to have been taken at midnight.</td>
+</tr>
+<tr>
+<td>holdings[]</td>
+<td>Array</td>
+<td>Object</td>
+<td>The list of investor holdings in an <code>instrumentSymbol</code>.</td>
+</tr>
+<tr>
+<td>holdings[].clientId</td>
+<td>String</td>
+<td>Object</td>
+<td>The clientId of the investor associated with this individual holding.</td>
+</tr>
+<tr>
+<td>holdings[].quantity</td>
+<td>Number</td>
+<td>Number</td>
+<td>The number of shares owned by the <code>clientId</code>.</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-equity-post-instruments-reporting'><code>POST /instruments/reporting</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/instruments/reporting</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+<span class="na">X-GOJI-CLIENT-ID</span><span class="p">:</span> <span class="s">59425d3d-cf73-44ff-aecb-590cd198a4bc</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"reportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68f54225-6760-449d-8f38-a003d1dc535a"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPV1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-09T08:53:20.963Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"holdings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-13251"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-13252"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-13254"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"reportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68f54225-6760-449d-8f38-a003d1dc535a"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPV1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-09T23:59:59.999Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"holdings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-13251"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-13252"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-13254"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='settlement-equity-code-post-instruments-reporting-code-description'>Description</h3>
+<p>Creates a new asset report on a specified <code>instrumentSymbol</code> to be used in further reconciliation processes. 
+This will form part of a wider snapshot being communicated to Goji which describes the distribution/ allocation of equity.
+All asset reports that fall under the same wider snapshot should share the same <code>reportId</code>.</p>
+<h3 id='settlement-equity-code-post-instruments-reporting-code-request'>Request</h3>
+<p>Body: <a href="/#settlement-equity-instrument-reporting-model">Asset Reconciliation Reporting Model</a></p>
+<h3 id='settlement-equity-code-post-instruments-reporting-code-response'>Response</h3>
+<p>Body: <a href="/#settlement-equity-instrument-reporting-model">Asset Reconciliation Reporting Model</a></p>
+
+<p>Http Status: </p>
+
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Description</th>
+<th>Body</th>
+<th>Content-Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201 Created</td>
+<td>Report created successfully</td>
+<td>Asset Reconciliation Reporting Model</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>The request was malformed.  See response body</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>401 Unauthorized</td>
+<td>No auth provided, auth failed, or not authorized</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-equity-get-instruments-reporting-reportid-instrumentsymbol'><code>GET /instruments/reporting/{reportId}/{instrumentSymbol}</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/instruments/reporting/68f54225-6760-449d-8f38-a003d1dc535a/SPV1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+<span class="na">X-GOJI-CLIENT-ID</span><span class="p">:</span> <span class="s">59425d3d-cf73-44ff-aecb-590cd198a4bc</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"reportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68f54225-6760-449d-8f38-a003d1dc535a"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPV1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-09T23:59:59.999Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"holdings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-13251"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-13252"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-13254"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='settlement-equity-code-get-instruments-reporting-reportid-instrumentsymbol-code-description'>Description</h3>
+<p>Retrieves the details of an existing instrument&#39;s holdings at a point in time, given a snapshot <code>reportId</code> and <code>instrumentSymbol</code> is supplied.</p>
+<h3 id='settlement-equity-code-get-instruments-reporting-reportid-instrumentsymbol-code-request'>Request</h3>
+<p>Body: <a href="/#settlement-equity-instrument-model">Asset Reconciliation Reporting Model</a></p>
+<h3 id='settlement-equity-code-get-instruments-reporting-reportid-instrumentsymbol-code-response'>Response</h3>
+<p>Body: <a href="/#settlement-equity-instrument-model">Asset Reconciliation Reporting Model</a></p>
+
+<p>Http Status: </p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Body</th>
+<th>Content-Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200 OK</td>
+<td>Report exists and is returned in the body</td>
+<td>Asset Reconciliation Reporting Model</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>The request was malformed.  See response body</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>401 Unauthorized</td>
+<td>No auth provided, auth failed, or not authorized</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>No instrument with this UUID exists</td>
 <td>None</td>
 <td>n/a</td>
 </tr>
