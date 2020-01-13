@@ -450,7 +450,7 @@
                     <a href="#payments-manager-get-transfers-batch-batchid" class="toc-h2 toc-link" data-title="GET /transfers/batch/{batchId}"><code>GET /transfers/batch/{batchId}</code></a>
                   </li>
                   <li>
-                    <a href="#payments-manager-post-test-account-topup" class="toc-h2 toc-link" data-title="POST /test/account/topup">POST /test/account/topup</a>
+                    <a href="#payments-manager-post-test-account-topup" class="toc-h2 toc-link" data-title="POST /test/account/topup"><code>POST /test/account/topup</code></a>
                   </li>
               </ul>
           </li>
@@ -7759,13 +7759,28 @@ endpoint can be used to see the current status of the batch payment instruction.
 <td>n/a</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-post-test-account-topup'>POST /test/account/topup</h2><h3 id='payments-manager-post-test-account-topup-description'>Description</h3>
+<h2 id='payments-manager-post-test-account-topup'><code>POST /test/account/topup</code></h2><h3 id='payments-manager-code-post-test-account-topup-code-description'>Description</h3>
 <p>Simulate depositing cash in an investor&#39;s account.</p>
 
 <aside class="notice">
 Please note this is a test endpoint and is only available in the sandbox environment.
 </aside>
-<h3 id='payments-manager-post-test-account-topup-request'>Request</h3>
+<h3 id='payments-manager-code-post-test-account-topup-code-request'>Request</h3><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/test/account/topup</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+<span class="na">X-GOJI-REQUEST-ID</span><span class="p">:</span> <span class="s">6937bd3b-e3de-4fd6-9bd9-c87cd7305180</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"paymentReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paymentReference"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -7801,29 +7816,43 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>paymentReference</td>
 <td>String</td>
-<td>The reference for the batch payment.</td>
+<td>The reference for the payment. Min. 1 to 18 characters.</td>
 </tr>
 </tbody></table>
-<pre class="highlight plaintext"><code>GET /test/account/topup HTTP/1.1
-Host: api-sandbox.goji.investments
+<h3 id='payments-manager-code-post-test-account-topup-code-response'>Response</h3>
+<p>Http Status: </p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200 OK</td>
+<td>Payment made successfully.</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>The request was malformed. See response body.</td>
+</tr>
+</tbody></table>
+<pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="s2">"SUCCESS"</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400 
 Content-Type: application/json
-Authorization: Basic ...
-X-GOJI-REQUEST-ID: 6937bd3b-e3de-4fd6-9bd9-c87cd7305180
 
 {
-    "amount": {
-        "amount": 1000,
-        "currency": "GBP"
-    },
-    "accountNumber": "accountNumber",
-    "sortCode": "sortCode",
-    "paymentReference": "PAYMENT_REFERENCE"
+    "errors": [
+        {
+            "errorCode": "VALIDATION_FAILURE",
+            "message": "accountNumber must match \"[0-9]{8}\""
+        }
+    ]
 }
-</code></pre><h3 id='payments-manager-post-test-account-topup-response'>Response</h3><pre class="highlight plaintext"><code>HTTP/1.1 200 OK
-Content-Type: application/json
-
-"SUCCESS"
-</code></pre><pre class="highlight plaintext"><code>HTTP/1.1 400 
+</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400 
 Content-Type: application/json
 
 {
@@ -7834,7 +7863,7 @@ Content-Type: application/json
         }
     ]
 }
-</code></pre><pre class="highlight plaintext"><code>HTTP/1.1 400 
+</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400 
 Content-Type: application/json
 
 {
@@ -7845,7 +7874,7 @@ Content-Type: application/json
         }
     ]
 }
-</code></pre><h1 id='settlement-debt'>Settlement - Debt</h1>
+</span></code></pre><h1 id='settlement-debt'>Settlement - Debt</h1>
 <p>The Settlement API allows the investment manager to record trades that have been executed.</p>
 <h2 id='settlement-debt-recording-available-products'>Recording available products</h2>
 <p>The investment manager must record what investments are going to be available to investors and whether
