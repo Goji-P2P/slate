@@ -426,13 +426,16 @@
                     <a href="#payments-manager-get-platformapi-wallet-id" class="toc-h2 toc-link" data-title="GET /platformApi/wallet/{id}"><code>GET /platformApi/wallet/{id}</code></a>
                   </li>
                   <li>
+                    <a href="#payments-manager-get-platformapi-wallets" class="toc-h2 toc-link" data-title="GET /platformApi/wallets"><code>GET /platformApi/wallets</code></a>
+                  </li>
+                  <li>
                     <a href="#payments-manager-get-platformapi-wallet-id-balance" class="toc-h2 toc-link" data-title="GET /platformApi/wallet/{id}/balance"><code>GET /platformApi/wallet/{id}/balance</code></a>
                   </li>
                   <li>
                     <a href="#payments-manager-post-platformapi-wallet-id-payment" class="toc-h2 toc-link" data-title="POST /platformApi/wallet/{id}/payment"><code>POST /platformApi/wallet/{id}/payment</code></a>
                   </li>
                   <li>
-                    <a href="#payments-manager-get-platformapi-wallet-id-transactions" class="toc-h2 toc-link" data-title="GET /platformApi/wallet/{id}/transactions"><code>GET /platformApi/wallet/{id}/transactions</code></a>
+                    <a href="#payments-manager-get-platformapi-wallet-id-transactions-year-year-month-month" class="toc-h2 toc-link" data-title="GET /platformApi/wallet/{id}/transactions/year/{year}/month/{month}"><code>GET /platformApi/wallet/{id}/transactions/year/{year}/month/{month}</code></a>
                   </li>
                   <li>
                     <a href="#payments-manager-bulk-payments" class="toc-h2 toc-link" data-title="Bulk Payments"><em>Bulk Payments</em></a>
@@ -7164,9 +7167,7 @@ Prior to creating a wallet you need to have registered your company as the walle
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
 
-<span class="w">
-
-</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
@@ -7219,15 +7220,74 @@ Prior to creating a wallet you need to have registered your company as the walle
 <td>The sort code to use when depositing money</td>
 </tr>
 </tbody></table>
+<h2 id='payments-manager-get-platformapi-wallets'><code>GET /platformApi/wallets</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"walletId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankAccountDetailsId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountDetailsId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-get-platformapi-wallets-code-description'>Description</h3>
+<p>List of wallet details</p>
+<h3 id='payments-manager-code-get-platformapi-wallets-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The ID of the wallet</td>
+</tr>
+<tr>
+<td>bankAccountDetailsId</td>
+<td>string</td>
+<td>The bank account details ID</td>
+</tr>
+<tr>
+<td>bankDetails</td>
+<td>ref</td>
+<td>The bank details for the wallet</td>
+</tr>
+<tr>
+<td>bankDetails.accountName</td>
+<td>string</td>
+<td>The account name for use when depositing money</td>
+</tr>
+<tr>
+<td>bankDetails.accountNumber</td>
+<td>string</td>
+<td>The account number to use when depositing money</td>
+</tr>
+<tr>
+<td>bankDetails.sortCode</td>
+<td>string</td>
+<td>The sort code to use when depositing money</td>
+</tr>
+</tbody></table>
 <h2 id='payments-manager-get-platformapi-wallet-id-balance'><code>GET /platformApi/wallet/{id}/balance</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/platformApi/wallet/{id}/balance</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
 
-<span class="w">
-
-</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
@@ -7336,8 +7396,8 @@ Prior to creating a wallet you need to have registered your company as the walle
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-get-platformapi-wallet-id-transactions'><code>GET /platformApi/wallet/{id}/transactions</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">GET</span> <span class="nn">/platformApi/wallet/{id}/transactions</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-get-platformapi-wallet-id-transactions-year-year-month-month'><code>GET /platformApi/wallet/{id}/transactions/year/{year}/month/{month}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/wallet/{id}/transactions/year/{year}/month/{month}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -7361,9 +7421,9 @@ Prior to creating a wallet you need to have registered your company as the walle
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 
-</span></code></pre><h3 id='payments-manager-code-get-platformapi-wallet-id-transactions-code-description'>Description</h3>
-<p>Retrieve a list of transactions for a given wallet.</p>
-<h3 id='payments-manager-code-get-platformapi-wallet-id-transactions-code-response'>Response</h3>
+</span></code></pre><h3 id='payments-manager-code-get-platformapi-wallet-id-transactions-year-year-month-month-code-description'>Description</h3>
+<p>Retrieve a list of transactions for a given wallet for a given year and month.</p>
+<h3 id='payments-manager-code-get-platformapi-wallet-id-transactions-year-year-month-month-code-response'>Response</h3>
 <table><thead>
 <tr>
 <th>Name</th>
