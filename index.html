@@ -7177,6 +7177,10 @@ Prior to creating a wallet you need to have registered your company as the walle
     </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"balance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='payments-manager-code-get-platformapi-wallet-id-code-description'>Description</h3>
@@ -7219,6 +7223,21 @@ Prior to creating a wallet you need to have registered your company as the walle
 <td>string</td>
 <td>The sort code to use when depositing money</td>
 </tr>
+<tr>
+<td>balance</td>
+<td>ref</td>
+<td>The total cash balance for the wallet</td>
+</tr>
+<tr>
+<td>balance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>balance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
 </tbody></table>
 <h2 id='payments-manager-get-platformapi-wallets'><code>GET /platformApi/wallets</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/platformApi/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -7237,6 +7256,10 @@ Prior to creating a wallet you need to have registered your company as the walle
       </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"balance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
@@ -7279,6 +7302,21 @@ Prior to creating a wallet you need to have registered your company as the walle
 <td>bankDetails.sortCode</td>
 <td>string</td>
 <td>The sort code to use when depositing money</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>ref</td>
+<td>The total cash balance for the wallet</td>
+</tr>
+<tr>
+<td>balance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>balance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
 </tr>
 </tbody></table>
 <h2 id='payments-manager-get-platformapi-wallet-id-balance'><code>GET /platformApi/wallet/{id}/balance</code></h2><pre class="highlight http tab-http"><code><span class="err">
@@ -7417,7 +7455,12 @@ Prior to creating a wallet you need to have registered your company as the walle
     </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"narrative"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Solicitor Fees"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"createdDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T12:33:00Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"clearedDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T12:33:30Z"</span><span class="w">
+    </span><span class="s2">"clearedDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T12:33:30Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"associatedBankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 
@@ -7480,6 +7523,26 @@ Prior to creating a wallet you need to have registered your company as the walle
 <td>clearedDateTime</td>
 <td>date/time</td>
 <td>The date / time the transaction was cleared</td>
+</tr>
+<tr>
+<td>associatedBankDetails</td>
+<td>ref</td>
+<td>The bank details for the wallet</td>
+</tr>
+<tr>
+<td>associatedBankDetails.accountName</td>
+<td>string</td>
+<td>The account name related to the transaction</td>
+</tr>
+<tr>
+<td>associatedBankDetails.accountNumber</td>
+<td>string</td>
+<td>The account number related to the transaction</td>
+</tr>
+<tr>
+<td>associatedBankDetails.sortCode</td>
+<td>string</td>
+<td>The sort code related to the transaction</td>
 </tr>
 </tbody></table>
 <h2 id='payments-manager-bulk-payments'><em>Bulk Payments</em></h2>
