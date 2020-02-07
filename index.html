@@ -197,20 +197,20 @@
   color: #f92672;
 }
     </style>
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+    <link href="stylesheets/screen-08aedf13.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-7329452f.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-ebfec7bf.js"></script>
   </head>
 
   <body class="index" data-languages="[&quot;http&quot;,&quot;java&quot;,&quot;csharp&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" alt="Navbar" />
+        <img src="images/navbar-cad8cdcb.png" alt="Navbar" />
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo.jpg" class="logo" alt="Logo" />
+      <img src="images/logo-0503e00c.jpg" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="http">http</a>
               <a href="#" data-language-name="java">java</a>
@@ -1369,7 +1369,7 @@ address etc as well as complete any investor declarations that may be appropriat
 This is initially an automated process and only requires manual involvement if the automated checks are inconclusive or the investor is deemed high risk.
 If the KYC checks pass, a unique bank account number is created for the investor and a success message returned.</p>
 
-<p><img src="images/investors/images/onboarding-investors-success.png" alt="Onboarding investors success" /></p>
+<p><img src="images/investors/images/onboarding-investors-success-94a53dde.png" alt="Onboarding investors success" /></p>
 
 <p>If the KYC for a customer cannot be successfully completed immediately, a member of the Goji operations team will review
 the workflow case and perform whatever additional checks may be necessary.</p>
@@ -1381,7 +1381,7 @@ or over the phone. A full audit of all emails are kept in the admin console.</p>
 
 <p>Until the customer has been approved, they cannot deposit funds and invest.</p>
 
-<p><img src="images/investors/images/onboarding-investors-refer.png" alt="Onboarding investors refer" /></p>
+<p><img src="images/investors/images/onboarding-investors-refer-91bde2b4.png" alt="Onboarding investors refer" /></p>
 <h2 id='investors-onboarding-investors'>Onboarding investors</h2><h3 id='investors-onboarding-investors-registration'>Registration</h3>
 <p>To register an investor, <code>POST /investors</code> is called. Note that if the investor is being migrated to the Goji system from an existing record, the dedicated <a href="#investors-post-platformapi-migrate">investor migration endpoint</a> should be used instead.</p>
 
@@ -2627,7 +2627,7 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
 Once this is completed, Goji will validate the data and check that the investor is eligible for an ISA.
 If these checks are successful, the ISA is opened immediately and isavailable to deposit funds into.</p>
 
-<p><img src="images/investors/images/add-isa.png" alt="Add isa" /></p>
+<p><img src="images/investors/images/add-isa-1937cae1.png" alt="Add isa" /></p>
 <h2 id='investors-isa-transfers-in'>ISA Transfers In</h2>
 <p>Investors can request to transfer funds from other ISAs they hold with other providers to their Goji ISA.</p>
 
@@ -2637,7 +2637,7 @@ manager to arrange transfer of the funds.</p>
 
 <p>Once the funds are received, they are credited to the investor&#39;s accounts and can be invested as normal.</p>
 
-<p><img src="images/investors/images/isa-transfers.png" alt="Isa transfers" /></p>
+<p><img src="images/investors/images/isa-transfers-7e81c5d4.png" alt="Isa transfers" /></p>
 
 <p>The Goji Transfer In application exposes an ISA transfer in form intended for an investor to complete.</p>
 
@@ -5428,7 +5428,7 @@ ISA account with the reference number.</p>
 
 <p>Deposits sent via Faster Payments will be credited to their account within 90 seconds of the payment reaching our banking partner.</p>
 
-<p><img src="images/payments/images/deposit-funds.png" alt="Deposit funds" /></p>
+<p><img src="images/payments/images/deposit-funds-bad25290.png" alt="Deposit funds" /></p>
 <h2 id='payments-investors-withdrawals'>Withdrawals</h2>
 <p>An investor can withdraw cash to their personal account.
 Withdrawal requests are typically processed immediately and funds should clear straight away.</p>
@@ -5436,7 +5436,7 @@ Withdrawal requests are typically processed immediately and funds should clear s
 <p>The Goji Platform performs a series of checks to guard against potential money laundering   . On occasion a
 withdrawal may be delayed until manual approval is given to process the transaction.</p>
 
-<p><img src="images/payments/images/withdrawal.png" alt="Withdrawal" /></p>
+<p><img src="images/payments/images/withdrawal-15ad241b.png" alt="Withdrawal" /></p>
 <h3 id='payments-investors-withdrawals-testing-withdrawals'>Testing withdrawals</h3>
 <p>When testing withdrawals in the sandbox environment please make sure you use valid sort codes &amp;
 account numbers as these are validated to ensure they accept faster payments prior to being sent.</p>
@@ -7955,25 +7955,25 @@ they will be made available in the ISA.</p>
 <p>The investment manager will periodically record an investment in the Goji platform via the API. This will trigger a
 record of the investment against the investors&#39; accounts and also move the funds from the client money account to the investment manager.</p>
 
-<p><img src="images/settlement/images/client-money-investment.png" alt="Client money investment" /></p>
+<p><img src="images/settlement/images/client-money-investment-97741d18.png" alt="Client money investment" /></p>
 <h2 id='settlement-debt-bond-repayments'>Bond repayments</h2>
 <p>The investment manager will calculate repayments and any withholding tax that are due to the investors in the bond. The investment manager will
 record the due repayment via the API. Once the funds are received, they will be distributed to the appropriate investors and any tax or fees specified will
 be returned to the investment manager to the specified payment destination</p>
 
-<p><img src="images/settlement/images/client-money-repayment.png" alt="Client money repayment" /></p>
+<p><img src="images/settlement/images/client-money-repayment-0089a363.png" alt="Client money repayment" /></p>
 <h2 id='settlement-debt-bond-maturity'>Bond maturity</h2>
 <p>When the bond matures, the investment manager will calculate repayments that are due to the investors in the bond. The investment manager will
 record the due repayment via the API. Once the funds are received, they will be distributed to the appropriate investors and any tax or fees specified will
 be returned to the investment manager to the specified payment destination.</p>
 
-<p><img src="images/settlement/images/client-money-maturity.png" alt="Client money maturity" /></p>
+<p><img src="images/settlement/images/client-money-maturity-d086ae83.png" alt="Client money maturity" /></p>
 <h2 id='settlement-debt-secondary-market'>Secondary market</h2>
 <p>When the investment manager wishes to transfer ownership of a loan (or part thereof), the sale is recorded via the API
 to the Goji platform. If appropriate funds are available in the buyer&#39;s account in the Goji platform, the appropriate
 transactions are recorded and funds are moved to the seller&#39;s account.</p>
 
-<p><img src="images/settlement/images/client-money-secondary-market.png" alt="Client money secondary market" /></p>
+<p><img src="images/settlement/images/client-money-secondary-market-40e1fda0.png" alt="Client money secondary market" /></p>
 <h2 id='settlement-debt-get-platformapi-settlement-product'><code>GET /platformApi/settlement/product</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/platformApi/settlement/product</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -10341,7 +10341,7 @@ account.</p>
 <p>Orders are settled per the configuration of the product at which point the invested funds are sent to the
 Investment Manager for deployment and a bond certificate is issued to the investor.</p>
 
-<p><img src="images/bond-management/images/make-investment.png" alt="Make investment" /></p>
+<p><img src="images/bond-management/images/make-investment-b86a7c9a.png" alt="Make investment" /></p>
 <h2 id='bond-management-bond-repayments'>Bond repayments</h2>
 <p>Depending on the configuration of the product, repayments may be made during the lifetime of the
 bond eg quarterly interest repayments.</p>
@@ -10352,7 +10352,7 @@ to request payment to a specified account and reference. These details are also 
 <p>Once this payment is received, the funds are allocated to the investors&#39; accounts and they are emailed to inform them
 that their account has been credited.</p>
 
-<p><img src="images/bond-management/images/bond-repayment.png" alt="Bond repayment" /></p>
+<p><img src="images/bond-management/images/bond-repayment-0e7a3cb7.png" alt="Bond repayment" /></p>
 <h2 id='bond-management-bond-maturity'>Bond maturity</h2>
 <p>The Goji Platform calculates the funds that will be required at maturity of the bond and will email the Investment Manager
 to request payment to a specified account and reference. These details are also available via the API.</p>
@@ -10360,7 +10360,7 @@ to request payment to a specified account and reference. These details are also 
 <p>Once this payment is received, the funds are allocated to the investors&#39; accounts and they are emailed to inform them
 that their account has been credited.</p>
 
-<p><img src="images/bond-management/images/bond-maturity.png" alt="Bond maturity" /></p>
+<p><img src="images/bond-management/images/bond-maturity-1db41d41.png" alt="Bond maturity" /></p>
 <h2 id='bond-management-post-platformapi-bondmanagement-product'><code>POST /platformApi/bondManagement/product</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/platformApi/bondManagement/product</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
