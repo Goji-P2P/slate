@@ -1132,29 +1132,30 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>Create Investor</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ISA"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBR"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"lineOne"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 The High Street"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"lineTwo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"lineThree"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AA1 1AA"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"County"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"townCity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Town"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"contactDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"emailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"me@email.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"telephoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01234567890"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"dateOfBirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INDIVIDUAL"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"investorDeclarationType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RESTRICTED"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"nationalInsuranceNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JT123456D"</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ISA"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBR"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineOne"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 The High Street"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineTwo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineThree"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AA1 1AA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"County"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"townCity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Town"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"contactDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"emailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"me@email.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telephoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01234567890"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"dateOfBirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INDIVIDUAL"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"investorDeclarationType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RESTRICTED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nationalInsuranceNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JT123456D"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>To create an Investor, the Investor must first agree to the Terms and Conditions, and optionally the ISA declaration if the Investor is opening an ISA.</p>
@@ -1175,13 +1176,13 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>Bank Transfer Details</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.00</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;client-id&gt;"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"paymentReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISA&lt;client-id&gt;"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"paymentType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEPOSIT"</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;client-id&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"paymentReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISA&lt;client-id&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"paymentType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEPOSIT"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Once an Investor is KYC approved, funds can be deposited.</p>
@@ -1206,9 +1207,9 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>Investment Product</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRODUCT-1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"investmentDocument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://document.url"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"isaEligible"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRODUCT-1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"investmentDocument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://document.url"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"isaEligible"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>First register the investment product:</p>
@@ -1221,10 +1222,10 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>Payment Destination</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account name"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank ref"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"112233"</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank ref"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"112233"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Next, register a payment destination. This is where the funds will be sent.</p>
@@ -1246,20 +1247,21 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>Settle Investment</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"investment1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"investments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISA"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.00</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;client-id&gt;"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client-investment-1"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"paymentDestinationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-destination-id&gt;"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"productId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRODUCT-1"</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"investment1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"investment1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"productId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRODUCT-1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"investments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client-investment-1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;client-id&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.00</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href="/#post-settlement-tranche">POST https://api-sandbox.goji.investments/platformApi/settlement/tranche</a></p>
@@ -1272,9 +1274,9 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>Repaying Investment</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-ref"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"112233"</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-ref"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"112233"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>To record a repayment against an investment, firstly generate a unique reference that will be used when sending the funds to the Goji Platform.</p>
@@ -1289,21 +1291,21 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>Record Repayment</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"investorRepayments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"investmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client-investment-1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INTEREST"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-ref"</span><span class="w">
+  </span><span class="s2">"investorRepayments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"investmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client-investment-1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INTEREST"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-ref"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href="/#post-settlement-repayment">POST https://api-sandbox.goji.investments/platformApi/settlement/repayment</a></p>
@@ -1314,20 +1316,20 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>Register Bank Details</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"112344"</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"112344"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Withdraw Funds</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101234.56"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my withdrawal ref"</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101234.56"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my withdrawal ref"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>An Investor can withdraw funds by firstly registering bank account details:</p>
