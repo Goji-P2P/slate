@@ -168,20 +168,21 @@ The following example includes a single investment from a single Investor:
 
 ```json
 {
-    "id": "investment1",
-    "investments": [
-        {
-            "accountType": "ISA",
-            "amount": {
-                "amount": 10000.00,
-                "currency": "GBP"
-            },
-            "clientId": "<client-id>",
-            "id": "client-investment-1"
-        }
-    ],
-    "paymentDestinationId": "<payment-destination-id>",
-    "productId": "PRODUCT-1"
+  "id": "investment1",
+  "reference": "investment1",
+  "productId": "PRODUCT-1",
+  "bankAccountId": "bankAccountId",
+  "investments": [
+    {
+      "id": "client-investment-1",
+      "clientId": "<client-id>",
+      "accountType": "ISA",
+      "amount": {
+        "amount": 10000.00,
+        "currency": "GBP"
+      }
+    }
+  ]
 }
 ```
 
