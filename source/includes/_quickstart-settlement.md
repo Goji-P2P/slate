@@ -162,7 +162,7 @@ To ensure the payment is processed correctly, please the following test account 
 `sortCode: 203002`
 
 <aside class="notice">
-Please note that by default the payment destination is disabled and have to be enabled by Goji before using it.  
+Please note that by default the payment destination is disabled and has to be enabled by Goji before it can be used.  
 </aside>
 
 After the payment destination is enabled settle the investment.
