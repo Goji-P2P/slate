@@ -165,7 +165,7 @@ To ensure the payment is processed correctly, please the following test account 
 Please note that by default the payment destination is disabled and has to be enabled by Goji before it can be used.  
 </aside>
 
-After the payment destination is enabled settle the investment.
+After the payment destination is enabled, settle the investment.
 
 The following example includes a single investment from a single Investor:
 
