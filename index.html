@@ -432,7 +432,10 @@
             <a href="#payments-manager" class="toc-h1 toc-link" data-title="Payments - Manager">Payments - Manager</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#payments-manager-code-post-platformapi-investors-clientid-fee-code-testing-outbound-payments" class="toc-h2 toc-link" data-title="Testing outbound payments">Testing outbound payments</a>
+                    <a href="#payments-manager-testing-outbound-payments" class="toc-h2 toc-link" data-title="Testing outbound payments">Testing outbound payments</a>
+                  </li>
+                  <li>
+                    <a href="#payments-manager-managing-payment-destinations" class="toc-h2 toc-link" data-title="Managing Payment Destinations"><em>Managing Payment Destinations</em></a>
                   </li>
                   <li>
                     <a href="#payments-manager-get-platformapi-bankaccountdetails" class="toc-h2 toc-link" data-title="GET /platformApi/bankAccountDetails"><code>GET /platformApi/bankAccountDetails</code></a>
@@ -447,25 +450,34 @@
                     <a href="#payments-manager-put-platformapi-bankaccountdetails-id" class="toc-h2 toc-link" data-title="PUT /platformApi/bankAccountDetails/{id}"><code>PUT /platformApi/bankAccountDetails/{id}</code></a>
                   </li>
                   <li>
-                    <a href="#payments-manager-post-platformapi-wallet-company-registration" class="toc-h2 toc-link" data-title="POST /platformApi/wallet/company/registration"><code>POST /platformApi/wallet/company/registration</code></a>
+                    <a href="#payments-manager-registering-companies-as-wallet-holders" class="toc-h2 toc-link" data-title="Registering Companies as Wallet Holders"><em>Registering Companies as Wallet Holders</em></a>
                   </li>
                   <li>
-                    <a href="#payments-manager-post-platformapi-wallet" class="toc-h2 toc-link" data-title="POST /platformApi/wallet"><code>POST /platformApi/wallet</code></a>
+                    <a href="#payments-manager-post-companies" class="toc-h2 toc-link" data-title="POST /companies🚧"><code>POST /companies🚧</code></a>
                   </li>
                   <li>
-                    <a href="#payments-manager-get-platformapi-wallet-id" class="toc-h2 toc-link" data-title="GET /platformApi/wallet/{id}"><code>GET /platformApi/wallet/{id}</code></a>
+                    <a href="#payments-manager-get-companies" class="toc-h2 toc-link" data-title="GET /companies🚧"><code>GET /companies🚧</code></a>
                   </li>
                   <li>
-                    <a href="#payments-manager-get-platformapi-wallets" class="toc-h2 toc-link" data-title="GET /platformApi/wallets"><code>GET /platformApi/wallets</code></a>
+                    <a href="#payments-manager-get-companies-id" class="toc-h2 toc-link" data-title="GET /companies/{id} 🚧"><code>GET /companies/{id} 🚧</code></a>
                   </li>
                   <li>
-                    <a href="#payments-manager-get-platformapi-wallet-id-balance" class="toc-h2 toc-link" data-title="GET /platformApi/wallet/{id}/balance"><code>GET /platformApi/wallet/{id}/balance</code></a>
+                    <a href="#payments-manager-managing-wallets" class="toc-h2 toc-link" data-title="Managing Wallets"><em>Managing Wallets</em></a>
                   </li>
                   <li>
-                    <a href="#payments-manager-post-platformapi-wallet-id-payment" class="toc-h2 toc-link" data-title="POST /platformApi/wallet/{id}/payment"><code>POST /platformApi/wallet/{id}/payment</code></a>
+                    <a href="#payments-manager-post-wallets" class="toc-h2 toc-link" data-title="POST /wallets 🚧"><code>POST /wallets 🚧</code></a>
                   </li>
                   <li>
-                    <a href="#payments-manager-get-platformapi-wallet-id-transactions-year-year-month-month" class="toc-h2 toc-link" data-title="GET /platformApi/wallet/{id}/transactions/year/{year}/month/{month}"><code>GET /platformApi/wallet/{id}/transactions/year/{year}/month/{month}</code></a>
+                    <a href="#payments-manager-get-wallets" class="toc-h2 toc-link" data-title="GET /wallets 🚧"><code>GET /wallets 🚧</code></a>
+                  </li>
+                  <li>
+                    <a href="#payments-manager-get-wallets-id" class="toc-h2 toc-link" data-title="GET /wallets/{id} 🚧"><code>GET /wallets/{id} 🚧</code></a>
+                  </li>
+                  <li>
+                    <a href="#payments-manager-post-wallets-id-payment" class="toc-h2 toc-link" data-title="POST /wallets/{id}/payment 🚧"><code>POST /wallets/{id}/payment 🚧</code></a>
+                  </li>
+                  <li>
+                    <a href="#payments-manager-get-wallets-id-transactions-year-year-month-month" class="toc-h2 toc-link" data-title="GET /wallets/{id}/transactions/year/{year}/month/{month} 🚧"><code>GET /wallets/{id}/transactions/year/{year}/month/{month} 🚧</code></a>
                   </li>
                   <li>
                     <a href="#payments-manager-bulk-payments" class="toc-h2 toc-link" data-title="Bulk Payments"><em>Bulk Payments</em></a>
@@ -538,10 +550,10 @@
               </ul>
           </li>
           <li>
-            <a href="#settlement-equity" class="toc-h1 toc-link" data-title="Settlement - Equity 🚧">Settlement - Equity 🚧</a>
+            <a href="#settlement-equity" class="toc-h1 toc-link" data-title="Settlement - Equity">Settlement - Equity</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#settlement-equity-instruments" class="toc-h2 toc-link" data-title="Instruments 🚧"><em>Instruments 🚧</em></a>
+                    <a href="#settlement-equity-instruments" class="toc-h2 toc-link" data-title="Instruments"><em>Instruments</em></a>
                   </li>
                   <li>
                     <a href="#settlement-equity-instrument-creation" class="toc-h2 toc-link" data-title="Instrument Creation">Instrument Creation</a>
@@ -568,7 +580,7 @@
                     <a href="#settlement-equity-get-allocations-id" class="toc-h2 toc-link" data-title="GET /allocations/{id}"><code>GET /allocations/{id}</code></a>
                   </li>
                   <li>
-                    <a href="#settlement-equity-trade-settlement" class="toc-h2 toc-link" data-title="Trade Settlement 🚧"><em>Trade Settlement 🚧</em></a>
+                    <a href="#settlement-equity-trade-settlement" class="toc-h2 toc-link" data-title="Trade Settlement"><em>Trade Settlement</em></a>
                   </li>
                   <li>
                     <a href="#settlement-equity-trades" class="toc-h2 toc-link" data-title="Trades">Trades</a>
@@ -583,7 +595,7 @@
                     <a href="#settlement-equity-get-trades-id" class="toc-h2 toc-link" data-title="GET /trades/{id}"><code>GET /trades/{id}</code></a>
                   </li>
                   <li>
-                    <a href="#settlement-equity-corporate-actions" class="toc-h2 toc-link" data-title="Corporate Actions 🚧"><em>Corporate Actions 🚧</em></a>
+                    <a href="#settlement-equity-corporate-actions" class="toc-h2 toc-link" data-title="Corporate Actions"><em>Corporate Actions</em></a>
                   </li>
                   <li>
                     <a href="#settlement-equity-dividends" class="toc-h2 toc-link" data-title="Dividends">Dividends</a>
@@ -659,7 +671,79 @@
                     <a href="#webhooks-post-webhooks" class="toc-h2 toc-link" data-title="POST /webhooks"><code>POST /webhooks</code></a>
                   </li>
                   <li>
-                    <a href="#webhooks-webhook-types" class="toc-h2 toc-link" data-title="Webhook Types">Webhook Types</a>
+                    <a href="#webhooks-webhook-types" class="toc-h2 toc-link" data-title="Webhook Types"><em>Webhook Types</em></a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-investor_personal_details_registered" class="toc-h2 toc-link" data-title="INVESTOR_PERSONAL_DETAILS_REGISTERED">INVESTOR_PERSONAL_DETAILS_REGISTERED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-investor_created" class="toc-h2 toc-link" data-title="INVESTOR_CREATED">INVESTOR_CREATED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-investor_kyc_status_change" class="toc-h2 toc-link" data-title="INVESTOR_KYC_STATUS_CHANGE">INVESTOR_KYC_STATUS_CHANGE</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-investor_funds_received" class="toc-h2 toc-link" data-title="INVESTOR_FUNDS_RECEIVED">INVESTOR_FUNDS_RECEIVED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-isa_auto_repaired" class="toc-h2 toc-link" data-title="ISA_AUTO_REPAIRED">ISA_AUTO_REPAIRED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-investor_funds_withdrawn" class="toc-h2 toc-link" data-title="INVESTOR_FUNDS_WITHDRAWN">INVESTOR_FUNDS_WITHDRAWN</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-investment_queued" class="toc-h2 toc-link" data-title="INVESTMENT_QUEUED">INVESTMENT_QUEUED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-investment_fulfilled" class="toc-h2 toc-link" data-title="INVESTMENT_FULFILLED">INVESTMENT_FULFILLED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-transfer_in_created" class="toc-h2 toc-link" data-title="TRANSFER_IN_CREATED">TRANSFER_IN_CREATED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-transfer_out_created" class="toc-h2 toc-link" data-title="TRANSFER_OUT_CREATED">TRANSFER_OUT_CREATED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-transfer_out_completed" class="toc-h2 toc-link" data-title="TRANSFER_OUT_COMPLETED">TRANSFER_OUT_COMPLETED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-transfer_in_funds_received" class="toc-h2 toc-link" data-title="TRANSFER_IN_FUNDS_RECEIVED">TRANSFER_IN_FUNDS_RECEIVED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-isa_provisionally_opened" class="toc-h2 toc-link" data-title="ISA_PROVISIONALLY_OPENED">ISA_PROVISIONALLY_OPENED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-investment_payout_event" class="toc-h2 toc-link" data-title="INVESTMENT_PAYOUT_EVENT">INVESTMENT_PAYOUT_EVENT</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-funds_requested" class="toc-h2 toc-link" data-title="FUNDS_REQUESTED">FUNDS_REQUESTED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-funds_received" class="toc-h2 toc-link" data-title="FUNDS_RECEIVED">FUNDS_RECEIVED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-bank_account_details_status_changed" class="toc-h2 toc-link" data-title="BANK_ACCOUNT_DETAILS_STATUS_CHANGED">BANK_ACCOUNT_DETAILS_STATUS_CHANGED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-wallet_created" class="toc-h2 toc-link" data-title="WALLET_CREATED">WALLET_CREATED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-wallet_funds_received" class="toc-h2 toc-link" data-title="WALLET_FUNDS_RECEIVED">WALLET_FUNDS_RECEIVED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-wallet_transfer_cleared" class="toc-h2 toc-link" data-title="WALLET_TRANSFER_CLEARED">WALLET_TRANSFER_CLEARED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-dividend_update" class="toc-h2 toc-link" data-title="DIVIDEND_UPDATE">DIVIDEND_UPDATE</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-batch_update" class="toc-h2 toc-link" data-title="BATCH_UPDATE">BATCH_UPDATE</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-account_fee_processed" class="toc-h2 toc-link" data-title="ACCOUNT_FEE_PROCESSED">ACCOUNT_FEE_PROCESSED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-company_registration_update" class="toc-h2 toc-link" data-title="COMPANY_REGISTRATION_UPDATE">COMPANY_REGISTRATION_UPDATE</a>
                   </li>
               </ul>
           </li>
@@ -6614,7 +6698,7 @@ Content-Type: application/json
 <td>The status of the fee transfer process. Possible values are: <br><code>PENDING</code><br><code>CLEARED</code><br></td>
 </tr>
 </tbody></table>
-<h1 id='payments-manager'>Payments - Manager</h1><h3 id='payments-manager-code-post-platformapi-investors-clientid-fee-code-testing-outbound-payments'>Testing outbound payments</h3>
+<h1 id='payments-manager'>Payments - Manager</h1><h2 id='payments-manager-testing-outbound-payments'>Testing outbound payments</h2>
 <p>When testing outbound payments in the sandbox environment please make sure you use valid sort codes &amp;
 account numbers as these are validated to ensure they accept faster payments prior to being sent.</p>
 
@@ -6651,15 +6735,12 @@ account numbers as these are validated to ensure they accept faster payments pri
 <td>87889196</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-get-platformapi-bankaccountdetails'><code>GET /platformApi/bankAccountDetails</code></h2><pre class="highlight http tab-http"><code><span class="err">
+<h2 id='payments-manager-managing-payment-destinations'><em>Managing Payment Destinations</em></h2><h2 id='payments-manager-get-platformapi-bankaccountdetails'><code>GET /platformApi/bankAccountDetails</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/platformApi/bankAccountDetails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
-
-<span class="w">
-
-</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -6772,10 +6853,7 @@ account numbers as these are validated to ensure they accept faster payments pri
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
-
-<span class="w">
-
-</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
@@ -6867,64 +6945,36 @@ account numbers as these are validated to ensure they accept faster payments pri
 <td>required</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-post-platformapi-wallet-company-registration'><code>POST /platformApi/wallet/company/registration</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/platformApi/wallet/company/registration</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-registering-companies-as-wallet-holders'><em>Registering Companies as Wallet Holders</em></h2><h2 id='payments-manager-post-companies'><code>POST /companies🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/companies</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"companyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Company Name"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"poBox"</span><span class="p">:</span><span class="w"> </span><span class="s2">"poBox"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"careOf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"careOf"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB12CD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"locality"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"addressLine1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addressLine1"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"addressLine2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addressLine2"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ltd"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"companyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10965535"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sicCodes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"80900"</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"officerList"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"officerRole"</span><span class="p">:</span><span class="w"> </span><span class="s2">"director"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Surename"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"emailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@example.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"poBox"</span><span class="p">:</span><span class="w"> </span><span class="s2">"poBox"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"careOf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"careOf"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB12CD"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"addressLine1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addressLine1"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"addressLine2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addressLine2"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07512345678"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"resignedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resignedOn"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"dateOfBirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1980-01-30"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"countryOfResidence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"countryOfResidence"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"appointedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1999-01-30"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"percentageOwnership"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"ukCompany"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fake Company LIMITED"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
-</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="s">""</span>
-</code></pre><h3 id='payments-manager-code-post-platformapi-wallet-company-registration-code-description'>Description</h3>
-<p>Register a corporate for wallet management</p>
-<h3 id='payments-manager-code-post-platformapi-wallet-company-registration-code-request'>Request</h3>
+<span class="s">{</span>
+<span class="s">  "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",</span>
+<span class="s">  "status": "PENDING",</span>
+<span class="s">  "ukCompany": {</span>
+<span class="s">    "number": "00000000",</span>
+<span class="s">    "name": "Fake Company LIMITED"</span>
+<span class="s">  }</span>
+<span class="s">}</span>
+</code></pre><h3 id='payments-manager-code-post-companies-code-description'>Description</h3>
+<p>Register a company with the Goji Platform.  This allows the company to own Wallets, and send/receive money through them.</p>
+
+<p>The registration process is asynchronous.  When this API is first called, the <code>status</code> returned will be <code>PENDING</code>. A 
+<code>COMPANY_REGISTRATION_UPDATE</code> webhook will be used to notify completion of the registration.</p>
+
+<p>The registration process is partially manual, so the webhook will be dispatched significantly later than the API call, 
+so do not assume the webhook will arrive shortly after the API call. </p>
+<h3 id='payments-manager-code-post-companies-code-request'>Request</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -6934,239 +6984,161 @@ account numbers as these are validated to ensure they accept faster payments pri
 </tr>
 </thead><tbody>
 <tr>
-<td>profile</td>
-<td>ref</td>
-<td></td>
-<td>required</td>
-</tr>
-<tr>
-<td>profile.companyName</td>
+<td>ukCompany.number</td>
 <td>string</td>
-<td>Company Name</td>
+<td>The Company Number registered with Companies House.</td>
 <td>required</td>
 </tr>
 <tr>
-<td>profile.type</td>
+<td>ukCompany.name</td>
 <td>string</td>
-<td>Company Type</td>
-<td>required</td>
-</tr>
-<tr>
-<td>profile.companyNumber</td>
-<td>string</td>
-<td>Company Number</td>
-<td>required</td>
-</tr>
-<tr>
-<td>profile.sicCodes</td>
-<td>array</td>
-<td>Standard industrial classification (sic) codes</td>
-<td>required</td>
-</tr>
-<tr>
-<td>profile.address</td>
-<td>ref</td>
-<td></td>
-<td>required</td>
-</tr>
-<tr>
-<td>profile.address.addressLine1</td>
-<td>string</td>
-<td>Address Line 1</td>
-<td>required</td>
-</tr>
-<tr>
-<td>profile.address.addressLine2</td>
-<td>string</td>
-<td>Address Line 2</td>
-<td>required</td>
-</tr>
-<tr>
-<td>profile.address.careOf</td>
-<td>string</td>
-<td>Care Of</td>
-<td>required</td>
-</tr>
-<tr>
-<td>profile.address.country</td>
-<td>string</td>
-<td>Country</td>
-<td>required</td>
-</tr>
-<tr>
-<td>profile.address.locality</td>
-<td>string</td>
-<td>Locality</td>
-<td>required</td>
-</tr>
-<tr>
-<td>profile.address.poBox</td>
-<td>string</td>
-<td>Po Box</td>
-<td>required</td>
-</tr>
-<tr>
-<td>profile.address.postalCode</td>
-<td>string</td>
-<td>Postal Code</td>
-<td>required</td>
-</tr>
-<tr>
-<td>profile.address.region</td>
-<td>string</td>
-<td>Region</td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList</td>
-<td>ref</td>
-<td></td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items</td>
-<td>array</td>
-<td>Officers</td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.appointedOn</td>
-<td>string</td>
-<td></td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.countryOfResidence</td>
-<td>string</td>
-<td></td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.dateOfBirth</td>
-<td>string</td>
-<td>ISO-8601 format date</td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.firstName</td>
-<td>string</td>
-<td></td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.lastName</td>
-<td>string</td>
-<td></td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.resignedOn</td>
-<td>string</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>officerList.items.officerRole</td>
-<td>string</td>
-<td></td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.emailAddress</td>
-<td>string</td>
-<td></td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.phoneNumber</td>
-<td>string</td>
-<td></td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.percentageOwnership</td>
-<td>number</td>
-<td></td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.address</td>
-<td>ref</td>
-<td></td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.address.addressLine1</td>
-<td>string</td>
-<td>Address Line 1</td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.address.addressLine2</td>
-<td>string</td>
-<td>Address Line 2</td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.address.careOf</td>
-<td>string</td>
-<td>Care Of</td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.address.country</td>
-<td>string</td>
-<td>Country</td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.address.locality</td>
-<td>string</td>
-<td>Locality</td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.address.poBox</td>
-<td>string</td>
-<td>Po Box</td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.address.postalCode</td>
-<td>string</td>
-<td>Postal Code</td>
-<td>required</td>
-</tr>
-<tr>
-<td>officerList.items.address.region</td>
-<td>string</td>
-<td>Region</td>
+<td>Company Name.</td>
 <td>required</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-post-platformapi-wallet'><code>POST /platformApi/wallet</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">POST</span> <span class="nn">/platformApi/wallet</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h3 id='payments-manager-code-post-companies-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>partyId</td>
+<td>string</td>
+<td>The Party ID for this company.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Enum: PENDING, REGISTERED.</td>
+</tr>
+<tr>
+<td>ukCompany.number</td>
+<td>string</td>
+<td>The Company Number registered with Companies House.</td>
+</tr>
+<tr>
+<td>ukCompany.name</td>
+<td>string</td>
+<td>Company Name.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-get-companies'><code>GET /companies🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/companies</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"partyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="w">
+    </span><span class="s2">"ukCompany"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fake Company LIMITED"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"partyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~0176cb07-30ba-4802-ab4a-b0835222cf5b"</span><span class="w">
+    </span><span class="s2">"ukCompany"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Other Fake Company LIMITED"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-get-companies-code-description'>Description</h3>
+<p>Retrieves all companies that have been registered.</p>
+<h3 id='payments-manager-code-get-companies-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>partyId</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>ukCompany.number</td>
+<td>string</td>
+<td>The Company Number registered with Companies House.</td>
+</tr>
+<tr>
+<td>ukCompany.name</td>
+<td>string</td>
+<td>Company Name</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-get-companies-id'><code>GET /companies/{id} 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"partyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="w">
+  </span><span class="s2">"ukCompany"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fake Company LIMITED"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-get-companies-id-code-description'>Description</h3>
+<p>Retrieve details of a single company.</p>
+<h3 id='payments-manager-code-get-companies-id-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>partyId</td>
+<td>string</td>
+<td>Party ID for the company</td>
+</tr>
+<tr>
+<td>ukCompany.number</td>
+<td>string</td>
+<td>The Company Number registered with Companies House.</td>
+</tr>
+<tr>
+<td>ukCompany.name</td>
+<td>string</td>
+<td>Company Name</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-managing-wallets'><em>Managing Wallets</em></h2><h2 id='payments-manager-post-wallets'><code>POST /wallets 🚧</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
 
 <span class="p">{</span><span class="w">
+  </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"walletName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">OK</span>
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"walletName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<aside class="notice">
-Prior to creating a wallet you need to have registered your company as the wallet holder using /wallet/company/registration
-</aside>
-<h3 id='payments-manager-code-post-platformapi-wallet-code-description'>Description</h3>
-<p>Create a wallet</p>
-<h3 id='payments-manager-code-post-platformapi-wallet-code-request'>Request</h3>
+<p>ℹ️ <em>Prior to creating a Wallet, the company who owns the money in the Wallet must be registered using <a href="#payments-manager-post-companies"><code>POST /companies</code></a></em></p>
+<h3 id='payments-manager-code-post-wallets-code-description'>Description</h3>
+<p>Creates a Wallet. The Wallet creation will not happen immediately. The <code>WALLET_CREATED</code> webhook will be used to notify
+you of the Wallet creation completing, including the Bank Account Number and Sort Code.</p>
+<h3 id='payments-manager-code-post-wallets-code-request'>Request</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7175,6 +7147,12 @@ Prior to creating a wallet you need to have registered your company as the walle
 <th>Required</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>ownerPartyId</td>
+<td>string</td>
+<td>The PartyId that will own the Wallet.</td>
+<td>required</td>
+</tr>
 <tr>
 <td>walletName</td>
 <td>string</td>
@@ -7182,7 +7160,7 @@ Prior to creating a wallet you need to have registered your company as the walle
 <td>required</td>
 </tr>
 </tbody></table>
-<h3 id='payments-manager-code-post-platformapi-wallet-code-response'>Response</h3>
+<h3 id='payments-manager-code-post-wallets-code-response'>Response</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7193,93 +7171,24 @@ Prior to creating a wallet you need to have registered your company as the walle
 <tr>
 <td>id</td>
 <td>string</td>
-<td>The unique identifier for the created wallet</td>
+<td>The unique identifier for the Wallet.</td>
+</tr>
+<tr>
+<td>ownerPartyId</td>
+<td>string</td>
+<td>The PartyId that will own the Wallet.</td>
+</tr>
+<tr>
+<td>walletName</td>
+<td>string</td>
+<td>Wallet name.</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-get-platformapi-wallet-id'><code>GET /platformApi/wallet/{id}</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">GET</span> <span class="nn">/platformApi/wallet/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-get-wallets'><code>GET /wallets 🚧</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
-
-</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-
-<span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"walletId"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bankAccountDetailsId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountDetailsId"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"balance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='payments-manager-code-get-platformapi-wallet-id-code-description'>Description</h3>
-<p>Wallet Details</p>
-<h3 id='payments-manager-code-get-platformapi-wallet-id-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>string</td>
-<td>The ID of the wallet</td>
-</tr>
-<tr>
-<td>bankAccountDetailsId</td>
-<td>string</td>
-<td>The bank account details ID</td>
-</tr>
-<tr>
-<td>bankDetails</td>
-<td>ref</td>
-<td>The bank details for the wallet</td>
-</tr>
-<tr>
-<td>bankDetails.accountName</td>
-<td>string</td>
-<td>The account name for use when depositing money</td>
-</tr>
-<tr>
-<td>bankDetails.accountNumber</td>
-<td>string</td>
-<td>The account number to use when depositing money</td>
-</tr>
-<tr>
-<td>bankDetails.sortCode</td>
-<td>string</td>
-<td>The sort code to use when depositing money</td>
-</tr>
-<tr>
-<td>balance</td>
-<td>ref</td>
-<td>The total cash balance for the wallet</td>
-</tr>
-<tr>
-<td>balance.amount</td>
-<td>number</td>
-<td>The amount.</td>
-</tr>
-<tr>
-<td>balance.currency</td>
-<td>string</td>
-<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
-</tr>
-</tbody></table>
-<h2 id='payments-manager-get-platformapi-wallets'><code>GET /platformApi/wallets</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">GET</span> <span class="nn">/platformApi/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
-
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
@@ -7288,19 +7197,19 @@ Prior to creating a wallet you need to have registered your company as the walle
     </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"walletId"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bankAccountDetailsId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountDetailsId"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+      </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"balance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="p">,</span><span class="w">
       </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='payments-manager-code-get-platformapi-wallets-code-description'>Description</h3>
+</span></code></pre><h3 id='payments-manager-code-get-wallets-code-description'>Description</h3>
 <p>List of wallet details</p>
-<h3 id='payments-manager-code-get-platformapi-wallets-code-response'>Response</h3>
+<h3 id='payments-manager-code-get-wallets-code-response'>Response</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7354,8 +7263,8 @@ Prior to creating a wallet you need to have registered your company as the walle
 <td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-get-platformapi-wallet-id-balance'><code>GET /platformApi/wallet/{id}/balance</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">GET</span> <span class="nn">/platformApi/wallet/{id}/balance</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-get-wallets-id'><code>GET /wallets/{id} 🚧</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -7364,15 +7273,21 @@ Prior to creating a wallet you need to have registered your company as the walle
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"walletId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"walletId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bankAccountDetailsId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountDetailsId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="s2">"balance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="p">,</span><span class="w">
     </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='payments-manager-code-get-platformapi-wallet-id-balance-code-description'>Description</h3>
-<p>Get the total balance for a wallet</p>
-<h3 id='payments-manager-code-get-platformapi-wallet-id-balance-code-response'>Response</h3>
+</span></code></pre><h3 id='payments-manager-code-get-wallets-id-code-description'>Description</h3>
+<p>Wallet Details</p>
+<h3 id='payments-manager-code-get-wallets-id-code-response'>Response</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7381,9 +7296,34 @@ Prior to creating a wallet you need to have registered your company as the walle
 </tr>
 </thead><tbody>
 <tr>
-<td>walletId</td>
+<td>id</td>
 <td>string</td>
 <td>The ID of the wallet</td>
+</tr>
+<tr>
+<td>bankAccountDetailsId</td>
+<td>string</td>
+<td>The bank account details ID</td>
+</tr>
+<tr>
+<td>bankDetails</td>
+<td>ref</td>
+<td>The bank details for the wallet</td>
+</tr>
+<tr>
+<td>bankDetails.accountName</td>
+<td>string</td>
+<td>The account name for use when depositing money</td>
+</tr>
+<tr>
+<td>bankDetails.accountNumber</td>
+<td>string</td>
+<td>The account number to use when depositing money</td>
+</tr>
+<tr>
+<td>bankDetails.sortCode</td>
+<td>string</td>
+<td>The sort code to use when depositing money</td>
 </tr>
 <tr>
 <td>balance</td>
@@ -7401,29 +7341,29 @@ Prior to creating a wallet you need to have registered your company as the walle
 <td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-post-platformapi-wallet-id-payment'><code>POST /platformApi/wallet/{id}/payment</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">POST</span> <span class="nn">/platformApi/wallet/{id}/payment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-post-wallets-id-payment'><code>POST /wallets/{id}/payment 🚧</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/wallets/{id}/payment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"destinationBankAccountId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"walletName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"destinationBankAccountId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"03946a54-6b4f-4bae-897d-6ee2baf0e848"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"narrative"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"narrative"</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC1234567"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"narrative"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Moving to operating account"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">OK</span>
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-<span class="s2">""</span><span class="w">
-</span></code></pre><h3 id='payments-manager-code-post-platformapi-wallet-id-payment-code-description'>Description</h3>
-<p>Create a payment instruction from a wallet</p>
-<h3 id='payments-manager-code-post-platformapi-wallet-id-payment-code-request'>Request</h3>
+</code></pre><h3 id='payments-manager-code-post-wallets-id-payment-code-description'>Description</h3>
+<p>Create a payment instruction from a wallet.  Before instructing a payment, the destination bank account
+must first be registered using <a href="/#payments-manager-post-platformapi-bankaccountdetails"><code>POST /platformApi/bankAccountDetails</code></a>.</p>
+<h3 id='payments-manager-code-post-wallets-id-payment-code-request'>Request</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7469,8 +7409,8 @@ Prior to creating a wallet you need to have registered your company as the walle
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-get-platformapi-wallet-id-transactions-year-year-month-month'><code>GET /platformApi/wallet/{id}/transactions/year/{year}/month/{month}</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">GET</span> <span class="nn">/platformApi/wallet/{id}/transactions/year/{year}/month/{month}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-get-wallets-id-transactions-year-year-month-month'><code>GET /wallets/{id}/transactions/year/{year}/month/{month} 🚧</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/wallets/{id}/transactions/year/{year}/month/{month}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -7499,9 +7439,9 @@ Prior to creating a wallet you need to have registered your company as the walle
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 
-</span></code></pre><h3 id='payments-manager-code-get-platformapi-wallet-id-transactions-year-year-month-month-code-description'>Description</h3>
+</span></code></pre><h3 id='payments-manager-code-get-wallets-id-transactions-year-year-month-month-code-description'>Description</h3>
 <p>Retrieve a list of transactions for a given wallet for a given year and month.</p>
-<h3 id='payments-manager-code-get-platformapi-wallet-id-transactions-year-year-month-month-code-response'>Response</h3>
+<h3 id='payments-manager-code-get-wallets-id-transactions-year-year-month-month-code-response'>Response</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -8916,13 +8856,7 @@ Deprecated and replaced with <a href="#payments-manager-put-platformapi-bankacco
 <td>The account making the investment. Possible values are: <br><code>GOJI_INVESTMENT</code><br><code>ISA</code><br></td>
 </tr>
 </tbody></table>
-<h1 id='settlement-equity'>Settlement - Equity 🚧</h1>
-<aside class="warning">
-The equities APIs are currently in development and although best effort will be made to 
-avoid significant modification to published documentation, there is a chance some minor
- updates may take place.
-</aside>
-<h2 id='settlement-equity-instruments'><em>Instruments 🚧</em></h2>
+<h1 id='settlement-equity'>Settlement - Equity</h1><h2 id='settlement-equity-instruments'><em>Instruments</em></h2>
 <p>The Instruments API allows an Investment Manager to:</p>
 
 <p>(1) <a href="/#settlement-equity-instrument-creation">create new instruments</a> and (2) <a href="/#settlement-equity-issuing-allocating-shares">issue/ allocate shares</a> of that instrument.</p>
@@ -9371,7 +9305,7 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <td>n/a</td>
 </tr>
 </tbody></table>
-<h2 id='settlement-equity-trade-settlement'><em>Trade Settlement 🚧</em></h2>
+<h2 id='settlement-equity-trade-settlement'><em>Trade Settlement</em></h2>
 <p>The Trade Settlement API allows an Investment Manager to report trades which require settlement.</p>
 
 <p>The API is currently under construction.</p>
@@ -9752,7 +9686,7 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <td>n/a</td>
 </tr>
 </tbody></table>
-<h2 id='settlement-equity-corporate-actions'><em>Corporate Actions 🚧</em></h2>
+<h2 id='settlement-equity-corporate-actions'><em>Corporate Actions</em></h2>
 <p>The Corporate Actions API allows an Investment Manager to perform Corporate Actions that relate to 
 <a href="/#settlement-equity-instruments">Instruments</a>.</p>
 
@@ -11289,11 +11223,11 @@ You should verify that the `Authorization` header matches the expected signature
 <td>The webhook secret that should be used to check the validity of webhooks received (see <a href="#webhooks-authentication">Webhooks authentication</a> for full details).</td>
 </tr>
 </tbody></table>
-<h2 id='webhooks-webhook-types'>Webhook Types</h2>
+<h2 id='webhooks-webhook-types'><em>Webhook Types</em></h2>
 <p>When certain events are triggered in the Goji system, a call can be made to your system to inform you of this event.</p>
 
 <p>The URL to be called is configured as part of the onboarding process.</p>
-<h3 id='webhooks-webhook-types-format'>Format</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h3 id='webhooks-em-webhook-types-em-format'>Format</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"dateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yyyy-MM-ddTHH:mm:ss"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TYPE"</span><span class="p">,</span><span class="w">
@@ -11302,11 +11236,8 @@ You should verify that the `Authorization` header matches the expected signature
 </span></code></pre>
 <p>The webhook <code>POST</code> body will be in the following format.
 The following event <code>type</code>s will be supported, along with the content as <code>JSON</code>.</p>
-
-<blockquote>
-<p>INVESTOR_PERSONAL_DETAILS_REGISTERED
-<br>This is fired whenever personal details are registered.</p>
-</blockquote>
+<h2 id='webhooks-investor_personal_details_registered'>INVESTOR_PERSONAL_DETAILS_REGISTERED</h2>
+<p>This is fired whenever personal details are registered.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11316,11 +11247,8 @@ The following event <code>type</code>s will be supported, along with the content
     </span><span class="s2">"telephoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>INVESTOR_CREATED
-<br>This is fired whenever a new investor is registered.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-investor_created'>INVESTOR_CREATED</h2>
+<p>This is fired whenever a new investor is registered.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11342,20 +11270,14 @@ The following event <code>type</code>s will be supported, along with the content
     </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>INVESTOR_KYC_STATUS_CHANGE
-<br>This is fired whenever an investor&#39;s KYC status changes eg from <code>REFERRED</code> to <code>VERIFIED</code>.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-investor_kyc_status_change'>INVESTOR_KYC_STATUS_CHANGE</h2>
+<p>This is fired whenever an investor&#39;s KYC status changes eg from <code>REFERRED</code> to <code>VERIFIED</code>.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"newKycStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>INVESTOR_FUNDS_RECEIVED
-<br>This is fired whenever investor funds are cleared into their account eg for a bank transfer.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-investor_funds_received'>INVESTOR_FUNDS_RECEIVED</h2>
+<p>This is fired whenever investor funds are cleared into their account eg for a bank transfer.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11370,11 +11292,8 @@ The following event <code>type</code>s will be supported, along with the content
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>ISA_AUTO_REPAIRED
-<br>This is fired whenever an oversubscribed ISA has been auto repaired. Oversubscription happens when an investor deposits more than their allowed subscription limit. The overflowing amount will be automatically moved to the investment account.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-isa_auto_repaired'>ISA_AUTO_REPAIRED</h2>
+<p>This is fired whenever an oversubscribed ISA has been auto repaired. Oversubscription happens when an investor deposits more than their allowed subscription limit. The overflowing amount will be automatically moved to the investment account.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"repairedAmount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -11382,11 +11301,8 @@ The following event <code>type</code>s will be supported, along with the content
       </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>INVESTOR_FUNDS_WITHDRAWN
-<br>This is fired whenever an investor withdraws funds.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-investor_funds_withdrawn'>INVESTOR_FUNDS_WITHDRAWN</h2>
+<p>This is fired whenever an investor withdraws funds.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11396,11 +11312,8 @@ The following event <code>type</code>s will be supported, along with the content
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>INVESTMENT_QUEUED
-<br>This is fired whenever an investment is queued. Bond Management API only.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-investment_queued'>INVESTMENT_QUEUED</h2>
+<p>This is fired whenever an investment is queued. Bond Management API only.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"investmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11410,29 +11323,20 @@ The following event <code>type</code>s will be supported, along with the content
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"productTermId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>INVESTMENT_FULFILLED
-<br>This is fired whenever an investment is fulfilled. Bond Management API only.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-investment_fulfilled'>INVESTMENT_FULFILLED</h2>
+<p>This is fired whenever an investment is fulfilled. Bond Management API only.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"investmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>TRANSFER_IN_CREATED
-<br>This is fired whenever a transfer in is created.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-transfer_in_created'>TRANSFER_IN_CREATED</h2>
+<p>This is fired whenever a transfer in is created.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"transferInId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>TRANSFER_OUT_CREATED
-<br>This is fired whenever a transfer out is requested.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-transfer_out_created'>TRANSFER_OUT_CREATED</h2>
+<p>This is fired whenever a transfer out is requested.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"transferOut"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11492,11 +11396,9 @@ The following event <code>type</code>s will be supported, along with the content
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"dateOfFirstSubscriptionInCurrentYear"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-12"</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>TRANSFER_OUT_COMPLETED
-<br>This is fired whenever a transfer out is completed.</p>
-</blockquote>
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='webhooks-transfer_out_completed'>TRANSFER_OUT_COMPLETED</h2>
+<p>This is fired whenever a transfer out is completed.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"transferOut"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11556,11 +11458,9 @@ The following event <code>type</code>s will be supported, along with the content
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"dateOfFirstSubscriptionInCurrentYear"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-12"</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>TRANSFER_IN_FUNDS_RECEIVED
-<br>This is fired whenever the funds for a transfer in are received.</p>
-</blockquote>
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='webhooks-transfer_in_funds_received'>TRANSFER_IN_FUNDS_RECEIVED</h2>
+<p>This is fired whenever the funds for a transfer in are received.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"transferInId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11569,19 +11469,13 @@ The following event <code>type</code>s will be supported, along with the content
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>ISA_PROVISIONALLY_OPENED
-<br>This is fired whenever an ISA is opened.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-isa_provisionally_opened'>ISA_PROVISIONALLY_OPENED</h2>
+<p>This is fired whenever an ISA is opened.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>INVESTMENT_PAYOUT_EVENT
-<br>This is fired whenever a repayment is distributed to an investor&#39;s account. Bond Management API only.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-investment_payout_event'>INVESTMENT_PAYOUT_EVENT</h2>
+<p>This is fired whenever a repayment is distributed to an investor&#39;s account. Bond Management API only.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"investmentPayouts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"investorId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11600,11 +11494,8 @@ The following event <code>type</code>s will be supported, along with the content
     </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>FUNDS_REQUESTED
-<br>This is fired whenever repayment funds are requested from the investment manager. Bond Management API only.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-funds_requested'>FUNDS_REQUESTED</h2>
+<p>This is fired whenever repayment funds are requested from the investment manager. Bond Management API only.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"transactions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"bondId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11624,11 +11515,8 @@ The following event <code>type</code>s will be supported, along with the content
   </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bankReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>FUNDS_RECEIVED
-<br>This is fired whenever repayment funds are received from the investment manager.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-funds_received'>FUNDS_RECEIVED</h2>
+<p>This is fired whenever repayment funds are received from the investment manager.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -11636,11 +11524,8 @@ The following event <code>type</code>s will be supported, along with the content
     </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>BANK_ACCOUNT_DETAILS_STATUS_CHANGED
-<br>This is fired whenever a set of bank account details are &quot;ENABLED&quot;/&quot;DISABLED&quot;, as displayed by their status.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-bank_account_details_status_changed'>BANK_ACCOUNT_DETAILS_STATUS_CHANGED</h2>
+<p>This is fired whenever a set of bank account details are &quot;ENABLED&quot;/&quot;DISABLED&quot;, as displayed by their status.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11648,33 +11533,19 @@ The following event <code>type</code>s will be supported, along with the content
   </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>WALLET_CREATED
-<br>This is fired whenever a wallet is created.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-wallet_created'>WALLET_CREATED</h2>
+<p>This is fired whenever a wallet is created.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"walletId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"f5d57a4a-a6cc-4b5f-8ef0-09e09b02de28"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>WALLET_REGISTERED
-<br>This is fired whenever setup management of wallet is done.</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"companyName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>WALLET_FUNDS_RECEIVED
-<br>This is fired whenever funds are received in a wallet.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-wallet_funds_received'>WALLET_FUNDS_RECEIVED</h2>
+<p>This is fired when funds are received into a wallet.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"walletId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11688,18 +11559,15 @@ The following event <code>type</code>s will be supported, along with the content
     </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>WALLET_TRANSFER_CLEARED
-<br>This is fired when a wallet transfer is completed. This Webhook is currently not in use.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-wallet_transfer_cleared'>WALLET_TRANSFER_CLEARED</h2>
+<p>This is fired when a wallet transfer is completed. This Webhook is currently not in use.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"destinationBankAccountDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"bankAccountId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"sourceWallet"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -11707,7 +11575,7 @@ The following event <code>type</code>s will be supported, along with the content
     </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -11719,11 +11587,9 @@ The following event <code>type</code>s will be supported, along with the content
   </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<blockquote>
 <p>TRADE_SETTLEMENT
-<br>This event is fired when a trade request (available as part of the Equities API) has reached a terminal state. 
+This event is fired when a trade request (available as part of the Equities API) has reached a terminal state. 
 E.g. settles successfully</p>
-</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99a41761-6629-47a2-8087-23961b1b059b"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"dateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-16T09:48:59"</span><span class="p">,</span><span class="w">
@@ -11766,13 +11632,10 @@ E.g. settles successfully</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>DIVIDEND_UPDATE
-<br>This event is fired two times in the lifecycle of a dividend post request. 
-(1) once funds have been received to distribute to investors &#39;DISTRIBUTING&#39; 
-(2) once distribution of the dividend is &#39;COMPLETE&#39;</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-dividend_update'>DIVIDEND_UPDATE</h2>
+<p>This event is fired two times in the lifecycle of a dividend post request. 
+1. once funds have been received to distribute to investors &#39;DISTRIBUTING&#39; 
+2. once distribution of the dividend is &#39;COMPLETE&#39;</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5cd2e950-bfc2-4fe9-a744-ae3483320ab7"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"dateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-16T09:56:51"</span><span class="p">,</span><span class="w">
@@ -11806,11 +11669,8 @@ E.g. settles successfully</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>BATCH_UPDATE
-<br>This event is fired when an update related to a bulk payment request occurs. E.g. the bulk payment is now complete.</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-batch_update'>BATCH_UPDATE</h2>
+<p>This event is fired when an update related to a bulk payment request occurs. E.g. the bulk payment is now complete.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d9fc50e-de1b-4855-8c03-ae8a6093d91b"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"dateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-16T09:54:23"</span><span class="p">,</span><span class="w">
@@ -11846,15 +11706,12 @@ E.g. settles successfully</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>ACCOUNT_FEE_PROCESSED
-<br>This is fired when account fees have been processed</p>
-</blockquote>
+</span></code></pre><h2 id='webhooks-account_fee_processed'>ACCOUNT_FEE_PROCESSED</h2>
+<p>This is fired when account fees have been processed</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"investorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"dateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-12T14:34:23"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
@@ -11862,6 +11719,16 @@ E.g. settles successfully</p>
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FEES"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"clearedDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-12T14:34:23"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='webhooks-company_registration_update'>COMPANY_REGISTRATION_UPDATE</h2>
+<p>This is fired when the status of the company registration state changes. </p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"partyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGISTERED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ukCompany"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fake Company LIMITED"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='isa-administration'>ISA administration</h1><h2 id='isa-administration-introduction'>Introduction</h2>
 <p><em>Please note: This is a standalone API and is not used in conjunction with any of the other APIs.</em></p>
