@@ -414,21 +414,6 @@ Retrieve details of a single Wallet.
 | balance.amount              | number | The amount.                                      |
 | balance.currency            | string | The ISO 4217 three character codes eg 'GBP'      |
 
-## `DELETE /wallets/{id} 🚧`
-```http
-DELETE /wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213 HTTP/1.1
-Host: api-sandbox.goji.investments
-Content-Type: application/json
-Authorization: Basic ...
-```
-
-```http 
-HTTP/1.1 200 OK
-```
-
-### Description
-Disable Wallet.
-
 ## `GET /wallets/{id}/balance 🚧`
 ```http
 GET /wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213/balance HTTP/1.1
