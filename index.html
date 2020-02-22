@@ -6956,7 +6956,7 @@ account numbers as these are validated to ensure they accept faster payments pri
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fake Company LIMITED"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="s">{</span>
 <span class="s">  "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",</span>
@@ -7114,8 +7114,7 @@ so do not assume the webhook will arrive shortly after the API call. </p>
 <td>Company Name</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-managing-wallets'><em>Managing Wallets</em></h2><h2 id='payments-manager-post-wallets'><code>POST /wallets 🚧</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">POST</span> <span class="nn">/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-managing-wallets'><em>Managing Wallets</em></h2><h2 id='payments-manager-post-wallets'><code>POST /wallets 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -7124,7 +7123,6 @@ so do not assume the webhook will arrive shortly after the API call. </p>
   </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"walletName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
@@ -7134,7 +7132,9 @@ so do not assume the webhook will arrive shortly after the API call. </p>
   </span><span class="s2">"walletName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>ℹ️ <em>Prior to creating a Wallet, the company who owns the money in the Wallet must be registered using <a href="#payments-manager-post-companies"><code>POST /companies</code></a></em></p>
+<aside class="notice">
+Prior to creating a Wallet, the Company who owns the money in the Wallet must be <a href="#payments-manager-post-companies">registered</a>.
+</aside>
 <h3 id='payments-manager-code-post-wallets-code-description'>Description</h3>
 <p>Creates a Wallet. The Wallet creation will not happen immediately. The <code>WALLET_CREATED</code> webhook will be used to notify
 you of the Wallet creation completing, including the Bank Account Number and Sort Code.</p>
@@ -7184,8 +7184,7 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
 <td>Wallet name.</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-get-wallets'><code>GET /wallets 🚧</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">GET</span> <span class="nn">/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-get-wallets'><code>GET /wallets 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -7194,7 +7193,9 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
 
 <span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"walletId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"walletName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bankAccountDetailsId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountDetailsId"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
@@ -7208,7 +7209,7 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='payments-manager-code-get-wallets-code-description'>Description</h3>
-<p>List of wallet details</p>
+<p>Retrieve all Wallet details.</p>
 <h3 id='payments-manager-code-get-wallets-code-response'>Response</h3>
 <table><thead>
 <tr>
@@ -7223,6 +7224,16 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
 <td>The ID of the wallet</td>
 </tr>
 <tr>
+<td>ownerPartyId</td>
+<td>string</td>
+<td>The PartyId that will own the Wallet.</td>
+</tr>
+<tr>
+<td>walletName</td>
+<td>string</td>
+<td>Wallet name.</td>
+</tr>
+<tr>
 <td>bankAccountDetailsId</td>
 <td>string</td>
 <td>The bank account details ID</td>
@@ -7263,30 +7274,30 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
 <td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-get-wallets-id'><code>GET /wallets/{id} 🚧</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">GET</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-get-wallets-id'><code>GET /wallets/{id} 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
-
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bankAccountDetailsId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountDetailsId"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"walletName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bankAccountDetailsId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountDetailsId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bankDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"balance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='payments-manager-code-get-wallets-id-code-description'>Description</h3>
-<p>Wallet Details</p>
+<p>Retrieve details of a single Wallet.</p>
 <h3 id='payments-manager-code-get-wallets-id-code-response'>Response</h3>
 <table><thead>
 <tr>
@@ -7301,6 +7312,16 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
 <td>The ID of the wallet</td>
 </tr>
 <tr>
+<td>ownerPartyId</td>
+<td>string</td>
+<td>The PartyId that will own the Wallet.</td>
+</tr>
+<tr>
+<td>walletName</td>
+<td>string</td>
+<td>Wallet name.</td>
+</tr>
+<tr>
 <td>bankAccountDetailsId</td>
 <td>string</td>
 <td>The bank account details ID</td>
@@ -7341,8 +7362,7 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
 <td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-post-wallets-id-payment'><code>POST /wallets/{id}/payment 🚧</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">POST</span> <span class="nn">/wallets/{id}/payment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-post-wallets-id-payment'><code>POST /wallets/{id}/payment 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213/payment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -7356,13 +7376,14 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
   </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC1234567"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"narrative"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Moving to operating account"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-
 </code></pre><h3 id='payments-manager-code-post-wallets-id-payment-code-description'>Description</h3>
-<p>Create a payment instruction from a wallet.  Before instructing a payment, the destination bank account
-must first be registered using <a href="/#payments-manager-post-platformapi-bankaccountdetails"><code>POST /platformApi/bankAccountDetails</code></a>.</p>
+<aside class="notice">
+Before instructing a payment, the destination bank account must first be <a href="#payments-manager-post-platformapi-bankaccountdetails">registered</a>.
+</aside>
+
+<p>Create a payment instruction from a Wallet.</p>
 <h3 id='payments-manager-code-post-wallets-id-payment-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -7409,12 +7430,10 @@ must first be registered using <a href="/#payments-manager-post-platformapi-bank
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-get-wallets-id-transactions-year-year-month-month'><code>GET /wallets/{id}/transactions/year/{year}/month/{month} 🚧</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">GET</span> <span class="nn">/wallets/{id}/transactions/year/{year}/month/{month}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-get-wallets-id-transactions-year-year-month-month'><code>GET /wallets/{id}/transactions/year/{year}/month/{month} 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213/transactions/year/2020/month/1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
-
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
@@ -7438,9 +7457,8 @@ must first be registered using <a href="/#payments-manager-post-platformapi-bank
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-
 </span></code></pre><h3 id='payments-manager-code-get-wallets-id-transactions-year-year-month-month-code-description'>Description</h3>
-<p>Retrieve a list of transactions for a given wallet for a given year and month.</p>
+<p>Retrieve a list of transactions for a given Wallet for a given year and month.</p>
 <h3 id='payments-manager-code-get-wallets-id-transactions-year-year-month-month-code-response'>Response</h3>
 <table><thead>
 <tr>
