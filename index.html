@@ -278,6 +278,21 @@
                   <li>
                     <a href="#quickstart-guides-quickstart-settlement-equities" class="toc-h2 toc-link" data-title="Quickstart Settlement - Equities 🚧🚧"><em>Quickstart Settlement - Equities 🚧</em>🚧</a>
                   </li>
+                  <li>
+                    <a href="#quickstart-guides-quickstart-wallets" class="toc-h2 toc-link" data-title="Quickstart Wallets 🚧🚧"><em>Quickstart Wallets</em> 🚧🚧</a>
+                  </li>
+                  <li>
+                    <a href="#quickstart-guides-registering-parties" class="toc-h2 toc-link" data-title="Registering parties">Registering parties</a>
+                  </li>
+                  <li>
+                    <a href="#quickstart-guides-creating-wallets" class="toc-h2 toc-link" data-title="Creating wallets">Creating wallets</a>
+                  </li>
+                  <li>
+                    <a href="#quickstart-guides-registering-a-payment-destination-outside-the-system-to-send-money-to" class="toc-h2 toc-link" data-title="Registering a payment destination outside the system to send money to">Registering a payment destination outside the system to send money to</a>
+                  </li>
+                  <li>
+                    <a href="#quickstart-guides-make-an-outbound-payment" class="toc-h2 toc-link" data-title="Make an outbound payment">Make an outbound payment</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1449,6 +1464,43 @@ Please note that by default the payment destination is disabled and has to be en
 <li><a href="/#settlement-equity-corporate-actions">Corporate Actions API</a></li>
 <li><a href="/#settlement-equity-asset-reconciliation">Asset Reconciliation API</a></li>
 </ul>
+<h2 id='quickstart-guides-quickstart-wallets'><em>Quickstart Wallets</em> 🚧🚧</h2>
+<p>This guide gives a brief overview of how to do the following, using the wallet API:</p>
+
+<ul>
+<li>Register parties</li>
+<li>Create wallets</li>
+<li>Registering a payment destination outside the system to send money to</li>
+<li>Make an outbound payment</li>
+</ul>
+
+<p>Please ensure you also read the complete documentation for each API.</p>
+
+<p>All money held in wallets is eMoney and therefore might not be suitable for all use cases. Let us know if you have questions.</p>
+
+<ul>
+<li><a href="/#payments-managers">Payments API</a></li>
+</ul>
+<h2 id='quickstart-guides-registering-parties'>Registering parties</h2>
+<p>In our payments system we refer to all different types of entity as a Party. In the case of <a href="/#payments-manager-post-companies">registering a company</a> you will receive a <code>partyId</code> in the response. This will look something like <code>COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502</code> and is our reference to that entity which will be used to create wallets under that party.</p>
+
+<p>It&#39;s worth noting that money in wallets underneath this party will be held in their name. For example, if we registered Goji under the wallet API, money held in any wallet under that party would be owned by Goji. Likewise if we registered a Borrower in the P2P space, any money in wallets under that borrower is owned by the Borrower.</p>
+
+<p>Registering new parties is an asynchronous process therefore the party will not be ready for use straight away. You will receive a <a href="/#webhooks-company_registration_update">webhook</a> when the party is ready for use.</p>
+<h2 id='quickstart-guides-creating-wallets'>Creating wallets</h2>
+<p>Once you&#39;ve received the webhook from the previous stage letting you know the party is registered, you will be ready to create wallets for that party.</p>
+
+<p>Wallets are created under the <a href="/#payments-manager-post-wallets">Managing Wallets API</a>.</p>
+
+<p>Creating a wallet is an asynchronous action due to slow responses from downstream providers. Once you create a wallet for a given party you&#39;ll receive a unique <code>id</code> for the wallet in the HTTP response. This is then used in any subsequent wallet related calls. You&#39;ll receive a <a href="/#webhooks-wallet_created">webhook</a> when the wallet is enabled and ready for use.</p>
+<h2 id='quickstart-guides-registering-a-payment-destination-outside-the-system-to-send-money-to'>Registering a payment destination outside the system to send money to</h2>
+<p>In order to send money outside of the system we need to register the recipient bank details and run AML checks on them. You can use the <a href="/#payments-manager-post-platformapi-bankaccountdetails">bank destination API</a> to add new accounts and these can be registered once for use across multiple party wallets.</p>
+
+<p>This is also an asynchronous action so you&#39;ll receive a <a href="/#webhooks-bank_account_details_status_changed">webhook</a> once they&#39;ve passed AML and are ready to use.</p>
+<h2 id='quickstart-guides-make-an-outbound-payment'>Make an outbound payment</h2>
+<p>Once you have the wallet created and the destination account enabled, you&#39;re ready to send money. To do this you can use the <a href="/#payments-manager-post-wallets-id-payment">wallet payment API</a>. Please note that we currently do not support sending in multiple currencies via this API. If this is a problem please get in touch.</p>
+
+<p>Once a payment has cleared we will update you via <a href="/#webhooks-wallet_transfer_cleared">webhook</a>.</p>
 <h1 id='investors'>Investors</h1>
 <p>The Investors API allows you to onboard investors, run KYC/AML checks and open an ISA account.</p>
 <h2 id='investors-introduction-to-the-investors-api'>Introduction to the Investors API</h2>
