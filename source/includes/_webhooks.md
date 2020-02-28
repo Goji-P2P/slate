@@ -452,7 +452,7 @@ This is fired whenever a wallet is created.
 
 ```json
 {
-  "walletId" : "string",
+  "id" : "string",
   "bankDetails" : {
     "id" : "f5d57a4a-a6cc-4b5f-8ef0-09e09b02de28",
     "accountName" : "string",
@@ -467,7 +467,7 @@ This is fired when funds are received into a wallet.
 
 ```json
 {
-  "walletId": "string",
+  "id": "string",
   "reference": "string",
   "amount": {
     "amount": 0.00,
@@ -496,7 +496,7 @@ This is fired when a wallet transfer is completed. This Webhook is currently not
     }
   },
   "sourceWallet" : {
-    "walletId" : "string",
+    "id" : "string",
     "bankDetails" : {
       "accountName" : "string",
       "accountNumber" : "string",
