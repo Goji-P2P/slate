@@ -7248,7 +7248,7 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
     </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"walletName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bankAccountDetailsId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountDetailsId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankAccountDetailsId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"03946a54-6b4f-4bae-897d-6ee2baf0e848"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
@@ -7337,7 +7337,7 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"walletName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bankAccountDetailsId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountDetailsId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bankAccountDetailsId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03946a54-6b4f-4bae-897d-6ee2baf0e848"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bankDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
@@ -11649,31 +11649,37 @@ The following event <code>type</code>s will be supported, along with the content
 </span></code></pre><h2 id='webhooks-wallet_created'>WALLET_CREATED</h2>
 <p>This is fired whenever a wallet is created.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"walletId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"f5d57a4a-a6cc-4b5f-8ef0-09e09b02de28"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"03946a54-6b4f-4bae-897d-6ee2baf0e848"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"000000"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='webhooks-wallet_funds_received'>WALLET_FUNDS_RECEIVED</h2>
 <p>This is fired when funds are received into a wallet.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"walletId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Payment reference"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"sourceAccount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"000000"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='webhooks-wallet_transfer_cleared'>WALLET_TRANSFER_CLEARED</h2>
-<p>This is fired when a wallet transfer is completed. This Webhook is currently not in use.</p>
+<p><aside class="warning">
+This Webhook is currently not in use.
+<aside class="warning"></p>
+
+<p>This is fired when a wallet transfer is completed.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"destinationBankAccountDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"bankAccountId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11684,7 +11690,8 @@ The following event <code>type</code>s will be supported, along with the content
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"sourceWallet"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"walletId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
