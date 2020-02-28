@@ -276,10 +276,10 @@
                     <a href="#quickstart-guides-withdrawing-funds" class="toc-h2 toc-link" data-title="Withdrawing Funds">Withdrawing Funds</a>
                   </li>
                   <li>
-                    <a href="#quickstart-guides-quickstart-settlement-equities" class="toc-h2 toc-link" data-title="Quickstart Settlement - Equities 🚧🚧"><em>Quickstart Settlement - Equities 🚧</em>🚧</a>
+                    <a href="#quickstart-guides-quickstart-settlement-equities" class="toc-h2 toc-link" data-title="Quickstart Settlement - Equities 🚧"><em>Quickstart Settlement - Equities 🚧</em></a>
                   </li>
                   <li>
-                    <a href="#quickstart-guides-quickstart-wallets" class="toc-h2 toc-link" data-title="Quickstart Wallets 🚧🚧"><em>Quickstart Wallets</em> 🚧🚧</a>
+                    <a href="#quickstart-guides-quickstart-wallets" class="toc-h2 toc-link" data-title="Quickstart Wallets 🚧"><em>Quickstart Wallets 🚧</em></a>
                   </li>
                   <li>
                     <a href="#quickstart-guides-registering-parties" class="toc-h2 toc-link" data-title="Registering parties">Registering parties</a>
@@ -740,6 +740,9 @@
                     <a href="#webhooks-bank_account_details_status_changed" class="toc-h2 toc-link" data-title="BANK_ACCOUNT_DETAILS_STATUS_CHANGED">BANK_ACCOUNT_DETAILS_STATUS_CHANGED</a>
                   </li>
                   <li>
+                    <a href="#webhooks-company_registration_update" class="toc-h2 toc-link" data-title="COMPANY_REGISTRATION_UPDATE">COMPANY_REGISTRATION_UPDATE</a>
+                  </li>
+                  <li>
                     <a href="#webhooks-wallet_created" class="toc-h2 toc-link" data-title="WALLET_CREATED">WALLET_CREATED</a>
                   </li>
                   <li>
@@ -756,9 +759,6 @@
                   </li>
                   <li>
                     <a href="#webhooks-account_fee_processed" class="toc-h2 toc-link" data-title="ACCOUNT_FEE_PROCESSED">ACCOUNT_FEE_PROCESSED</a>
-                  </li>
-                  <li>
-                    <a href="#webhooks-company_registration_update" class="toc-h2 toc-link" data-title="COMPANY_REGISTRATION_UPDATE">COMPANY_REGISTRATION_UPDATE</a>
                   </li>
               </ul>
           </li>
@@ -1442,7 +1442,7 @@ Please note that by default the payment destination is disabled and has to be en
 <p>Then the funds can be withdrawn:</p>
 
 <p><a href="/#post-investors-clientid-accounts-accounttype-withdrawal">https://api-sandbox.goji.investments/platformApi/investors/{clientId}/accounts/{accountType}/withdrawal</a></p>
-<h2 id='quickstart-guides-quickstart-settlement-equities'><em>Quickstart Settlement - Equities 🚧</em>🚧</h2>
+<h2 id='quickstart-guides-quickstart-settlement-equities'><em>Quickstart Settlement - Equities 🚧</em></h2>
 <p>This guide gives a brief overview to how to do the following, using the settlement API:</p>
 
 <ul>
@@ -1464,7 +1464,7 @@ Please note that by default the payment destination is disabled and has to be en
 <li><a href="/#settlement-equity-corporate-actions">Corporate Actions API</a></li>
 <li><a href="/#settlement-equity-asset-reconciliation">Asset Reconciliation API</a></li>
 </ul>
-<h2 id='quickstart-guides-quickstart-wallets'><em>Quickstart Wallets</em> 🚧🚧</h2>
+<h2 id='quickstart-guides-quickstart-wallets'><em>Quickstart Wallets 🚧</em></h2>
 <p>This guide gives a brief overview of how to do the following, using the wallet API:</p>
 
 <ul>
@@ -11646,6 +11646,16 @@ The following event <code>type</code>s will be supported, along with the content
   </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='webhooks-company_registration_update'>COMPANY_REGISTRATION_UPDATE</h2>
+<p>This is fired when the status of the company registration state changes. </p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"partyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGISTERED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ukCompany"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fake Company LIMITED"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='webhooks-wallet_created'>WALLET_CREATED</h2>
 <p>This is fired whenever a wallet is created.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -11839,16 +11849,6 @@ E.g. settles successfully</p>
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FEES"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"clearedDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-12T14:34:23"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='webhooks-company_registration_update'>COMPANY_REGISTRATION_UPDATE</h2>
-<p>This is fired when the status of the company registration state changes. </p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"partyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGISTERED"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ukCompany"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fake Company LIMITED"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='isa-administration'>ISA administration</h1><h2 id='isa-administration-introduction'>Introduction</h2>
 <p><em>Please note: This is a standalone API and is not used in conjunction with any of the other APIs.</em></p>
