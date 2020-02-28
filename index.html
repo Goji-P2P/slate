@@ -7430,7 +7430,18 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-</code></pre><h3 id='payments-manager-code-post-wallets-id-payment-code-description'>Description</h3>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"errorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_DATA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Instruction must include a reference."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-post-wallets-id-payment-code-description'>Description</h3>
 <aside class="notice">
 Before instructing a payment, the destination bank account must first be <a href="#payments-manager-post-platformapi-bankaccountdetails">registered</a>.
 </aside>
@@ -7480,6 +7491,38 @@ Before instructing a payment, the destination bank account must first be <a href
 <td>string</td>
 <td>The reason for the wallet transfer</td>
 <td></td>
+</tr>
+</tbody></table>
+<h3 id='payments-manager-code-post-wallets-id-payment-code-possible-error-codes'>Possible Error codes</h3>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>INVALID_DATA</td>
+<td>Bank account with bankAccountId=03946a54-6b4f-4bae-897d-6ee2baf0e848 does not exist.</td>
+</tr>
+<tr>
+<td>INVALID_DATA</td>
+<td>Destination bank account details are not yet enabled.</td>
+</tr>
+<tr>
+<td>INVALID_DATA</td>
+<td>Instruction must include a reference.</td>
+</tr>
+<tr>
+<td>INVALID_DATA</td>
+<td>Payment reference must be below 18 characters long.</td>
+</tr>
+<tr>
+<td>INVALID_AMOUNT</td>
+<td>Instruction must include a positive non-zero amount.</td>
+</tr>
+<tr>
+<td>INSUFFICIENT_BALANCE</td>
+<td>Insufficient balance to perform an outbound payment of amount: £10.45. Current balance: £0.</td>
 </tr>
 </tbody></table>
 <h2 id='payments-manager-get-wallets-id-transactions-year-year-month-month'><code>GET /wallets/{id}/transactions/year/{year}/month/{month} 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213/transactions/year/2020/month/1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
