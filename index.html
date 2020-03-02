@@ -11659,7 +11659,7 @@ The following event <code>type</code>s will be supported, along with the content
 </span></code></pre><h2 id='webhooks-wallet_created'>WALLET_CREATED</h2>
 <p>This is fired whenever a wallet is created.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"walletId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"03946a54-6b4f-4bae-897d-6ee2baf0e848"</span><span class="p">,</span><span class="w">
@@ -11671,7 +11671,7 @@ The following event <code>type</code>s will be supported, along with the content
 </span></code></pre><h2 id='webhooks-wallet_funds_received'>WALLET_FUNDS_RECEIVED</h2>
 <p>This is fired when funds are received into a wallet.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"walletId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Payment reference"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -11700,7 +11700,7 @@ This Webhook is currently not in use.
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"sourceWallet"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"walletId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
