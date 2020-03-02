@@ -7654,6 +7654,9 @@ The distribution of the batch to investors will not occur until the necessary fu
 endpoint can be used to see the current status of the batch payment instruction.</p>
 
 <p>The status of the money transfer is further broken down at a per investor level. </p>
+
+<p>On batch state update, a webhook will be fired that will contain the batch details with a summary of all payments. 
+For full details of the batch payments, call <a href="/#payments-manager-get-transfers-batch-batchid"><code>GET /transfers/batch/{batchId}</code></a>.</p>
 <h2 id='payments-manager-batch-model'>Batch Model</h2><h3 id='payments-manager-batch-model-required-attributes'>Required Attributes</h3>
 <table><thead>
 <tr>
@@ -11762,11 +11765,7 @@ E.g. settles successfully</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='webhooks-dividend_update'>DIVIDEND_UPDATE</h2>
-<p>This event is fired two times in the lifecycle of a dividend post request. 
-1. once funds have been received to distribute to investors &#39;DISTRIBUTING&#39; 
-2. once distribution of the dividend is &#39;COMPLETE&#39;</p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span></code></pre><h2 id='webhooks-dividend_update'>DIVIDEND_UPDATE</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5cd2e950-bfc2-4fe9-a744-ae3483320ab7"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"dateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-16T09:56:51"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIVIDEND_UPDATE"</span><span class="p">,</span><span class="w">
@@ -11779,17 +11778,13 @@ E.g. settles successfully</p>
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIA"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISTRIBUTED"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"paymentsSummary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"totalPayments"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalFailed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalReceived"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalDistributed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalPending"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+      </span><span class="p">},</span><span class="w">
       </span><span class="s2">"payTo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
@@ -11799,9 +11794,48 @@ E.g. settles successfully</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='webhooks-batch_update'>BATCH_UPDATE</h2>
-<p>This event is fired when an update related to a bulk payment request occurs. E.g. the bulk payment is now complete.</p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span></code></pre>
+<p>This event is fired two times in the lifecycle of a dividend post request:</p>
+
+<ol>
+<li>once funds have been received to distribute to investors &#39;DISTRIBUTING&#39; </li>
+<li>once distribution of the dividend is &#39;COMPLETE&#39; and funds received by investors</li>
+</ol>
+<h3 id='webhooks-dividend_update-batch-payments-summary'>Batch Payments Summary</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>JSON Type</th>
+<th>Value Type</th>
+<th>Value Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>totalPayments</td>
+<td>Number</td>
+<td>Number</td>
+<td>The total payments of the batch.</td>
+</tr>
+<tr>
+<td>totalPending</td>
+<td>Number</td>
+<td>Number</td>
+<td>The total individual batch payments waiting to be instructed.</td>
+</tr>
+<tr>
+<td>totalDistributed</td>
+<td>Number</td>
+<td>Number</td>
+<td>The total payments have been distributed.</td>
+</tr>
+<tr>
+<td>totalFailed</td>
+<td>Number</td>
+<td>Number</td>
+<td>Total failed batch payments</td>
+</tr>
+</tbody></table>
+<h2 id='webhooks-batch_update'>BATCH_UPDATE</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d9fc50e-de1b-4855-8c03-ae8a6093d91b"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"dateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-16T09:54:23"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BATCH_UPDATE"</span><span class="p">,</span><span class="w">
@@ -11815,18 +11849,12 @@ E.g. settles successfully</p>
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIA"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RECEIVED"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"sourceOfFunds"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"paymentsSummary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"totalPayments"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalFailed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalDistributed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalPending"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+      </span><span class="p">},</span><span class="w">
       </span><span class="s2">"payTo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
@@ -11836,7 +11864,43 @@ E.g. settles successfully</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='webhooks-account_fee_processed'>ACCOUNT_FEE_PROCESSED</h2>
+</span></code></pre>
+<p>This event is fired when an update related to a bulk payment request occurs. E.g. the bulk payment is distributed and funds received by investors.</p>
+<h3 id='webhooks-batch_update-batch-payments-summary'>Batch Payments Summary</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>JSON Type</th>
+<th>Value Type</th>
+<th>Value Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>totalPayments</td>
+<td>Number</td>
+<td>Number</td>
+<td>The total payments of the batch.</td>
+</tr>
+<tr>
+<td>totalPending</td>
+<td>Number</td>
+<td>Number</td>
+<td>The total individual batch payments waiting to be instructed.</td>
+</tr>
+<tr>
+<td>totalDistributed</td>
+<td>Number</td>
+<td>Number</td>
+<td>The total payments have been distributed.</td>
+</tr>
+<tr>
+<td>totalFailed</td>
+<td>Number</td>
+<td>Number</td>
+<td>Total failed batch payments</td>
+</tr>
+</tbody></table>
+<h2 id='webhooks-account_fee_processed'>ACCOUNT_FEE_PROCESSED</h2>
 <p>This is fired when account fees have been processed</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"investorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
