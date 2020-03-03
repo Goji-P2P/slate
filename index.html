@@ -11779,10 +11779,11 @@ E.g. settles successfully</p>
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"paymentsSummary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"totalPayments"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalPayments"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
         </span><span class="s2">"totalFailed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"totalDistributed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"totalPending"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+        </span><span class="s2">"totalPending"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalReceived"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"payTo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
@@ -11833,6 +11834,12 @@ E.g. settles successfully</p>
 <td>Number</td>
 <td>Total failed batch payments</td>
 </tr>
+<tr>
+<td>totalReceived</td>
+<td>Number</td>
+<td>Number</td>
+<td>Total batch payments has been received by the investors.</td>
+</tr>
 </tbody></table>
 <h2 id='webhooks-batch_update'>BATCH_UPDATE</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d9fc50e-de1b-4855-8c03-ae8a6093d91b"</span><span class="p">,</span><span class="w">
@@ -11849,10 +11856,11 @@ E.g. settles successfully</p>
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"paymentsSummary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"totalPayments"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalPayments"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
         </span><span class="s2">"totalFailed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"totalDistributed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"totalPending"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+        </span><span class="s2">"totalPending"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalReceived"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"payTo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
@@ -11897,6 +11905,12 @@ E.g. settles successfully</p>
 <td>Number</td>
 <td>Number</td>
 <td>Total failed batch payments</td>
+</tr>
+<tr>
+<td>totalReceived</td>
+<td>Number</td>
+<td>Number</td>
+<td>Total batch payments has been received by the investors.</td>
 </tr>
 </tbody></table>
 <h2 id='webhooks-account_fee_processed'>ACCOUNT_FEE_PROCESSED</h2>
