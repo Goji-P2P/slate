@@ -44,7 +44,7 @@ X-GOJI-CLIENT-ID: 59425d3d-cf73-44ff-aecb-590cd198a4bc
 
 {
   "reportId": "68f54225-6760-449d-8f38-a003d1dc535a",
-  "instrumentSymbol": "SPV1",
+  "instrumentSymbol": "0e43f37e-6211-11ea-bc55-0242ac130003",
   "timestamp": "2020-01-09T08:53:20.963Z",
   "holdings": [
     {
@@ -69,7 +69,7 @@ Content-Type: application/json
 
 {
   "reportId": "68f54225-6760-449d-8f38-a003d1dc535a",
-  "instrumentSymbol": "SPV1",
+  "instrumentSymbol": "0e43f37e-6211-11ea-bc55-0242ac130003",
   "timestamp": "2020-01-09T23:59:59.999Z",
   "holdings": [
     {
@@ -127,7 +127,7 @@ Content-Type: application/json
 
 {
   "reportId": "68f54225-6760-449d-8f38-a003d1dc535a",
-  "instrumentSymbol": "SPV1",
+  "instrumentSymbol": "0e43f37e-6211-11ea-bc55-0242ac130003",
   "timestamp": "2020-01-09T23:59:59.999Z",
   "holdings": [
     {

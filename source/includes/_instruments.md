@@ -65,7 +65,7 @@ Authorization: Basic ...
 X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
 
 {
-  "symbol": "SPV1",
+  "symbol": "0e43f37e-6211-11ea-bc55-0242ac130003",
   "name": "Happy Parade - SPV1",
   "assetClass": "EQUITY",
   "paymentInstructions": {
@@ -86,7 +86,7 @@ Content-Type: application/json
 X-GOJI-REQUEST-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
 
 {
-  "symbol": "SPV1",
+  "symbol": "0e43f37e-6211-11ea-bc55-0242ac130003",
   "name": "Happy Parade - SPV1",
   "assetClass": "EQUITY",
   "paymentInstructions": {
