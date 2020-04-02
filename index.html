@@ -11395,7 +11395,15 @@ The following event <code>type</code>s will be supported, along with the content
 </span></code></pre><h2 id='webhooks-investor_funds_received'>INVESTOR_FUNDS_RECEIVED</h2>
 <p>This is fired whenever investor funds are cleared into their account eg for a bank transfer.</p>
 
-<p>NOTE: The batch payments will not trigger this event but instead will trigger a <code>BATCH_UPDATE</code> event once all payments have been received. </p>
+<aside class="notice">
+If using the batch payments api this event will not trigger but instead a `BATCH_UPDATE` event will be generated once all payments have been received.
+</aside>
+
+<aside class="notice">
+If redirected = true, the accountType will reflect which account the money has been credited to. The intendedAccountType will
+contain details of where the investor wished to deposit. This scenario is most likely when depositing into an ISA and the ISA subscription
+status is preventing deposits.
+</aside>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11408,6 +11416,9 @@ The following event <code>type</code>s will be supported, along with the content
       </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
   </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"redirected"</span><span class="p">:</span><span class="w"> </span><span class="err">boolean</span><span class="w">
+  </span><span class="s2">"intendedAccountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
