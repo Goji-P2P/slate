@@ -752,6 +752,9 @@
                     <a href="#webhooks-wallet_transfer_cleared" class="toc-h2 toc-link" data-title="WALLET_TRANSFER_CLEARED">WALLET_TRANSFER_CLEARED</a>
                   </li>
                   <li>
+                    <a href="#webhooks-trade_settlement" class="toc-h2 toc-link" data-title="TRADE_SETTLEMENT">TRADE_SETTLEMENT</a>
+                  </li>
+                  <li>
                     <a href="#webhooks-dividend_update" class="toc-h2 toc-link" data-title="DIVIDEND_UPDATE">DIVIDEND_UPDATE</a>
                   </li>
                   <li>
@@ -11738,9 +11741,8 @@ This Webhook is currently not in use.
   </span><span class="s2">"narrative"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>TRADE_SETTLEMENT
-This event is fired when a trade request (available as part of the Equities API) has reached a terminal state. 
+</span></code></pre><h2 id='webhooks-trade_settlement'>TRADE_SETTLEMENT</h2>
+<p>This event is fired when a trade request (available as part of the Equities API) has reached a terminal state. 
 E.g. settles successfully</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99a41761-6629-47a2-8087-23961b1b059b"</span><span class="p">,</span><span class="w">
