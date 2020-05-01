@@ -495,6 +495,7 @@ This is fired whenever a wallet is created.
 ## WALLET_FUNDS_RECEIVED (deprecated)
 
 Note: This webhook has been replaced by the `WALLET_TRANSFER_UPDATE` webhook below.
+
 This is fired when funds are received into a wallet.
 
 ```json
@@ -524,9 +525,13 @@ This is fired when funds are transfered into or out of a wallet.
 There are three statuses that can be returned in a 'WALLET_TRANSFER_UPDATE' webhook. These are:
 
 (1) REQUESTED - this status is set when a request to move funds out of a wallet has been acknowledged.
+
 (2) CLEARED - this status is set when:
+
   (a) funds are confirmed to have successfully left a wallet.
+  
   (b) funds are confirmed to have successfully arrived into a wallet. 
+  
 (3) FAILED - this status is set when a wallet instruction request to move funds has failed. 
 
 
