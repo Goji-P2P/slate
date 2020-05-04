@@ -1859,19 +1859,19 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
 <tr>
 <td>accountTypes</td>
 <td>array</td>
-<td>defaults to [GOJI_INVESTMENT, ISA] if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType</td>
+<td>Defaults to [GOJI_INVESTMENT, ISA] if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType</td>
 <td>optional</td>
 </tr>
 <tr>
 <td>corporateDetails</td>
 <td>ref</td>
-<td>only required for CORPORATE entityType.</td>
+<td>Only required for CORPORATE entityType.</td>
 <td>optional</td>
 </tr>
 <tr>
 <td>corporateDetails.companyName</td>
 <td>string</td>
-<td>The company name.</td>
+<td>The company name. Only required for CORPORATE entityType.</td>
 <td></td>
 </tr>
 <tr>
@@ -5374,7 +5374,7 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 <tr>
 <td>accountTypes</td>
 <td>array</td>
-<td>defaults to [GOJI_INVESTMENT, ISA] if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType</td>
+<td>Defaults to [GOJI_INVESTMENT, ISA] if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType</td>
 <td>optional</td>
 </tr>
 <tr>
@@ -5386,7 +5386,7 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 <tr>
 <td>corporateDetails.companyName</td>
 <td>string</td>
-<td>The company name.</td>
+<td>The company name.  Only required for CORPORATE entityType.</td>
 <td></td>
 </tr>
 <tr>
