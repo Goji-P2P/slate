@@ -494,7 +494,8 @@ This is fired whenever a wallet is created.
 
 ## WALLET_FUNDS_RECEIVED (deprecated)
 
-Note: This webhook has been replaced by the `WALLET_TRANSFER_UPDATE` webhook below.
+Note: This webhook is now deprecated and has been replaced by the `WALLET_TRANSFER_UPDATE` webhook below. 
+Existing users of this webhook can continue to use it, however, it is recommended to move to the `WALLET_TRANSFER_UPDATE` webhook.
 
 This is fired when funds are received into a wallet.
 
@@ -518,7 +519,8 @@ This is fired when funds are received into a wallet.
 ## WALLET_TRANSFER_UPDATE
 
 This webhook replaces the now deprecated `WALLET_FUNDS_RECEIVED` endpoint.
-Users of the `WALLET_FUNDS_RECEIVED` endpoint can continue to use it, however, for new users, please integrate against the following endpoint instead.
+Users of the `WALLET_FUNDS_RECEIVED` endpoint can continue to use it, however, it is recommended to move to this webhook. 
+For new users, please integrate against this webhook instead.
 
 This is fired when funds are transfered into or out of a wallet. 
 
@@ -537,8 +539,10 @@ There are three statuses that can be returned in a 'WALLET_TRANSFER_UPDATE' webh
 
 ```json
 {
-  "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
   "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
+  "walletId" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
+  "id" : "fbb5d667-03c4-4658-9b30-fcf06adfa5b8",
+  "direction": "INBOUND",
   "status": "CLEARED",
   "amountReceived": {
     "amount": 10.23,
