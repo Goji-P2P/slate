@@ -534,7 +534,7 @@ There are three statuses that can be returned in a 'WALLET_TRANSFER_UPDATE' webh
   
   (b) funds are confirmed to have successfully arrived into a wallet. 
   
-(3) FAILED - this status is set when a wallet instruction request to move funds has failed. 
+(3) FAILED - this status is set when a request to move funds has failed. 
 
 
 ```json
