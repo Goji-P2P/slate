@@ -746,10 +746,10 @@
                     <a href="#webhooks-wallet_created" class="toc-h2 toc-link" data-title="WALLET_CREATED">WALLET_CREATED</a>
                   </li>
                   <li>
-                    <a href="#webhooks-wallet_funds_received" class="toc-h2 toc-link" data-title="WALLET_FUNDS_RECEIVED">WALLET_FUNDS_RECEIVED</a>
+                    <a href="#webhooks-wallet_funds_received-deprecated" class="toc-h2 toc-link" data-title="WALLET_FUNDS_RECEIVED (deprecated)">WALLET_FUNDS_RECEIVED (deprecated)</a>
                   </li>
                   <li>
-                    <a href="#webhooks-wallet_transfer_cleared" class="toc-h2 toc-link" data-title="WALLET_TRANSFER_CLEARED">WALLET_TRANSFER_CLEARED</a>
+                    <a href="#webhooks-wallet_transfer_update" class="toc-h2 toc-link" data-title="WALLET_TRANSFER_UPDATE">WALLET_TRANSFER_UPDATE</a>
                   </li>
                   <li>
                     <a href="#webhooks-trade_settlement" class="toc-h2 toc-link" data-title="TRADE_SETTLEMENT">TRADE_SETTLEMENT</a>
@@ -7437,7 +7437,19 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"destinationBankAccountId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"03946a54-6b4f-4bae-897d-6ee2baf0e848"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC1234567"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"narrative"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Moving to operating account"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING
+}
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
@@ -7497,6 +7509,12 @@ Before instructing a payment, the destination bank account must first be <a href
 <td>narrative</td>
 <td>string</td>
 <td>The reason for the wallet transfer</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Only present on responses. The status of a wallet transfer.</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -11693,7 +11711,10 @@ status is preventing deposits.
     </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"000000"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='webhooks-wallet_funds_received'>WALLET_FUNDS_RECEIVED</h2>
+</span></code></pre><h2 id='webhooks-wallet_funds_received-deprecated'>WALLET_FUNDS_RECEIVED (deprecated)</h2>
+<p>Note: This webhook is now deprecated and has been replaced by the <code>WALLET_TRANSFER_UPDATE</code> webhook below. 
+Existing users of this webhook can continue to use it, however, it is recommended to move to the <code>WALLET_TRANSFER_UPDATE</code> webhook.</p>
+
 <p>This is fired when funds are received into a wallet.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"walletId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
@@ -11709,37 +11730,45 @@ status is preventing deposits.
     </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"000000"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='webhooks-wallet_transfer_cleared'>WALLET_TRANSFER_CLEARED</h2>
-<aside class="warning">
-This Webhook is currently not in use.
-</aside>
+</span></code></pre><h2 id='webhooks-wallet_transfer_update'>WALLET_TRANSFER_UPDATE</h2>
+<p>This webhook replaces the now deprecated <code>WALLET_FUNDS_RECEIVED</code> endpoint.
+Users of the <code>WALLET_FUNDS_RECEIVED</code> endpoint can continue to use it, however, it is recommended to move to this webhook. 
+For new users, please integrate against this webhook instead.</p>
 
-<p>This is fired when a wallet transfer is completed.</p>
+<p>This is fired when funds are transfered into or out of a wallet. </p>
+
+<p>There are three statuses that can be returned in a &#39;WALLET_TRANSFER_UPDATE&#39; webhook. These are:</p>
+
+<p>(1) REQUESTED - this status is set when a request to move funds out of a wallet has been acknowledged.</p>
+
+<p>(2) CLEARED - this status is set when:</p>
+
+<p>(a) funds are confirmed to have successfully left a wallet.</p>
+
+<p>(b) funds are confirmed to have successfully arrived into a wallet. </p>
+
+<p>(3) FAILED - this status is set when a request to move funds has failed. </p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"destinationBankAccountDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"bankAccountId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"sourceWallet"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"walletId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"walletId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"fbb5d667-03c4-4658-9b30-fcf06adfa5b8"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INBOUND"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLEARED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amountReceived"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.23</span><span class="p">,</span><span class="w">
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"success"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"boolean"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"narrative"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Payment Reference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sourceAccount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"destinationAccount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='webhooks-trade_settlement'>TRADE_SETTLEMENT</h2>
 <p>This event is fired when a trade request (available as part of the Equities API) has reached a terminal state. 
