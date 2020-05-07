@@ -468,10 +468,13 @@
                     <a href="#payments-manager-registering-companies-as-wallet-holders" class="toc-h2 toc-link" data-title="Registering Companies as Wallet Holders"><em>Registering Companies as Wallet Holders</em></a>
                   </li>
                   <li>
-                    <a href="#payments-manager-post-companies" class="toc-h2 toc-link" data-title="POST /companies🚧"><code>POST /companies🚧</code></a>
+                    <a href="#payments-manager-post-companies" class="toc-h2 toc-link" data-title="POST /companies 🚧"><code>POST /companies 🚧</code></a>
                   </li>
                   <li>
-                    <a href="#payments-manager-get-companies" class="toc-h2 toc-link" data-title="GET /companies🚧"><code>GET /companies🚧</code></a>
+                    <a href="#payments-manager-put-companies-id-enable" class="toc-h2 toc-link" data-title="PUT /companies/{id}/enable 🚧"><code>PUT /companies/{id}/enable 🚧</code></a>
+                  </li>
+                  <li>
+                    <a href="#payments-manager-get-companies" class="toc-h2 toc-link" data-title="GET /companies 🚧"><code>GET /companies 🚧</code></a>
                   </li>
                   <li>
                     <a href="#payments-manager-get-companies-id" class="toc-h2 toc-link" data-title="GET /companies/{id} 🚧"><code>GET /companies/{id} 🚧</code></a>
@@ -7004,7 +7007,7 @@ account numbers as these are validated to ensure they accept faster payments pri
 <td>required</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-registering-companies-as-wallet-holders'><em>Registering Companies as Wallet Holders</em></h2><h2 id='payments-manager-post-companies'><code>POST /companies🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/companies</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-registering-companies-as-wallet-holders'><em>Registering Companies as Wallet Holders</em></h2><h2 id='payments-manager-post-companies'><code>POST /companies 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/companies</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -7031,8 +7034,11 @@ account numbers as these are validated to ensure they accept faster payments pri
 <p>The registration process is asynchronous.  When this API is first called, the <code>status</code> returned will be <code>PENDING</code>. A 
 <code>COMPANY_REGISTRATION_UPDATE</code> webhook will be used to notify completion of the registration.</p>
 
-<p>The registration process is partially manual, so the webhook will be dispatched significantly later than the API call, 
-so do not assume the webhook will arrive shortly after the API call. </p>
+<p>The registration process is partially manual, so the webhook will be dispatched significantly later than the API call. </p>
+
+<aside class="notice">
+In sandbox use this <a href="#payments-manager-put-companies-id-enable">endpoint</a> to enable a company.
+</aside>
 <h3 id='payments-manager-code-post-companies-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -7084,7 +7090,56 @@ so do not assume the webhook will arrive shortly after the API call. </p>
 <td>Company Name.</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-get-companies'><code>GET /companies🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/companies</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-put-companies-id-enable'><code>PUT /companies/{id}/enable 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502/enable</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">  "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",</span>
+<span class="s">  "status": "REGISTERED",</span>
+<span class="s">  "ukCompany": {</span>
+<span class="s">    "number": "00000000",</span>
+<span class="s">    "name": "Fake Company LIMITED"</span>
+<span class="s">  }</span>
+<span class="s">}</span>
+</code></pre><h3 id='payments-manager-code-put-companies-id-enable-code-description'>Description</h3>
+<p>Simulate enabling a pending company.  </p>
+
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+<h3 id='payments-manager-code-put-companies-id-enable-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>partyId</td>
+<td>string</td>
+<td>The Party ID for this company.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Enum: REGISTERED.</td>
+</tr>
+<tr>
+<td>ukCompany.number</td>
+<td>string</td>
+<td>The Company Number registered with Companies House.</td>
+</tr>
+<tr>
+<td>ukCompany.name</td>
+<td>string</td>
+<td>Company Name.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-get-companies'><code>GET /companies 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/companies</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
