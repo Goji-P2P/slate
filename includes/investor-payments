@@ -1023,6 +1023,8 @@ This will ensure the correct behaviour of payments during your testing.
 <h2 id='payments-investors-post-test-account-topup'><code>POST /test/account/topup</code></h2><h3 id='payments-investors-code-post-test-account-topup-code-description'>Description</h3>
 <p>Simulate depositing cash into any bank account managed on the Goji platform.</p>
 
+<p>For an investor account the payment reference must start with <code>ISA</code> if the funds are to be deposited to the ISA account.</p>
+
 <aside class="notice">
 Please note this is a test endpoint and is only available in the sandbox environment.
 </aside>
@@ -1084,7 +1086,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="s2">"SUCCESS"</span><span class="w">
-</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400 
+</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400
 Content-Type: application/json
 
 {
@@ -1095,7 +1097,7 @@ Content-Type: application/json
         }
     ]
 }
-</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400 
+</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400
 Content-Type: application/json
 
 {

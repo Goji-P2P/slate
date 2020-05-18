@@ -1185,6 +1185,24 @@ If an invalid version header is specified, a <code>404</code> response code will
 </ol>
 
 <p>In order to permission our email provider (Mandrill) to send emails using your domain you will be required to make the following DNS changes:</p>
+<h3 id='introduction-email-integration-dkim'>DKIM</h3>
+<p><code>v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB;</code></p>
+
+<p><code>v=DKIM1\; k=rsa\; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB\;</code></p>
+
+<p>DKIM is a DNS-based email authentication mechanism that helps Mandrill more effectively send mail on your behalf by allowing receivers to verify that we have permission to send your email.</p>
+
+<p>To enable DKIM, create a <code>TXT</code> record for <code>mandrill._domainkey.yourdomain.com</code> (replace <code>yourdomain.com</code> with the domain you&#39;re setting up).</p>
+
+<p>Some DNS providers require that semicolons be escaped. If your provider requires escaping, use this value instead.</p>
+<h3 id='introduction-email-integration-spf'>SPF</h3>
+<p><code>v=spf1 include:spf.mandrillapp.com ?all</code></p>
+
+<p>SPF is another DNS-based email authentication mechanism. If you don&#39;t yet have an SPF record, you&#39;ll want to add one for your domain. At a minimum, the value should be the following if you&#39;re only sending mail through Mandrill for that domain.</p>
+
+<p>If you already have a <code>TXT</code> record with SPF information, you&#39;ll need to add Mandrill&#39;s servers to that record by adding <code>include:spf.mandrillapp.com</code> in the record (before the last operator, which is usually <code>?all</code>, <code>~all</code>, or <code>-all</code>).</p>
+<h3 id='introduction-email-integration-domain-ownership-verification'>Domain Ownership Verification</h3>
+<p>Additionally, we need to send a verification email to verify your ownership of the domain. Please let us know which email address to send this to and when you receive the email from Mandrill, please forward it to <a href="mailto:techsupport@goji.investments">techsupport@goji.investments</a></p>
 <h2 id='introduction-valid-test-account-numbers'>Valid test account numbers</h2>
 <aside class="notice">
 Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
@@ -1225,24 +1243,6 @@ This will ensure the correct behaviour of payments during your testing.
 <td>166051</td>
 </tr>
 </tbody></table>
-<h3 id='introduction-valid-test-account-numbers-dkim'>DKIM</h3>
-<p><code>v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB;</code></p>
-
-<p><code>v=DKIM1\; k=rsa\; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB\;</code></p>
-
-<p>DKIM is a DNS-based email authentication mechanism that helps Mandrill more effectively send mail on your behalf by allowing receivers to verify that we have permission to send your email.</p>
-
-<p>To enable DKIM, create a <code>TXT</code> record for <code>mandrill._domainkey.yourdomain.com</code> (replace <code>yourdomain.com</code> with the domain you&#39;re setting up).</p>
-
-<p>Some DNS providers require that semicolons be escaped. If your provider requires escaping, use this value instead.</p>
-<h3 id='introduction-valid-test-account-numbers-spf'>SPF</h3>
-<p><code>v=spf1 include:spf.mandrillapp.com ?all</code></p>
-
-<p>SPF is another DNS-based email authentication mechanism. If you don&#39;t yet have an SPF record, you&#39;ll want to add one for your domain. At a minimum, the value should be the following if you&#39;re only sending mail through Mandrill for that domain.</p>
-
-<p>If you already have a <code>TXT</code> record with SPF information, you&#39;ll need to add Mandrill&#39;s servers to that record by adding <code>include:spf.mandrillapp.com</code> in the record (before the last operator, which is usually <code>?all</code>, <code>~all</code>, or <code>-all</code>).</p>
-<h3 id='introduction-valid-test-account-numbers-domain-ownership-verification'>Domain Ownership Verification</h3>
-<p>Additionally, we need to send a verification email to verify your ownership of the domain. Please let us know which email address to send this to and when you receive the email from Mandrill, please forward it to <a href="mailto:techsupport@goji.investments">techsupport@goji.investments</a></p>
 <h1 id='quickstart-guides'>Quickstart Guides</h1><h2 id='quickstart-guides-quickstart-settlement-debt'><em>Quickstart Settlement - Debt</em></h2>
 <p>This guide gives a brief overview on how to:</p>
 
@@ -1274,7 +1274,7 @@ This will ensure the correct behaviour of payments during your testing.
 </span></code></pre>
 <p>Webhooks are fired to inform you whenever specific events are fired in the Goji Platform.</p>
 
-<p>You can register a URL to receive webhooks by calling <a href="/#post-webhooks">POST https://api-sandbox.goji.investments/platformApi/webhooks</a> with example <code>POST</code> body:</p>
+<p>You can register a URL to receive webhooks by calling <a href="/#webhooks-post-webhooks">POST https://api-sandbox.goji.investments/platformApi/webhooks</a> with example body:</p>
 <h2 id='quickstart-guides-creating-an-investor'>Creating an Investor</h2>
 <blockquote>
 <p>Create Investor</p>
@@ -1308,15 +1308,15 @@ This will ensure the correct behaviour of payments during your testing.
 </span></code></pre>
 <p>To create an Investor, the Investor must first agree to the Terms and Conditions, and optionally the ISA declaration if the Investor is opening an ISA.</p>
 
-<p>Goji supports hosting the Terms and Conditions, retrieved by calling <a href="/#get-terms">GET https://api-sandbox.goji.investments/platformApi/terms</a>.</p>
+<p>Goji supports hosting the Terms and Conditions, retrieved by calling <a href="/#investors-get-terms">GET https://api-sandbox.goji.investments/platformApi/terms</a>.</p>
 
-<p>The ISA Declaration can be retrieved by calling <a href="/#get-isadeclaration">GET https://api-sandbox.goji.investments/platformApi/isaDeclaration</a></p>
+<p>The ISA Declaration can be retrieved by calling <a href="/#investors-get-platformapi-isadeclaration">GET https://api-sandbox.goji.investments/platformApi/isaDeclaration</a></p>
 
-<p>An Investor is created by posting to <a href="/#post-investors">https://api-sandbox.goji.investments/platformApi/investors</a> with example <code>POST</code> body:</p>
+<p>An Investor is created by calling <a href="/#investors-post-platformapi-investors">POST https://api-sandbox.goji.investments/platformApi/investors</a> with example body:</p>
 
 <p>The Goji Platform will generate a <code>clientId</code> which should be saved as this is used for subsequent calls.</p>
 <h2 id='quickstart-guides-checking-the-kyc-details'>Checking the KYC details</h2>
-<p>Once the Investor has been created, a KYC check is done in the background and the status can be checked by calling <a href="/#get-investors-clientid-kyc">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/kyc</a></p>
+<p>Once the Investor has been created, a KYC check is done in the background and the status can be checked by calling <a href="/#investors-get-platformapi-investors-clientid-kyc">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/kyc</a></p>
 
 <p>In the sandbox environment, all Investors are considered verified unless the <code>lastName</code> contains <code>referred</code>.</p>
 <h2 id='quickstart-guides-depositing-test-funds'>Depositing Test Funds</h2>
@@ -1335,11 +1335,11 @@ This will ensure the correct behaviour of payments during your testing.
 </span></code></pre>
 <p>Once an Investor is KYC approved, funds can be deposited.</p>
 <h3 id='quickstart-guides-depositing-test-funds-an-investor-39-s-bank-details'>An Investor&#39;s Bank Details</h3>
-<p>The Investor&#39;s unique bank details for depositing funds can be retrieved by calling: <a href="/#get-investors-clientid-banktransferdetails">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails</a></p>
+<p>The Investor&#39;s unique bank details for depositing funds can be retrieved by calling: <a href="/#payments-investors-get-platformapi-investors-clientid-banktransferdetails">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails</a></p>
 <h3 id='quickstart-guides-depositing-test-funds-an-isa-investor-39-s-bank-details'>An ISA Investor&#39;s Bank Details</h3>
-<p>For an ISA account, use: <a href="/#get-investors-clientid-banktransferdetails-isa">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails/isa</a></p>
+<p>For an ISA account, use: <a href="/#payments-investors-get-platformapi-investors-clientid-banktransferdetails-isa">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails/isa</a></p>
 <h3 id='quickstart-guides-depositing-test-funds-testing'>Testing</h3>
-<p>You can simulate depositing funds by calling <a href="/#post-test-payment">POST https://api-sandbox.goji.investments/platformApi/test/payment</a> with a example <code>POST</code> body:</p>
+<p>You can simulate depositing funds by calling <a href="/#payments-investors-post-test-account-topup">POST https://api-sandbox.goji.investments/platformApi/test/account/topup</a>.</p>
 
 <p>The payment reference must start with <code>ISA</code> if the funds are to be deposited to the ISA account.</p>
 
@@ -1347,7 +1347,7 @@ This will ensure the correct behaviour of payments during your testing.
 <h3 id='quickstart-guides-depositing-test-funds-an-investor-39-s-balance'>An Investor&#39;s Balance</h3>
 <p>An Investor&#39;s balance can be queried by calling:</p>
 
-<p><a href="/#get-investors-clientid-accounts-balances">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/accounts/balances</a></p>
+<p><a href="/#payments-investors-get-platformapi-investors-clientid-accounts-balances">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/accounts/balances</a></p>
 <h2 id='quickstart-guides-settling-an-investment'>Settling an Investment</h2>
 <p>Once an Investor has a cash balance, the funds can be invested by calling the settlement API. This will move the funds from one or more investors to a predetermined account. This account may be with the Investment Manager, a Solicitor or the borrower directly.</p>
 <h2 id='quickstart-guides-register-the-investment-product'>Register the Investment Product</h2>
@@ -1362,7 +1362,7 @@ This will ensure the correct behaviour of payments during your testing.
 </span></code></pre>
 <p>First register the investment product:</p>
 
-<p><a href="/#post-settlement-product">POST https://api-sandbox.goji.investments/platformApi/settlement/product</a></p>
+<p><a href="/#settlement-debt-post-platformapi-settlement-product">POST https://api-sandbox.goji.investments/platformApi/settlement/product</a></p>
 
 <p><em>This can be reused multiple times.</em></p>
 <h2 id='quickstart-guides-register-a-payment-destination'>Register a Payment Destination</h2>
@@ -1450,11 +1450,11 @@ Please note that by default the payment destination is disabled and has to be en
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><a href="/#post-settlement-tranche">POST https://api-sandbox.goji.investments/platformApi/settlement/tranche</a></p>
+<p><a href="/#settlement-debt-post-platformapi-settlement-tranche">POST https://api-sandbox.goji.investments/platformApi/settlement/tranche</a></p>
 
 <p>The investor&#39;s investment can be queried by calling:</p>
 
-<p><a href="/#get-settlement-investors-clientid-accounts-accounttype-investments">https://api-sandbox.goji.investments/platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments</a></p>
+<p><a href="/#settlement-debt-get-platformapi-settlement-investors-clientid-accounts-accounttype-investments">GET https://api-sandbox.goji.investments/platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments</a></p>
 <h2 id='quickstart-guides-repaying-the-investment'>Repaying the Investment</h2>
 <blockquote>
 <p>Repaying Investment</p>
@@ -1467,7 +1467,7 @@ Please note that by default the payment destination is disabled and has to be en
 </span></code></pre>
 <p>To record a repayment against an investment, firstly generate a unique reference that will be used when sending the funds to the Goji Platform.</p>
 
-<p><a href="/#get-settlement-repayment-reference">GET https://api-sandbox.goji.investments/platformApi/settlement/repayment/reference</a></p>
+<p><a href="/#settlement-debt-get-platformapi-settlement-repayment-reference">GET https://api-sandbox.goji.investments/platformApi/settlement/repayment/reference</a></p>
 
 <p>This will return the account details to use when sending the funds to repay:</p>
 
@@ -1494,7 +1494,7 @@ Please note that by default the payment destination is disabled and has to be en
   </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-ref"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><a href="/#post-settlement-repayment">POST https://api-sandbox.goji.investments/platformApi/settlement/repayment</a></p>
+<p><a href="/#settlement-debt-post-platformapi-settlement-repayment">POST https://api-sandbox.goji.investments/platformApi/settlement/repayment</a></p>
 
 <p>This will ensure that <code>£123.45</code> has been deposited with reference <code>some-ref</code> which was generated by the previous call. If this check passes, the funds will be credited to the Investor and recorded as an interest repayment against <code>client-investment-1</code>.</p>
 <h2 id='quickstart-guides-withdrawing-funds'>Withdrawing Funds</h2>
@@ -1560,11 +1560,11 @@ This will ensure the correct behaviour of payments during your testing.
 </tr>
 </tbody></table>
 
-<p><a href="/#post-investors-clientid-bankdetails">POST https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankDetails</a></p>
+<p><a href="#payments-investors-post-platformapi-investors-clientid-bankdetails">POST https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankDetails</a></p>
 <h3 id='quickstart-guides-withdrawing-funds-process-withdrawal'>Process Withdrawal</h3>
 <p>Then the funds can be withdrawn:</p>
 
-<p><a href="/#post-investors-clientid-accounts-accounttype-withdrawal">https://api-sandbox.goji.investments/platformApi/investors/{clientId}/accounts/{accountType}/withdrawal</a></p>
+<p><a href="/#payments-investors-post-platformapi-investors-clientid-accounts-accounttype-withdrawal">POST https://api-sandbox.goji.investments/platformApi/investors/{clientId}/accounts/{accountType}/withdrawal</a></p>
 <h2 id='quickstart-guides-quickstart-settlement-equities'><em>Quickstart Settlement - Equities 🚧</em></h2>
 <p>This guide gives a brief overview to how to do the following, using the settlement API:</p>
 
@@ -6715,6 +6715,8 @@ This will ensure the correct behaviour of payments during your testing.
 <h2 id='payments-investors-post-test-account-topup'><code>POST /test/account/topup</code></h2><h3 id='payments-investors-code-post-test-account-topup-code-description'>Description</h3>
 <p>Simulate depositing cash into any bank account managed on the Goji platform.</p>
 
+<p>For an investor account the payment reference must start with <code>ISA</code> if the funds are to be deposited to the ISA account.</p>
+
 <aside class="notice">
 Please note this is a test endpoint and is only available in the sandbox environment.
 </aside>
@@ -6776,7 +6778,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="s2">"SUCCESS"</span><span class="w">
-</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400 
+</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400
 Content-Type: application/json
 
 {
@@ -6787,7 +6789,7 @@ Content-Type: application/json
         }
     ]
 }
-</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400 
+</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400
 Content-Type: application/json
 
 {
