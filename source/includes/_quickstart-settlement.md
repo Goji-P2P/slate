@@ -152,7 +152,7 @@ First register the investment product:
 
 Next, register a payment destination. This is where the funds will be sent.
 
-[POST https://api-sandbox.goji.investments/platformApi/settlement/payment-destination](/#post-settlement-payment-destination)
+[POST https://api-sandbox.goji.investments/platformApi/bankAccountDetails](/#payments-manager-post-platformapi-bankaccountdetails)
 
 This returns a payment destination ID which must be saved and used for the subsequent call.
 
