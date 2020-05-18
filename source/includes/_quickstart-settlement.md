@@ -145,7 +145,6 @@ First register the investment product:
 {
   "accountName": "Account name",
   "accountNumber": "123456",
-  "reference": "Bank ref",
   "sortCode": "112233"
 }
 ```
