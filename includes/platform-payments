@@ -1,0 +1,996 @@
+<h1 id='payments-manager'>Payments - Manager</h1><h2 id='payments-manager-testing-outbound-payments'>Testing outbound payments</h2>
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
+
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
+
+<table><thead>
+<tr>
+<th>Account Number</th>
+<th>Sort Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00004588</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>00027944</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>58110244</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>60282377</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-managing-payment-destinations'><em>Managing Payment Destinations</em></h2><h2 id='payments-manager-get-platformapi-bankaccountdetails'><code>GET /platformApi/bankAccountDetails</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/bankAccountDetails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"status"</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-get-platformapi-bankaccountdetails-code-description'>Description</h3>
+<p>List of bank accounts we hold in the system for sending money to.</p>
+<h3 id='payments-manager-code-get-platformapi-bankaccountdetails-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].id</td>
+<td>string</td>
+<td>The bank account details ID.</td>
+</tr>
+<tr>
+<td>[].accountNumber</td>
+<td>string</td>
+<td>The account number.</td>
+</tr>
+<tr>
+<td>[].sortCode</td>
+<td>string</td>
+<td>The sort code.</td>
+</tr>
+<tr>
+<td>[].accountName</td>
+<td>string</td>
+<td>The account name.</td>
+</tr>
+<tr>
+<td>[].status</td>
+<td>string</td>
+<td>Whether or not the account has passed AML. Possible values are: <br><code>ENABLED</code><br><code>DISABLED</code></td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-post-platformapi-bankaccountdetails'><code>POST /platformApi/bankAccountDetails</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/platformApi/bankAccountDetails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-post-platformapi-bankaccountdetails-code-description'>Description</h3>
+<p>Create a set of bank details.</p>
+
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
+
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
+
+<table><thead>
+<tr>
+<th>Account Number</th>
+<th>Sort Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00004588</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>00027944</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>58110244</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>60282377</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
+</tr>
+</tbody></table>
+<h3 id='payments-manager-code-post-platformapi-bankaccountdetails-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountNumber</td>
+<td>string</td>
+<td>The account number.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string</td>
+<td>The sort code.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>accountName</td>
+<td>string</td>
+<td>The account name.</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h3 id='payments-manager-code-post-platformapi-bankaccountdetails-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The bank account ID.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-get-platformapi-bankaccountdetails-id'><code>GET /platformApi/bankAccountDetails/{id}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/bankAccountDetails/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"status"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-get-platformapi-bankaccountdetails-id-code-description'>Description</h3>
+<p>Get a specific bank account we hold in the system for sending money to.</p>
+<h3 id='payments-manager-code-get-platformapi-bankaccountdetails-id-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The bank account details ID.</td>
+</tr>
+<tr>
+<td>accountNumber</td>
+<td>string</td>
+<td>The account number.</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string</td>
+<td>The sort code.</td>
+</tr>
+<tr>
+<td>accountName</td>
+<td>string</td>
+<td>The account name.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Whether or not the account has passed AML.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-put-platformapi-bankaccountdetails-id'><code>PUT /platformApi/bankAccountDetails/{id}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">PUT</span> <span class="nn">/platformApi/bankAccountDetails/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="s2">""</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-put-platformapi-bankaccountdetails-id-code-description'>Description</h3>
+<p>Updates a specific set of stored account details. This will trigger an AML check.</p>
+<h3 id='payments-manager-code-put-platformapi-bankaccountdetails-id-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountNumber</td>
+<td>string</td>
+<td>The account number.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string</td>
+<td>The sort code.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>accountName</td>
+<td>string</td>
+<td>The account name.</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-registering-companies-as-wallet-holders'><em>Registering Companies as Wallet Holders</em></h2><h2 id='payments-manager-post-companies'><code>POST /companies 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/companies</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"ukCompany"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fake Company LIMITED"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">  "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",</span>
+<span class="s">  "status": "PENDING",</span>
+<span class="s">  "ukCompany": {</span>
+<span class="s">    "number": "00000000",</span>
+<span class="s">    "name": "Fake Company LIMITED"</span>
+<span class="s">  }</span>
+<span class="s">}</span>
+</code></pre><h3 id='payments-manager-code-post-companies-code-description'>Description</h3>
+<p>Register a company with the Goji Platform.  This allows the company to own Wallets, and send/receive money through them.</p>
+
+<p>The registration process is asynchronous.  When this API is first called, the <code>status</code> returned will be <code>PENDING</code>. A 
+<code>COMPANY_REGISTRATION_UPDATE</code> webhook will be used to notify completion of the registration.</p>
+
+<p>The registration process is partially manual, so the webhook will be dispatched significantly later than the API call. </p>
+
+<aside class="notice">
+In sandbox use this <a href="#payments-manager-put-companies-id-enable">endpoint</a> to enable a company.
+</aside>
+<h3 id='payments-manager-code-post-companies-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ukCompany.number</td>
+<td>string</td>
+<td>The Company Number registered with Companies House.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>ukCompany.name</td>
+<td>string</td>
+<td>Company Name.</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h3 id='payments-manager-code-post-companies-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>partyId</td>
+<td>string</td>
+<td>The Party ID for this company.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Enum: PENDING, REGISTERED.</td>
+</tr>
+<tr>
+<td>ukCompany.number</td>
+<td>string</td>
+<td>The Company Number registered with Companies House.</td>
+</tr>
+<tr>
+<td>ukCompany.name</td>
+<td>string</td>
+<td>Company Name.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-put-companies-id-enable'><code>PUT /companies/{id}/enable 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502/enable</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">  "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",</span>
+<span class="s">  "status": "REGISTERED",</span>
+<span class="s">  "ukCompany": {</span>
+<span class="s">    "number": "00000000",</span>
+<span class="s">    "name": "Fake Company LIMITED"</span>
+<span class="s">  }</span>
+<span class="s">}</span>
+</code></pre><h3 id='payments-manager-code-put-companies-id-enable-code-description'>Description</h3>
+<p>Simulate enabling a pending company.  </p>
+
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+<h3 id='payments-manager-code-put-companies-id-enable-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>partyId</td>
+<td>string</td>
+<td>The Party ID for this company.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Enum: REGISTERED.</td>
+</tr>
+<tr>
+<td>ukCompany.number</td>
+<td>string</td>
+<td>The Company Number registered with Companies House.</td>
+</tr>
+<tr>
+<td>ukCompany.name</td>
+<td>string</td>
+<td>Company Name.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-get-companies'><code>GET /companies 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/companies</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"partyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="w">
+    </span><span class="s2">"ukCompany"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fake Company LIMITED"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"partyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~0176cb07-30ba-4802-ab4a-b0835222cf5b"</span><span class="w">
+    </span><span class="s2">"ukCompany"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Other Fake Company LIMITED"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-get-companies-code-description'>Description</h3>
+<p>Retrieves all companies that have been registered.</p>
+<h3 id='payments-manager-code-get-companies-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>partyId</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>ukCompany.number</td>
+<td>string</td>
+<td>The Company Number registered with Companies House.</td>
+</tr>
+<tr>
+<td>ukCompany.name</td>
+<td>string</td>
+<td>Company Name</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-get-companies-id'><code>GET /companies/{id} 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"partyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="w">
+  </span><span class="s2">"ukCompany"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fake Company LIMITED"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-get-companies-id-code-description'>Description</h3>
+<p>Retrieve details of a single company.</p>
+<h3 id='payments-manager-code-get-companies-id-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>partyId</td>
+<td>string</td>
+<td>Party ID for the company</td>
+</tr>
+<tr>
+<td>ukCompany.number</td>
+<td>string</td>
+<td>The Company Number registered with Companies House.</td>
+</tr>
+<tr>
+<td>ukCompany.name</td>
+<td>string</td>
+<td>Company Name</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-managing-wallets'><em>Managing Wallets</em></h2><h2 id='payments-manager-post-wallets'><code>POST /wallets 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"walletName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"walletName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+Prior to creating a Wallet, the Company who owns the money in the Wallet must be <a href="#payments-manager-post-companies">registered</a>.
+</aside>
+<h3 id='payments-manager-code-post-wallets-code-description'>Description</h3>
+<p>Creates a Wallet. The Wallet creation will not happen immediately. The <code>WALLET_CREATED</code> webhook will be used to notify
+you of the Wallet creation completing, including the Bank Account Number and Sort Code.</p>
+<h3 id='payments-manager-code-post-wallets-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ownerPartyId</td>
+<td>string</td>
+<td>The PartyId that will own the Wallet.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>walletName</td>
+<td>string</td>
+<td>New wallet name</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h3 id='payments-manager-code-post-wallets-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The unique identifier for the Wallet.</td>
+</tr>
+<tr>
+<td>ownerPartyId</td>
+<td>string</td>
+<td>The PartyId that will own the Wallet.</td>
+</tr>
+<tr>
+<td>walletName</td>
+<td>string</td>
+<td>Wallet name.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-get-wallets'><code>GET /wallets 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"walletName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankAccountDetailsId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"03946a54-6b4f-4bae-897d-6ee2baf0e848"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"balance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-get-wallets-code-description'>Description</h3>
+<p>Retrieve all Wallet details.</p>
+<h3 id='payments-manager-code-get-wallets-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The ID of the wallet</td>
+</tr>
+<tr>
+<td>ownerPartyId</td>
+<td>string</td>
+<td>The PartyId that will own the Wallet.</td>
+</tr>
+<tr>
+<td>walletName</td>
+<td>string</td>
+<td>Wallet name.</td>
+</tr>
+<tr>
+<td>bankAccountDetailsId</td>
+<td>string</td>
+<td>The bank account details ID</td>
+</tr>
+<tr>
+<td>bankDetails</td>
+<td>ref</td>
+<td>The bank details for the wallet</td>
+</tr>
+<tr>
+<td>bankDetails.accountName</td>
+<td>string</td>
+<td>The account name for use when depositing money</td>
+</tr>
+<tr>
+<td>bankDetails.accountNumber</td>
+<td>string</td>
+<td>The account number to use when depositing money</td>
+</tr>
+<tr>
+<td>bankDetails.sortCode</td>
+<td>string</td>
+<td>The sort code to use when depositing money</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>ref</td>
+<td>The total cash balance for the wallet</td>
+</tr>
+<tr>
+<td>balance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>balance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-get-wallets-id'><code>GET /wallets/{id} 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3d9ca033-eb05-459f-9f70-1139d2e2b213"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"walletName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bankAccountDetailsId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03946a54-6b4f-4bae-897d-6ee2baf0e848"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bankDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project 22"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-get-wallets-id-code-description'>Description</h3>
+<p>Retrieve details of a single Wallet.</p>
+<h3 id='payments-manager-code-get-wallets-id-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The ID of the wallet</td>
+</tr>
+<tr>
+<td>ownerPartyId</td>
+<td>string</td>
+<td>The PartyId that will own the Wallet.</td>
+</tr>
+<tr>
+<td>walletName</td>
+<td>string</td>
+<td>Wallet name.</td>
+</tr>
+<tr>
+<td>bankAccountDetailsId</td>
+<td>string</td>
+<td>The bank account details ID</td>
+</tr>
+<tr>
+<td>bankDetails</td>
+<td>ref</td>
+<td>The bank details for the wallet</td>
+</tr>
+<tr>
+<td>bankDetails.accountName</td>
+<td>string</td>
+<td>The account name for use when depositing money</td>
+</tr>
+<tr>
+<td>bankDetails.accountNumber</td>
+<td>string</td>
+<td>The account number to use when depositing money</td>
+</tr>
+<tr>
+<td>bankDetails.sortCode</td>
+<td>string</td>
+<td>The sort code to use when depositing money</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>ref</td>
+<td>The total cash balance for the wallet</td>
+</tr>
+<tr>
+<td>balance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>balance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-post-wallets-id-payment'><code>POST /wallets/{id}/payment 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213/payment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"destinationBankAccountId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"03946a54-6b4f-4bae-897d-6ee2baf0e848"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC1234567"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"narrative"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Moving to operating account"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"destinationBankAccountId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"03946a54-6b4f-4bae-897d-6ee2baf0e848"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.45</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC1234567"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"narrative"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Moving to operating account"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING
+}
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"errorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_DATA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Instruction must include a reference."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-post-wallets-id-payment-code-description'>Description</h3>
+<aside class="notice">
+Before instructing a payment, the destination bank account must first be <a href="#payments-manager-post-platformapi-bankaccountdetails">registered</a>.
+</aside>
+
+<p>Create a payment instruction from a Wallet.</p>
+<h3 id='payments-manager-code-post-wallets-id-payment-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>destinationBankAccountId</td>
+<td>string</td>
+<td>The ID of the destination bank account</td>
+<td>required</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>ref</td>
+<td>The total cash balance.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>amount.amount</td>
+<td>number</td>
+<td>The amount.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>amount.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+<td>required</td>
+</tr>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>The bank reference used for the transfer</td>
+<td>required</td>
+</tr>
+<tr>
+<td>narrative</td>
+<td>string</td>
+<td>The reason for the wallet transfer</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Only present on responses. The status of a wallet transfer.</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='payments-manager-code-post-wallets-id-payment-code-possible-error-codes'>Possible Error codes</h3>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>INVALID_DATA</td>
+<td>Bank account with bankAccountId=03946a54-6b4f-4bae-897d-6ee2baf0e848 does not exist.</td>
+</tr>
+<tr>
+<td>INVALID_DATA</td>
+<td>Destination bank account details are not yet enabled.</td>
+</tr>
+<tr>
+<td>INVALID_DATA</td>
+<td>Instruction must include a reference.</td>
+</tr>
+<tr>
+<td>INVALID_DATA</td>
+<td>Payment reference must be below 18 characters long.</td>
+</tr>
+<tr>
+<td>INVALID_AMOUNT</td>
+<td>Instruction must include a positive non-zero amount.</td>
+</tr>
+<tr>
+<td>INSUFFICIENT_BALANCE</td>
+<td>Insufficient balance to perform an outbound payment of amount: £10.45. Current balance: £0.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-manager-get-wallets-id-transactions-year-year-month-month'><code>GET /wallets/{id}/transactions/year/{year}/month/{month} 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213/transactions/year/2020/month/1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.50</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"type"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"narrative"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Solicitor Fees"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T12:33:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clearedDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T12:33:30Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"associatedBankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='payments-manager-code-get-wallets-id-transactions-year-year-month-month-code-description'>Description</h3>
+<p>Retrieve a list of transactions for a given Wallet for a given year and month.</p>
+<h3 id='payments-manager-code-get-wallets-id-transactions-year-year-month-month-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The id of the transaction</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>ref</td>
+<td>The total cash balance.</td>
+</tr>
+<tr>
+<td>amount.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>amount.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>The type of wallet instruction</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>The status of the wallet transfer. PENDING, CLEARED</td>
+</tr>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>The bank reference used for the transfer</td>
+</tr>
+<tr>
+<td>narrative</td>
+<td>string</td>
+<td>The reason for the wallet transfer</td>
+</tr>
+<tr>
+<td>createdDateTime</td>
+<td>date/time</td>
+<td>The date / time the transaction was created</td>
+</tr>
+<tr>
+<td>clearedDateTime</td>
+<td>date/time</td>
+<td>The date / time the transaction was cleared</td>
+</tr>
+<tr>
+<td>associatedBankDetails</td>
+<td>ref</td>
+<td>The bank details for the wallet</td>
+</tr>
+<tr>
+<td>associatedBankDetails.accountName</td>
+<td>string</td>
+<td>The account name related to the transaction</td>
+</tr>
+<tr>
+<td>associatedBankDetails.accountNumber</td>
+<td>string</td>
+<td>The account number related to the transaction</td>
+</tr>
+<tr>
+<td>associatedBankDetails.sortCode</td>
+<td>string</td>
+<td>The sort code related to the transaction</td>
+</tr>
+</tbody></table>

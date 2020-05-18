@@ -1,0 +1,1004 @@
+<h1 id='settlement-debt'>Settlement - Debt</h1>
+<p>The Settlement API allows the investment manager to record trades that have been executed.</p>
+<h2 id='settlement-debt-recording-available-products'>Recording available products</h2>
+<p>The investment manager must record what investments are going to be available to investors and whether
+they will be made available in the ISA.</p>
+<h2 id='settlement-debt-making-an-investment'>Making an investment</h2>
+<p>The investment manager will periodically record an investment in the Goji platform via the API. This will trigger a
+record of the investment against the investors&#39; accounts and also move the funds from the client money account to the investment manager.</p>
+
+<p><img src="/images/settlement/images/client-money-investment-97741d18.png" alt="Client money investment" /></p>
+<h2 id='settlement-debt-bond-repayments'>Bond repayments</h2>
+<p>The investment manager will calculate repayments and any withholding tax that are due to the investors in the bond. The investment manager will
+record the due repayment via the API. Once the funds are received, they will be distributed to the appropriate investors and any tax or fees specified will
+be returned to the investment manager to the specified payment destination</p>
+
+<p><img src="/images/settlement/images/client-money-repayment-0089a363.png" alt="Client money repayment" /></p>
+<h2 id='settlement-debt-bond-maturity'>Bond maturity</h2>
+<p>When the bond matures, the investment manager will calculate repayments that are due to the investors in the bond. The investment manager will
+record the due repayment via the API. Once the funds are received, they will be distributed to the appropriate investors and any tax or fees specified will
+be returned to the investment manager to the specified payment destination.</p>
+
+<p><img src="/images/settlement/images/client-money-maturity-d086ae83.png" alt="Client money maturity" /></p>
+<h2 id='settlement-debt-secondary-market'>Secondary market</h2>
+<p>When the investment manager wishes to transfer ownership of a loan (or part thereof), the sale is recorded via the API
+to the Goji platform. If appropriate funds are available in the buyer&#39;s account in the Goji platform, the appropriate
+transactions are recorded and funds are moved to the seller&#39;s account.</p>
+
+<p><img src="/images/settlement/images/client-money-secondary-market-40e1fda0.png" alt="Client money secondary market" /></p>
+<h2 id='settlement-debt-get-platformapi-settlement-product'><code>GET /platformApi/settlement/product</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/settlement/product</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"products"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"investmentDocument"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentDocument"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isaEligible"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"investmentDocument"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentDocument"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isaEligible"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='settlement-debt-code-get-platformapi-settlement-product-code-description'>Description</h3>
+<p>Returns list of registered products</p>
+<h3 id='settlement-debt-code-get-platformapi-settlement-product-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>products</td>
+<td>array</td>
+<td></td>
+</tr>
+<tr>
+<td>products[].id</td>
+<td>string</td>
+<td>The unique ID of the product</td>
+</tr>
+<tr>
+<td>products[].investmentDocument</td>
+<td>string</td>
+<td>A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability.</td>
+</tr>
+<tr>
+<td>products[].isaEligible</td>
+<td>boolean</td>
+<td>True if the investment can be included in an IF ISA.</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-debt-post-platformapi-settlement-product'><code>POST /platformApi/settlement/product</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/platformApi/settlement/product</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"investmentDocument"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentDocument"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"isaEligible"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"investmentDocument"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentDocument"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"isaEligible"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='settlement-debt-code-post-platformapi-settlement-product-code-description'>Description</h3>
+<p>Adds a registered product</p>
+<h3 id='settlement-debt-code-post-platformapi-settlement-product-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The unique ID of the product</td>
+<td>required</td>
+</tr>
+<tr>
+<td>investmentDocument</td>
+<td>string</td>
+<td>A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>isaEligible</td>
+<td>boolean</td>
+<td>True if the investment can be included in an IF ISA.</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h3 id='settlement-debt-code-post-platformapi-settlement-product-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The unique ID of the product</td>
+</tr>
+<tr>
+<td>investmentDocument</td>
+<td>string</td>
+<td>A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability.</td>
+</tr>
+<tr>
+<td>isaEligible</td>
+<td>boolean</td>
+<td>True if the investment can be included in an IF ISA.</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-debt-put-platformapi-settlement-product-productid'><code>PUT /platformApi/settlement/product/{productId}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">PUT</span> <span class="nn">/platformApi/settlement/product/{productId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"investmentDocument"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentDocument"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"isaEligible"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"investmentDocument"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentDocument"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"isaEligible"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='settlement-debt-code-put-platformapi-settlement-product-productid-code-description'>Description</h3>
+<p>Updates a registered product</p>
+<h3 id='settlement-debt-code-put-platformapi-settlement-product-productid-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>investmentDocument</td>
+<td>string</td>
+<td>A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>isaEligible</td>
+<td>boolean</td>
+<td>True if the investment can be included in an IF ISA.</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h3 id='settlement-debt-code-put-platformapi-settlement-product-productid-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The unique ID of the product</td>
+</tr>
+<tr>
+<td>investmentDocument</td>
+<td>string</td>
+<td>A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability.</td>
+</tr>
+<tr>
+<td>isaEligible</td>
+<td>boolean</td>
+<td>True if the investment can be included in an IF ISA.</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-debt-get-platformapi-settlement-payment-destination'><code>GET /platformApi/settlement/payment-destination</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/settlement/payment-destination</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='settlement-debt-code-get-platformapi-settlement-payment-destination-code-description'>Description</h3>
+<p>Lists payment destinations. </p>
+
+<aside class="warning">
+Deprecated and replaced with <a href="#payments-manager-get-platformapi-bankaccountdetails">general bank account details</a>.
+</aside>
+<h3 id='settlement-debt-code-get-platformapi-settlement-payment-destination-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The unique id of the payment destination</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-debt-post-platformapi-settlement-payment-destination'><code>POST /platformApi/settlement/payment-destination</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/platformApi/settlement/payment-destination</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='settlement-debt-code-post-platformapi-settlement-payment-destination-code-description'>Description</h3>
+<p>Adds a payment destination.</p>
+
+<aside class="warning">
+Deprecated and replaced with <a href="#payments-manager-post-platformapi-bankaccountdetails">general bank account details</a>.
+</aside>
+
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
+
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
+
+<table><thead>
+<tr>
+<th>Account Number</th>
+<th>Sort Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00004588</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>00027944</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>58110244</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>60282377</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
+</tr>
+</tbody></table>
+<h3 id='settlement-debt-code-post-platformapi-settlement-payment-destination-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountName</td>
+<td>string</td>
+<td>The bank account name.</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>accountNumber</td>
+<td>string</td>
+<td>The bank account number.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string</td>
+<td>The bank account sort code.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>The reference to be used when transferring funds.</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h3 id='settlement-debt-code-post-platformapi-settlement-payment-destination-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The unique id of the payment destination</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-debt-put-platformapi-settlement-payment-destination-id'><code>PUT /platformApi/settlement/payment-destination/{id}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">PUT</span> <span class="nn">/platformApi/settlement/payment-destination/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='settlement-debt-code-put-platformapi-settlement-payment-destination-id-code-description'>Description</h3>
+<p>Updates a payment destination.</p>
+
+<aside class="warning">
+Deprecated and replaced with <a href="#payments-manager-put-platformapi-bankaccountdetails-id">general bank account details</a>.
+</aside>
+<h3 id='settlement-debt-code-put-platformapi-settlement-payment-destination-id-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountName</td>
+<td>string</td>
+<td>The bank account name.</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>accountNumber</td>
+<td>string</td>
+<td>The bank account number.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string</td>
+<td>The bank account sort code.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>The reference to be used when transferring funds.</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h3 id='settlement-debt-code-put-platformapi-settlement-payment-destination-id-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The unique id of the payment destination</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-debt-post-platformapi-settlement-tranche'><code>POST /platformApi/settlement/tranche</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/platformApi/settlement/tranche</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"paymentDestinationId (Deprecated)"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"paymentDestinationId (Deprecated)"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"productId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"productId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bankAccountId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"investments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='settlement-debt-code-post-platformapi-settlement-tranche-code-description'>Description</h3>
+<p>Records an investment and triggers a transfer of funds to the Investment Manager.</p>
+<h3 id='settlement-debt-code-post-platformapi-settlement-tranche-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The unique ID for this tranche of investment</td>
+<td>required</td>
+</tr>
+<tr>
+<td>productId</td>
+<td>string</td>
+<td>The ID of the investment product as preciously registered in the system</td>
+<td>required</td>
+</tr>
+<tr>
+<td>paymentDestinationId (Deprecated)</td>
+<td>string</td>
+<td>The ID of the payment destination to be used for this tranche. This has been deprecated, please use the bankAccountId field</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>bankAccountId</td>
+<td>string</td>
+<td>The ID of the bank account details to be used for this tranche.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>The bank reference for the funds transfer</td>
+<td>required</td>
+</tr>
+<tr>
+<td>investments</td>
+<td>array</td>
+<td></td>
+<td>required</td>
+</tr>
+<tr>
+<td>investments[].id</td>
+<td>string</td>
+<td>The unique ID for this clients investment</td>
+<td>required</td>
+</tr>
+<tr>
+<td>investments[].clientId</td>
+<td>string</td>
+<td>The ID of the investor</td>
+<td>required</td>
+</tr>
+<tr>
+<td>investments[].amount</td>
+<td>ref</td>
+<td>The amount being invested</td>
+<td>required</td>
+</tr>
+<tr>
+<td>investments[].accountType</td>
+<td>string</td>
+<td>The account making the investment. Possible values are: <br><code>GOJI_INVESTMENT</code><br><code>ISA</code><br></td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h3 id='settlement-debt-code-post-platformapi-settlement-tranche-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The unique ID for this investment</td>
+</tr>
+<tr>
+<td>totalAmount</td>
+<td>ref</td>
+<td>The total amount being invested</td>
+</tr>
+<tr>
+<td>totalAmount.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalAmount.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string</td>
+<td>The sort code the funds will be sent to</td>
+</tr>
+<tr>
+<td>accountNumber</td>
+<td>string</td>
+<td>The account number the funds will be sent to</td>
+</tr>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>The bank reference for the funds transfer</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-debt-post-platformapi-settlement-secondary-market'><code>POST /platformApi/settlement/secondary-market</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/platformApi/settlement/secondary-market</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"buySide"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"bankAccountId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totalPurchaseAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"newInvestmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"newInvestmentId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T12:33:00Z"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"feePaymentDestination (Deprecated)"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"feePaymentDestination (Deprecated)"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"sellSide"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"bankAccountId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"investmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"premium"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"capitalAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"feePaymentDestination (Deprecated)"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"feePaymentDestination (Deprecated)"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="s2">""</span><span class="w">
+</span></code></pre><h3 id='settlement-debt-code-post-platformapi-settlement-secondary-market-code-description'>Description</h3>
+<p>Records the settlement of a secondary market trade.</p>
+<h3 id='settlement-debt-code-post-platformapi-settlement-secondary-market-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>buySide</td>
+<td>ref</td>
+<td>Details of the buy side.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>buySide.clientId</td>
+<td>string</td>
+<td>The client ID of the buyer</td>
+<td></td>
+</tr>
+<tr>
+<td>buySide.accountType</td>
+<td>string</td>
+<td>The account purchasing the investment Possible values are: <br><code>GOJI_INVESTMENT</code><br><code>ISA</code><br><code>SIPP</code><br></td>
+<td></td>
+</tr>
+<tr>
+<td>buySide.fee.amount</td>
+<td>number</td>
+<td>The amount.</td>
+<td></td>
+</tr>
+<tr>
+<td>buySide.fee.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+<td></td>
+</tr>
+<tr>
+<td>buySide.bankAccountId</td>
+<td>string</td>
+<td>The ID of the bank account details to send fees to</td>
+<td></td>
+</tr>
+<tr>
+<td>buySide.reference</td>
+<td>string</td>
+<td>The bank reference for the funds transfer</td>
+<td></td>
+</tr>
+<tr>
+<td>buySide.totalPurchaseAmount.amount</td>
+<td>number</td>
+<td>The amount.</td>
+<td></td>
+</tr>
+<tr>
+<td>buySide.totalPurchaseAmount.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+<td></td>
+</tr>
+<tr>
+<td>buySide.newInvestmentId</td>
+<td>string</td>
+<td>The ID for the investment being held by the buy side investor</td>
+<td></td>
+</tr>
+<tr>
+<td>buySide.dateTime</td>
+<td>date/time</td>
+<td>The date / time for the trade settlement</td>
+<td></td>
+</tr>
+<tr>
+<td>buySide.feePaymentDestination (Deprecated)</td>
+<td>string</td>
+<td>The ID of the payment destination to send fees to. This has been deprecated, please use the bankAccountId field</td>
+<td></td>
+</tr>
+<tr>
+<td>sellSide</td>
+<td>ref</td>
+<td>Details of the sell side.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>sellSide.clientId</td>
+<td>string</td>
+<td>The client ID of the seller</td>
+<td></td>
+</tr>
+<tr>
+<td>sellSide.accountType</td>
+<td>string</td>
+<td>The account selling the investment Possible values are: <br><code>GOJI_INVESTMENT</code><br><code>ISA</code><br><code>SIPP</code><br></td>
+<td></td>
+</tr>
+<tr>
+<td>sellSide.fee.amount</td>
+<td>number</td>
+<td>The amount.</td>
+<td></td>
+</tr>
+<tr>
+<td>sellSide.fee.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+<td></td>
+</tr>
+<tr>
+<td>sellSide.bankAccountId</td>
+<td>string</td>
+<td>The ID of the bank account details to send fees to</td>
+<td></td>
+</tr>
+<tr>
+<td>sellSide.reference</td>
+<td>string</td>
+<td>The bank reference for the funds transfer</td>
+<td></td>
+</tr>
+<tr>
+<td>sellSide.investmentId</td>
+<td>string</td>
+<td>The ID of the investment being sold</td>
+<td></td>
+</tr>
+<tr>
+<td>sellSide.premium.amount</td>
+<td>number</td>
+<td>The amount.</td>
+<td></td>
+</tr>
+<tr>
+<td>sellSide.premium.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+<td></td>
+</tr>
+<tr>
+<td>sellSide.capitalAmount.amount</td>
+<td>number</td>
+<td>The amount.</td>
+<td></td>
+</tr>
+<tr>
+<td>sellSide.capitalAmount.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+<td></td>
+</tr>
+<tr>
+<td>sellSide.feePaymentDestination (Deprecated)</td>
+<td>string</td>
+<td>The ID of the payment destination to send fees to. This has been deprecated, please use the bankAccountId field</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='settlement-debt-get-platformapi-settlement-repayment-reference'><code>GET /platformApi/settlement/repayment/reference</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/settlement/repayment/reference</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='settlement-debt-code-get-platformapi-settlement-repayment-reference-code-description'>Description</h3>
+<p>Generates a repayment reference to be used when depositing repayment funds.</p>
+<h3 id='settlement-debt-code-get-platformapi-settlement-repayment-reference-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>The bank reference to be used when depositing the repayment.</td>
+</tr>
+<tr>
+<td>accountNumber</td>
+<td>string</td>
+<td>The account number for the repayment deposit.</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string</td>
+<td>The sort code for the repayment deposit.</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-debt-post-platformapi-settlement-repayment'><code>POST /platformApi/settlement/repayment</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/platformApi/settlement/repayment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"investorRepayments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"investmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CAPITAL"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"investmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CAPITAL"</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="s2">""</span><span class="w">
+</span></code></pre><h3 id='settlement-debt-code-post-platformapi-settlement-repayment-code-description'>Description</h3>
+<p>Adds a repayment to an investment.</p>
+<h3 id='settlement-debt-code-post-platformapi-settlement-repayment-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>The payment reference used for the repayment of funds.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>investorRepayments</td>
+<td>array</td>
+<td>The repayments per investor.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>investorRepayments[].investmentId</td>
+<td>string</td>
+<td>The ID of the of the investment</td>
+<td>required</td>
+</tr>
+<tr>
+<td>investorRepayments[].type</td>
+<td>string</td>
+<td>The type of the repayment Possible values are: <br><code>CAPITAL</code><br><code>INTEREST</code><br></td>
+<td>required</td>
+</tr>
+<tr>
+<td>investorRepayments[].amount</td>
+<td>ref</td>
+<td>The amount being repaid</td>
+<td>required</td>
+</tr>
+<tr>
+<td>investorRepayments[].tax</td>
+<td>ref</td>
+<td>The amount of tax being withheld from this repayment</td>
+<td>optional</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-debt-get-platformapi-settlement-investors-clientid-accounts-accounttype-investments'><code>GET /platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+<span class="na">X-GOJI-CLIENT-ID</span><span class="p">:</span> <span class="s">79f33f3c-86e0-4613-ba49-9fac3c6f0eac</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">X-GOJI-CLIENT-ID</span><span class="p">:</span> <span class="s">79f33f3c-86e0-4613-ba49-9fac3c6f0eac</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"investments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"productId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"productId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"investmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trancheId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"trancheId"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"productId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"productId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"investmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trancheId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"trancheId"</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='settlement-debt-code-get-platformapi-settlement-investors-clientid-accounts-accounttype-investments-code-description'>Description</h3>
+<p>Lists recorded investments for an investor.</p>
+<h3 id='settlement-debt-code-get-platformapi-settlement-investors-clientid-accounts-accounttype-investments-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>investments</td>
+<td>array</td>
+<td></td>
+</tr>
+<tr>
+<td>investments[].investmentId</td>
+<td>string</td>
+<td>The ID of the investment. This is the ID of the overall investment and so will be shared by multiple investors.</td>
+</tr>
+<tr>
+<td>investments[].clientId</td>
+<td>string</td>
+<td>The ID of the investor</td>
+</tr>
+<tr>
+<td>investments[].productId</td>
+<td>string</td>
+<td>The ID of the investment product as preciously registered in the system</td>
+</tr>
+<tr>
+<td>investments[].trancheId</td>
+<td>string</td>
+<td>The ID of the investment tranche of a particular product</td>
+</tr>
+<tr>
+<td>investments[].amount</td>
+<td>ref</td>
+<td>The amount being invested</td>
+</tr>
+<tr>
+<td>investments[].accountType</td>
+<td>string</td>
+<td>The account making the investment. Possible values are: <br><code>GOJI_INVESTMENT</code><br><code>ISA</code><br></td>
+</tr>
+</tbody></table>

@@ -1,0 +1,1230 @@
+<h1 id='payments-investors'>Payments - Investors</h1><h2 id='payments-investors-depositing-funds'>Depositing funds</h2>
+<p>Once an investor has completed the KYC checks and has optionally opened an ISA, they can deposit funds.
+The Goji Platform creates a unique account number investor and they can distinguish between their general investment and
+ISA account with the reference number.</p>
+
+<p>Deposits sent via Faster Payments will be credited to their account within 90 seconds of the payment reaching our banking partner.</p>
+
+<p><img src="/images/payments/images/deposit-funds-bad25290.png" alt="Deposit funds" /></p>
+<h2 id='payments-investors-withdrawals'>Withdrawals</h2>
+<p>An investor can withdraw cash to their personal account.
+Withdrawal requests are typically processed immediately and funds should clear straight away.</p>
+
+<p>The Goji Platform performs a series of checks to guard against potential money laundering   . On occasion a
+withdrawal may be delayed until manual approval is given to process the transaction.</p>
+
+<p><img src="/images/payments/images/withdrawal-15ad241b.png" alt="Withdrawal" /></p>
+<h3 id='payments-investors-withdrawals-testing-withdrawals'>Testing withdrawals</h3>
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
+
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
+
+<table><thead>
+<tr>
+<th>Account Number</th>
+<th>Sort Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00004588</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>00027944</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>58110244</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>60282377</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
+</tr>
+</tbody></table>
+<h2 id='payments-investors-get-platformapi-investors-clientid-accounts-balances'><code>GET /platformApi/investors/{clientId}/accounts/balances</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/investors/{clientId}/accounts/balances</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"totalBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalQueuedInvestedBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"accounts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"{}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalCashBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalInvestedBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-investors-code-get-platformapi-investors-clientid-accounts-balances-code-description'>Description</h3>
+<p>Returns the investor&#39;s account balances.</p>
+<h3 id='payments-investors-code-get-platformapi-investors-clientid-accounts-balances-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>totalBalance</td>
+<td>ref</td>
+<td>The total balance. The sum of the invested, queued and cash balances.</td>
+</tr>
+<tr>
+<td>totalBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalCashBalance</td>
+<td>ref</td>
+<td>The total cash balance.</td>
+</tr>
+<tr>
+<td>totalCashBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalCashBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalQueuedInvestedBalance</td>
+<td>ref</td>
+<td>The total queued for investment.</td>
+</tr>
+<tr>
+<td>totalQueuedInvestedBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalQueuedInvestedBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalInvestedBalance</td>
+<td>ref</td>
+<td>The total invested balance.</td>
+</tr>
+<tr>
+<td>totalInvestedBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalInvestedBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>accounts</td>
+<td>object</td>
+<td>A breakdown of the balances by account.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-investors-get-platformapi-investors-clientid-accounts-balances-accounttype'><code>GET /platformApi/investors/{clientId}/accounts/balances/{accountType}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/investors/{clientId}/accounts/balances/{accountType}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"isaRemainingSubscriptionAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalQueuedInvestedBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalCashBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalInvestedBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-investors-code-get-platformapi-investors-clientid-accounts-balances-accounttype-code-description'>Description</h3>
+<p>Returns the specified account balance.</p>
+<h3 id='payments-investors-code-get-platformapi-investors-clientid-accounts-balances-accounttype-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>totalBalance</td>
+<td>ref</td>
+<td>The total balance. The sum of the invested, queued and cash balances.</td>
+</tr>
+<tr>
+<td>totalBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalCashBalance</td>
+<td>ref</td>
+<td>The total cash balance.</td>
+</tr>
+<tr>
+<td>totalCashBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalCashBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalQueuedInvestedBalance</td>
+<td>ref</td>
+<td>The total queued for investment.</td>
+</tr>
+<tr>
+<td>totalQueuedInvestedBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalQueuedInvestedBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalInvestedBalance</td>
+<td>ref</td>
+<td>The total invested balance.</td>
+</tr>
+<tr>
+<td>totalInvestedBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalInvestedBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>isaRemainingSubscriptionAmount</td>
+<td>ref</td>
+<td>The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance</td>
+</tr>
+<tr>
+<td>isaRemainingSubscriptionAmount.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>isaRemainingSubscriptionAmount.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+</tbody></table>
+<h2 id='payments-investors-get-platformapi-investors-clientid-transactions'><code>GET /platformApi/investors/{clientId}/transactions</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/investors/{clientId}/transactions</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"dateTime"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"dateTime"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"cashBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"investedBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DEPOSIT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"account"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"account"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CLEARED"</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='payments-investors-code-get-platformapi-investors-clientid-transactions-code-description'>Description</h3>
+<p>Retrieves a list of cash transactions associated with a given investor.</p>
+<h3 id='payments-investors-code-get-platformapi-investors-clientid-transactions-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].id</td>
+<td>string</td>
+<td>The ID of the cash transaction</td>
+</tr>
+<tr>
+<td>[].dateTime</td>
+<td>string</td>
+<td>The datetime the cash transaction occurred</td>
+</tr>
+<tr>
+<td>[].amount</td>
+<td>ref</td>
+<td>The total amount involved in the cash transaction</td>
+</tr>
+<tr>
+<td>[].amount.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].amount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].type</td>
+<td>string</td>
+<td>The transaction type Possible values are: <br><code>DEPOSIT</code><br><code>BONUS</code><br><code>WITHDRAWAL</code><br><code>INVESTMENT</code><br><code>CANCELLED_INVESTMENT</code><br><code>TRANSFER_INVESTMENT_OUT</code><br><code>TRANSFER_INVESTMENT_IN</code><br><code>INTEREST_REPAYMENT</code><br><code>CAPITAL_REPAYMENT</code><br><code>FEES</code><br><code>WITHHOLDING_TAX</code><br><code>ACCOUNT_TRANSFER_IN</code><br><code>ACCOUNT_TRANSFER_OUT</code><br><code>ISA_TRANSFER_IN</code><br><code>ISA_TRANSFER_IN_RESIDUAL_INCOME</code><br><code>ISA_TRANSFER_IN_REPAIR</code><br><code>ISA_TRANSFER_IN_REPAIR_DEDUCTION_FROM_ISA</code><br><code>ISA_TRANSFER_OUT</code><br><code>SIPP_TRANSFER_IN</code><br><code>BUY_PREMIUM</code><br><code>SELL_PREMIUM</code><br></td>
+</tr>
+<tr>
+<td>[].cashBalance</td>
+<td>ref</td>
+<td>The cash balance</td>
+</tr>
+<tr>
+<td>[].cashBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].cashBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].investedBalance</td>
+<td>ref</td>
+<td>The invested balance</td>
+</tr>
+<tr>
+<td>[].investedBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].investedBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].totalBalance</td>
+<td>ref</td>
+<td>The total balance</td>
+</tr>
+<tr>
+<td>[].totalBalance.amount</td>
+<td>number</td>
+<td>The amount</td>
+</tr>
+<tr>
+<td>[].totalBalance.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].account</td>
+<td>string</td>
+<td>The transaction account</td>
+</tr>
+<tr>
+<td>[].status</td>
+<td>string</td>
+<td>The transaction status Possible values are: <br><code>ASSIGNED</code><br><code>PENDING</code><br><code>CLEARED</code><br></td>
+</tr>
+</tbody></table>
+<h2 id='payments-investors-get-platformapi-investors-clientid-banktransferdetails'><code>GET /platformApi/investors/{clientId}/bankTransferDetails</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/investors/{clientId}/bankTransferDetails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"bankReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankReference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-investors-code-get-platformapi-investors-clientid-banktransferdetails-code-description'>Description</h3>
+<p>Retrieve the bank details for depositing funds to the general investments account.</p>
+<h3 id='payments-investors-code-get-platformapi-investors-clientid-banktransferdetails-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountNumber</td>
+<td>string</td>
+<td>The account number.</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string</td>
+<td>The sort code.</td>
+</tr>
+<tr>
+<td>bankReference</td>
+<td>string</td>
+<td>The reference to use for the transfer.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-investors-get-platformapi-investors-clientid-banktransferdetails-isa'><code>GET /platformApi/investors/{clientId}/bankTransferDetails/isa</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/investors/{clientId}/bankTransferDetails/isa</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"bankReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankReference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-investors-code-get-platformapi-investors-clientid-banktransferdetails-isa-code-description'>Description</h3>
+<p>Retrieve the bank details for depositing funds to the ISA account.</p>
+<h3 id='payments-investors-code-get-platformapi-investors-clientid-banktransferdetails-isa-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountNumber</td>
+<td>string</td>
+<td>The account number.</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string</td>
+<td>The sort code.</td>
+</tr>
+<tr>
+<td>bankReference</td>
+<td>string</td>
+<td>The reference to use for the transfer.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-investors-get-platformapi-investors-clientid-bankdetails'><code>GET /platformApi/investors/{clientId}/bankDetails</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/investors/{clientId}/bankDetails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-investors-code-get-platformapi-investors-clientid-bankdetails-code-description'>Description</h3>
+<p>Retrieve the investor&#39;s withdrawal bank details.</p>
+<h3 id='payments-investors-code-get-platformapi-investors-clientid-bankdetails-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountNumber</td>
+<td>string</td>
+<td>The account number.</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string</td>
+<td>The sort code.</td>
+</tr>
+<tr>
+<td>accountName</td>
+<td>string</td>
+<td>The account name.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-investors-post-platformapi-investors-clientid-bankdetails'><code>POST /platformApi/investors/{clientId}/bankDetails</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/platformApi/investors/{clientId}/bankDetails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-investors-code-post-platformapi-investors-clientid-bankdetails-code-description'>Description</h3>
+<p>Sets the investor&#39;s withdrawal bank details for the first time.</p>
+
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
+
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
+
+<table><thead>
+<tr>
+<th>Account Number</th>
+<th>Sort Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00004588</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>00027944</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>58110244</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>60282377</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
+</tr>
+</tbody></table>
+<h3 id='payments-investors-code-post-platformapi-investors-clientid-bankdetails-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountNumber</td>
+<td>string</td>
+<td>The account number.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string</td>
+<td>The sort code.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>accountName</td>
+<td>string</td>
+<td>The account name.</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h3 id='payments-investors-code-post-platformapi-investors-clientid-bankdetails-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountNumber</td>
+<td>string</td>
+<td>The account number.</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string</td>
+<td>The sort code.</td>
+</tr>
+<tr>
+<td>accountName</td>
+<td>string</td>
+<td>The account name.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-investors-put-platformapi-investors-clientid-bankdetails'><code>PUT /platformApi/investors/{clientId}/bankDetails</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">PUT</span> <span class="nn">/platformApi/investors/{clientId}/bankDetails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-investors-code-put-platformapi-investors-clientid-bankdetails-code-description'>Description</h3>
+<p>Updates the investor&#39;s withdrawal bank details.</p>
+<h3 id='payments-investors-code-put-platformapi-investors-clientid-bankdetails-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountNumber</td>
+<td>string</td>
+<td>The account number.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string</td>
+<td>The sort code.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>accountName</td>
+<td>string</td>
+<td>The account name.</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h3 id='payments-investors-code-put-platformapi-investors-clientid-bankdetails-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountNumber</td>
+<td>string</td>
+<td>The account number.</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>string</td>
+<td>The sort code.</td>
+</tr>
+<tr>
+<td>accountName</td>
+<td>string</td>
+<td>The account name.</td>
+</tr>
+</tbody></table>
+<h2 id='payments-investors-post-platformapi-investors-clientid-accounts-accounttype-withdrawal'><code>POST /platformApi/investors/{clientId}/accounts/{accountType}/withdrawal</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/platformApi/investors/{clientId}/accounts/{accountType}/withdrawal</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="s2">""</span><span class="w">
+</span></code></pre><h3 id='payments-investors-code-post-platformapi-investors-clientid-accounts-accounttype-withdrawal-code-description'>Description</h3>
+<p>Withdraw cash from the specified account to the registered investor bank details.</p>
+<h3 id='payments-investors-code-post-platformapi-investors-clientid-accounts-accounttype-withdrawal-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>ref</td>
+<td>The amount of the residual income payment</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>amount.amount</td>
+<td>number</td>
+<td>The amount.</td>
+<td></td>
+</tr>
+<tr>
+<td>amount.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+<td></td>
+</tr>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>An optional reference to be used when withdrawing funds.</td>
+<td>optional</td>
+</tr>
+</tbody></table>
+<h3 id='payments-investors-code-post-platformapi-investors-clientid-accounts-accounttype-withdrawal-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>totalBalance</td>
+<td>ref</td>
+<td>The total balance. The sum of the invested, queued and cash balances.</td>
+</tr>
+<tr>
+<td>totalBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalCashBalance</td>
+<td>ref</td>
+<td>The total cash balance.</td>
+</tr>
+<tr>
+<td>totalCashBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalCashBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalQueuedInvestedBalance</td>
+<td>ref</td>
+<td>The total queued for investment.</td>
+</tr>
+<tr>
+<td>totalQueuedInvestedBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalQueuedInvestedBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalInvestedBalance</td>
+<td>ref</td>
+<td>The total invested balance.</td>
+</tr>
+<tr>
+<td>totalInvestedBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalInvestedBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>isaRemainingSubscriptionAmount</td>
+<td>ref</td>
+<td>The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance</td>
+</tr>
+<tr>
+<td>isaRemainingSubscriptionAmount.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>isaRemainingSubscriptionAmount.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+</tbody></table>
+<h2 id='payments-investors-post-platformapi-investors-clientid-accounts-accounttype-transfer'><code>POST /platformApi/investors/{clientId}/accounts/{accountType}/transfer</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/platformApi/investors/{clientId}/accounts/{accountType}/transfer</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"toAccount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"isaRemainingSubscriptionAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalQueuedInvestedBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalCashBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"totalInvestedBalance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='payments-investors-code-post-platformapi-investors-clientid-accounts-accounttype-transfer-code-description'>Description</h3>
+<p>Transfer cash to another account.</p>
+<h3 id='payments-investors-code-post-platformapi-investors-clientid-accounts-accounttype-transfer-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>toAccount</td>
+<td>string</td>
+<td>Possible values are: <br><code>GOJI_INVESTMENT</code><br><code>ISA</code><br></td>
+<td>optional</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>ref</td>
+<td></td>
+<td>optional</td>
+</tr>
+<tr>
+<td>amount.amount</td>
+<td>number</td>
+<td>The amount.</td>
+<td></td>
+</tr>
+<tr>
+<td>amount.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='payments-investors-code-post-platformapi-investors-clientid-accounts-accounttype-transfer-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>totalBalance</td>
+<td>ref</td>
+<td>The total balance. The sum of the invested, queued and cash balances.</td>
+</tr>
+<tr>
+<td>totalBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalCashBalance</td>
+<td>ref</td>
+<td>The total cash balance.</td>
+</tr>
+<tr>
+<td>totalCashBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalCashBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalQueuedInvestedBalance</td>
+<td>ref</td>
+<td>The total queued for investment.</td>
+</tr>
+<tr>
+<td>totalQueuedInvestedBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalQueuedInvestedBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>totalInvestedBalance</td>
+<td>ref</td>
+<td>The total invested balance.</td>
+</tr>
+<tr>
+<td>totalInvestedBalance.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>totalInvestedBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>isaRemainingSubscriptionAmount</td>
+<td>ref</td>
+<td>The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance</td>
+</tr>
+<tr>
+<td>isaRemainingSubscriptionAmount.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>isaRemainingSubscriptionAmount.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+</tbody></table>
+<h2 id='payments-investors-post-test-account-topup'><code>POST /test/account/topup</code></h2><h3 id='payments-investors-code-post-test-account-topup-code-description'>Description</h3>
+<p>Simulate depositing cash into any bank account managed on the Goji platform.</p>
+
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/test/account/topup</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="err">amount</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"paymentReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paymentReference"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='payments-investors-code-post-test-account-topup-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>Ref</td>
+<td>The amount to deposit.</td>
+</tr>
+<tr>
+<td>amount.amount</td>
+<td>Number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>amount.currency</td>
+<td>String</td>
+<td>The ISO 4217 three character codes e.g. &#39;GBP&#39;.</td>
+</tr>
+<tr>
+<td>accountNumber</td>
+<td>String</td>
+<td>The account number.</td>
+</tr>
+<tr>
+<td>sortCode</td>
+<td>String</td>
+<td>The sort code.</td>
+</tr>
+<tr>
+<td>paymentReference</td>
+<td>String</td>
+<td>The reference for the batch payment.</td>
+</tr>
+</tbody></table>
+<h3 id='payments-investors-code-post-test-account-topup-code-response'>Response</h3><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="s2">"SUCCESS"</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400 
+Content-Type: application/json
+
+{
+    "errors": [
+        {
+            "errorCode": "INVALID_DATA",
+            "message": "Payment address not found for accountNumber=12345678, sortCode=123456"
+        }
+    ]
+}
+</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400 
+Content-Type: application/json
+
+{
+    "errors": [
+        {
+            "errorCode": "SYSTEM_ERROR",
+            "message": "An unexpected error has occurred"
+        }
+    ]
+}
+</span></code></pre><h2 id='payments-investors-post-platformapi-investors-clientid-fee'><code>POST /platformApi/investors/{clientId}/fee</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/platformApi/investors/{clientId}/fee</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountType"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"bankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+   </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountType"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"bankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountId"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"status"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='payments-investors-code-post-platformapi-investors-clientid-fee-code-description'>Description</h3>
+<p>Extract a fee from a specified investor&#39;s account cash balance</p>
+<h3 id='payments-investors-code-post-platformapi-investors-clientid-fee-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountType</td>
+<td>string</td>
+<td>The client&#39;s account to charge. Possible values are: <br><code>GOJI_INVESTMENT</code><br><code>ISA</code><br></td>
+<td>required</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>ref</td>
+<td>The amount to deposit.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>amount.amount</td>
+<td>number</td>
+<td>The amount.</td>
+<td></td>
+</tr>
+<tr>
+<td>amount.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+<td></td>
+</tr>
+<tr>
+<td>bankAccountId</td>
+<td>string</td>
+<td>The ID of the bank account details to send the fee to</td>
+<td>required</td>
+</tr>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>The payment reference to be used for the fee transaction</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h3 id='payments-investors-code-post-platformapi-investors-clientid-fee-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountType</td>
+<td>string</td>
+<td>The client&#39;s account being charged.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>ref</td>
+<td>The amount to deposit.</td>
+</tr>
+<tr>
+<td>amount.amount</td>
+<td>number</td>
+<td>The amount.</td>
+</tr>
+<tr>
+<td>amount.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>bankAccountId</td>
+<td>string</td>
+<td>The ID of the bank account details the fees are being sent to</td>
+</tr>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>The payment reference to be used for the fee transaction</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>The status of the fee transfer process. Possible values are: <br><code>PENDING</code><br><code>CLEARED</code><br></td>
+</tr>
+</tbody></table>

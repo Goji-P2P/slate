@@ -237,6 +237,9 @@
                   <li>
                     <a href="#introduction-email-integration" class="toc-h2 toc-link" data-title="Email integration">Email integration</a>
                   </li>
+                  <li>
+                    <a href="#introduction-valid-test-account-numbers" class="toc-h2 toc-link" data-title="Valid test account numbers">Valid test account numbers</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1182,7 +1185,47 @@ If an invalid version header is specified, a <code>404</code> response code will
 </ol>
 
 <p>In order to permission our email provider (Mandrill) to send emails using your domain you will be required to make the following DNS changes:</p>
-<h3 id='introduction-email-integration-dkim'>DKIM</h3>
+<h2 id='introduction-valid-test-account-numbers'>Valid test account numbers</h2>
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
+
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
+
+<table><thead>
+<tr>
+<th>Account Number</th>
+<th>Sort Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00004588</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>00027944</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>58110244</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>60282377</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
+</tr>
+</tbody></table>
+<h3 id='introduction-valid-test-account-numbers-dkim'>DKIM</h3>
 <p><code>v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB;</code></p>
 
 <p><code>v=DKIM1\; k=rsa\; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB\;</code></p>
@@ -1192,13 +1235,13 @@ If an invalid version header is specified, a <code>404</code> response code will
 <p>To enable DKIM, create a <code>TXT</code> record for <code>mandrill._domainkey.yourdomain.com</code> (replace <code>yourdomain.com</code> with the domain you&#39;re setting up).</p>
 
 <p>Some DNS providers require that semicolons be escaped. If your provider requires escaping, use this value instead.</p>
-<h3 id='introduction-email-integration-spf'>SPF</h3>
+<h3 id='introduction-valid-test-account-numbers-spf'>SPF</h3>
 <p><code>v=spf1 include:spf.mandrillapp.com ?all</code></p>
 
 <p>SPF is another DNS-based email authentication mechanism. If you don&#39;t yet have an SPF record, you&#39;ll want to add one for your domain. At a minimum, the value should be the following if you&#39;re only sending mail through Mandrill for that domain.</p>
 
 <p>If you already have a <code>TXT</code> record with SPF information, you&#39;ll need to add Mandrill&#39;s servers to that record by adding <code>include:spf.mandrillapp.com</code> in the record (before the last operator, which is usually <code>?all</code>, <code>~all</code>, or <code>-all</code>).</p>
-<h3 id='introduction-email-integration-domain-ownership-verification'>Domain Ownership Verification</h3>
+<h3 id='introduction-valid-test-account-numbers-domain-ownership-verification'>Domain Ownership Verification</h3>
 <p>Additionally, we need to send a verification email to verify your ownership of the domain. Please let us know which email address to send this to and when you receive the email from Mandrill, please forward it to <a href="mailto:techsupport@goji.investments">techsupport@goji.investments</a></p>
 <h1 id='quickstart-guides'>Quickstart Guides</h1><h2 id='quickstart-guides-quickstart-settlement-debt'><em>Quickstart Settlement - Debt</em></h2>
 <p>This guide gives a brief overview on how to:</p>
@@ -1328,8 +1371,8 @@ If an invalid version header is specified, a <code>404</code> response code will
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account name"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"112233"</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00004588"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"203002"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Next, register a payment destination. This is where the funds will be sent.</p>
@@ -1338,13 +1381,48 @@ If an invalid version header is specified, a <code>404</code> response code will
 
 <p>This returns a payment destination ID which must be saved and used for the subsequent call.</p>
 
-<p>To ensure the payment is processed correctly, please the following test account number and sort code:</p>
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
 
-<p><code>accountNumber: 00004588</code>
-<code>sortCode: 203002</code></p>
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
+
+<table><thead>
+<tr>
+<th>Account Number</th>
+<th>Sort Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00004588</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>00027944</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>58110244</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>60282377</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
+</tr>
+</tbody></table>
 
 <aside class="notice">
-Please note that by default the payment destination is disabled and has to be enabled by Goji before it can be used.  
+Please note that by default the payment destination is disabled and has to be enabled by Goji before it can be used.
 </aside>
 
 <p>After the payment destination is enabled, settle the investment.</p>
@@ -1418,15 +1496,15 @@ Please note that by default the payment destination is disabled and has to be en
 </span></code></pre>
 <p><a href="/#post-settlement-repayment">POST https://api-sandbox.goji.investments/platformApi/settlement/repayment</a></p>
 
-<p>This will ensure that <code>£123.45</code> has been deposited with reference <code>some-ref</code> which was generated by the previous call. If this check passes, the funds will be credited to the Investor and recorded as an interest repayment against <code>client-investment-1</code>.  </p>
+<p>This will ensure that <code>£123.45</code> has been deposited with reference <code>some-ref</code> which was generated by the previous call. If this check passes, the funds will be credited to the Investor and recorded as an interest repayment against <code>client-investment-1</code>.</p>
 <h2 id='quickstart-guides-withdrawing-funds'>Withdrawing Funds</h2>
 <blockquote>
 <p>Register Bank Details</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"112344"</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00004588"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"203002"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -1442,6 +1520,46 @@ Please note that by default the payment destination is disabled and has to be en
 </span></code></pre>
 <p>An Investor can withdraw funds by firstly registering bank account details:</p>
 <h3 id='quickstart-guides-withdrawing-funds-register-withdrawal-bank-details'>Register Withdrawal Bank Details</h3>
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
+
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
+
+<table><thead>
+<tr>
+<th>Account Number</th>
+<th>Sort Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00004588</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>00027944</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>58110244</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>60282377</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
+</tr>
+</tbody></table>
+
 <p><a href="/#post-investors-clientid-bankdetails">POST https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankDetails</a></p>
 <h3 id='quickstart-guides-withdrawing-funds-process-withdrawal'>Process Withdrawal</h3>
 <p>Then the funds can be withdrawn:</p>
@@ -5589,40 +5707,43 @@ withdrawal may be delayed until manual approval is given to process the transact
 
 <p><img src="images/payments/images/withdrawal-15ad241b.png" alt="Withdrawal" /></p>
 <h3 id='payments-investors-withdrawals-testing-withdrawals'>Testing withdrawals</h3>
-<p>When testing withdrawals in the sandbox environment please make sure you use valid sort codes &amp;
-account numbers as these are validated to ensure they accept faster payments prior to being sent.</p>
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
 
-<p>Below are some valid sample details you can use:</p>
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
 
 <table><thead>
 <tr>
-<th>Sort Code</th>
 <th>Account Number</th>
+<th>Sort Code</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>203002</td>
 <td>00004588</td>
-</tr>
-<tr>
 <td>203002</td>
+</tr>
+<tr>
 <td>00027944</td>
+<td>203002</td>
 </tr>
 <tr>
-<td>204514</td>
 <td>58110244</td>
-</tr>
-<tr>
 <td>204514</td>
+</tr>
+<tr>
 <td>60282377</td>
+<td>204514</td>
 </tr>
 <tr>
-<td>166051</td>
-<td>99993193</td>
-</tr>
-<tr>
-<td>166051</td>
 <td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
 </tr>
 </tbody></table>
 <h2 id='payments-investors-get-platformapi-investors-clientid-accounts-balances'><code>GET /platformApi/investors/{clientId}/accounts/balances</code></h2><pre class="highlight http tab-http"><code><span class="err">
@@ -6128,6 +6249,46 @@ account numbers as these are validated to ensure they accept faster payments pri
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='payments-investors-code-post-platformapi-investors-clientid-bankdetails-code-description'>Description</h3>
 <p>Sets the investor&#39;s withdrawal bank details for the first time.</p>
+
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
+
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
+
+<table><thead>
+<tr>
+<th>Account Number</th>
+<th>Sort Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00004588</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>00027944</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>58110244</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>60282377</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
+</tr>
+</tbody></table>
 <h3 id='payments-investors-code-post-platformapi-investors-clientid-bankdetails-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -6760,40 +6921,43 @@ Content-Type: application/json
 </tr>
 </tbody></table>
 <h1 id='payments-manager'>Payments - Manager</h1><h2 id='payments-manager-testing-outbound-payments'>Testing outbound payments</h2>
-<p>When testing outbound payments in the sandbox environment please make sure you use valid sort codes &amp;
-account numbers as these are validated to ensure they accept faster payments prior to being sent.</p>
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
 
-<p>Below are some valid sample details you can use:</p>
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
 
 <table><thead>
 <tr>
-<th>Sort Code</th>
 <th>Account Number</th>
+<th>Sort Code</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>203002</td>
 <td>00004588</td>
-</tr>
-<tr>
 <td>203002</td>
+</tr>
+<tr>
 <td>00027944</td>
+<td>203002</td>
 </tr>
 <tr>
-<td>204514</td>
 <td>58110244</td>
-</tr>
-<tr>
 <td>204514</td>
+</tr>
+<tr>
 <td>60282377</td>
+<td>204514</td>
 </tr>
 <tr>
-<td>166051</td>
-<td>99993193</td>
-</tr>
-<tr>
-<td>166051</td>
 <td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
 </tr>
 </tbody></table>
 <h2 id='payments-manager-managing-payment-destinations'><em>Managing Payment Destinations</em></h2><h2 id='payments-manager-get-platformapi-bankaccountdetails'><code>GET /platformApi/bankAccountDetails</code></h2><pre class="highlight http tab-http"><code><span class="err">
@@ -6867,6 +7031,46 @@ account numbers as these are validated to ensure they accept faster payments pri
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='payments-manager-code-post-platformapi-bankaccountdetails-code-description'>Description</h3>
 <p>Create a set of bank details.</p>
+
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
+
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
+
+<table><thead>
+<tr>
+<th>Account Number</th>
+<th>Sort Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00004588</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>00027944</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>58110244</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>60282377</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
+</tr>
+</tbody></table>
 <h3 id='payments-manager-code-post-platformapi-bankaccountdetails-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -7892,7 +8096,7 @@ For full details of the batch payments, call <a href="/#payments-manager-get-tra
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"sourceOfFunds"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account Name"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -7930,7 +8134,7 @@ For full details of the batch payments, call <a href="/#payments-manager-get-tra
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"sourceOfFunds"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account Name"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -7947,7 +8151,7 @@ For full details of the batch payments, call <a href="/#payments-manager-get-tra
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"payTo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platform 1 - Receiving"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bankReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OR8144E143"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -8023,7 +8227,7 @@ For full details of the batch payments, call <a href="/#payments-manager-get-tra
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"sourceOfFunds"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account Name"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -8040,7 +8244,7 @@ For full details of the batch payments, call <a href="/#payments-manager-get-tra
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"payTo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platform 1 - Receiving"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bankReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OR8144E143"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -8359,6 +8563,46 @@ Deprecated and replaced with <a href="#payments-manager-get-platformapi-bankacco
 <aside class="warning">
 Deprecated and replaced with <a href="#payments-manager-post-platformapi-bankaccountdetails">general bank account details</a>.
 </aside>
+
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
+
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
+
+<table><thead>
+<tr>
+<th>Account Number</th>
+<th>Sort Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00004588</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>00027944</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>58110244</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>60282377</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
+</tr>
+</tbody></table>
 <h3 id='settlement-debt-code-post-platformapi-settlement-payment-destination-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -10081,7 +10325,7 @@ endpoint can be used to see the current status of the dividend instruction.</p>
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"payTo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platform1 - Receiving"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OR0CE628FF"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -10175,7 +10419,7 @@ using the dividend endpoints:</p>
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"payTo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platform1 - Receiving"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OR0CE628FF"</span><span class="w">
   </span><span class="p">}</span><span class="w">

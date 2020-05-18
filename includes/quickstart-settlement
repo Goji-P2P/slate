@@ -1,0 +1,322 @@
+<h2 id='settlement-debt-quickstart-settlement-debt'><em>Quickstart Settlement - Debt</em></h2>
+<p>This guide gives a brief overview on how to:</p>
+
+<ul>
+<li>Onboard an Investor</li>
+<li>Deposit funds</li>
+<li>Settle an investment</li>
+<li>Repay using the Settlement API</li>
+</ul>
+
+<p>Please ensure you also read the complete documentation for each API.</p>
+
+<ul>
+<li><a href="/#investors">Investors API</a></li>
+<li><a href="/#payments-investors">Payments API</a></li>
+<li><a href="/#settlement-debt">Settlement API</a></li>
+</ul>
+<h2 id='settlement-debt-authentication'>Authentication</h2>
+<p>API calls in production need to be cryptographically signed. You can find more information <a href="/#introduction-authentication">here</a>.</p>
+
+<p>In Sandbox, <code>Basic Auth</code> can be used to help you prototype integrations.</p>
+<h2 id='settlement-debt-registering-a-webhook'>Registering a Webhook</h2>
+<blockquote>
+<p>Create Webhook</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://webhook.site/44e66f2d-eaac-4225-86aa-7549f628c5d0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Webhooks are fired to inform you whenever specific events are fired in the Goji Platform.</p>
+
+<p>You can register a URL to receive webhooks by calling <a href="/#post-webhooks">POST https://api-sandbox.goji.investments/platformApi/webhooks</a> with example <code>POST</code> body:</p>
+<h2 id='settlement-debt-creating-an-investor'>Creating an Investor</h2>
+<blockquote>
+<p>Create Investor</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ISA"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBR"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineOne"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 The High Street"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineTwo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineThree"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AA1 1AA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"County"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"townCity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Town"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"contactDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"emailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"me@email.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telephoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01234567890"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"dateOfBirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INDIVIDUAL"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"investorDeclarationType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RESTRICTED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nationalInsuranceNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JT123456D"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>To create an Investor, the Investor must first agree to the Terms and Conditions, and optionally the ISA declaration if the Investor is opening an ISA.</p>
+
+<p>Goji supports hosting the Terms and Conditions, retrieved by calling <a href="/#get-terms">GET https://api-sandbox.goji.investments/platformApi/terms</a>.</p>
+
+<p>The ISA Declaration can be retrieved by calling <a href="/#get-isadeclaration">GET https://api-sandbox.goji.investments/platformApi/isaDeclaration</a></p>
+
+<p>An Investor is created by posting to <a href="/#post-investors">https://api-sandbox.goji.investments/platformApi/investors</a> with example <code>POST</code> body:</p>
+
+<p>The Goji Platform will generate a <code>clientId</code> which should be saved as this is used for subsequent calls.</p>
+<h2 id='settlement-debt-checking-the-kyc-details'>Checking the KYC details</h2>
+<p>Once the Investor has been created, a KYC check is done in the background and the status can be checked by calling <a href="/#get-investors-clientid-kyc">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/kyc</a></p>
+
+<p>In the sandbox environment, all Investors are considered verified unless the <code>lastName</code> contains <code>referred</code>.</p>
+<h2 id='settlement-debt-depositing-test-funds'>Depositing Test Funds</h2>
+<blockquote>
+<p>Bank Transfer Details</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;client-id&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"paymentReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISA&lt;client-id&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"paymentType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEPOSIT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Once an Investor is KYC approved, funds can be deposited.</p>
+<h3 id='settlement-debt-depositing-test-funds-an-investor-39-s-bank-details'>An Investor&#39;s Bank Details</h3>
+<p>The Investor&#39;s unique bank details for depositing funds can be retrieved by calling: <a href="/#get-investors-clientid-banktransferdetails">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails</a></p>
+<h3 id='settlement-debt-depositing-test-funds-an-isa-investor-39-s-bank-details'>An ISA Investor&#39;s Bank Details</h3>
+<p>For an ISA account, use: <a href="/#get-investors-clientid-banktransferdetails-isa">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails/isa</a></p>
+<h3 id='settlement-debt-depositing-test-funds-testing'>Testing</h3>
+<p>You can simulate depositing funds by calling <a href="/#post-test-payment">POST https://api-sandbox.goji.investments/platformApi/test/payment</a> with a example <code>POST</code> body:</p>
+
+<p>The payment reference must start with <code>ISA</code> if the funds are to be deposited to the ISA account.</p>
+
+<p>Once funds are deposited, a webhook will be fired with type <code>INVESTOR_FUNDS_RECEIVED</code>.</p>
+<h3 id='settlement-debt-depositing-test-funds-an-investor-39-s-balance'>An Investor&#39;s Balance</h3>
+<p>An Investor&#39;s balance can be queried by calling:</p>
+
+<p><a href="/#get-investors-clientid-accounts-balances">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/accounts/balances</a></p>
+<h2 id='settlement-debt-settling-an-investment'>Settling an Investment</h2>
+<p>Once an Investor has a cash balance, the funds can be invested by calling the settlement API. This will move the funds from one or more investors to a predetermined account. This account may be with the Investment Manager, a Solicitor or the borrower directly.</p>
+<h2 id='settlement-debt-register-the-investment-product'>Register the Investment Product</h2>
+<blockquote>
+<p>Investment Product</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRODUCT-1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"investmentDocument"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://document.url"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"isaEligible"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>First register the investment product:</p>
+
+<p><a href="/#post-settlement-product">POST https://api-sandbox.goji.investments/platformApi/settlement/product</a></p>
+
+<p><em>This can be reused multiple times.</em></p>
+<h2 id='settlement-debt-register-a-payment-destination'>Register a Payment Destination</h2>
+<blockquote>
+<p>Payment Destination</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00004588"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"203002"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Next, register a payment destination. This is where the funds will be sent.</p>
+
+<p><a href="/#payments-manager-post-platformapi-bankaccountdetails">POST https://api-sandbox.goji.investments/platformApi/bankAccountDetails</a></p>
+
+<p>This returns a payment destination ID which must be saved and used for the subsequent call.</p>
+
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
+
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
+
+<table><thead>
+<tr>
+<th>Account Number</th>
+<th>Sort Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00004588</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>00027944</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>58110244</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>60282377</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Please note that by default the payment destination is disabled and has to be enabled by Goji before it can be used.
+</aside>
+
+<p>After the payment destination is enabled, settle the investment.</p>
+
+<p>The following example includes a single investment from a single Investor:</p>
+
+<blockquote>
+<p>Settle Investment</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"investment1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"investment1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"productId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRODUCT-1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"investments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client-investment-1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;client-id&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.00</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><a href="/#post-settlement-tranche">POST https://api-sandbox.goji.investments/platformApi/settlement/tranche</a></p>
+
+<p>The investor&#39;s investment can be queried by calling:</p>
+
+<p><a href="/#get-settlement-investors-clientid-accounts-accounttype-investments">https://api-sandbox.goji.investments/platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments</a></p>
+<h2 id='settlement-debt-repaying-the-investment'>Repaying the Investment</h2>
+<blockquote>
+<p>Repaying Investment</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-ref"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"112233"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>To record a repayment against an investment, firstly generate a unique reference that will be used when sending the funds to the Goji Platform.</p>
+
+<p><a href="/#get-settlement-repayment-reference">GET https://api-sandbox.goji.investments/platformApi/settlement/repayment/reference</a></p>
+
+<p>This will return the account details to use when sending the funds to repay:</p>
+
+<p>Once the funds have been sent to this destination and the funds have cleared, call the Settlement API to distribute the funds.</p>
+
+<blockquote>
+<p>Record Repayment</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"investorRepayments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"investmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client-investment-1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INTEREST"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-ref"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><a href="/#post-settlement-repayment">POST https://api-sandbox.goji.investments/platformApi/settlement/repayment</a></p>
+
+<p>This will ensure that <code>£123.45</code> has been deposited with reference <code>some-ref</code> which was generated by the previous call. If this check passes, the funds will be credited to the Investor and recorded as an interest repayment against <code>client-investment-1</code>.</p>
+<h2 id='settlement-debt-withdrawing-funds'>Withdrawing Funds</h2>
+<blockquote>
+<p>Register Bank Details</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00004588"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"203002"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Withdraw Funds</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101234.56"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my withdrawal ref"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>An Investor can withdraw funds by firstly registering bank account details:</p>
+<h3 id='settlement-debt-withdrawing-funds-register-withdrawal-bank-details'>Register Withdrawal Bank Details</h3>
+<aside class="notice">
+Account numbers and sort codes are validated prior to being processed to ensure they are accepted by the Faster Payments scheme. <br/>
+When testing payments in sandbox, please use a valid account number and sort code or alternatively use one from the list below. <br/>
+This will ensure the correct behaviour of payments during your testing.
+</aside>
+
+<p>The following Account Number, Sort Code combinations are valid examples and can be used for testing in the sandbox environment:</p>
+
+<table><thead>
+<tr>
+<th>Account Number</th>
+<th>Sort Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00004588</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>00027944</td>
+<td>203002</td>
+</tr>
+<tr>
+<td>58110244</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>60282377</td>
+<td>204514</td>
+</tr>
+<tr>
+<td>87889196</td>
+<td>166051</td>
+</tr>
+<tr>
+<td>99993193</td>
+<td>166051</td>
+</tr>
+</tbody></table>
+
+<p><a href="/#post-investors-clientid-bankdetails">POST https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankDetails</a></p>
+<h3 id='settlement-debt-withdrawing-funds-process-withdrawal'>Process Withdrawal</h3>
+<p>Then the funds can be withdrawn:</p>
+
+<p><a href="/#post-investors-clientid-accounts-accounttype-withdrawal">https://api-sandbox.goji.investments/platformApi/investors/{clientId}/accounts/{accountType}/withdrawal</a></p>
