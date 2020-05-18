@@ -1329,13 +1329,12 @@ If an invalid version header is specified, a <code>404</code> response code will
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account name"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank ref"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"112233"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Next, register a payment destination. This is where the funds will be sent.</p>
 
-<p><a href="/#post-settlement-payment-destination">POST https://api-sandbox.goji.investments/platformApi/settlement/payment-destination</a></p>
+<p><a href="/#payments-manager-post-platformapi-bankaccountdetails">POST https://api-sandbox.goji.investments/platformApi/bankAccountDetails</a></p>
 
 <p>This returns a payment destination ID which must be saved and used for the subsequent call.</p>
 
