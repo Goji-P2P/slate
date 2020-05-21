@@ -18,13 +18,15 @@ Authorization: Basic ...
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-[ {
-  "id" : "06ee16ce-def4-4433-80f2-ab35256316e1",
-  "accountName" : "Destination account",
-  "accountNumber" : "00004588",
-  "sortCode" : "203002",
-  "status" : "ENABLED"
-} ]
+[
+  {
+    "id" : "06ee16ce-def4-4433-80f2-ab35256316e1",
+    "accountName" : "Destination account",
+    "accountNumber" : "00004588",
+    "sortCode" : "203002",
+    "status" : "ENABLED"
+  }
+]
 ```
 ### Description
 List of bank accounts we hold in the system for sending money to.
@@ -89,16 +91,27 @@ Authorization: Basic ...
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-"SUCCESS"
+{
+  "id" : "06ee16ce-def4-4433-80f2-ab35256316e1",
+  "accountName" : "Destination account",
+  "accountNumber" : "00004588",
+  "sortCode" : "203002",
+  "status" : "ENABLED"
+}
 ```
-
 ### Description
-
 Simulate enabling a set of bank details.
-
 <aside class="notice">
 Please note this is a test endpoint and is only available in the sandbox environment.
 </aside>
+### Response
+| Name             | Type   | Description                                |
+| ---------------- | ------ | ------------------------------------------ |
+| id               | string | The bank account details ID.               |
+| accountNumber    | string | The account number.                        |
+| sortCode         | string | The sort code.                             |
+| accountName      | string | The account name.                          |
+| status           | string | Whether or not the account has passed AML. In this case it is always `ENABLED` |
 
 ## `GET /platformApi/bankAccountDetails/{id}`
 
@@ -130,7 +143,7 @@ Get a specific bank account we hold in the system for sending money to.
 | accountNumber | string | The account number.                        |
 | sortCode      | string | The sort code.                             |
 | accountName   | string | The account name.                          |
-| status        | string | Whether or not the account has passed AML. |
+| status        | string | Whether or not the account has passed AML. Possible values are: <br>`ENABLED`<br>`DISABLED`. |
 
 ## `PUT /platformApi/bankAccountDetails/{id}`
 
