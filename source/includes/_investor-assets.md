@@ -52,7 +52,7 @@ Content-Type: application/json
 
 Retrieves the breakdown of assets for a given investor when a `clientId` is supplied.
 
-Currently, holdings can fall under two categories: `EQUITY` or `RESERVED`. 
+Currently, an investor's holdings can fall under two categories: `EQUITY` or `RESERVED`. 
 
 For a given investor, should a particular set of shares in some instrument fall under `EQUITY`, this means that the shares have been settled. 
 Conversely, should shares be visible under the `RESERVED` category, this means that the shares are still in the process of settling.
