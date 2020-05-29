@@ -648,6 +648,15 @@
                   <li>
                     <a href="#settlement-equity-get-instruments-reporting-reportid-instrumentsymbol" class="toc-h2 toc-link" data-title="GET /instruments/reporting/{reportId}/{instrumentSymbol}"><code>GET /instruments/reporting/{reportId}/{instrumentSymbol}</code></a>
                   </li>
+                  <li>
+                    <a href="#settlement-equity-viewing-an-investor-39-s-assets" class="toc-h2 toc-link" data-title="Viewing an Investor's Assets"><em>Viewing an Investor's Assets</em></a>
+                  </li>
+                  <li>
+                    <a href="#settlement-equity-asset-balance-model" class="toc-h2 toc-link" data-title="Asset Balance Model">Asset Balance Model</a>
+                  </li>
+                  <li>
+                    <a href="#settlement-equity-get-investors-clientid-assets" class="toc-h2 toc-link" data-title="GET /investors/{clientId}/assets"><code>GET /investors/{clientId}/assets</code></a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -9799,8 +9808,6 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 </tbody></table>
 <h2 id='settlement-equity-trade-settlement'><em>Trade Settlement</em></h2>
 <p>The Trade Settlement API allows an Investment Manager to report trades which require settlement.</p>
-
-<p>The API is currently under construction.</p>
 <h2 id='settlement-equity-trades'>Trades</h2>
 <p>Once an instrument has been created, it can then be traded. A trade can be submitted using <a href="/#settlement-equity-post-trades"><code>POST /trades</code></a>.</p>
 
@@ -10729,6 +10736,114 @@ All asset reports that fall under the same wider snapshot should share the same 
 <tr>
 <td>404 Not Found</td>
 <td>No instrument with this UUID exists</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-equity-viewing-an-investor-39-s-assets'><em>Viewing an Investor&#39;s Assets</em></h2>
+<p>This can be used in conjunction with the <a href="/#settlement-equity">Equities API</a> to view the status of an investor&#39;s holdings. </p>
+<h2 id='settlement-equity-asset-balance-model'>Asset Balance Model</h2><h3 id='settlement-equity-asset-balance-model-response-only-attributes'>Response-Only Attributes</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>JSON Type</th>
+<th>Value Type</th>
+<th>Value Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>PotId</td>
+<td>The Goji-generated UUID that references where the asset is logically stored.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>PotType</td>
+<td>Describes a category that a set of holdings can fall under.</td>
+</tr>
+<tr>
+<td>balances</td>
+<td>Object</td>
+<td>Object</td>
+<td>Describes an investor&#39;s holdings. Contains mappings of <code>instrumentSymbol(s)</code> to <code>Quantity</code> held by an investor.</td>
+</tr>
+<tr>
+<td>at</td>
+<td>String</td>
+<td>Object</td>
+<td>The timestamp at which the balances were calculated to.</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-equity-get-investors-clientid-assets'><code>GET /investors/{clientId}/assets</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/investors/CLIENT-ID/assets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+<span class="na">X-GOJI-CLIENT-ID</span><span class="p">:</span> <span class="s">79f33f3c-86e0-4613-ba49-9fac3c6f0eab</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7a58a894-564c-4e19-a170-74cd2ed36aa1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQUITY"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"balances"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Instrument Sample 2"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Instrument Sample 1"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-28T09:29:33.247276Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bbb6159d-0405-4fa1-95d5-853ef82bddb2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RESERVED"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"balances"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-28T09:29:33.247276Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='settlement-equity-code-get-investors-clientid-assets-code-description'>Description</h3>
+<p>Retrieves the breakdown of assets for a given investor when a <code>clientId</code> is supplied.</p>
+
+<p>Currently, an investor&#39;s holdings can fall under two categories: <code>EQUITY</code> or <code>RESERVED</code>. </p>
+
+<p>For a given investor, should a particular set of shares in some instrument fall under <code>EQUITY</code>, this means that the shares have been settled. 
+Conversely, should shares be visible under the <code>RESERVED</code> category, this means that the shares are still in the process of settling.</p>
+<h3 id='settlement-equity-code-get-investors-clientid-assets-code-request'>Request</h3>
+<p>Body: None</p>
+<h3 id='settlement-equity-code-get-investors-clientid-assets-code-response'>Response</h3>
+<p>Body: <a href="/#settlement-equity-asset-balance-model">Asset Balance Model</a></p>
+
+<p>Http Status: </p>
+
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Description</th>
+<th>Body</th>
+<th>Content-Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200 OK</td>
+<td>The status of the investor&#39;s various holdings are returned in the body</td>
+<td>Asset Balance</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>The request was malformed.  See response body</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>401 Unauthorized</td>
+<td>No auth provided, auth failed, or not authorized</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>No investor with the specified clientId exists</td>
 <td>None</td>
 <td>n/a</td>
 </tr>
