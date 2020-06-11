@@ -7510,6 +7510,17 @@ Please note this is a test endpoint and is only available in the sandbox environ
   </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"walletName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">409</span> <span class="ne">Conflict</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"errorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NAME_ALREADY_EXIST"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wallet with name: Housing Project already exist for partyId: COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}}</span><span class="w">
 </span></code></pre>
 <aside class="notice">
 Prior to creating a Wallet, the Company who owns the money in the Wallet must be <a href="#payments-manager-post-companies">registered</a>.
