@@ -2155,7 +2155,7 @@ Content-Type: application/json
 Migrates an existing investor onto the Goji system.
 
 <aside class="notice">
-The required <code>migrationDetails</code> allows the platform to provide an existing investor client ID where applicable and provide the diligence status as agreed with Goji before migration takes place. 
+The required <code>migrationDetails</code> allows the platform to provide an existing investor ID where applicable and provide the diligence status as agreed with Goji before migration takes place. 
 </aside>
 
 ### Request
