@@ -5256,7 +5256,7 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 <h2 id='investors-migration'><em>Migration</em></h2><h2 id='investors-migrating-investors'>Migrating Investors</h2>
 <p>If you are migrating your existing investors over to Goji, then you need to onboard the existing investors using the dedicated <a href="#investors-post-platformapi-migrate">investor migration endpoint</a> and include <code>migrationDetails</code> data.</p>
 
-<p>The <code>migrationDetails</code> allows the platform to provide an existing investor ID where applicable and provide the dilligence status as agreed with Goji before migration takes place. </p>
+<p>The <code>migrationDetails</code> allows the platform to provide an existing investor ID where applicable and provide the diligence status as agreed with Goji before migration takes place. </p>
 <h3 id='investors-migrating-investors-upgrading-investors-currently-using-the-isa-administration-api'>Upgrading investors currently using the ISA Administration API</h3>
 <p>When upgrading from using the Goji ISA Administration API to the Goji Platform API, the <code>existingClientId</code> in the 
 <code>migrationDetails</code> prompts the system to upgrade the existing investor with the relevant ID. </p>
@@ -5270,93 +5270,141 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 </ul>
 
 <p>Any existing ISA data is preserved.</p>
-<h2 id='investors-post-platformapi-migrate'><code>POST /platformApi/migrate</code></h2><pre class="highlight http tab-http"><code><span class="err">
+<h2 id='investors-post-platformapi-migrate'><code>POST /platformApi/migrate</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/platformApi/investors</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBR"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineOne"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 The High Street"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineTwo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineThree"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AA1 1AA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"townCity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greater London"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"nationalInsuranceNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MG442319A"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ISA"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INDIVIDUAL"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"employmentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"jobTitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accountant"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"employmentStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMPLOYED_FULL_TIME"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"nationalities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="s2">"nationality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="s2">"nationality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CH"</span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"dateOfBirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-19"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"migrationDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"existingClientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"existingClientId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"diligenceMigrationOption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FULL_CHECK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"previousCheckDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"investorDeclarationType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RESTRICTED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contactDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"emailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telephoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07123456789"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/platformApi/investors</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lastName"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"corporateDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"companyType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"companyType"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"registrationNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"registrationNumber"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"companyName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"companyName"</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"corporateDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"companyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LLC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"registrationNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB123456"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"companyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fake company"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lineTwo"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineTwo"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"townCity"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"townCity"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"postcode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"postcode"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lineOne"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineOne"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lineThree"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineThree"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBR"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineOne"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 The High Street"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineTwo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineThree"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AA1 1AA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"townCity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greater London"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"entityType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"INDIVIDUAL"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"employmentDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"jobTitle"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"jobTitle"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"employmentStatus"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"EMPLOYED_FULL_TIME"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"nationalities"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"nationality"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="w">
-  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"nationality"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CH"</span><span class="w">
-  </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"dateOfBirth"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"migrationDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"existingClientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"existingClientId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CORPORATE"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nationalities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="s2">"nationality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="s2">"nationality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CH"</span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"dateOfBirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-19"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"migrationDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"existingClientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"existingClientId"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"diligenceMigrationOption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FULL_CHECK"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"previousCheckDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MISS"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"investorDeclarationType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"RESTRICTED"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"contactDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"emailAddress"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"emailAddress"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"telephoneNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"telephoneNumber"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"nationalInsuranceNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nationalInsuranceNumber"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"accountTypes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"investorDeclarationType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HIGH_NET_WORTH"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contactDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"emailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telephoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07123456789"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lastName"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"corporateDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"companyType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"companyType"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"registrationNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"registrationNumber"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"companyName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"companyName"</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"corporateDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"companyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LLC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"registrationNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB123456"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"companyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fake company"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lineTwo"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineTwo"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"townCity"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"townCity"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"postcode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"postcode"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lineOne"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineOne"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lineThree"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineThree"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBR"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineOne"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 The High Street"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineTwo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lineThree"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AA1 1AA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"townCity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greater London"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"entityType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"INDIVIDUAL"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"employmentDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"jobTitle"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"jobTitle"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"employmentStatus"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"EMPLOYED_FULL_TIME"</span><span class="w">
+  </span><span class="s2">"accountTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CORPORATE"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nationalities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="s2">"nationality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="s2">"nationality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CH"</span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"dateOfBirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-19"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"migrationDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"existingClientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"existingClientId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"diligenceMigrationOption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FULL_CHECK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"previousCheckDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"dateOfBirth"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MISS"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"contactDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"emailAddress"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"emailAddress"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"telephoneNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"telephoneNumber"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"nationalInsuranceNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nationalInsuranceNumber"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"accountTypes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"investmentDeclarationType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"RESTRICTED"</span><span class="w">
+  </span><span class="s2">"investorDeclarationType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HIGH_NET_WORTH"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contactDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"emailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telephoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07123456789"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='investors-code-post-platformapi-migrate-code-description'>Description</h3>
 <p>Migrates an existing investor onto the Goji system.</p>
+
+<aside class="notice">
+The required <code>migrationDetails</code> allows the platform to provide an existing investor ID where applicable and provide the diligence status as agreed with Goji before migration takes place. 
+</aside>
 <h3 id='investors-code-post-platformapi-migrate-code-request'>Request</h3>
 <table><thead>
 <tr>
@@ -11784,7 +11832,7 @@ The result is then Base64 encoded to produce a string.
 The encrypted string is then UTF-8 URL encoded.</p>
 <h3 id='webhooks-authentication-verifying-the-signature'>Verifying the signature</h3>
 <aside class="notice">
-You should verify that the `Authorization` header matches the expected signature string using the secret that was shared with you during onboarding.
+You should verify that the <code>Authorization</code> header matches the expected signature string using the secret that was shared with you during onboarding.
 </aside>
 <h2 id='webhooks-post-webhooks'><code>POST /webhooks</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/platformApi/webhooks</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -11916,11 +11964,11 @@ The following event <code>type</code>s will be supported, along with the content
 <p>This is fired whenever investor funds are cleared into their account eg for a bank transfer.</p>
 
 <aside class="notice">
-If using the batch payments api this event will not trigger but instead a `BATCH_UPDATE` event will be generated once all payments have been received.
+If using the batch payments api this event will not trigger but instead a <code>BATCH_UPDATE</code> event will be generated once all payments have been received.
 </aside>
 
 <aside class="notice">
-If redirected = true, the accountType will reflect which account the money has been credited to. The intendedAccountType will
+If <code>redirected = true</code>, the <code>accountType</code> will reflect which account the money has been credited to. The <code>intendedAccountType</code> will
 contain details of where the investor wished to deposit. This scenario is most likely when depositing into an ISA and the ISA subscription
 status is preventing deposits.
 </aside>
