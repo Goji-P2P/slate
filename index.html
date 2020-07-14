@@ -311,6 +311,9 @@
                     <a href="#investors-get-terms" class="toc-h2 toc-link" data-title="GET /terms"><code>GET /terms</code></a>
                   </li>
                   <li>
+                    <a href="#investors-get-investorids" class="toc-h2 toc-link" data-title="GET /investorIds"><code>GET /investorIds</code></a>
+                  </li>
+                  <li>
                     <a href="#investors-post-platformapi-investors" class="toc-h2 toc-link" data-title="POST /platformApi/investors"><code>POST /platformApi/investors</code></a>
                   </li>
                   <li>
@@ -443,6 +446,9 @@
                   </li>
                   <li>
                     <a href="#payments-investors-post-platformapi-investors-clientid-fee" class="toc-h2 toc-link" data-title="POST /platformApi/investors/{clientId}/fee"><code>POST /platformApi/investors/{clientId}/fee</code></a>
+                  </li>
+                  <li>
+                    <a href="#payments-investors-get-reports-investor-cash-balance" class="toc-h2 toc-link" data-title="GET /reports/investor/cash/balance"><code>GET /reports/investor/cash/balance</code></a>
                   </li>
               </ul>
           </li>
@@ -1753,6 +1759,23 @@ or over the phone. A full audit of all emails are kept in the admin console.</p>
 <td>The version of the terms and conditions.</td>
 </tr>
 </tbody></table>
+<h2 id='investors-get-investorids'><code>GET /investorIds</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/investorIds</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="s2">"INVESTOR-ID-1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"INVESTOR-ID-2"</span><span class="p">]</span><span class="w">
+
+</span></code></pre><h3 id='investors-code-get-investorids-code-description'>Description</h3>
+<p>Returns all the investor ids on the platform. Intended for use in bulk tasks such as reconciliation, allowing the caller to first get the full list of investors and then call out to other endpoints for information on each investor.</p>
+<h3 id='investors-code-get-investorids-code-request'>Request</h3>
+<p>No body required.</p>
+<h3 id='investors-code-get-investorids-code-response'>Response</h3>
+<p>An array of strings.</p>
 <h2 id='investors-post-platformapi-investors'><code>POST /platformApi/investors</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/platformApi/investors</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -6981,6 +7004,178 @@ Content-Type: application/json
 <td>status</td>
 <td>string</td>
 <td>The status of the fee transfer process. Possible values are: <br><code>PENDING</code><br><code>CLEARED</code><br></td>
+</tr>
+</tbody></table>
+<h2 id='payments-investors-get-reports-investor-cash-balance'><code>GET /reports/investor/cash/balance</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/reports/investor/cash/balance?asOf=2020-12-25T15:00:00Z&amp;id={investorId1}&amp;id={investorId2}&amp;id={investorId3}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"investorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVESTOR-ID-1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gia"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"totalBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"uninvestedCashBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"pendingIncomingTransferBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"queuedForInvestmentBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"investedBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"isa"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"totalBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"uninvestedCashBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"pendingIncomingTransferBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"queuedForInvestmentBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"investedBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"sipp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"totalBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">300.0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"uninvestedCashBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"pendingIncomingTransferBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"queuedForInvestmentBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">300.0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"investedBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"investorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVESTOR-ID-2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gia"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"totalBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"uninvestedCashBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"pendingIncomingTransferBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"queuedForInvestmentBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"investedBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"isa"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"totalBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"uninvestedCashBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"pendingIncomingTransferBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"queuedForInvestmentBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"investedBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"sipp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"totalBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"uninvestedCashBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"pendingIncomingTransferBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"queuedForInvestmentBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"investedBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre><h3 id='payments-investors-code-get-reports-investor-cash-balance-code-description'>Description</h3>
+<p>Returns a snapshot of the balances of up to 100 investors as of a specified date.  Intended for use in combination with <code>GET /investorIds</code> to fetch large numbers of investor balances for purposes such as reconciliation.</p>
+
+<p>The <code>id</code> query parameter may repeated up to 100 times. If more than 100 ids are specified, a <code>400</code> error is returned.</p>
+
+<p>If the <code>asOf</code> parameter is excluded, the current state is returned.</p>
+<h3 id='payments-investors-code-get-reports-investor-cash-balance-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].investorId</td>
+<td>string</td>
+<td>The investor&#39;s Goji-assigned internal id</td>
+</tr>
+<tr>
+<td>[].gia</td>
+<td>ref</td>
+<td>The account balance&#39;s for the investor&#39;s investment account.</td>
+</tr>
+<tr>
+<td>[].isa</td>
+<td>ref</td>
+<td>The account balance&#39;s for the investor&#39;s ISA account.</td>
+</tr>
+<tr>
+<td>[].sipp</td>
+<td>ref</td>
+<td>The account balance&#39;s for the investor&#39;s SIPP account.</td>
+</tr>
+<tr>
+<td>[].{}.totalBalance</td>
+<td>ref</td>
+<td>The total balance in the account. The sum of the invested, queued and cash balances. Currently excludes the value of investments in non-debt instruments such as equities, so this balance will appear to go down when investments are made in such instruments.</td>
+</tr>
+<tr>
+<td>[].{}.totalBalance.amount</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr>
+<td>[].{}.totalBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].{}.uninvestedCashBalance</td>
+<td>ref</td>
+<td>The total uninvested cash.</td>
+</tr>
+<tr>
+<td>[].{}.uninvestedCashBalance.amount</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr>
+<td>[].{}.uninvestedCashBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].{}.pendingIncomingTransferBalance</td>
+<td>ref</td>
+<td>The total value of pending incoming account transfers.</td>
+</tr>
+<tr>
+<td>[].{}.pendingIncomingTransferBalance.amount</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr>
+<td>[].{}.pendingIncomingTransferBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].{}.queuedForInvestmentBalance</td>
+<td>ref</td>
+<td>The total value of funds queued for investment in debt instruments.</td>
+</tr>
+<tr>
+<td>[].{}.queuedForInvestmentBalance.amount</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr>
+<td>[].{}.queuedForInvestmentBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].{}.investedBalance</td>
+<td>ref</td>
+<td>The total value of funds invested in debt instruments.</td>
+</tr>
+<tr>
+<td>[].{}.investedBalance.amount</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr>
+<td>[].{}.investedBalance.currency</td>
+<td>string</td>
+<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
 </tr>
 </tbody></table>
 <h1 id='payments-manager'>Payments - Manager</h1><h2 id='payments-manager-testing-outbound-payments'>Testing outbound payments</h2>
