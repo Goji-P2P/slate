@@ -616,9 +616,18 @@ Authorization: Basic ...
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{
-  "status" : "DOCUMENTS_REQUIRED"
-}
+    "documentsRequired" : [ "PROOF_OF_ADDRESS", "PROOF_OF_IDENTITY" ],
+    "documentsApproved" : [ ],
+    "requirements" : [
+      {
+        "requirementType" : "",
+        "status" : "",
+        "checkType" : ""
+      }
+    ]
+    "overallStatus" : "DOCUMENTS_REQUIRED",
+    "status" : "DOCUMENTS_REQUIRED",
+    "clientId" : "GOJI-1234"
 ```
 ### Description
 Retrieves an investor's KYB status - this is only applicable for corporates.
