@@ -338,6 +338,12 @@
                     <a href="#investors-post-platformapi-investors-clientid-kyc-documents" class="toc-h2 toc-link" data-title="POST /platformApi/investors/{clientId}/kyc/documents"><code>POST /platformApi/investors/{clientId}/kyc/documents</code></a>
                   </li>
                   <li>
+                    <a href="#investors-get-reports-investors-kyc" class="toc-h2 toc-link" data-title="GET /reports/investors/kyc"><code>GET /reports/investors/kyc</code></a>
+                  </li>
+                  <li>
+                    <a href="#investors-get-reports-investors-kyb" class="toc-h2 toc-link" data-title="GET /reports/investors/kyb"><code>GET /reports/investors/kyb</code></a>
+                  </li>
+                  <li>
                     <a href="#investors-isas" class="toc-h2 toc-link" data-title="ISAs"><em>ISAs</em></a>
                   </li>
                   <li>
@@ -2761,9 +2767,7 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
 
-<span class="w">
-
-</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
@@ -2782,7 +2786,8 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
     </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
     </span><span class="s2">"failureDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"failureDate"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AWAITING_CREDIT_AGENCY_CHECK"</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AWAITING_CREDIT_AGENCY_CHECK"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-1234"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='investors-code-get-platformapi-investors-clientid-kyc-code-description'>Description</h3>
 <p>Retrieves an investor&#39;s KYC details.</p>
@@ -2795,52 +2800,42 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
 </tr>
 </thead><tbody>
 <tr>
+<td>clientId</td>
+<td>string</td>
+<td>The clientId of the investor</td>
+</tr>
+<tr>
 <td>status</td>
 <td>string</td>
-<td>The KYC details of the investor Possible values are: <br><code>AWAITING_CREDIT_AGENCY_CHECK</code><br><code>ELECTRONICALLY_VERIFIED</code><br><code>ENHANCED_VERIFICATION_REQUIRED</code><br><code>ENHANCED_VERIFIED</code><br></td>
+<td>The KYC details of the investor. Possible values are: <br><code>AWAITING_CREDIT_AGENCY_CHECK</code><br><code>ELECTRONICALLY_VERIFIED</code><br><code>ENHANCED_VERIFICATION_REQUIRED</code><br><code>ENHANCED_VERIFIED</code><br></td>
 </tr>
 <tr>
-<td>documentsRequired</td>
+<td>documentsRequired.[]</td>
 <td>array</td>
-<td>Required documents for upload</td>
+<td>Required documents for upload. Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
 </tr>
 <tr>
-<td>documentsRequired[].documentsRequired</td>
+<td>documentsPendingApproval.[]</td>
 <td>array</td>
-<td>Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
+<td>Uploaded documents that require approving. Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
 </tr>
 <tr>
-<td>documentsPendingApproval</td>
+<td>documentsApproved.[]</td>
 <td>array</td>
-<td>Uploaded documents that require approving</td>
+<td>Approved documents. Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
 </tr>
 <tr>
-<td>documentsPendingApproval[].documentsPendingApproval</td>
-<td>array</td>
-<td>Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
-</tr>
-<tr>
-<td>documentsApproved</td>
-<td>array</td>
-<td>Approved documents</td>
-</tr>
-<tr>
-<td>documentsApproved[].documentsApproved</td>
-<td>array</td>
-<td>Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
-</tr>
-<tr>
-<td>lastFailure</td>
+<td>{}.lastFailure</td>
 <td>ref</td>
 <td></td>
 </tr>
 <tr>
-<td>lastFailure.failureDate</td>
+<td>{}.lastFailure.failureDate</td>
 <td>string</td>
 <td>Date of rejection</td>
 </tr>
 <tr>
-<td>lastFailure.rejectedDocuments</td>
+<td>{}.lastFailure.rejectedDocuments</td>
 <td>array</td>
 <td>The rejected documents.</td>
 </tr>
@@ -2855,11 +2850,21 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
 
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-
-<span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DOCUMENTS_REQUIRED"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='investors-code-get-platformapi-investors-clientid-kyb-code-description'>Description</h3>
+<span class="s">{</span>
+<span class="s">    "documentsRequired" : [ "PROOF_OF_ADDRESS", "PROOF_OF_IDENTITY" ],</span>
+<span class="s">    "documentsApproved" : [ ],</span>
+<span class="s">    "requirements" : [</span>
+<span class="s">      {</span>
+<span class="s">        "requirementType" : "",</span>
+<span class="s">        "status" : "",</span>
+<span class="s">        "checkType" : ""</span>
+<span class="s">      }</span>
+<span class="s">    ]</span>
+<span class="s">    "overallStatus" : "DOCUMENTS_REQUIRED",</span>
+<span class="s">    "status" : "DOCUMENTS_REQUIRED",</span>
+<span class="s">    "clientId" : "GOJI-1234"</span>
+<span class="s">}</span>
+</code></pre><h3 id='investors-code-get-platformapi-investors-clientid-kyb-code-description'>Description</h3>
 <p>Retrieves an investor&#39;s KYB status - this is only applicable for corporates.</p>
 <h3 id='investors-code-get-platformapi-investors-clientid-kyb-code-response'>Response</h3>
 <table><thead>
@@ -2870,9 +2875,54 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
 </tr>
 </thead><tbody>
 <tr>
+<td>clientId</td>
+<td>string</td>
+<td>The clientId of the investor</td>
+</tr>
+<tr>
 <td>status</td>
 <td>string</td>
-<td>The KYB status of a corporate investor Possible values are: <br><code>DOCUMENTS_REQUIRED</code><br><code>VERIFIED</code><br></td>
+<td>The KYB status of the investor. Possible values are: <br><code>DOCUMENTS_REQUIRED</code><br><code>VERIFIED</code><br></td>
+</tr>
+<tr>
+<td>overallStatus</td>
+<td>string</td>
+<td>The overall KYB status of the investor. Possible values are: <br><code>IN_PROGRESS</code><br><code>PASSED</code><br><code>DECLINED</code><br>`</td>
+</tr>
+<tr>
+<td>documentsRequired.[]</td>
+<td>array</td>
+<td>Required documents for upload. Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
+</tr>
+<tr>
+<td>documentsPendingApproval.[]</td>
+<td>array</td>
+<td>Uploaded documents that require approving. Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
+</tr>
+<tr>
+<td>documentsApproved.[]</td>
+<td>array</td>
+<td>Approved documents. Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
+</tr>
+<tr>
+<td>requirements</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>requirements.[].{}.requirementType</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>requirements.[].{}.status</td>
+<td>string</td>
+<td>Possible values are: <br><code>IN_PROGRESS</code><br><code>PASSED</code><br><code>DECLINED</code><br></td>
+</tr>
+<tr>
+<td>requirements.[].{}.checkType</td>
+<td>string</td>
+<td>Possible values are: <code>IDENTITY_CHECK</code><br><code>MANUAL_IDENTITY_CHECK</code><br><code>DEPOSIT_LIMIT_CHECK</code><br><code>PEP_CHECK</code><br><code>SANCTIONS_CHECK</code><br><code>BWA_CHECK</code><br><code>MANUAL_VERIFICATION_CHECK</code><br><code>NO_WORKFLOW_CREATED_CHECK</code><br><code>NONE</code></td>
 </tr>
 </tbody></table>
 <h2 id='investors-post-platformapi-investors-clientid-kyc-documents'><code>POST /platformApi/investors/{clientId}/kyc/documents</code></h2><pre class="highlight http tab-http"><code><span class="err">
@@ -2923,6 +2973,214 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
 <td>string</td>
 <td>The file to upload Base64 encoded.</td>
 <td>required</td>
+</tr>
+</tbody></table>
+<h2 id='investors-get-reports-investors-kyc'><code>GET /reports/investors/kyc</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/reports/investors/kyc?id={clientId}&amp;id={clientId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"documentsRequired"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"PROOF_OF_ADDRESS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PROOF_OF_IDENTITY"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"documentsPendingApproval"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"PROOF_OF_ADDRESS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PROOF_OF_IDENTITY"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"documentsApproved"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"PROOF_OF_ADDRESS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PROOF_OF_IDENTITY"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"lastFailure"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rejectedDocuments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"reason"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reason"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"notes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"notes"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"type"</span><span class="w">
+      </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"reason"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reason"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"notes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"notes"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"type"</span><span class="w">
+      </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"failureDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"failureDate"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AWAITING_CREDIT_AGENCY_CHECK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-1234"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"documentsRequired"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"documentsPendingApproval"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"documentsApproved"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"PROOF_OF_ADDRESS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PROOF_OF_IDENTITY"</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"lastFailure"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"rejectedDocuments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"reason"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reason"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"notes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"notes"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"type"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"reason"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reason"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"notes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"notes"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"type"</span><span class="w">
+        </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"failureDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"failureDate"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"VERIFIED"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-4567"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='investors-code-get-reports-investors-kyc-code-description'>Description</h3>
+<p>Retrieves investor&#39;s KYC details. Intended for use in combination with <code>GET /investorIds</code> to fetch large numbers of investor kyc statuses for purposes such as reconciliation.</p>
+
+<p>The <code>id</code> query parameter may repeated up to 100 times. If more than 100 ids are specified, a <code>400</code> error is returned.
+If no <code>id</code> query parameters are specified and empty array is returned.</p>
+<h3 id='investors-code-get-reports-investors-kyc-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].clientId</td>
+<td>string</td>
+<td>The clientId of the investor</td>
+</tr>
+<tr>
+<td>[].status</td>
+<td>string</td>
+<td>The KYC details of the investor. Possible values are: <br><code>AWAITING_CREDIT_AGENCY_CHECK</code><br><code>ELECTRONICALLY_VERIFIED</code><br><code>ENHANCED_VERIFICATION_REQUIRED</code><br><code>ENHANCED_VERIFIED</code><br></td>
+</tr>
+<tr>
+<td>[].documentsRequired.[]</td>
+<td>array</td>
+<td>Required documents for upload. Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
+</tr>
+<tr>
+<td>[].documentsPendingApproval.[]</td>
+<td>array</td>
+<td>Uploaded documents that require approving. Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
+</tr>
+<tr>
+<td>[].documentsApproved.[]</td>
+<td>array</td>
+<td>Approved documents. Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
+</tr>
+<tr>
+<td>[].{}.lastFailure</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>[].{}.lastFailure.failureDate</td>
+<td>string</td>
+<td>Date of rejection</td>
+</tr>
+<tr>
+<td>[].{}.lastFailure.rejectedDocuments</td>
+<td>array</td>
+<td>The rejected documents.</td>
+</tr>
+</tbody></table>
+<h2 id='investors-get-reports-investors-kyb'><code>GET /reports/investors/kyb</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/reports/investors/kyb?id={clientId}&amp;id={clientId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"documentsRequired"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"PROOF_OF_ADDRESS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PROOF_OF_IDENTITY"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"documentsApproved"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"requirements"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"requirementType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"checkType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"overallStatus"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DOCUMENTS_REQUIRED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DOCUMENTS_REQUIRED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-1234"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"documentsRequired"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"documentsApproved"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"PROOF_OF_ADDRESS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PROOF_OF_IDENTITY"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"requirements"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"requirementType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"checkType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"overallStatus"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"VERIFIED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"VERIFIED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-4567"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='investors-code-get-reports-investors-kyb-code-description'>Description</h3>
+<p>Retrieves corporate investors KYB details. Intended for use in combination with <code>GET /investorIds</code> to fetch large numbers of corporate kyb statuses for purposes such as reconciliation.</p>
+
+<p>The <code>id</code> query parameter may repeated up to 100 times. If more than 100 ids are specified, a <code>400</code> error is returned.
+If no <code>id</code> query parameters are specified and empty array is returned.</p>
+<h3 id='investors-code-get-reports-investors-kyb-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>[].clientId</td>
+<td>string</td>
+<td>The clientId of the investor</td>
+</tr>
+<tr>
+<td>[].status</td>
+<td>string</td>
+<td>The KYB status of the investor. Possible values are: <br><code>DOCUMENTS_REQUIRED</code><br><code>VERIFIED</code><br></td>
+</tr>
+<tr>
+<td>[].overallStatus</td>
+<td>string</td>
+<td>The overall KYB status of the investor. Possible values are: <br><code>IN_PROGRESS</code><br><code>PASSED</code><br><code>DECLINED</code><br>`</td>
+</tr>
+<tr>
+<td>[].documentsRequired.[]</td>
+<td>array</td>
+<td>Required documents for upload. Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
+</tr>
+<tr>
+<td>[].documentsPendingApproval.[]</td>
+<td>array</td>
+<td>Uploaded documents that require approving. Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
+</tr>
+<tr>
+<td>[].documentsApproved.[]</td>
+<td>array</td>
+<td>Approved documents. Possible values are: <br><code>PROOF_OF_ADDRESS</code><br><code>PROOF_OF_IDENTITY</code><br><code>COVI</code><br><code>PASS_CERTIFICATE</code><br><code>RISK_ASSESSMENT</code><br><code>CLIENT_QUESTIONNAIRE</code><br><code>KYB_DOCUMENT</code><br></td>
+</tr>
+<tr>
+<td>[].requirements</td>
+<td>ref</td>
+<td></td>
+</tr>
+<tr>
+<td>[].requirements.[].{}.requirementType</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>[].requirements.[].{}.status</td>
+<td>string</td>
+<td>Possible values are: <br><code>IN_PROGRESS</code><br><code>PASSED</code><br><code>DECLINED</code><br></td>
+</tr>
+<tr>
+<td>[].requirements.[].{}.checkType</td>
+<td>string</td>
+<td>Possible values are: <code>IDENTITY_CHECK</code><br><code>MANUAL_IDENTITY_CHECK</code><br><code>DEPOSIT_LIMIT_CHECK</code><br><code>PEP_CHECK</code><br><code>SANCTIONS_CHECK</code><br><code>BWA_CHECK</code><br><code>MANUAL_VERIFICATION_CHECK</code><br><code>NO_WORKFLOW_CREATED_CHECK</code><br><code>NONE</code></td>
 </tr>
 </tbody></table>
 <h2 id='investors-isas'><em>ISAs</em></h2><h2 id='investors-opening-an-innovative-finance-isa'>Opening an Innovative Finance ISA</h2>
@@ -5691,7 +5949,7 @@ The required <code>migrationDetails</code> allows the platform to provide an exi
 <tr>
 <td>address.region</td>
 <td>string</td>
-<td>The region of the address eg county.</td>
+<td>The region of the address, e.g. county.</td>
 </tr>
 <tr>
 <td>address.postcode</td>
@@ -5701,7 +5959,7 @@ The required <code>migrationDetails</code> allows the platform to provide an exi
 <tr>
 <td>address.country</td>
 <td>string</td>
-<td>The country of the investor&#39;s address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.</td>
+<td>The country of the investor&#39;s address as a 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.</td>
 </tr>
 <tr>
 <td>contactDetails</td>
@@ -5746,12 +6004,12 @@ The required <code>migrationDetails</code> allows the platform to provide an exi
 <tr>
 <td>accountTypes</td>
 <td>string</td>
-<td>Investor&#39;s account types Possible values are: <br><code>GOJI_INVESTMENT</code><br><code>ISA</code><br></td>
+<td>Investor&#39;s account types. Possible values are: <br><code>GOJI_INVESTMENT</code><br><code>ISA</code><br></td>
 </tr>
 <tr>
 <td>corporateDetails</td>
 <td>ref</td>
-<td>only required for CORPORATE entityType.</td>
+<td>Only required for CORPORATE entityType.</td>
 </tr>
 <tr>
 <td>corporateDetails.companyName</td>
@@ -5771,7 +6029,7 @@ The required <code>migrationDetails</code> allows the platform to provide an exi
 <tr>
 <td>investmentDeclarationType</td>
 <td>string</td>
-<td>The investor type declared by the investor Possible values are: <br><code>RESTRICTED</code><br><code>HIGH_NET_WORTH</code><br><code>INVESTMENT_PROFESSIONAL</code><br><code>SOPHISTICATED</code><br></td>
+<td>The investor type declared by the investor. Possible values are: <br><code>RESTRICTED</code><br><code>HIGH_NET_WORTH</code><br><code>INVESTMENT_PROFESSIONAL</code><br><code>SOPHISTICATED</code><br></td>
 </tr>
 </tbody></table>
 <h1 id='payments-investors'>Payments - Investors</h1><h2 id='payments-investors-depositing-funds'>Depositing funds</h2>
