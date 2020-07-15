@@ -127,6 +127,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 ["INVESTOR-ID-1", "INVESTOR-ID-2"]
+
 ```
 
 ### Description
