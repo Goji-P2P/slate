@@ -1771,7 +1771,7 @@ or over the phone. A full audit of all emails are kept in the admin console.</p>
 <span class="p">[</span><span class="s2">"INVESTOR-ID-1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"INVESTOR-ID-2"</span><span class="p">]</span><span class="w">
 
 </span></code></pre><h3 id='investors-code-get-investorids-code-description'>Description</h3>
-<p>Returns all the investor ids on the platform. Intended for use in bulk tasks such as reconciliation, allowing the caller to first get the full list of investors and then call out to other endpoints for information on each investor.</p>
+<p>Returns all the client ids of the investors on the platform. Intended for use in bulk tasks such as reconciliation, allowing the caller to first get the full list of investors and then call out to other endpoints for information on each investor.</p>
 <h3 id='investors-code-get-investorids-code-request'>Request</h3>
 <p>No body required.</p>
 <h3 id='investors-code-get-investorids-code-response'>Response</h3>
@@ -7007,7 +7007,7 @@ Content-Type: application/json
 </tr>
 </tbody></table>
 <h2 id='payments-investors-get-reports-investor-cash-balance'><code>GET /reports/investor/cash/balance</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">GET</span> <span class="nn">/reports/investor/cash/balance?asOf=2020-12-25T15:00:00Z&amp;id={investorId1}&amp;id={investorId2}&amp;id={investorId3}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span><span class="nf">GET</span> <span class="nn">/reports/investor/cash/balance?asOf=2020-12-25T15:00:00Z&amp;id=INVESTOR-ID-1&amp;id=INVESTOR-ID-2</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -7085,7 +7085,7 @@ Content-Type: application/json
 <tr>
 <td>[].investorId</td>
 <td>string</td>
-<td>The investor&#39;s Goji-assigned internal id</td>
+<td>The investor&#39;s client id (e.g. <code>GOJI-1128</code>)</td>
 </tr>
 <tr>
 <td>[].gia</td>
