@@ -338,10 +338,10 @@
                     <a href="#investors-post-platformapi-investors-clientid-kyc-documents" class="toc-h2 toc-link" data-title="POST /platformApi/investors/{clientId}/kyc/documents"><code>POST /platformApi/investors/{clientId}/kyc/documents</code></a>
                   </li>
                   <li>
-                    <a href="#investors-get-reports-investors-kyc" class="toc-h2 toc-link" data-title="GET /reports/investors/kyc"><code>GET /reports/investors/kyc</code></a>
+                    <a href="#investors-get-reports-investor-kyc" class="toc-h2 toc-link" data-title="GET /reports/investor/kyc"><code>GET /reports/investor/kyc</code></a>
                   </li>
                   <li>
-                    <a href="#investors-get-reports-investors-kyb" class="toc-h2 toc-link" data-title="GET /reports/investors/kyb"><code>GET /reports/investors/kyb</code></a>
+                    <a href="#investors-get-reports-investor-kyb" class="toc-h2 toc-link" data-title="GET /reports/investor/kyb"><code>GET /reports/investor/kyb</code></a>
                   </li>
                   <li>
                     <a href="#investors-isas" class="toc-h2 toc-link" data-title="ISAs"><em>ISAs</em></a>
@@ -2975,8 +2975,8 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
 <td>required</td>
 </tr>
 </tbody></table>
-<h2 id='investors-get-reports-investors-kyc'><code>GET /reports/investors/kyc</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">GET</span> <span class="nn">/reports/investors/kyc?id={clientId}&amp;id={clientId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='investors-get-reports-investor-kyc'><code>GET /reports/investor/kyc</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/reports/investor/kyc?id={clientId}&amp;id={clientId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -3026,12 +3026,12 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
       </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-4567"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='investors-code-get-reports-investors-kyc-code-description'>Description</h3>
+</span></code></pre><h3 id='investors-code-get-reports-investor-kyc-code-description'>Description</h3>
 <p>Retrieves investor&#39;s KYC details. Intended for use in combination with <code>GET /investorIds</code> to fetch large numbers of investor kyc statuses for purposes such as reconciliation.</p>
 
 <p>The <code>id</code> query parameter may repeated up to 100 times. If more than 100 ids are specified, a <code>400</code> error is returned.
 If no <code>id</code> query parameters are specified and empty array is returned.</p>
-<h3 id='investors-code-get-reports-investors-kyc-code-response'>Response</h3>
+<h3 id='investors-code-get-reports-investor-kyc-code-response'>Response</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3080,8 +3080,8 @@ If no <code>id</code> query parameters are specified and empty array is returned
 <td>The rejected documents.</td>
 </tr>
 </tbody></table>
-<h2 id='investors-get-reports-investors-kyb'><code>GET /reports/investors/kyb</code></h2><pre class="highlight http tab-http"><code><span class="err">
-</span><span class="nf">GET</span> <span class="nn">/reports/investors/kyb?id={clientId}&amp;id={clientId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='investors-get-reports-investor-kyb'><code>GET /reports/investor/kyb</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/reports/investor/kyb?id={clientId}&amp;id={clientId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -3119,12 +3119,12 @@ If no <code>id</code> query parameters are specified and empty array is returned
     </span><span class="s2">"clientId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI-4567"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='investors-code-get-reports-investors-kyb-code-description'>Description</h3>
+</span></code></pre><h3 id='investors-code-get-reports-investor-kyb-code-description'>Description</h3>
 <p>Retrieves corporate investors KYB details. Intended for use in combination with <code>GET /investorIds</code> to fetch large numbers of corporate kyb statuses for purposes such as reconciliation.</p>
 
 <p>The <code>id</code> query parameter may repeated up to 100 times. If more than 100 ids are specified, a <code>400</code> error is returned.
 If no <code>id</code> query parameters are specified and empty array is returned.</p>
-<h3 id='investors-code-get-reports-investors-kyb-code-response'>Response</h3>
+<h3 id='investors-code-get-reports-investor-kyb-code-response'>Response</h3>
 <table><thead>
 <tr>
 <th>Name</th>
