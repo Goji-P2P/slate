@@ -418,7 +418,8 @@ Records the settlement of a secondary market trade.
 | buySide.fee.amount                          | number | The amount.                                                                                                     ||
 | buySide.fee.currency                        | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
 | buySide.bankAccountId                       | string | The ID of the bank account details to send fees to                                                              ||
-| buySide.reference                           | string | The bank reference for the funds transfer                                                                       ||
+| buySide.reference                           | string | The bank reference used in the transfer of fees                                                                       ||
+| buySide.feeReference  (optional)            | string | Alias of the `sellSide.reference` field. Provided for additional clarity.                                                                   ||
 | buySide.totalPurchaseAmount.amount          | number | The amount.                                                                                                     ||
 | buySide.totalPurchaseAmount.currency        | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
 | buySide.newInvestmentId                     | string | The ID for the investment being held by the buy side investor                                                   ||
