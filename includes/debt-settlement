@@ -622,6 +622,7 @@ Deprecated and replaced with <a href="#payments-manager-put-platformapi-bankacco
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"bankAccountId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankAccountId"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"repaymentReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"repaymentReference"</span><span class="w">
     </span><span class="s2">"investmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentId"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"premium"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
@@ -688,7 +689,13 @@ Deprecated and replaced with <a href="#payments-manager-put-platformapi-bankacco
 <tr>
 <td>buySide.reference</td>
 <td>string</td>
-<td>The bank reference for the funds transfer</td>
+<td>The bank reference used in the transfer of fees</td>
+<td></td>
+</tr>
+<tr>
+<td>buySide.feeReference  (optional)</td>
+<td>string</td>
+<td>Alias of the <code>sellSide.reference</code> field. Provided for additional clarity.</td>
 <td></td>
 </tr>
 <tr>
@@ -760,7 +767,19 @@ Deprecated and replaced with <a href="#payments-manager-put-platformapi-bankacco
 <tr>
 <td>sellSide.reference</td>
 <td>string</td>
-<td>The bank reference for the funds transfer</td>
+<td>The bank reference used in the transfer of fees.</td>
+<td></td>
+</tr>
+<tr>
+<td>sellSide.feeReference  (optional)</td>
+<td>string</td>
+<td>Alias of the <code>sellSide.reference</code> field. Provided for additional clarity.</td>
+<td></td>
+</tr>
+<tr>
+<td>sellSide.repaymentReference (optional)</td>
+<td>string</td>
+<td>The bank reference used for the transfer of funds to the seller. If specified it will also be present on the <code>INVESTOR_FUNDS_RECEIVED</code> webhook</td>
 <td></td>
 </tr>
 <tr>
@@ -889,7 +908,7 @@ Deprecated and replaced with <a href="#payments-manager-put-platformapi-bankacco
 <tr>
 <td>reference</td>
 <td>string</td>
-<td>The payment reference used for the repayment of funds.</td>
+<td>The payment reference used for the repayment of funds. Will also be present on <code>INVESTOR_FUNDS_RECEIVED</code> webhook</td>
 <td>required</td>
 </tr>
 <tr>
