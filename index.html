@@ -832,6 +832,9 @@
                     <a href="#isa-administration-repairing-voiding-isas" class="toc-h2 toc-link" data-title="Repairing / voiding ISAs">Repairing / voiding ISAs</a>
                   </li>
                   <li>
+                    <a href="#isa-administration-get-terms" class="toc-h2 toc-link" data-title="GET /terms"><code>GET /terms</code></a>
+                  </li>
+                  <li>
                     <a href="#isa-administration-post-terms" class="toc-h2 toc-link" data-title="POST /terms"><code>POST /terms</code></a>
                   </li>
                   <li>
@@ -13405,10 +13408,9 @@ For each possible way of integrating with the application, you will need to firs
 <li>Goji/Originator will contact the investor to determine how the funds should be removed from the wrapper eg withdrawing cash, selling investments, moving in specie</li>
 <li>Any cash on account is withdrawn using <code>/cash</code> with type set to <code>CUSTOMER_WITHDRAWAL</code></li>
 <li>If investments are to be removed from the tax wrapper, call <code>DELETE /investors/{investorId}/investment/{investmentId}/investment</code>. This reduces the ISA balance by the outstanding capital amount.</li>
-<li>Once this process is complete, Goji will email the investor with details of the taxable income that needs to be declared in their tax return.
-## <code>GET /terms</code></li>
+<li>Once this process is complete, Goji will email the investor with details of the taxable income that needs to be declared in their tax return.</li>
 </ul>
-<pre class="highlight http tab-http"><code><span class="err">
+<h2 id='isa-administration-get-terms'><code>GET /terms</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/terms</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -13423,11 +13425,11 @@ For each possible way of integrating with the application, you will need to firs
   </span><span class="s2">"version"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"version"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"termsAndConditions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"termsAndConditions"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='isa-administration-repairing-voiding-isas-description'>Description</h3>
+</span></code></pre><h3 id='isa-administration-code-get-terms-code-description'>Description</h3>
 <p>Returns the Terms and Conditions to show to the investor.</p>
-<h4 id='isa-administration-repairing-voiding-isas-description-investor-lifecycle'>Investor Lifecycle</h4>
+<h4 id='isa-administration-code-get-terms-code-description-investor-lifecycle'>Investor Lifecycle</h4>
 <p>This endpoint should be called to return the Terms and Conditions that the investor must agree to before they can open an IF ISA.</p>
-<h3 id='isa-administration-repairing-voiding-isas-response'>Response</h3>
+<h3 id='isa-administration-code-get-terms-code-response'>Response</h3>
 <table><thead>
 <tr>
 <th>Name</th>
