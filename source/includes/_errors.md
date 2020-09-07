@@ -74,7 +74,6 @@ This is returned as HTTP response code `500`
 | INVESTOR_ISA_EXISTS | Investor with this N.I number already has an IF-ISA account with this originator |
 | TAX_YEAR_ISA_EXISTS | Investor with this N.I number has previously created an IF-ISA within this tax year |
 | UNDER_18 | Cannot create account for person under the age of 18 |
-| OVER_100 | Cannot create account for person under the age of 100 |
 | INVALID_DATA | nationalInsuranceNumber is in invalid format. Must be in NI number format e.g. (AB123456C) |
 | INVALID_DATA | nationalInsuranceNumber cannot be null or empty |
 
