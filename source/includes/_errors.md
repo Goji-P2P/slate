@@ -65,7 +65,7 @@ This is returned as HTTP response code `500`
 | INVALID_ADDRESS | Address cannot be a PO Box |
 | INVALID_COUNTRY | Country is invalid |
 | UNDER_18 | Cannot create account for person under the age of 18 |
-| OVER_100 | Cannot create account for person under the age of 100 |
+| OVER_100 | Cannot create account for person over the age of 100 |
 
 ## Add ISA Error Codes
 
