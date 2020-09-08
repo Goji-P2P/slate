@@ -372,7 +372,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <p>The registration process is partially manual, so the webhook will be dispatched significantly later than the API call.</p>
 
 <aside class="notice">
-In sandbox use this <a href="#payments-manager-put-companies-id-enable">endpoint</a> to enable a company.
+In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">endpoint</a> to enable a company.
 </aside>
 <h3 id='payments-manager-code-post-companies-code-request'>Request</h3>
 <table><thead>
