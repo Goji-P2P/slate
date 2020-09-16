@@ -10167,6 +10167,10 @@ each investor&#39;s shares.</p>
 
 <p>Please specify either one or the other when sending an allocation instruction.</p>
 
+<p>⚠️ When allocating initial shares to the <code>nominee</code> the allocation will be placed in a <code>PENDING</code> state until the necessary paperwork has been
+completed by our operations team to fulfil the CASS 6 regulations. Once approved the allocation will be moved into
+an <code>ALLOCATED</code> status and a webhook and email will be triggered notifying the share allocation is now eligible for trading.</p>
+
 <table><thead>
 <tr>
 <th>Key</th>
@@ -10223,6 +10227,12 @@ each investor&#39;s shares.</p>
 <td>Enum</td>
 <td>The nominee involved in the alloc. Value: <code>ORIGINATOR</code>. Required if <code>nominee</code> specified on the allocation.</td>
 </tr>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>Enum</td>
+<td><code>PENDING</code>, <code>CANCELLED</code>, <code>ALLOCATED</code></td>
+</tr>
 </tbody></table>
 <h2 id='settlement-equity-post-allocations'><code>POST /allocations</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/allocations</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -10249,13 +10259,18 @@ each investor&#39;s shares.</p>
   </span><span class="s2">"investor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"nominee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORIGINATOR"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='settlement-equity-code-post-allocations-code-description'>Description</h3>
 <p>Creates a new allocation of shares.</p>
 
 <p>When initially issuing shares, the <code>nominee</code> must be specified.
 When migrating shares, the <code>investor</code> must be specified.</p>
+
+<p>⚠️ When allocating initial shares to the <code>nominee</code> the allocation will be placed in a <code>PENDING</code> state until the necessary paperwork has been
+completed by our operations team to fulfil the CASS 6 regulations. Once approved the allocation will be moved into
+an <code>ALLOCATED</code> status and a webhook and email will be triggered notifying the share allocation is now eligible for trading.</p>
 <h3 id='settlement-equity-code-post-allocations-code-request'>Request</h3>
 <p>Body: <a href="/#settlement-equity-allocation-model">Allocation Model</a></p>
 <h3 id='settlement-equity-code-post-allocations-code-response'>Response</h3>
@@ -10305,7 +10320,8 @@ When migrating shares, the <code>investor</code> must be specified.</p>
   </span><span class="s2">"investor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"nominee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORIGINATOR"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ALLOCATED"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='settlement-equity-code-get-allocations-id-code-description'>Description</h3>
 <p>Retrieves the details of an existing allocation given an allocation <code>id</code> is supplied.</p>
