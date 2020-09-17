@@ -726,7 +726,7 @@ This is fired when account fees have been processed
 }
 ```
 
-This webhook is fired whenever there is a change in `status` of an allocation instructed to be received by a nominee.
+This webhook is fired whenever there is a change in the `status` of an allocation instructed to be received by a nominee.
 
 The `id` references the unique allocation id originally assigned when calling the [`POST /allocations`](/#settlement-equity-post-allocations) endpoint.
 
