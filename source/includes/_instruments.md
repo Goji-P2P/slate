@@ -211,7 +211,12 @@ completed by our operations team to fulfil the CASS 6 regulations. Once approved
 an `ALLOCATED` status and a webhook and email will be triggered notifying the share allocation is now eligible for trading.
 
 For integration purposes, endpoints have been made available in the test environments to manually move the `nominee allocation` into one of the
-termianl statuses. These endpoints are [`PUT /allocations/test/{id}/approve`](#settlement-equity-put-allocations-test-id-approve) and [`PUT /allocations/test/{id}/reject`](#settlement-equity-put-allocations-test-id-reject).
+termianl statuses. 
+
+These endpoints are:
+ 
+ (1) [`PUT /allocations/test/{id}/approve`](#settlement-equity-put-allocations-test-id-approve) 
+ (2) [`PUT /allocations/test/{id}/reject`](#settlement-equity-put-allocations-test-id-reject)
 
 The webhook in question is further described [`here`](#webhooks-nominee_allocation_status_update). 
 
