@@ -616,6 +616,12 @@
                     <a href="#settlement-equity-get-allocations-id" class="toc-h2 toc-link" data-title="GET /allocations/{id}"><code>GET /allocations/{id}</code></a>
                   </li>
                   <li>
+                    <a href="#settlement-equity-put-allocations-test-id-approve" class="toc-h2 toc-link" data-title="PUT /allocations/test/{id}/approve"><code>PUT /allocations/test/{id}/approve</code></a>
+                  </li>
+                  <li>
+                    <a href="#settlement-equity-put-allocations-test-id-reject" class="toc-h2 toc-link" data-title="PUT /allocations/test/{id}/reject"><code>PUT /allocations/test/{id}/reject</code></a>
+                  </li>
+                  <li>
                     <a href="#settlement-equity-trade-settlement" class="toc-h2 toc-link" data-title="Trade Settlement"><em>Trade Settlement</em></a>
                   </li>
                   <li>
@@ -792,6 +798,9 @@
                   </li>
                   <li>
                     <a href="#webhooks-account_fee_processed" class="toc-h2 toc-link" data-title="ACCOUNT_FEE_PROCESSED">ACCOUNT_FEE_PROCESSED</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-nominee_allocation_status_update" class="toc-h2 toc-link" data-title="NOMINEE_ALLOCATION_STATUS_UPDATE">NOMINEE_ALLOCATION_STATUS_UPDATE</a>
                   </li>
               </ul>
           </li>
@@ -10171,6 +10180,16 @@ each investor&#39;s shares.</p>
 completed by our operations team to fulfil the CASS 6 regulations. Once approved the allocation will be moved into
 an <code>ALLOCATED</code> status and a webhook and email will be triggered notifying the share allocation is now eligible for trading.</p>
 
+<p>For integration purposes, endpoints have been made available in the test environments to manually move the <code>nominee allocation</code> into one of the
+terminal statuses. </p>
+
+<p>These endpoints are:</p>
+
+<p>(1) <a href="#settlement-equity-put-allocations-test-id-approve"><code>PUT /allocations/test/{id}/approve</code></a> 
+ (2) <a href="#settlement-equity-put-allocations-test-id-reject"><code>PUT /allocations/test/{id}/reject</code></a></p>
+
+<p>The webhook in question is further described <a href="#webhooks-nominee_allocation_status_update"><code>here</code></a>. </p>
+
 <table><thead>
 <tr>
 <th>Key</th>
@@ -10271,6 +10290,11 @@ When migrating shares, the <code>investor</code> must be specified.</p>
 <p>⚠️ When allocating initial shares to the <code>nominee</code> the allocation will be placed in a <code>PENDING</code> state until the necessary paperwork has been
 completed by our operations team to fulfil the CASS 6 regulations. Once approved the allocation will be moved into
 an <code>ALLOCATED</code> status and a webhook and email will be triggered notifying the share allocation is now eligible for trading.</p>
+
+<p>For integration purposes, endpoints have been made available in the test environments to manually move the <code>nominee allocation</code> into one of the
+terminal statuses. These endpoints are <a href="#settlement-equity-put-allocations-test-id-approve"><code>PUT /allocations/test/{id}/approve</code></a> and <a href="#settlement-equity-put-allocations-test-id-reject"><code>PUT /allocations/test/{id}/reject</code></a>.</p>
+
+<p>The webhook in question is further described <a href="#webhooks-nominee_allocation_status_update"><code>here</code></a>. </p>
 <h3 id='settlement-equity-code-post-allocations-code-request'>Request</h3>
 <p>Body: <a href="/#settlement-equity-allocation-model">Allocation Model</a></p>
 <h3 id='settlement-equity-code-post-allocations-code-response'>Response</h3>
@@ -10345,6 +10369,115 @@ an <code>ALLOCATED</code> status and a webhook and email will be triggered notif
 <td>Allocation exists and is return in the body</td>
 <td>Allocation</td>
 <td>application/json</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>The request was malformed.  See response body</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>401 Unauthorized</td>
+<td>No auth provided, auth failed, or not authorized</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>No allocation with this UUID exists</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-equity-put-allocations-test-id-approve'><code>PUT /allocations/test/{id}/approve</code></h2><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/allocations/test/5dd40510-810e-4a55-a395-04819fd915b9/approve</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+<span class="na">X-GOJI-CLIENT-ID</span><span class="p">:</span> <span class="s">59425d3d-cf73-44ff-aecb-590cd198a4bc</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">ACCEPTED</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+</code></pre><h3 id='settlement-equity-code-put-allocations-test-id-approve-code-description'>Description</h3>
+<p>⚠️ This endpoint is only available in the test and sandbox environments for integration purposes. </p>
+
+<p>It will approve and action an existing allocation towards a nominee.</p>
+
+<p>Off the back of a call to this endpoint, the <a href="#webhooks-nominee_allocation_status_update"><code>NOMINEE_ALLOCATION_STATUS_UPDATE</code></a> webhook is triggered. 
+Post receipt of that webhook, the allocation instruction will have been executed and shares will have been allocated to the nominee.</p>
+<h3 id='settlement-equity-code-put-allocations-test-id-approve-code-request'>Request</h3>
+<p>No body. The <code>id</code> specified as a path parameter refers to the one described here: <a href="/#settlement-equity-allocation-model">Allocation Model</a></p>
+<h3 id='settlement-equity-code-put-allocations-test-id-approve-code-response'>Response</h3>
+<p>No body.</p>
+
+<p>Http Status: </p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Body</th>
+<th>Content-Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>202 Accepted</td>
+<td>Allocation exists and has been updated.</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>The request was malformed.  See response body</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>401 Unauthorized</td>
+<td>No auth provided, auth failed, or not authorized</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>No allocation with this UUID exists</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-equity-put-allocations-test-id-reject'><code>PUT /allocations/test/{id}/reject</code></h2><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/allocations/test/5dd40510-810e-4a55-a395-04819fd915b9/reject</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+<span class="na">X-GOJI-CLIENT-ID</span><span class="p">:</span> <span class="s">59425d3d-cf73-44ff-aecb-590cd198a4bc</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">ACCEPTED</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+</code></pre><h3 id='settlement-equity-code-put-allocations-test-id-reject-code-description'>Description</h3>
+<p>⚠️ This endpoint is only available in the test and sandbox environments for integration purposes. </p>
+
+<p>It will cancel a pending allocation instruction towards a nominee.</p>
+
+<p>Off the back of a call to this endpoint, the <a href="#webhooks-nominee_allocation_status_update"><code>NOMINEE_ALLOCATION_STATUS_UPDATE</code></a> webhook is triggered. </p>
+<h3 id='settlement-equity-code-put-allocations-test-id-reject-code-request'>Request</h3>
+<p>No body. The <code>id</code> specified as a path parameter refers to the one described here: <a href="/#settlement-equity-allocation-model">Allocation Model</a></p>
+<h3 id='settlement-equity-code-put-allocations-test-id-reject-code-response'>Response</h3>
+<p>No body.</p>
+
+<p>Http Status: </p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Body</th>
+<th>Content-Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>202 Accepted</td>
+<td>Allocation exists and has been updated.</td>
+<td>None</td>
+<td>n/a</td>
 </tr>
 <tr>
 <td>400 Bad Request</td>
@@ -13010,6 +13143,27 @@ E.g. settles successfully</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This is fired when account fees have been processed</p>
+<h2 id='webhooks-nominee_allocation_status_update'>NOMINEE_ALLOCATION_STATUS_UPDATE</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b2b8be2d-5575-4c9c-8f89-57398ddc5ff3"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"instrumentSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTRUMENT_SYMBOL"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ALLOCATED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-17T12:43:18.519524Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-18T13:43:18.523776Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This webhook is fired whenever there is a change in the <code>status</code> of an allocation instructed to be received by a nominee.</p>
+
+<p>The <code>id</code> references the unique allocation id originally assigned when calling the <a href="/#settlement-equity-post-allocations"><code>POST /allocations</code></a> endpoint.</p>
+
+<p>There are three statuses that can be returned in a <code>NOMINEE_ALLOCATION_STATUS_UPDATE</code> webhook. 
+These are:</p>
+
+<p>(1) PENDING - this status is set when an allocation instruction towards a nominee is created.</p>
+
+<p>(2) ALLOCATED - a terminal status. This status is set when an allocation instruction towards a nominee been approved and actioned.</p>
+
+<p>(3) CANCELLED - a terminal status. This status is set when an allocation instruction towards a nominee has been rejected and actioned.</p>
 <h1 id='isa-administration'>ISA administration</h1><h2 id='isa-administration-introduction'>Introduction</h2>
 <p><em>Please note this is a standalone API and is not used in conjunction with any of the other APIs.</em></p>
 
