@@ -211,7 +211,7 @@ completed by our operations team to fulfil the CASS 6 regulations. Once approved
 an `ALLOCATED` status and a webhook and email will be triggered notifying the share allocation is now eligible for trading.
 
 For integration purposes, endpoints have been made available in the test environments to manually move the `nominee allocation` into one of the
-termianl statuses. 
+terminal statuses. 
 
 These endpoints are:
  
