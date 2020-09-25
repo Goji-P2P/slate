@@ -9942,6 +9942,16 @@ will automatically be distributed in this scenario a <a href="/#webhooks-batch_u
 <p>(1) <code>paymentInstructions.primaryMarketBankAccountId</code> </p>
 
 <p>(2) <code>feeTypes[].bankAccountId</code></p>
+
+<p>⚠️ Please note that before registering instruments, ownerPartyIds have to be registered at the endpoint:</p>
+
+<p><a href="/#payments-manager-post-companies"><code>POST /companies</code></a></p>
+
+<p>before they can be used for the following instrument attributes
+the company is required to be in a <br>
+<code>REGISTERED</code> state:</p>
+
+<p>(1) <code>ownerPartyId</code></p>
 <h3 id='settlement-equity-instrument-model-required-attributes'>Required Attributes</h3>
 <table><thead>
 <tr>
@@ -9968,6 +9978,12 @@ will automatically be distributed in this scenario a <a href="/#webhooks-batch_u
 <td>String</td>
 <td>AssetClass</td>
 <td>Values: EQUITY</td>
+</tr>
+<tr>
+<td>ownerPartyId</td>
+<td>String</td>
+<td>String</td>
+<td>The partyId of the legal entity that owns the instrument as previously registered.</td>
 </tr>
 <tr>
 <td>paymentInstructions</td>
@@ -10020,6 +10036,7 @@ will automatically be distributed in this scenario a <a href="/#webhooks-batch_u
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPV1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy Parade - SPV1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"assetClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQUITY"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="w">
   </span><span class="s2">"paymentInstructions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"primaryMarketBankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"feeTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -10038,6 +10055,7 @@ will automatically be distributed in this scenario a <a href="/#webhooks-batch_u
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPV1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy Parade - SPV1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"assetClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQUITY"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"paymentInstructions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"primaryMarketBankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"feeTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -10108,6 +10126,7 @@ must be specified.  The <code>FeeSymbol</code>s that have been registered will l
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPV99"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy Parade - SPV99"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"assetClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQUITY"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ownerPartyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"paymentInstructions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"primaryMarketBankAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01700ae3-1b61-41c8-87d9-c59e82f33a41"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"feeTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
