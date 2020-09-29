@@ -73,7 +73,7 @@
 <h2 id='payments-investors-checking-the-kyc-details'>Checking the KYC details</h2>
 <p>Once the Investor has been created, a KYC check is done in the background and the status can be checked by calling <a href="/#investors-get-platformapi-investors-clientid-kyc">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/kyc</a></p>
 
-<p>In the sandbox environment, all Investors are considered verified unless the <code>lastName</code> contains <code>referred</code>.</p>
+<p>In the sandbox environment, all Investors are considered verified unless the <code>lastName</code> contains <code>referred</code> or <code>forcekyc</code>.</p>
 <h2 id='payments-investors-depositing-test-funds'>Depositing Test Funds</h2>
 <blockquote>
 <p>Bank Transfer Details</p>

@@ -1354,7 +1354,7 @@ This will ensure the correct behaviour of payments during your testing.
 <h2 id='quickstart-guides-checking-the-kyc-details'>Checking the KYC details</h2>
 <p>Once the Investor has been created, a KYC check is done in the background and the status can be checked by calling <a href="/#investors-get-platformapi-investors-clientid-kyc">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/kyc</a></p>
 
-<p>In the sandbox environment, all Investors are considered verified unless the <code>lastName</code> contains <code>referred</code>.</p>
+<p>In the sandbox environment, all Investors are considered verified unless the <code>lastName</code> contains <code>referred</code> or <code>forcekyc</code>.</p>
 <h2 id='quickstart-guides-depositing-test-funds'>Depositing Test Funds</h2>
 <blockquote>
 <p>Bank Transfer Details</p>
@@ -1737,9 +1737,9 @@ or over the phone. A full audit of all emails are kept in the admin console.</p>
 <p><code>ENHANCED_VERIFIED</code> The investor has passed enhanced verification. All corporate and international investors are subject to enhanced verification.</p>
 
 <p>To simulate different KYC statuses in sandbox create an investor with last name that contains:
- - By default all investors will get <code>ELECTRONICALLY_VERIFIED</code> status.
- - <code>REFERRED</code> or <code>DECLINED</code> for <code>ENHANCED_VERIFICATION_REQUIRED</code> status
- - <code>INPROGRESS</code> for <code>AWAITING_CREDIT_AGENCY_CHECK</code> status</p>
+ - <code>REFERRED</code>, <code>DECLINED</code> or <code>FORCEKYC</code> for <code>ENHANCED_VERIFICATION_REQUIRED</code> status
+ - <code>INPROGRESS</code> for <code>AWAITING_CREDIT_AGENCY_CHECK</code> status
+ - By default all investors will get <code>ELECTRONICALLY_VERIFIED</code> status.</p>
 
 <p>For <code>ENHANCED_VERIFIED</code> are required intervention from goji admin. After uploading the documents, goji admin will to approve the uploaded documents.</p>
 
