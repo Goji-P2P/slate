@@ -897,10 +897,16 @@ Deprecated and replaced with <a href="#payments-manager-put-platformapi-bankacco
 </span></code></pre><h3 id='settlement-debt-code-post-platformapi-settlement-repayment-code-description'>Description</h3>
 <p>Adds a repayment to an investment.</p>
 
+<ul>
+<li>The system will record the repayments and wait for a deposit into your receiving account matching the amount and reference you specified
+when making the API call.</li>
+<li>Once the money is deposited the system will automatically distribute the funds to investors and notify them of a repayment.</li>
+<li>The system will publish a <a href="/#webhooks-batch_update">BATCH_UPDATE</a> webhook with a type of <code>REPAYMENTS</code> to update you on the progress of the distribution.</li>
+</ul>
+
 <aside class="notice">
-The API call can be made before or after the funds have been deposited into the receiving account. If the funds are present when the API
-call is made they will be distributed immediately. If no funds are present the repayments will be recorded and when the deposit is made it
-will automatically be distributed in this scenario a <a href="/#webhooks-batch_update">BATCH_UPDATE</a> webhook with a type of `REPAYMENTS` will be dispatched upon commencing distribution of funds.
+This behaviour is the default for newly integrating clients, if you wish to enable this feature please contact customer support. Prior to this
+the system will validate the funds are already present matching the reference and amount and will return an error otherwise.
 </aside>
 <h3 id='settlement-debt-code-post-platformapi-settlement-repayment-code-request'>Request</h3>
 <table><thead>
