@@ -1020,7 +1020,7 @@ This will ensure the correct behaviour of payments during your testing.
 <td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
 </tr>
 </tbody></table>
-<h2 id='payments-investors-post-test-account-topup'><code>POST /test/account/topup</code></h2><h3 id='payments-investors-code-post-test-account-topup-code-description'>Description</h3>
+<h2 id='payments-investors-post-test-account-topup'><code>🧪 POST /test/account/topup</code></h2><h3 id='payments-investors-code-post-test-account-topup-code-description'>Description</h3>
 <p>Simulate depositing cash into any bank account managed on the Goji platform.</p>
 
 <p>For an investor account the payment reference must start with <code>ISA</code> if the funds are to be deposited to the ISA account.</p>

@@ -342,15 +342,31 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td>required</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-registering-companies-as-wallet-holders'><em>Registering Companies as Wallet Holders</em></h2><h2 id='payments-manager-post-companies'><code>POST /companies 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/companies</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-registering-companies-as-wallet-holders'><em>Registering Companies as Wallet Holders</em></h2><h2 id='payments-manager-post-companies'><code>POST /companies</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/companies</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
 
 <span class="p">{</span><span class="w">
   </span><span class="s2">"ukCompany"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMITED_COMPANY"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB123456"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fake Company LIMITED"</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fake Company LIMITED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"associatedIndividuals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"surname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dateOfBirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1980-01-01"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"lineOne"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 15 Victory House"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"lineTwo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12 Morris Road"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"lineThree"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greenwich"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"townCity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"England"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E17 FTW"</span><span class="p">,</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
@@ -359,8 +375,25 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <span class="s">  "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",</span>
 <span class="s">  "status": "PENDING",</span>
 <span class="s">  "ukCompany": {</span>
+<span class="s">    "name": "Fake Company LIMITED",</span>
 <span class="s">    "number": "AB123456",</span>
-<span class="s">    "name": "Fake Company LIMITED"</span>
+<span class="s">    "type": "LIMITED_COMPANY",</span>
+<span class="s">    "associatedIndividuals": [</span>
+<span class="s">      {</span>
+<span class="s">        "firstName": "John",</span>
+<span class="s">        "surname": "Smith",</span>
+<span class="s">        "dateOfBirth": "1980-01-01",</span>
+<span class="s">        "address": {</span>
+<span class="s">          "lineOne": "Flat 15 Victory House",</span>
+<span class="s">          "lineTwo": "12 Morris Road",</span>
+<span class="s">          "lineThree": "Greenwich",</span>
+<span class="s">          "townCity": "London",</span>
+<span class="s">          "region": "England",</span>
+<span class="s">          "country": "UK",</span>
+<span class="s">          "postcode": "E17 FTW",</span>
+<span class="s">        }</span>
+<span class="s">      }</span>
+<span class="s">    ]</span>
 <span class="s">  }</span>
 <span class="s">}</span>
 </code></pre><h3 id='payments-manager-code-post-companies-code-description'>Description</h3>
@@ -384,18 +417,99 @@ In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">end
 </tr>
 </thead><tbody>
 <tr>
-<td>ukCompany.number</td>
-<td>string</td>
-<td>The Company Number registered with Companies House.</td>
-<td>required</td>
-</tr>
-<tr>
 <td>ukCompany.name</td>
 <td>string</td>
 <td>Company Name.</td>
 <td>required</td>
 </tr>
+<tr>
+<td>ukCompany.type</td>
+<td>string</td>
+<td>The type of company: SOLE_TRADER, LIMITED_COMPANY, LIMITED_PARTNERSHIP.</td>
+<td>required<sup>1</sup></td>
+</tr>
+<tr>
+<td>ukCompany.number</td>
+<td>string</td>
+<td>The Company Number registered with Companies House.</td>
+<td>optional<sup>2</sup></td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals</td>
+<td>array</td>
+<td>List of associated individuals.</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].firstName</td>
+<td>string</td>
+<td>The first name of the associated individual.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].lastName</td>
+<td>string</td>
+<td>The last name of the associated individual.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].dateOfBirth</td>
+<td>string</td>
+<td>The date of birth of the associated individual. Must be between 18 and 100 years old.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address</td>
+<td>object</td>
+<td></td>
+<td>required</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.lineOne</td>
+<td>string</td>
+<td>Line one of the address.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.lineTwo</td>
+<td>string</td>
+<td>Line two of the address.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.lineThree</td>
+<td>string</td>
+<td>Line three of the address.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.townCity</td>
+<td>string</td>
+<td>The town/city of the address.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.region</td>
+<td>string</td>
+<td>The region of the address eg county.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.postcode</td>
+<td>string</td>
+<td>The post code of the address.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.country</td>
+<td>string</td>
+<td>The country of the associated individual&#39;s address in 3 character ISO code.</td>
+<td>required</td>
+</tr>
 </tbody></table>
+
+<p><sup>1. Required when integrating after 2021-02-15.</sup><br/>
+<sup>2. Required when ukCompany.type is <em>NOT</em> SOLE_TRADER.</sup></p>
 <h3 id='payments-manager-code-post-companies-code-response'>Response</h3>
 <table><thead>
 <tr>
@@ -410,9 +524,14 @@ In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">end
 <td>The Party ID for this company.</td>
 </tr>
 <tr>
-<td>status</td>
+<td>ukCompany.name</td>
 <td>string</td>
-<td>Enum: PENDING, REGISTERED.</td>
+<td>Company Name.</td>
+</tr>
+<tr>
+<td>ukCompany.type</td>
+<td>string</td>
+<td>The type of company: SOLE_TRADER, LIMITED_COMPANY, LIMITED_PARTNERSHIP.</td>
 </tr>
 <tr>
 <td>ukCompany.number</td>
@@ -420,12 +539,67 @@ In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">end
 <td>The Company Number registered with Companies House.</td>
 </tr>
 <tr>
-<td>ukCompany.name</td>
+<td>ukCompany.associatedIndividuals</td>
+<td>array</td>
+<td>List of associated individuals.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].firstName</td>
 <td>string</td>
-<td>Company Name.</td>
+<td>The first name of the associated individual.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].lastName</td>
+<td>string</td>
+<td>The last name of the associated individual.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].dateOfBirth</td>
+<td>string</td>
+<td>The date of birth of the associated individual. Must be between 18 and 100 years old.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address</td>
+<td>object</td>
+<td></td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.lineOne</td>
+<td>string</td>
+<td>Line one of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.lineTwo</td>
+<td>string</td>
+<td>Line two of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.lineThree</td>
+<td>string</td>
+<td>Line three of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.townCity</td>
+<td>string</td>
+<td>The town/city of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.region</td>
+<td>string</td>
+<td>The region of the address eg county.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.postcode</td>
+<td>string</td>
+<td>The post code of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.country</td>
+<td>string</td>
+<td>The country of the associated individual&#39;s address in 3 character ISO code.</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-put-test-companies-id-enable'><code>PUT /test/companies/{id}/enable 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/test/companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502/enable</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-put-test-companies-id-enable'><code>🧪 PUT /test/companies/{id}/enable</code></h2><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/test/companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502/enable</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -464,17 +638,82 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td>Enum: REGISTERED.</td>
 </tr>
 <tr>
+<td>ukCompany.name</td>
+<td>string</td>
+<td>Company Name.</td>
+</tr>
+<tr>
+<td>ukCompany.type</td>
+<td>string</td>
+<td>The type of company: SOLE_TRADER, LIMITED_COMPANY, LIMITED_PARTNERSHIP.</td>
+</tr>
+<tr>
 <td>ukCompany.number</td>
 <td>string</td>
 <td>The Company Number registered with Companies House.</td>
 </tr>
 <tr>
-<td>ukCompany.name</td>
+<td>ukCompany.associatedIndividuals</td>
+<td>array</td>
+<td>List of associated individuals.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].firstName</td>
 <td>string</td>
-<td>Company Name.</td>
+<td>The first name of the associated individual.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].lastName</td>
+<td>string</td>
+<td>The last name of the associated individual.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].dateOfBirth</td>
+<td>string</td>
+<td>The date of birth of the associated individual. Must be between 18 and 100 years old.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address</td>
+<td>object</td>
+<td></td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.lineOne</td>
+<td>string</td>
+<td>Line one of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.lineTwo</td>
+<td>string</td>
+<td>Line two of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.lineThree</td>
+<td>string</td>
+<td>Line three of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.townCity</td>
+<td>string</td>
+<td>The town/city of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.region</td>
+<td>string</td>
+<td>The region of the address eg county.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.postcode</td>
+<td>string</td>
+<td>The post code of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.country</td>
+<td>string</td>
+<td>The country of the associated individual&#39;s address in 3 character ISO code.</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-get-companies'><code>GET /companies 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/companies</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-get-companies'><code>GET /companies</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/companies</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -501,22 +740,92 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </tr>
 </thead><tbody>
 <tr>
-<td>partyId</td>
+<td>[].partyId</td>
 <td>string</td>
-<td></td>
+<td>The Party ID for this company.</td>
 </tr>
 <tr>
-<td>ukCompany.number</td>
+<td>[].status</td>
+<td>string</td>
+<td>Enum: REGISTERED.</td>
+</tr>
+<tr>
+<td>[].ukCompany.name</td>
+<td>string</td>
+<td>Company Name.</td>
+</tr>
+<tr>
+<td>[].ukCompany.type</td>
+<td>string</td>
+<td>The type of company: SOLE_TRADER, LIMITED_COMPANY, LIMITED_PARTNERSHIP.</td>
+</tr>
+<tr>
+<td>[].ukCompany.number</td>
 <td>string</td>
 <td>The Company Number registered with Companies House.</td>
 </tr>
 <tr>
-<td>ukCompany.name</td>
+<td>[].ukCompany.associatedIndividuals</td>
+<td>array</td>
+<td>List of associated individuals.</td>
+</tr>
+<tr>
+<td>[].ukCompany.associatedIndividuals[].firstName</td>
 <td>string</td>
-<td>Company Name</td>
+<td>The first name of the associated individual.</td>
+</tr>
+<tr>
+<td>[].ukCompany.associatedIndividuals[].lastName</td>
+<td>string</td>
+<td>The last name of the associated individual.</td>
+</tr>
+<tr>
+<td>[].ukCompany.associatedIndividuals[].dateOfBirth</td>
+<td>string</td>
+<td>The date of birth of the associated individual. Must be between 18 and 100 years old.</td>
+</tr>
+<tr>
+<td>[].ukCompany.associatedIndividuals[].address</td>
+<td>object</td>
+<td></td>
+</tr>
+<tr>
+<td>[].ukCompany.associatedIndividuals[].address.lineOne</td>
+<td>string</td>
+<td>Line one of the address.</td>
+</tr>
+<tr>
+<td>[].ukCompany.associatedIndividuals[].address.lineTwo</td>
+<td>string</td>
+<td>Line two of the address.</td>
+</tr>
+<tr>
+<td>[].ukCompany.associatedIndividuals[].address.lineThree</td>
+<td>string</td>
+<td>Line three of the address.</td>
+</tr>
+<tr>
+<td>[].ukCompany.associatedIndividuals[].address.townCity</td>
+<td>string</td>
+<td>The town/city of the address.</td>
+</tr>
+<tr>
+<td>[].ukCompany.associatedIndividuals[].address.region</td>
+<td>string</td>
+<td>The region of the address eg county.</td>
+</tr>
+<tr>
+<td>[].ukCompany.associatedIndividuals[].address.postcode</td>
+<td>string</td>
+<td>The post code of the address.</td>
+</tr>
+<tr>
+<td>[].ukCompany.associatedIndividuals[].address.country</td>
+<td>string</td>
+<td>The country of the associated individual&#39;s address in 3 character ISO code.</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-get-companies-id'><code>GET /companies/{id} 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-get-companies-id'><code>GET /companies/{id}</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -543,7 +852,22 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>partyId</td>
 <td>string</td>
-<td>Party ID for the company</td>
+<td>The Party ID for this company.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Enum: REGISTERED.</td>
+</tr>
+<tr>
+<td>ukCompany.name</td>
+<td>string</td>
+<td>Company Name.</td>
+</tr>
+<tr>
+<td>ukCompany.type</td>
+<td>string</td>
+<td>The type of company: SOLE_TRADER, LIMITED_COMPANY, LIMITED_PARTNERSHIP.</td>
 </tr>
 <tr>
 <td>ukCompany.number</td>
@@ -551,12 +875,67 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td>The Company Number registered with Companies House.</td>
 </tr>
 <tr>
-<td>ukCompany.name</td>
+<td>ukCompany.associatedIndividuals</td>
+<td>array</td>
+<td>List of associated individuals.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].firstName</td>
 <td>string</td>
-<td>Company Name</td>
+<td>The first name of the associated individual.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].lastName</td>
+<td>string</td>
+<td>The last name of the associated individual.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].dateOfBirth</td>
+<td>string</td>
+<td>The date of birth of the associated individual. Must be between 18 and 100 years old.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address</td>
+<td>object</td>
+<td></td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.lineOne</td>
+<td>string</td>
+<td>Line one of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.lineTwo</td>
+<td>string</td>
+<td>Line two of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.lineThree</td>
+<td>string</td>
+<td>Line three of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.townCity</td>
+<td>string</td>
+<td>The town/city of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.region</td>
+<td>string</td>
+<td>The region of the address eg county.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.postcode</td>
+<td>string</td>
+<td>The post code of the address.</td>
+</tr>
+<tr>
+<td>ukCompany.associatedIndividuals[].address.country</td>
+<td>string</td>
+<td>The country of the associated individual&#39;s address in 3 character ISO code.</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-managing-wallets'><em>Managing Wallets</em></h2><h2 id='payments-manager-post-wallets'><code>POST /wallets 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-managing-wallets'><em>Managing Wallets</em></h2><h2 id='payments-manager-post-wallets'><code>POST /wallets</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -637,7 +1016,7 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
 <td>Wallet name.</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-get-wallets'><code>GET /wallets 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-get-wallets'><code>GET /wallets</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/wallets</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -727,7 +1106,7 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
 <td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-get-wallets-id'><code>GET /wallets/{id} 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-get-wallets-id'><code>GET /wallets/{id}</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -815,7 +1194,7 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
 <td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-post-wallets-id-payment'><code>POST /wallets/{id}/payment 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213/payment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-post-wallets-id-payment'><code>POST /wallets/{id}/payment</code></h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213/payment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -944,7 +1323,7 @@ Before instructing a payment, the destination bank account must first be <a href
 <td>Insufficient balance to perform an outbound payment of amount: £10.45. Current balance: £0.</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-get-wallets-id-transactions-year-year-month-month'><code>GET /wallets/{id}/transactions/year/{year}/month/{month} 🚧</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213/transactions/year/2020/month/1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-get-wallets-id-transactions-year-year-month-month'><code>GET /wallets/{id}/transactions/year/{year}/month/{month}</code></h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213/transactions/year/2020/month/1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
