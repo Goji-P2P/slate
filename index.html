@@ -832,9 +832,6 @@
                     <a href="#isa-administration-transfers-out" class="toc-h2 toc-link" data-title="Transfers Out">Transfers Out</a>
                   </li>
                   <li>
-                    <a href="#isa-administration-death-of-investor" class="toc-h2 toc-link" data-title="Death of Investor">Death of Investor</a>
-                  </li>
-                  <li>
                     <a href="#isa-administration-tax-year-breaks" class="toc-h2 toc-link" data-title="Tax Year Breaks">Tax Year Breaks</a>
                   </li>
                   <li>
@@ -9966,7 +9963,7 @@ Deprecated and replaced with <a href="#payments-manager-put-platformapi-bankacco
 <tr>
 <td>buySide.feeReference  (optional)</td>
 <td>string</td>
-<td>Alias of the <code>sellSide.reference</code> field. Provided for additional clarity.</td>
+<td>Alias of the <code>buySide.reference</code> field. Provided for additional clarity.</td>
 <td></td>
 </tr>
 <tr>
@@ -13882,77 +13879,111 @@ For each possible way of integrating with the application, you will need to firs
 <p>In this event, Goji will communicate with the new ISA manager and inform them that the Originator will be sending a further payment.</p>
 
 <p>Once the payment is made, a cash transaction should be recorded with type <code>RESIDUAL_INCOME</code> and the amount as a negative value.</p>
-<h2 id='isa-administration-death-of-investor'>Death of Investor</h2>
-<p>In the event of a death of an Investor, specific tasks needed to be carried out to process the tax liability of the ISA-wrapped investments.</p>
+<h3 id='isa-administration-transfers-out-death-of-investor'>Death of Investor</h3>
+<p>In the event of a death of an Investor, specific tasks need to be carried out. The flow will follow one of the following paths:</p>
 
-<p>Any surviving spouse inherits the tax wrapper of the investor&#39;s ISA. The spouse can then invest within this tax wrapper. This is know as an Additional Permitted Subscription.</p>
-
-<p>The Death of Investor flow may follow one of the following paths:</p>
-
-<p>1) Balance removed from account</p>
-
-<p>In this case, the account is transferred to the executor of the estate and all funds are withdrawn.</p>
+<p>1) The investor&#39;s cash and/or investments are being transferred to a surviving spouse on the same platform using an Additional Permitted Subscription (&#39;APS&#39;).
+2) The investor&#39;s cash and/or investments are being transferred to a different ISA Manager for a surviving spouse using an Additional Permitted Subscription (&#39;APS&#39;).
+3) The investor&#39;s cash and/or investments are being transferred to a beneficiary&#39;s ISA on the same platform (not through an APS).
+4) The investor&#39;s cash and/or investments are being transferred to a beneficiary&#39;s non-ISA account on the same platform (not through an APS).
+5) The investor&#39;s cash and/or investments are being transferred to a beneficiary  off-platform (not through an APS).</p>
+<h5 id='isa-administration-transfers-out-death-of-investor-tax-year-breaks-1-the-investor-39-s-cash-and-or-investments-are-being-transferred-to-a-surviving-spouse-on-the-same-platform-using-an-additional-permitted-subscription-39-aps-39'>1) The investor&#39;s cash and/or investments are being transferred to a surviving spouse on the same platform using an Additional Permitted Subscription (&#39;APS&#39;)</h5>
+<p>If you want to transfer investments to a surviving spouse, you must make sure you have the appropriate legal paperwork and technical capability in place to transfer investments on your platform.  Alternatively, you can wait for investments to mature and only transfer cash when it becomes available.
+The process flow is:
+- Notify the Goji operations team of the death by emailing platformsupport@goji.investments.
+- Goji will create a &#39;Death of investor&#39; workflow and lock the account.
+- The Goji operations team will liaise with you and the surviving spouse to complete the relevant APS paperwork and to gather the required paperwork (e.g. death certificate and grant of probate).
+- The surviving spouse must have an active ISA account.  If this isn&#39;t already in place, the surviving spouse must sign-up and create an account.  You must notify us of the account creation in the usual way through the <code>POST /investors</code> API call.
+- Once required paperwork has been provided, Goji will confirm, unlock and the account and ask you to transfer the cash and investments to the beneficiary&#39;s account.
+- To notify us of cash moving between accounts using an APS:
+    - On the deceased account: <code>POST /investors/{investorId}/cash</code>, setting the <code>type</code> to <code>CUSTOMER_WITHDRAWAL</code> with <code>amount.amount</code> set to a positive amount equal to the total cash balance.
+    - On the spouse&#39;s account: <code>POST /cash</code> setting the <code>type</code> to <code>ADDITIONAL_PERMITTED_SUBSCRIPTION</code> with <code>amount.amount</code> set to a positive amount equal to the total cash being transferred.
+- To notify us of investments moving between accounts using an APS:
+    - On the deceased account: <code>POST /investors/{investorId}/investment/{investmentId}/writeOff</code>, with the <code>writeOffAmount.amount</code> equal to the investment balance.
+    - On the spouse&#39;s account: <code>POST /investment</code>, setting the type to <code>ADDITIONAL_PERMITTED_SUBSCRIPTION</code> with <code>originalAmount.amount</code> set to the value of the investment.
+- After the calls are completed, the cash and investment balances of the deceased account should be 0.
+- Let Goji know when you have completed the calls by emailing our Ops team at platformsupport@goji.investments. Goji can then record the date the transfers were completed (for HMRC reporting purposes) and close the workflow and ISA account.</p>
+<h5 id='isa-administration-transfers-out-death-of-investor-tax-year-breaks-2-the-investor-39-s-cash-and-or-investments-are-being-transferred-to-a-different-isa-manager-for-a-surviving-spouse-using-an-additional-permitted-subscription-39-aps-39'>2) The investor&#39;s cash and/or investments are being transferred to a different ISA Manager for a surviving spouse using an Additional Permitted Subscription (&#39;APS&#39;)</h5>
+<p>Only cash can be transferred to an alternative ISA Manager as an APS, loans or bonds cannot be transferred in specie.  If a surviving spouse wants to transfer cash and investments to another ISA Manager via an APS, they will need to wait until investments have matured and repaid.</p>
 
 <p>The process flow is:</p>
 
 <ul>
-<li>Create ‘Death of Investor’ workflow.</li>
-<li>Enter Executor’s details as attachment to workflow.</li>
-<li>Platform changes account’s name to Executor and calls <code>PUT /investors/{investorId}</code> to update details.</li>
-<li>Create ISA valuation in workflow. This is needed to know the value of the ISA at the point of death. Any income received after this date is liable for tax.</li>
-<li>Platform sells all investments and records repayments via API.</li>
-<li>Cash is withdrawn and recorded via API.</li>
-<li>Workflow is closed once balance is zero.</li>
+<li>Notify the Goji operations team of the death by emailing platformsupport@goji.investments.</li>
+<li>Goji will create a &#39;Death of investor&#39; workflow and lock the account.</li>
+<li>The Goji operations team will liaise with you, the surviving spouse and the new ISA Manager to complete the relevant APS paperwork and to gather the required paperwork (e.g. death certificate and grant of probate).</li>
+<li>Once required paperwork has been provided, Goji will confirm, unlock and the account and ask you to transfer the cash to the new ISA manager. You must notify us once the transfer has completed with <code>POST /investors/{investorId}/cash</code>, setting the <code>type</code> to <code>CUSTOMER_WITHDRAWAL</code> with <code>amount.amount</code> set to a positive amount equal to the total cash balance.</li>
+<li>After the call is completed, the cash and investment balances of the deceased account should be 0.</li>
+<li>Let Goji know when you have completed the calls by emailing our Ops team at platformsupport@goji.investments. Goji can then record the date the transfers were completed (for HMRC reporting purposes) and close the workflow and ISA account.</li>
 </ul>
+<h5 id='isa-administration-transfers-out-death-of-investor-tax-year-breaks-3-the-investor-39-s-cash-and-or-investments-are-being-transferred-to-a-beneficiary-39-s-isa-on-the-same-platform-not-through-an-aps'>3) The investor&#39;s cash and/or investments are being transferred to a beneficiary&#39;s ISA on the same platform (not through an APS)</h5>
+<p>If you want to transfer investments to a beneficiary, you must make sure you have the appropriate legal paperwork and technical capability in place to transfer investments on your platform.  Alternatively, you can wait for investments to mature and only transfer cash when it becomes available.</p>
 
-<p>2) Balance transferred to spouse&#39;s account on the platform via an APS</p>
-
-<p>In this case, the investor&#39;s ISA tax wrapper is transferred to the spouse&#39;s account on the same platform.</p>
+<p>To transfer cash or investments into the beneficiary&#39;s ISA, they must have sufficient ISA allowance remaining in the current tax year to cover the amount being transferred.  You can split the transfer between the beneficiary&#39;s general and ISA account if needed (e.g. Investor A has died with a cash balance of £10k and an investment balance of £15k. Investor B is inheriting all investments and cash and has a remaining ISA allowance of £10k. Investor B can only transfer £10k of cash or investments into their ISA. The remaining balances must be transferred to their general account using option 4 below).</p>
 
 <p>The process flow is:</p>
 
 <ul>
-<li>Create ‘Death of Investor’ workflow.</li>
-<li>Enter Executor’s details as attachment to workflow.</li>
-<li>Platform changes account’s name to Executor and calls <code>PUT /investors/{investorId}</code> to update details.</li>
-<li>Create ISA valuation in workflow.</li>
-<li>Spouse’s ISA account is created.</li>
-<li>Create APS workflow for spouse.</li>
-<li>Attach signed copy of APS declaration.</li>
-<li>Enter APS amount in workflow (this is taken from the ISA valuation on the deceased investor’s account).</li>
-<li>If there is cash on account, withdraw this from the deceased investor and record using the API.</li>
-<li>Deposit the cash to the spouse’s ISA account and record via the API using <code>/cash</code> setting the cash transaction type to <code>ADDITIONAL_PERMITTED_SUBSCRIPTION</code>.</li>
-<li>If investments should be novated to the spouse, remove them from the deceased investor’s account and record using <code>DELETE /investment/{investmentId}</code>.</li>
-<li>Add the investment to the spouse’s ISA by first entering a deposit with type <code>ADDITIONAL_PERMITTED_SUBSCRIPTION</code> for the value of the investment and then recording the new investment using <code>POST /investment</code>.</li>
-<li>Workflow can be closed.</li>
+<li>Notify the Goji operations team of the death by emailing platformsupport@goji.investments.</li>
+<li>Goji will create a &#39;Death of investor&#39; workflow and lock the account.</li>
+<li>The Goji operations team will liaise with you and the beneficiary to gather the required paperwork (e.g. death certificate and grant of probate).</li>
+<li>The beneficiary must have an active ISA account.  If this isn&#39;t already in place, they must sign-up and create an account.  You must notify us of the account creation in the usual way through the <code>POST /investors</code> API call.</li>
+<li>Once required paperwork has been provided, Goji will confirm, unlock and the account and ask you to transfer the cash and investments to the beneficiary&#39;s account.</li>
+<li>To notify us of cash moving <strong>between ISA accounts</strong>:
+
+<ul>
+<li>On the deceased account: <code>POST /investors/{investorId}/cash</code>, setting the <code>type</code> to <code>CUSTOMER_WITHDRAWAL</code> with <code>amount.amount</code> set to a positive amount equal to the total cash balance.</li>
+<li>On the beneficiary&#39;s account: <code>POST /investors/{investorId}/cash</code> setting the <code>type</code> to <code>CUSTOMER_DEPOSIT</code> with <code>amount.amount</code> set to a positive amount equal to the total cash being transferred.</li>
+</ul></li>
+<li>To notify us of investments moving <strong>between ISA accounts</strong>:
+
+<ul>
+<li>On the deceased account: <code>POST /investors/{investorId}/investment/{investmentId}/writeOff</code>, with the <code>writeOffAmount.amount</code> equal to the investment balance.</li>
+<li>On the beneficiary&#39;s account: <code>POST /investors/{investorId}/investment</code>, setting the type to <code>LOAN</code> with <code>OriginalAmount.amount</code> set to the value of the investment.</li>
+</ul></li>
+<li>After the calls are completed, the cash and investment balances of the deceased account should be 0.</li>
+<li>Let Goji know when you have completed the calls by emailing our Ops team at platformsupport@goji.investments. Goji can then record the date the transfers were completed (for HMRC reporting purposes) and close the workflow and ISA account.</li>
 </ul>
-
-<p>3) Inputting APS from another platform</p>
-
-<p>In this case, the surviving spouse has an APS that they want to use on the platform.</p>
+<h5 id='isa-administration-transfers-out-death-of-investor-tax-year-breaks-4-the-investor-39-s-cash-and-or-investments-are-being-transferred-to-a-beneficiary-39-s-non-isa-account-on-the-same-platform-not-through-an-aps'>4) The investor&#39;s cash and/or investments are being transferred to a beneficiary&#39;s non-ISA account on the same platform (not through an APS)</h5>
+<p>If you want to transfer investments to a beneficiary, you must make sure you have the appropriate legal paperwork and technical capability in place to transfer investments on your platform.  Alternatively, you can wait for investments to mature and only transfer cash when it becomes available.</p>
 
 <p>The process flow is:</p>
 
 <ul>
-<li>Create the ISA for the spouse.</li>
-<li>Create APS workflow for spouse.</li>
-<li>Attach signed copy of APS declaration.</li>
-<li>Enter APS amount in workflow (this is taken from the ISA valuation on the deceased investor’s account received from the previous ISA manager).</li>
-<li>Deposit the cash to the spouse’s ISA account and record via the API using <code>/cash</code> setting the cash transaction type to <code>ADDITIONAL_PERMITTED_SUBSCRIPTION</code>. HMRC require the investor to identify which subscriptions they are making within an APS.</li>
+<li>Notify the Goji operations team of the death by emailing platformsupport@goji.investments.</li>
+<li>Goji will create a &#39;Death of investor&#39; workflow and lock the account.</li>
+<li>The Goji operations team will liaise with you and the beneficiary to gather the required paperwork (e.g. death certificate and grant of probate).</li>
+<li>Once required paperwork has been provided, Goji will confirm, unlock and the account and ask you to transfer the cash and investments to the beneficiary&#39;s account.</li>
+<li>To notify us of cash moving from an ISA account to a non-ISA account:
+
+<ul>
+<li>On the deceased account: <code>POST /investors/{investorId}/cash</code>, setting the <code>type</code> to <code>CUSTOMER_WITHDRAWAL</code> with <code>amount.amount</code> set to a positive amount equal to the total cash balance.</li>
+</ul></li>
+<li>To notify us of investments moving from an ISA account to a non-ISA account:
+
+<ul>
+<li>On the deceased account: <code>POST /investors/{investorId}/investment/{investmentId}/writeOff</code>, with the <code>writeOffAmount.amount</code> equal to the investment balance.</li>
+</ul></li>
+<li>After the calls are completed, the cash and investment balances of the deceased account should be 0.</li>
+<li>Let Goji know when you have completed the calls by emailing our Ops team at platformsupport@goji.investments. Goji can then record the date the transfers were completed (for HMRC reporting purposes) and close the workflow and ISA account.</li>
 </ul>
-
-<p>4) Transferring APS to another platform</p>
-
-<p>In this case, the surviving spouse wishes to use the APS with another ISA manager.</p>
+<h5 id='isa-administration-transfers-out-death-of-investor-tax-year-breaks-5-the-investor-39-s-cash-and-or-investments-are-being-transferred-to-a-beneficiary-off-platform-not-through-an-aps'>5) The investor&#39;s cash and/or investments are being transferred to a beneficiary  off-platform (not through an APS)</h5>
+<p>Only cash can be withdrawn off the platform by a beneficiary. If a surviving beneficiary wants to withdraw all cash and investments, they will need to wait until investments have matured and repaid.</p>
 
 <p>The process flow is:</p>
 
 <ul>
-<li>Create ‘Death of Investor’ workflow.</li>
-<li>Enter Executor’s details as attachment to workflow.</li>
-<li>Platform changes account’s name to Executor and calls <code>PUT /investor/{investorId}</code> to update details.</li>
-<li>Create ISA valuation in workflow.</li>
-<li>Goji will complete an APS transfer form to the new ISA manager detailing the value of the APS.</li>
+<li>Notify the Goji operations team of the death by emailing platformsupport@goji.investments.</li>
+<li>Goji will create a &#39;Death of investor&#39; workflow and lock the account.</li>
+<li>The Goji operations team will liaise with you and the beneficiary to gather the required paperwork (e.g. death certificate and grant of probate).</li>
+<li>Once required paperwork has been provided, Goji will confirm, unlock and the account and ask you to facilitate the beneficiary withdrawing the cash.</li>
+<li>To notify us of cash being withdrawn:
+
+<ul>
+<li>On the deceased account: <code>POST /investors/{investorId}/cash</code>, setting the <code>type</code> to <code>CUSTOMER_WITHDRAWAL</code> with <code>amount.amount</code> set to a positive amount equal to the total cash balance.</li>
+</ul></li>
+<li>After the calls are completed, the cash and investment balances of the deceased account should be 0.</li>
+<li>Let Goji know when you have completed the calls by emailing our Ops team at platformsupport@goji.investments. Goji can then record the date the transfers were completed (for HMRC reporting purposes) and close the workflow and ISA account.</li>
 </ul>
 <h2 id='isa-administration-tax-year-breaks'>Tax Year Breaks</h2>
 <p>A tax year break occurs when an investor has not subscribed for a whole tax year and is therefore required to re-open an ISA before they can make further subscriptions.</p>

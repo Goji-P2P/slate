@@ -695,7 +695,7 @@ Deprecated and replaced with <a href="#payments-manager-put-platformapi-bankacco
 <tr>
 <td>buySide.feeReference  (optional)</td>
 <td>string</td>
-<td>Alias of the <code>sellSide.reference</code> field. Provided for additional clarity.</td>
+<td>Alias of the <code>buySide.reference</code> field. Provided for additional clarity.</td>
 <td></td>
 </tr>
 <tr>
