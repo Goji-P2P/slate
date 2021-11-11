@@ -862,7 +862,7 @@ This legacy behaviour is only enabled for a few clients. Newly integrating clien
 <td>The sort code for the repayment deposit.</td>
 </tr>
 </tbody></table>
-<h2 id='settlement-debt-post-platformapi-settlement-repayment-only-valid-if-registering-references-manually'><code>POST /platformApi/settlement/repayment</code> (only valid if registering references manually)</h2><pre class="highlight http tab-http"><code><span class="err">
+<h2 id='settlement-debt-post-platformapi-settlement-repayment'><code>POST /platformApi/settlement/repayment</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/platformApi/settlement/repayment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -898,7 +898,7 @@ This legacy behaviour is only enabled for a few clients. Newly integrating clien
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="s2">""</span><span class="w">
-</span></code></pre><h3 id='settlement-debt-code-post-platformapi-settlement-repayment-code-only-valid-if-registering-references-manually-description'>Description</h3>
+</span></code></pre><h3 id='settlement-debt-code-post-platformapi-settlement-repayment-code-description'>Description</h3>
 <p>Adds a repayment to an investment.</p>
 
 <aside class="warning">
@@ -911,7 +911,7 @@ when making the API call.</li>
 <li>Once the money is deposited the system will automatically distribute the funds to investors and notify them of a repayment.</li>
 <li>The system will publish a <a href="/#webhooks-batch_update">BATCH_UPDATE</a> webhook with a type of <code>REPAYMENTS</code> to update you on the progress of the distribution.</li>
 </ul>
-<h3 id='settlement-debt-code-post-platformapi-settlement-repayment-code-only-valid-if-registering-references-manually-request'>Request</h3>
+<h3 id='settlement-debt-code-post-platformapi-settlement-repayment-code-request'>Request</h3>
 <table><thead>
 <tr>
 <th>Name</th>
