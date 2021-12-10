@@ -273,6 +273,9 @@
                     <a href="#quickstart-guides-register-a-payment-destination" class="toc-h2 toc-link" data-title="Register a Payment Destination">Register a Payment Destination</a>
                   </li>
                   <li>
+                    <a href="#quickstart-guides-repaying-the-investment-customers-using-wallets" class="toc-h2 toc-link" data-title="Repaying the Investment (customers using wallets)">Repaying the Investment (customers using wallets)</a>
+                  </li>
+                  <li>
                     <a href="#quickstart-guides-repaying-the-investment" class="toc-h2 toc-link" data-title="Repaying the Investment">Repaying the Investment</a>
                   </li>
                   <li>
@@ -542,10 +545,10 @@
                     <a href="#settlement-debt-making-an-investment" class="toc-h2 toc-link" data-title="Making an investment">Making an investment</a>
                   </li>
                   <li>
-                    <a href="#settlement-debt-bond-repayments" class="toc-h2 toc-link" data-title="Bond repayments">Bond repayments</a>
+                    <a href="#settlement-debt-investor-repayments-using-wallets" class="toc-h2 toc-link" data-title="Investor repayments using wallets">Investor repayments using wallets</a>
                   </li>
                   <li>
-                    <a href="#settlement-debt-bond-maturity" class="toc-h2 toc-link" data-title="Bond maturity">Bond maturity</a>
+                    <a href="#settlement-debt-investor-repayments-without-using-wallets" class="toc-h2 toc-link" data-title="Investor repayments without using wallets">Investor repayments without using wallets</a>
                   </li>
                   <li>
                     <a href="#settlement-debt-secondary-market" class="toc-h2 toc-link" data-title="Secondary market">Secondary market</a>
@@ -1518,7 +1521,56 @@ This will ensure the correct behaviour of payments during your testing.
 <p>The investor&#39;s investment can be queried by calling:</p>
 
 <p><a href="/#settlement-debt-get-platformapi-settlement-investors-clientid-accounts-accounttype-investments">GET https://api-sandbox.goji.investments/platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments</a></p>
+<h2 id='quickstart-guides-repaying-the-investment-customers-using-wallets'>Repaying the Investment (customers using wallets)</h2>
+<p>This applies if you are using our flexible payments (wallets) functionality.</p>
+
+<blockquote>
+<p>Record Repayment</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sourceWalletId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sourceWalletId"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"investorRepayments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"investmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CAPITAL"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"investmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CAPITAL"</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><a href="/#settlement-debt-post-platformapi-settlement-investor-repayment">POST https://api-sandbox.goji.investments/platformApi/settlement/investor-repayment</a></p>
+
+<ul>
+<li>The system will move money from the wallet specified referenced by <code>sourceWalletId</code> to all the investors specified in the <code>investorRepayments</code> array.</li>
+<li>For any successful batch, it is guaranteed that there will be at least one payment into an investor account for each entry in the <code>investorRepayments</code> array (there may be more than one payment per entry if payments are split for any reason). However, there will be exactly one <code>INVESTMENT_PAYMENT_RECEIVED</code> webhook per entry in the array, when the final payment arrives for that investor.</li>
+<li>No guarantees of any kind are made regarding the number of outgoing payments from the source wallet. Goji&#39;s systems will move the money via pass-through accounts in the most efficient way.</li>
+<li>We publish a set of webhooks to update your system on the status of the repayment batch going from accepted all the way through to completed.</li>
+<li>These webhooks should allow full visibility of the repayment batch throughout the course of the instruction being carried out.</li>
+</ul>
+
+<aside class="notice">
+This behaviour is the default for clients who are using our flexible payments functionality alongside the Settlement module.
+</aside>
 <h2 id='quickstart-guides-repaying-the-investment'>Repaying the Investment</h2>
+<p>This applies if you are not using our flexible payments (wallets) functionality.</p>
+
 <blockquote>
 <p>Repaying Investment</p>
 </blockquote>
@@ -1565,7 +1617,7 @@ when making the API call.</li>
 </ul>
 
 <aside class="notice">
-This behaviour is the default for newly integrating clients, if you wish to enable this feature please contact customer support. Prior to this
+This behaviour is the default for newly integrating clients who are not using our flexible payments integration. If you wish to enable this feature please contact customer support. Prior to this
 the system will validate the funds are already present matching the reference and amount and will return an error otherwise.
 </aside>
 <h2 id='quickstart-guides-withdrawing-funds'>Withdrawing Funds</h2>
@@ -9299,25 +9351,24 @@ they will be made available in the ISA.</p>
 <p>The investment manager will periodically record an investment in the Goji platform via the API. This will trigger a
 record of the investment against the investors&#39; accounts and also move the funds from the client money account to the investment manager.</p>
 
-<p><img src="images/settlement/images/client-money-investment-97741d18.png" alt="Client money investment" /></p>
-<h2 id='settlement-debt-bond-repayments'>Bond repayments</h2>
+<p><img src="images/settlement/images/client-money-investment-97741d18.png" title="performing an investment flow" alt="Client money investment" /></p>
+<h2 id='settlement-debt-investor-repayments-using-wallets'>Investor repayments using wallets</h2>
+<p>The investment manager will calculate repayments and any withholding tax that are due to the investors in the bond. The investment manager will
+record the due repayment via the API. This will start distribution of funds from the specified wallet to each investor account. The system will publish webhooks on every individual repayment clearing as well as the acceptance and the clearing of the batch.</p>
+
+<p><img src="images/settlement/images/repayments_flow_high_level-e5c0bdc3.png" title="high level wallet based repayment flow" alt="Repayments flow high level" /></p>
+<h2 id='settlement-debt-investor-repayments-without-using-wallets'>Investor repayments without using wallets</h2>
 <p>The investment manager will calculate repayments and any withholding tax that are due to the investors in the bond. The investment manager will
 record the due repayment via the API. Once the funds are received, they will be distributed to the appropriate investors and any tax or fees specified will
 be returned to the investment manager to the specified payment destination</p>
 
-<p><img src="images/settlement/images/client-money-repayment-0089a363.png" alt="Client money repayment" /></p>
-<h2 id='settlement-debt-bond-maturity'>Bond maturity</h2>
-<p>When the bond matures, the investment manager will calculate repayments that are due to the investors in the bond. The investment manager will
-record the due repayment via the API. Once the funds are received, they will be distributed to the appropriate investors and any tax or fees specified will
-be returned to the investment manager to the specified payment destination.</p>
-
-<p><img src="images/settlement/images/client-money-maturity-d086ae83.png" alt="Client money maturity" /></p>
+<p><img src="images/settlement/images/client-money-repayment-0089a363.png" title="high level non wallet based repayment flow" alt="Client money repayment" /></p>
 <h2 id='settlement-debt-secondary-market'>Secondary market</h2>
 <p>When the investment manager wishes to transfer ownership of a loan (or part thereof), the sale is recorded via the API
 to the Goji platform. If appropriate funds are available in the buyer&#39;s account in the Goji platform, the appropriate
 transactions are recorded and funds are moved to the seller&#39;s account.</p>
 
-<p><img src="images/settlement/images/client-money-secondary-market-40e1fda0.png" alt="Client money secondary market" /></p>
+<p><img src="images/settlement/images/client-money-secondary-market-40e1fda0.png" title="high level secondary market flow" alt="Client money secondary market" /></p>
 <h2 id='settlement-debt-get-platformapi-settlement-product'><code>GET /platformApi/settlement/product</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/platformApi/settlement/product</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -9815,7 +9866,7 @@ Deprecated and replaced with <a href="#payments-manager-put-platformapi-bankacco
 <tr>
 <td>investments[].id</td>
 <td>string</td>
-<td>The unique ID for this clients investment</td>
+<td>The unique ID for this clients investment as registered <a href="/#settlement-debt-post-platformapi-settlement-tranche">here</a></td>
 <td>required</td>
 </tr>
 <tr>
@@ -10289,12 +10340,16 @@ when making the API call.</li>
   </span><span class="s2">"repaymentBatchReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"repaymentBatchReference"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='settlement-debt-code-post-platformapi-settlement-investor-repayment-code-description'>Description</h3>
-<p>Adds repayments to investments from a specified wallet.</p>
+<p>Adds repayments to investments from a specified flexible payments wallet.</p>
 
 <ul>
-<li>On receiving the API call, the system will reserve money in the wallet and start the distribution process provided the &quot;sourceWalletId&quot; has enough funds.</li>
-<li>There is no need to manually move money to the receiving account.</li>
-<li>The system will publish a <a href="/#webhooks-batch_update">BATCH_UPDATE</a> webhook with a type of <code>REPAYMENTS</code> to provide an update on the progress of the distribution.</li>
+<li>On receiving the API call, the system will reserve money in the wallet and start the distribution process provided the <code>sourceWalletId</code> has enough funds.</li>
+<li>There is no need to manually move money from a wallet to the receiving account.</li>
+<li>The system will publish an <a href="/#webhooks-investment_repayment_instruction_received">INVESTMENT_REPAYMENT_INSTRUCTION_RECEIVED</a> webhook once the repayment batch has been accepted.</li>
+<li>The system will then publish &quot;n&quot; webhooks of type <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a>, where &quot;n&quot; is the size of the <code>investorRepayments</code> array, as each repayment in the batch is cleared.</li>
+<li>Finally the system will publish an <a href="/#webhooks-investment_repayment_batch_complete">INVESTMENT_REPAYMENT_BATCH_COMPLETE</a> webhook when the batch in considered complete. This is a batch process and therefore might be sent later than the last repayment to clear.</li>
+<li>These webhooks should provide coverage of all stages of the batch clearing. When using <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a>, it might be relevant to ignore all <a href="/#webhooks-investor_funds_received">INVESTOR_FUNDS_RECEIVED</a> webhooks with a <code>sourceType</code> of <code>CAPITAL_REPAYMENT</code> or <code>INTEREST_REPAYMENT</code> .</li>
+<li>All these webhooks will reference <code>repaymentBatchReference</code> so you are required to store this value for reconciling repayments as they clear.</li>
 </ul>
 
 <aside class="notice">
@@ -10312,7 +10367,7 @@ This endpoint is the only call required to repay investments for any platform on
 <tr>
 <td>reference</td>
 <td>string</td>
-<td>The payment reference used for the repayment of funds. Will also be present on <code>INVESTOR_FUNDS_RECEIVED</code> webhook</td>
+<td>The payment reference used for the repayment of funds. This will be present on the wallet statement.</td>
 <td>required</td>
 </tr>
 <tr>
@@ -10330,7 +10385,7 @@ This endpoint is the only call required to repay investments for any platform on
 <tr>
 <td>investorRepayments[].investmentId</td>
 <td>string</td>
-<td>The ID of the of the investment</td>
+<td>The ID of the of the investment that was specified in the original <a href="/#settlement-debt-post-platformapi-settlement-tranche">investment creation call</a></td>
 <td>required</td>
 </tr>
 <tr>
@@ -10364,6 +10419,34 @@ This endpoint is the only call required to repay investments for any platform on
 <td>repaymentBatchReference</td>
 <td>string</td>
 <td>The unique ID for this repayment request</td>
+</tr>
+</tbody></table>
+<h3 id='settlement-debt-code-post-platformapi-settlement-investor-repayment-code-possible-http-statuses'>Possible HTTP Statuses</h3>
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Description</th>
+<th>Body</th>
+<th>Content-Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200 Ok</td>
+<td>Batch accepted to be instructed. Note that this does not indicate completion or success. Subsequent processing is asynchronous, so the caller should listen to the webhooks detailed above to determine progress.</td>
+<td>See above</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>The request was malformed. See body for more information</td>
+<td><a href="/#errors-bad-request">Error</a></td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>50x Unknown errors and timeouts</td>
+<td>Unknown errors and timeouts. The caller should not assume that the request has failed. Listen for any subsequent webhooks indicating processing may have started, and ensure any automated retries use the X-CLIENT-REQUEST-ID header and repeat within a maximum of 24 hours to prevent double-processing</td>
+<td><a href="/#errors-internal-server-error">Error</a></td>
+<td>application/json</td>
 </tr>
 </tbody></table>
 <h2 id='settlement-debt-get-investor-repayment'><code>GET /investor-repayment</code></h2><pre class="highlight http tab-http"><code><span class="err">
