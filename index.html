@@ -14532,7 +14532,8 @@ For each possible way of integrating with the application, you will need to firs
 
 <ul>
 <li>On the deceased account: <code>POST /investors/{investorId}/investment/{investmentId}/writeOff</code>, with the <code>writeOffAmount.amount</code> equal to the investment balance.</li>
-<li>On the spouse&#39;s account: <code>POST /investment</code>, setting the type to <code>ADDITIONAL_PERMITTED_SUBSCRIPTION</code> with <code>originalAmount.amount</code> set to the value of the investment.</li>
+<li>On the spouse’s account: <code>POST /cash</code> setting the type to <code>ADDITIONAL_PERMITTED_SUBSCRIPTION</code> with <code>amount.amount</code> set to a positive amount equal to the investment balance being transferred.</li>
+<li>On the spouse’s account: <code>POST /investors/{investorId}/investment</code>, with the <code>clientinvestmentId</code> and other investment details the same as the deceased investor’s loan.</li>
 </ul></li>
 <li>After the calls are completed, the cash and investment balances of the deceased account should be 0.</li>
 <li>Let Goji know when you have completed the calls by emailing our Ops team at platformsupport@goji.investments. Goji can then record the date the transfers were completed (for HMRC reporting purposes) and close the workflow and ISA account.</li>
@@ -14573,7 +14574,8 @@ For each possible way of integrating with the application, you will need to firs
 
 <ul>
 <li>On the deceased account: <code>POST /investors/{investorId}/investment/{investmentId}/writeOff</code>, with the <code>writeOffAmount.amount</code> equal to the investment balance.</li>
-<li>On the beneficiary&#39;s account: <code>POST /investors/{investorId}/investment</code>, setting the type to <code>LOAN</code> with <code>OriginalAmount.amount</code> set to the value of the investment.</li>
+<li>On the receiving account: <code>POST /cash</code> setting the type to <code>CUSTOMER_DEPOSIT</code> with <code>amount.amount</code> set to a positive amount equal to the investment balance being transferred.</li>
+<li>On the receiving account: <code>POST /investors/{investorId}/investment</code>, with the <code>clientinvestmentId</code> and other investment details the same as the deceased investor’s loan.</li>
 </ul></li>
 <li>After the calls are completed, the cash and investment balances of the deceased account should be 0.</li>
 <li>Let Goji know when you have completed the calls by emailing our Ops team at platformsupport@goji.investments. Goji can then record the date the transfers were completed (for HMRC reporting purposes) and close the workflow and ISA account.</li>
