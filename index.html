@@ -6872,7 +6872,7 @@ This will ensure the correct behaviour of payments during your testing.
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-<span class="s2">""</span><span class="w">
+<span class="s2">"SUCCESS"</span><span class="w">
 </span></code></pre><h3 id='payments-investors-code-post-platformapi-investors-clientid-accounts-accounttype-withdrawal-code-description'>Description</h3>
 <p>Withdraw cash from the specified account to the registered investor bank details.</p>
 <h3 id='payments-investors-code-post-platformapi-investors-clientid-accounts-accounttype-withdrawal-code-request'>Request</h3>
@@ -6907,90 +6907,6 @@ This will ensure the correct behaviour of payments during your testing.
 <td>string</td>
 <td>An optional reference to be used when withdrawing funds.</td>
 <td>optional</td>
-</tr>
-</tbody></table>
-<h3 id='payments-investors-code-post-platformapi-investors-clientid-accounts-accounttype-withdrawal-code-response'>Response</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>totalBalance</td>
-<td>ref</td>
-<td>The total balance. The sum of the invested, queued and cash balances.</td>
-</tr>
-<tr>
-<td>totalBalance.amount</td>
-<td>number</td>
-<td>The amount.</td>
-</tr>
-<tr>
-<td>totalBalance.currency</td>
-<td>string</td>
-<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
-</tr>
-<tr>
-<td>totalCashBalance</td>
-<td>ref</td>
-<td>The total cash balance.</td>
-</tr>
-<tr>
-<td>totalCashBalance.amount</td>
-<td>number</td>
-<td>The amount.</td>
-</tr>
-<tr>
-<td>totalCashBalance.currency</td>
-<td>string</td>
-<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
-</tr>
-<tr>
-<td>totalQueuedInvestedBalance</td>
-<td>ref</td>
-<td>The total queued for investment.</td>
-</tr>
-<tr>
-<td>totalQueuedInvestedBalance.amount</td>
-<td>number</td>
-<td>The amount.</td>
-</tr>
-<tr>
-<td>totalQueuedInvestedBalance.currency</td>
-<td>string</td>
-<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
-</tr>
-<tr>
-<td>totalInvestedBalance</td>
-<td>ref</td>
-<td>The total invested balance.</td>
-</tr>
-<tr>
-<td>totalInvestedBalance.amount</td>
-<td>number</td>
-<td>The amount.</td>
-</tr>
-<tr>
-<td>totalInvestedBalance.currency</td>
-<td>string</td>
-<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
-</tr>
-<tr>
-<td>isaRemainingSubscriptionAmount</td>
-<td>ref</td>
-<td>The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance</td>
-</tr>
-<tr>
-<td>isaRemainingSubscriptionAmount.amount</td>
-<td>number</td>
-<td>The amount.</td>
-</tr>
-<tr>
-<td>isaRemainingSubscriptionAmount.currency</td>
-<td>string</td>
-<td>The ISO 4217 three character codes eg &#39;GBP&#39;</td>
 </tr>
 </tbody></table>
 <h2 id='payments-investors-post-platformapi-investors-clientid-accounts-accounttype-transfer'><code>POST /platformApi/investors/{clientId}/accounts/{accountType}/transfer</code></h2><pre class="highlight http tab-http"><code><span class="err">
