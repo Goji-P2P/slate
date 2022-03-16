@@ -207,14 +207,10 @@ Retrieves a list of cash transactions associated with a given investor.
 ## `GET /platformApi/investors/{clientId}/bankTransferDetails`
 
 ```http
-
 GET /platformApi/investors/{clientId}/bankTransferDetails HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
-
-
-
 ```
 
 ```http
@@ -222,19 +218,21 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "bankReference" : "bankReference",
-  "accountNumber" : "accountNumber",
-  "sortCode" : "sortCode"
+  "bankReference" : "REF",
+  "accountName" : "John Smith",
+  "accountNumber" : "12345678",
+  "sortCode" : "123456"
 }
 ```
 ### Description
 Retrieve the bank details for depositing funds to the general investments account.
 ### Response
-| Name          | Type   | Description                            |
-| ------------- | ------ | -------------------------------------- |
-| accountNumber | string | The account number.                    |
-| sortCode      | string | The sort code.                         |
-| bankReference | string | The reference to use for the transfer. |
+| Name          | Type   | Description                                               |
+|---------------|--------|-----------------------------------------------------------|
+| accountName   | string | The account name. (can be used for Confirmation of Payee) |
+| accountNumber | string | The account number.                                       |
+| sortCode      | string | The sort code.                                            |
+| bankReference | string | The reference to use for the transfer.                    |
 
 ## `GET /platformApi/investors/{clientId}/bankTransferDetails/isa`
 
@@ -254,19 +252,21 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "bankReference" : "bankReference",
-  "accountNumber" : "accountNumber",
-  "sortCode" : "sortCode"
+  "bankReference" : "REF",
+  "accountName" : "John Smith",
+  "accountNumber" : "12345678",
+  "sortCode" : "123456"
 }
 ```
 ### Description
 Retrieve the bank details for depositing funds to the ISA account.
 ### Response
-| Name          | Type   | Description                            |
-| ------------- | ------ | -------------------------------------- |
-| accountNumber | string | The account number.                    |
-| sortCode      | string | The sort code.                         |
-| bankReference | string | The reference to use for the transfer. |
+| Name          | Type   | Description                                               |
+|---------------|--------|-----------------------------------------------------------|
+| accountName   | string | The account name. (can be used for Confirmation of Payee) |
+| accountNumber | string | The account number.                                       |
+| sortCode      | string | The sort code.                                            |
+| bankReference | string | The reference to use for the transfer.                    |
 
 ## `GET /platformApi/investors/{clientId}/bankDetails`
 
