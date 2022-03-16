@@ -1030,7 +1030,7 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
     </span><span class="s2">"walletName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bankAccountDetailsId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"03946a54-6b4f-4bae-897d-6ee2baf0e848"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bankDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Company Name"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00004588"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"203002"</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -1119,7 +1119,7 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
   </span><span class="s2">"walletName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bankAccountDetailsId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03946a54-6b4f-4bae-897d-6ee2baf0e848"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bankDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Housing Project"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Company Name"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00004588"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"203002"</span><span class="w">
   </span><span class="p">},</span><span class="w">
