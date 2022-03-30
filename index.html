@@ -776,6 +776,9 @@
                     <a href="#webhooks-transfer_in_funds_received" class="toc-h2 toc-link" data-title="TRANSFER_IN_FUNDS_RECEIVED">TRANSFER_IN_FUNDS_RECEIVED</a>
                   </li>
                   <li>
+                    <a href="#webhooks-transfer_in_residual_income_funds_received" class="toc-h2 toc-link" data-title="TRANSFER_IN_RESIDUAL_INCOME_FUNDS_RECEIVED">TRANSFER_IN_RESIDUAL_INCOME_FUNDS_RECEIVED</a>
+                  </li>
+                  <li>
                     <a href="#webhooks-isa_provisionally_opened" class="toc-h2 toc-link" data-title="ISA_PROVISIONALLY_OPENED">ISA_PROVISIONALLY_OPENED</a>
                   </li>
                   <li>
@@ -13698,6 +13701,16 @@ SELL_PREMIUM</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This is fired whenever the funds for a transfer in are received.</p>
+<h2 id='webhooks-transfer_in_residual_income_funds_received'>TRANSFER_IN_RESIDUAL_INCOME_FUNDS_RECEIVED</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transferInId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This webhook is fired when funds for a transfer in are received after the transfer in has been processed. This is not expected to happen on every transfer in.</p>
 <h2 id='webhooks-isa_provisionally_opened'>ISA_PROVISIONALLY_OPENED</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
