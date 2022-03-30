@@ -373,6 +373,19 @@ This is fired whenever a transfer out is completed.
 ```
 This is fired whenever the funds for a transfer in are received.
 
+## TRANSFER_IN_RESIDUAL_INCOME_FUNDS_RECEIVED
+```json
+{
+  "clientId": "string",
+  "transferInId": "string",
+  "amount": {
+    "amount": 0.00,
+    "currency": "GBP"
+  }
+}
+```
+This webhook is fired when funds for a transfer in are received after the transfer in has been processed. This is not expected to happen on every transfer in.
+
 ## ISA_PROVISIONALLY_OPENED
 ```json
 {
