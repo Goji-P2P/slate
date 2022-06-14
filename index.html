@@ -6884,6 +6884,17 @@ This will ensure the correct behaviour of payments during your testing.
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="s2">"SUCCESS"</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"errorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VALIDATION_FAILURE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference must match </span><span class="se">\"</span><span class="s2">[a-zA-Z0-9-/?:().,+#=!%&amp;*&lt;&gt;;{@ </span><span class="se">\"</span><span class="s2">']{1,18}</span><span class="se">\"</span><span class="s2">"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='payments-investors-code-post-platformapi-investors-clientid-accounts-accounttype-withdrawal-code-description'>Description</h3>
 <p>Withdraw cash from the specified account to the registered investor bank details.</p>
 <h3 id='payments-investors-code-post-platformapi-investors-clientid-accounts-accounttype-withdrawal-code-request'>Request</h3>
@@ -6916,7 +6927,7 @@ This will ensure the correct behaviour of payments during your testing.
 <tr>
 <td>reference</td>
 <td>string</td>
-<td>An optional reference to be used when withdrawing funds.</td>
+<td>An optional payment reference to be used when withdrawing funds. If not provided a default <code>Cash Withdrawal</code> reference is used.</td>
 <td>optional</td>
 </tr>
 </tbody></table>
