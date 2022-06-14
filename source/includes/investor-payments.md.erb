@@ -412,6 +412,21 @@ Content-Type: application/json
 
 "SUCCESS"
 ```
+
+```http
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+
+{
+    "errors": [
+        {
+            "errorCode": "VALIDATION_FAILURE",
+            "message": "reference must match \"[a-zA-Z0-9-/?:().,+#=!%&*<>;{@ \"']{1,18}\""
+        }
+    ]
+}
+```
+
 ### Description
 Withdraw cash from the specified account to the registered investor bank details.
 ### Request
@@ -420,7 +435,7 @@ Withdraw cash from the specified account to the registered investor bank details
 | amount          | ref    | The amount of the residual income payment                | optional |
 | amount.amount   | number | The amount.                                              ||
 | amount.currency | string | The ISO 4217 three character codes eg 'GBP'              ||
-| reference       | string | An optional reference to be used when withdrawing funds. | optional |
+| reference       | string | An optional payment reference to be used when withdrawing funds. If not provided a default `Cash Withdrawal` reference is used. | optional |
 
 ## `POST /platformApi/investors/{clientId}/accounts/{accountType}/transfer`
 
