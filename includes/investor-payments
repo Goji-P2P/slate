@@ -466,7 +466,7 @@ This will ensure the correct behaviour of payments during your testing.
 
 <span class="p">{</span><span class="w">
   </span><span class="s2">"bankReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"REF"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Goji Financial Services Client Account"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="w">
 </span><span class="p">}</span><span class="w">
