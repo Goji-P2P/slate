@@ -11,7 +11,7 @@ services:
     tty: true
     volumes:
     - type: bind
-      source: '${PWD}/source'
+      source: './source'
       target: '/usr/local/src/source'
       read_only: true
 
