@@ -3,7 +3,7 @@ version: '3.5'
 services:
 
   slate:
-    image: investments.goji/goji/slate-api-docs:latest
+    image: docker.io/gojidocker/api-docs:latest
     build: .
     ports:
       - target: 4567
