@@ -143,7 +143,7 @@ If the repayment is automatically re-invested, please see the [Reinvestments](#r
 
      POST /investors/{investorId}/investment/{investmentId}/repayment
 
-<small>N.B. It is worth ensuring that the accruacy of monetary amounts is consistent to ensure that fractions of a penny
+<small>N.B. It is worth ensuring that the accuracy of monetary amounts is consistent to ensure that fractions of a penny
 aren't left invested.</small>
 
 ### Reinvestments
