@@ -1257,7 +1257,7 @@ This endpoint is the only call required to repay investments or uninvested cash 
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INTEREST"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLEARED"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"investmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fcc23a87-7a90-4bfc-85e5-b214bb1db68f"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4ca13a81-2b60-2bac-72e5-b564ba1da62f"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPECS-63880"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
