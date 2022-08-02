@@ -818,7 +818,7 @@ I.e. the money movement for the singular investor repayment has occurred.
     "status": "CLEARED",
     "postedAt": "2021-11-26T21:51:32.542533Z",
     "clearedAt": "2021-11-26T21:51:32.543340Z",
-    "investorId": "20be5b14-bf13-4969-9aea-8adedbbc72c6",
+    "clientId": "20be5b14-bf13-4969-9aea-8adedbbc72c6",
     "accountType": "ISA"
   }
 }
