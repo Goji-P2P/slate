@@ -1241,7 +1241,7 @@ This endpoint is the only call required to repay investments or uninvested cash 
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INTEREST"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"investmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5ab5df55-8e5e-4380-a94c-6fcac3a9a6ac"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2cc3df55-8e1a-4220-a95c-2bcaa1a9a6ac"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPECS-63880"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISA"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
