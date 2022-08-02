@@ -827,6 +827,9 @@
                     <a href="#webhooks-investment_repayment_clearing" class="toc-h2 toc-link" data-title="INVESTMENT_REPAYMENT_CLEARING">INVESTMENT_REPAYMENT_CLEARING</a>
                   </li>
                   <li>
+                    <a href="#webhooks-cash_interest_repayment_clearing" class="toc-h2 toc-link" data-title="CASH_INTEREST_REPAYMENT_CLEARING">CASH_INTEREST_REPAYMENT_CLEARING</a>
+                  </li>
+                  <li>
                     <a href="#webhooks-investment_repayment_batch_complete" class="toc-h2 toc-link" data-title="INVESTMENT_REPAYMENT_BATCH_COMPLETE">INVESTMENT_REPAYMENT_BATCH_COMPLETE</a>
                   </li>
               </ul>
@@ -9929,6 +9932,7 @@ webhooks that can help to track the arrival of the funds into the sellers accoun
 <ul>
 <li><a href="/#webhooks-investment_repayment_instruction_received">INVESTMENT_REPAYMENT_INSTRUCTION_RECEIVED</a></li>
 <li><a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a></li>
+<li><a href="/#webhooks-cash_interest_repayment_clearing">CASH_INTEREST_REPAYMENT_CLEARING</a></li>
 <li><a href="/#webhooks-investment_repayment_batch_complete">INVESTMENT_REPAYMENT_BATCH_COMPLETE</a></li>
 </ul>
 <h3 id='settlement-debt-code-post-platformapi-settlement-secondary-market-code-request'>Request</h3>
@@ -10272,12 +10276,13 @@ when making the API call.</li>
       </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
       </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"investmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"investmentId"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.68</span><span class="p">,</span><span class="w">
       </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CAPITAL"</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"INTEREST_CASH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountType"</span><span class="w">
   </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -10287,20 +10292,20 @@ when making the API call.</li>
   </span><span class="s2">"repaymentBatchReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"repaymentBatchReference"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='settlement-debt-code-post-platformapi-settlement-investor-repayment-code-description'>Description</h3>
-<p>Adds repayments to investments from a specified flexible payments wallet.</p>
+<p>Adds repayments to investments or uninvested cash from a specified flexible payments wallet.</p>
 
 <ul>
 <li>On receiving the API call, the system will reserve money in the wallet and start the distribution process provided the <code>sourceWalletId</code> has enough funds.</li>
 <li>There is no need to manually move money from a wallet to the receiving account.</li>
 <li>The system will publish an <a href="/#webhooks-investment_repayment_instruction_received">INVESTMENT_REPAYMENT_INSTRUCTION_RECEIVED</a> webhook once the repayment batch has been accepted.</li>
-<li>The system will then publish &quot;n&quot; webhooks of type <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a>, where &quot;n&quot; is the size of the <code>investorRepayments</code> array, as each repayment in the batch is cleared.</li>
+<li>The system will then publish &quot;n&quot; webhooks of type <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a> or <a href="/#webhooks-cash_interest_repayment_clearing">CASH_INTEREST_REPAYMENT_CLEARING</a>, where &quot;n&quot; is the size of the <code>investorRepayments</code> array, as each repayment in the batch is cleared.</li>
 <li>Finally the system will publish an <a href="/#webhooks-investment_repayment_batch_complete">INVESTMENT_REPAYMENT_BATCH_COMPLETE</a> webhook when the batch in considered complete. This is a batch process and therefore might be sent later than the last repayment to clear.</li>
-<li>These webhooks should provide coverage of all stages of the batch clearing. When using <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a>, it might be relevant to ignore all <a href="/#webhooks-investor_funds_received">INVESTOR_FUNDS_RECEIVED</a> webhooks with a <code>sourceType</code> of <code>CAPITAL_REPAYMENT</code> or <code>INTEREST_REPAYMENT</code> .</li>
+<li>These webhooks should provide coverage of all stages of the batch clearing. When using <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a> or <a href="/#webhooks-cash_interest_repayment_clearing">CASH_INTEREST_REPAYMENT_CLEARING</a>, it might be relevant to ignore all <a href="/#webhooks-investor_funds_received">INVESTOR_FUNDS_RECEIVED</a> webhooks with a <code>sourceType</code> of <code>CAPITAL_REPAYMENT</code>, <code>INTEREST_REPAYMENT</code> or <code>CASH_INTEREST_RECEIVED</code>.</li>
 <li>All these webhooks will reference <code>repaymentBatchReference</code> so you are required to store this value for reconciling repayments as they clear.</li>
 </ul>
 
 <aside class="notice">
-This endpoint is the only call required to repay investments for any platform onboarded from 1st November 2021.
+This endpoint is the only call required to repay investments or uninvested cash for any platform onboarded from 1st November 2021.
 </aside>
 <h3 id='settlement-debt-code-post-platformapi-settlement-investor-repayment-code-request'>Request</h3>
 <table><thead>
@@ -10332,13 +10337,13 @@ This endpoint is the only call required to repay investments for any platform on
 <tr>
 <td>investorRepayments[].investmentId</td>
 <td>string</td>
-<td>The ID of the of the investment that was specified in the original <a href="/#settlement-debt-post-platformapi-settlement-tranche">investment creation call</a></td>
-<td>required</td>
+<td>The ID of the of the investment that was specified in the original <a href="/#settlement-debt-post-platformapi-settlement-tranche">investment creation call</a>. This should not be part of the request when type <code>INTEREST_CASH</code> is used</td>
+<td>optional</td>
 </tr>
 <tr>
 <td>investorRepayments[].type</td>
 <td>string</td>
-<td>The type of the repayment Possible values are: <br><code>CAPITAL</code><br><code>INTEREST</code><br></td>
+<td>The type of the repayment Possible values are: <br><code>CAPITAL</code><br><code>INTEREST</code><br><code>INTEREST_CASH</code><br></td>
 <td>required</td>
 </tr>
 <tr>
@@ -10351,6 +10356,18 @@ This endpoint is the only call required to repay investments for any platform on
 <td>investorRepayments[].tax</td>
 <td>ref</td>
 <td>The amount of tax being withheld from this repayment</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>investorRepayments[].clientId</td>
+<td>string</td>
+<td>The client-specified investor ID that the repayment was for. This is required when type <code>INTEREST_CASH</code> is used</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>investorRepayments[].accountType</td>
+<td>string</td>
+<td>The account type of the investor. This is required when type <code>INTEREST_CASH</code> is used. Possible values are:  </br> <code>ISA</code> </br> <code>GOJI_INVESTMENT</code> </br></td>
 <td>optional</td>
 </tr>
 </tbody></table>
@@ -10508,7 +10525,9 @@ This endpoint is the only call required to repay investments for any platform on
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INTEREST"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"investmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5ab5df55-8e5e-4380-a94c-6fcac3a9a6ac"</span><span class="w">
+      </span><span class="s2">"investmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5ab5df55-8e5e-4380-a94c-6fcac3a9a6ac"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2cc3df55-8e1a-4220-a95c-2bcaa1a9a6ac"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISA"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"repaymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18529cda-b32a-4053-bd0e-4140c0a9da42"</span><span class="p">,</span><span class="w">
@@ -10522,7 +10541,9 @@ This endpoint is the only call required to repay investments for any platform on
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INTEREST"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLEARED"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"investmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fcc23a87-7a90-4bfc-85e5-b214bb1db68f"</span><span class="w">
+      </span><span class="s2">"investmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fcc23a87-7a90-4bfc-85e5-b214bb1db68f"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4ca13a81-2b60-2bac-72e5-b564ba1da62f"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOJI_INVESTMENT"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -10559,7 +10580,7 @@ This endpoint is the only call required to repay investments for any platform on
 <td>investorRepayments[].type</td>
 <td>String</td>
 <td>Enum</td>
-<td>The repayment type. Possible values are: </br> <code>INTEREST</code> </br> <code>CAPITAL</code> </br></td>
+<td>The repayment type. Possible values are: </br> <code>INTEREST</code> </br> <code>CAPITAL</code> </br> <code>INTEREST_CASH</code> </br></td>
 </tr>
 <tr>
 <td>investorRepayments[].status</td>
@@ -10602,6 +10623,18 @@ This endpoint is the only call required to repay investments for any platform on
 <td>String</td>
 <td>ISO 4217</td>
 <td>The currency that <code>tax.amount</code> is expressed in.</td>
+</tr>
+<tr>
+<td>investorRepayments[].clientId</td>
+<td>String</td>
+<td>ClientId</td>
+<td>The client-specified investor ID that the repayment was for.</td>
+</tr>
+<tr>
+<td>investorRepayments[].accountType</td>
+<td>String</td>
+<td>Enum</td>
+<td>The account type of the investor. Possible values are:  </br> <code>ISA</code> </br> <code>GOJI_INVESTMENT</code> </br></td>
 </tr>
 </tbody></table>
 <h2 id='settlement-debt-get-investment-clientinvestmentid'><code>GET /investment/{clientInvestmentId}</code></h2><pre class="highlight http tab-http"><code><span class="err">
@@ -14138,6 +14171,28 @@ These are:</p>
 </span></code></pre>
 <p>This webhook is fired whenever the system marks a single repayment as cleared.
 I.e. the money movement for the singular investor repayment has occurred.</p>
+<h2 id='webhooks-cash_interest_repayment_clearing'>CASH_INTEREST_REPAYMENT_CLEARING</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d6adb525-adac-4cc0-a86f-a9c0e68a7bb8"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASH_INTEREST_REPAYMENT_CLEARING"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-26T21:51:32.574621Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"repaymentBatchReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REPAYMENT-2b86a1bb-fe9d-4476-9e6b-0e29477e251d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"repaymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REPAYMENT_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASH_INTEREST"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLEARED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-26T21:51:32.542533Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clearedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-26T21:51:32.543340Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20be5b14-bf13-4969-9aea-8adedbbc72c6"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISA"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This webhook is fired whenever the system marks a single INTEREST_CASH repayment as cleared.
+I.e. the money movement for the singular INTEREST_CASH repayment has occurred.</p>
 <h2 id='webhooks-investment_repayment_batch_complete'>INVESTMENT_REPAYMENT_BATCH_COMPLETE</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cc84c538-0c7f-41f7-8362-c6115c1df6f7"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVESTMENT_REPAYMENT_BATCH_COMPLETE"</span><span class="p">,</span><span class="w">
@@ -14276,7 +14331,7 @@ If the repayment is automatically re-invested, please see the <a href="#reinvest
 
 <p>POST /investors/{investorId}/investment/{investmentId}/repayment</p>
 
-<p><small>N.B. It is worth ensuring that the accruacy of monetary amounts is consistent to ensure that fractions of a penny
+<p><small>N.B. It is worth ensuring that the accuracy of monetary amounts is consistent to ensure that fractions of a penny
 aren&#39;t left invested.</small></p>
 <h3 id='isa-administration-investing-reinvestments'>Reinvestments</h3>
 <p>When a borrower makes a repayment against a loan, this repayment needs to be recorded on the Goji Platform.
