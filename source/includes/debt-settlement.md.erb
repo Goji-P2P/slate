@@ -603,7 +603,7 @@ Adds repayments to investments or uninvested cash from a specified flexible paym
  - The system will publish an <a href="/#webhooks-investment_repayment_instruction_received">INVESTMENT_REPAYMENT_INSTRUCTION_RECEIVED</a> webhook once the repayment batch has been accepted.
  - The system will then publish "n" webhooks of type <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a> or <a href="/#webhooks-cash_interest_repayment_clearing">CASH_INTEREST_REPAYMENT_CLEARING</a>, where "n" is the size of the `investorRepayments` array, as each repayment in the batch is cleared.
  - Finally the system will publish an <a href="/#webhooks-investment_repayment_batch_complete">INVESTMENT_REPAYMENT_BATCH_COMPLETE</a> webhook when the batch in considered complete. This is a batch process and therefore might be sent later than the last repayment to clear.
- - These webhooks should provide coverage of all stages of the batch clearing. When using <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a> or <a href="/#webhooks-cash_interest_repayment_clearing">CASH_INTEREST_REPAYMENT_CLEARING</a>, it might be relevant to ignore all <a href="/#webhooks-investor_funds_received">INVESTOR_FUNDS_RECEIVED</a> webhooks with a `sourceType` of `CAPITAL_REPAYMENT`, `INTEREST_REPAYMENT` or `CASH_INTEREST_RECEIVED`.
+ - These webhooks should provide coverage of all stages of the batch clearing. When using <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a> or <a href="/#webhooks-cash_interest_repayment_clearing">CASH_INTEREST_REPAYMENT_CLEARING</a>, it might be relevant to ignore all <a href="/#webhooks-investor_funds_received">INVESTOR_FUNDS_RECEIVED</a> webhooks with a `sourceType` of `CAPITAL_REPAYMENT`, `INTEREST_REPAYMENT`, `CASH_INTEREST_RECEIVED` or `SELL_PREMIUM`.
  - All these webhooks will reference `repaymentBatchReference` so you are required to store this value for reconciling repayments as they clear.
 
 <aside class="notice">
@@ -617,7 +617,7 @@ This endpoint is the only call required to repay investments or uninvested cash 
 | sourceWalletId                    | string | The wallet this distribution should be made from                                                                                                                                                                                          | required |
 | investorRepayments                | array  | The repayments per investor.                                                                                                                                                                                                              | required |
 | investorRepayments[].investmentId | string | The ID of the of the investment that was specified in the original <a href="/#settlement-debt-post-platformapi-settlement-tranche">investment creation call</a>. This should not be part of the request when type `INTEREST_CASH` is used | optional |
-| investorRepayments[].type         | string | The type of the repayment Possible values are: <br>`CAPITAL`<br>`INTEREST`<br>`INTEREST_CASH`<br>                                                                                                                                         | required |
+| investorRepayments[].type         | string | The type of the repayment Possible values are: <br>`CAPITAL`<br>`INTEREST`<br>`INTEREST_CASH`<br>`PREMIUM`<br>                                                                                                                            | required |
 | investorRepayments[].amount       | ref    | The amount being repaid                                                                                                                                                                                                                   | required |
 | investorRepayments[].tax          | ref    | The amount of tax being withheld from this repayment                                                                                                                                                                                      | optional |
 | investorRepayments[].clientId     | string | The client-specified investor ID that the repayment was for. This is required when type `INTEREST_CASH` is used                                                                                                                           | optional |
@@ -751,21 +751,21 @@ Returns the repayment request associated with the unique `repaymentBatchReferenc
 
 
 ### Response
-| Name                                 | Type   | Value Type                | Value Description                                                                                     |
-|--------------------------------------| ------ |---------------------------|-------------------------------------------------------------------------------------------------------|
-| repaymentBatchReference              | String | RepaymentBatchReferenceId | The unique identifier for a repayment request.                                                        |
-| investorRepayments                   | Array  | Array                     | The array of investor repayments included in the repayment request.                                   |
-| investorRepayments[].investmentId    | String | InvestmentId              | The client-specified investment ID that the repayment was for.                                        |
-| investorRepayments[].type            | String | Enum                      | The repayment type. Possible values are: </br> `INTEREST` </br> `CAPITAL` </br> `INTEREST_CASH` </br> |
-| investorRepayments[].status          | String | Enum                      | The repayment status. Possible values are: </br> `PENDING` </br> `CLEARED` </br>                      |
-| investorRepayments[].amount          | Object | Object                    | Describes the amount repaid/ to be repaid.                                                            |
-| investorRepayments[].amount.amount   | Number | Number                    | The amount to be repaid in `amount.currency`.                                                         |
-| investorRepayments[].amount.currency | String | ISO 4217                  | The currency that `amount.amount` is expressed in.                                                    |
-| investorRepayments[].tax             | Object | Object                    | The amount of tax withheld from this repayment. May be null.                                          |
-| investorRepayments[].tax.amount      | Number | Number                    | The amount to be taxed in `tax.currency`.                                                             |
-| investorRepayments[].tax.currency    | String | ISO 4217                  | The currency that `tax.amount` is expressed in.                                                       |
-| investorRepayments[].clientId        | String | ClientId                  | The client-specified investor ID that the repayment was for.                                          |
-| investorRepayments[].accountType     | String | Enum                      | The account type of the investor. Possible values are:  </br> `ISA` </br> `GOJI_INVESTMENT` </br>     |
+| Name                                 | Type   | Value Type                | Value Description                                                                                                     |
+|--------------------------------------| ------ |---------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| repaymentBatchReference              | String | RepaymentBatchReferenceId | The unique identifier for a repayment request.                                                                        |
+| investorRepayments                   | Array  | Array                     | The array of investor repayments included in the repayment request.                                                   |
+| investorRepayments[].investmentId    | String | InvestmentId              | The client-specified investment ID that the repayment was for.                                                        |
+| investorRepayments[].type            | String | Enum                      | The repayment type. Possible values are: </br> `INTEREST` </br> `CAPITAL` </br> `INTEREST_CASH` </br> `PREMIUM` </br> |
+| investorRepayments[].status          | String | Enum                      | The repayment status. Possible values are: </br> `PENDING` </br> `CLEARED` </br>                                      |
+| investorRepayments[].amount          | Object | Object                    | Describes the amount repaid/ to be repaid.                                                                            |
+| investorRepayments[].amount.amount   | Number | Number                    | The amount to be repaid in `amount.currency`.                                                                         |
+| investorRepayments[].amount.currency | String | ISO 4217                  | The currency that `amount.amount` is expressed in.                                                                    |
+| investorRepayments[].tax             | Object | Object                    | The amount of tax withheld from this repayment. May be null.                                                          |
+| investorRepayments[].tax.amount      | Number | Number                    | The amount to be taxed in `tax.currency`.                                                                             |
+| investorRepayments[].tax.currency    | String | ISO 4217                  | The currency that `tax.amount` is expressed in.                                                                       |
+| investorRepayments[].clientId        | String | ClientId                  | The client-specified investor ID that the repayment was for.                                                          |
+| investorRepayments[].accountType     | String | Enum                      | The account type of the investor. Possible values are:  </br> `ISA` </br> `GOJI_INVESTMENT` </br>                     |
 
 
 ## `GET /investment/{clientInvestmentId}`
