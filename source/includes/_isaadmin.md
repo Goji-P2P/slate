@@ -163,7 +163,7 @@ When an investor sells an investment this is recorded on the Goji Platform by ma
 
     POST /investors/{investorId}/investment/{investmentId}/repayment
 
-Setting the `capitalAmount` to the amount of the sale and the `interestAmount` and `premiumAmount` to zero (assuming there is no interest and premium elements to the sale).
+Setting the `capitalAmount` to the amount of the sale and the `interestAmount` to zero (assuming there is no interest element to the sale).
 
 If a loan has been sold for more or less than the capital outstanding amount (eg in an auction), then there is a specific endpoint that can be called:
 
@@ -2960,7 +2960,7 @@ Please see [create repayment errors](#errors)
 | interestAmount          | ref    | The interest amount being repaid                            | required |
 | interestAmount.amount   | number | The amount                                                  ||
 | interestAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'     ||
-| premiumAmount           | ref    | The premium amount being repaid                             | required |
+| premiumAmount           | ref    | The premium amount being repaid                             | optional |
 | premiumAmount.amount    | number | The amount                                                  ||
 | premiumAmount.currency  | string | The currency in ISO 4217 three character codes eg 'GBP'     ||
 | dateTimeOfRepayment     | string | The date and time of the repayment                          | required |
