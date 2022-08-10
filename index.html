@@ -10300,7 +10300,7 @@ when making the API call.</li>
 <li>The system will publish an <a href="/#webhooks-investment_repayment_instruction_received">INVESTMENT_REPAYMENT_INSTRUCTION_RECEIVED</a> webhook once the repayment batch has been accepted.</li>
 <li>The system will then publish &quot;n&quot; webhooks of type <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a> or <a href="/#webhooks-cash_interest_repayment_clearing">CASH_INTEREST_REPAYMENT_CLEARING</a>, where &quot;n&quot; is the size of the <code>investorRepayments</code> array, as each repayment in the batch is cleared.</li>
 <li>Finally the system will publish an <a href="/#webhooks-investment_repayment_batch_complete">INVESTMENT_REPAYMENT_BATCH_COMPLETE</a> webhook when the batch in considered complete. This is a batch process and therefore might be sent later than the last repayment to clear.</li>
-<li>These webhooks should provide coverage of all stages of the batch clearing. When using <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a> or <a href="/#webhooks-cash_interest_repayment_clearing">CASH_INTEREST_REPAYMENT_CLEARING</a>, it might be relevant to ignore all <a href="/#webhooks-investor_funds_received">INVESTOR_FUNDS_RECEIVED</a> webhooks with a <code>sourceType</code> of <code>CAPITAL_REPAYMENT</code>, <code>INTEREST_REPAYMENT</code> or <code>CASH_INTEREST_RECEIVED</code>.</li>
+<li>These webhooks should provide coverage of all stages of the batch clearing. When using <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a> or <a href="/#webhooks-cash_interest_repayment_clearing">CASH_INTEREST_REPAYMENT_CLEARING</a>, it might be relevant to ignore all <a href="/#webhooks-investor_funds_received">INVESTOR_FUNDS_RECEIVED</a> webhooks with a <code>sourceType</code> of <code>CAPITAL_REPAYMENT</code>, <code>INTEREST_REPAYMENT</code>, <code>CASH_INTEREST_RECEIVED</code> or <code>SELL_PREMIUM</code>.</li>
 <li>All these webhooks will reference <code>repaymentBatchReference</code> so you are required to store this value for reconciling repayments as they clear.</li>
 </ul>
 
@@ -10347,7 +10347,7 @@ This endpoint is the only call required to repay investments or uninvested cash 
 <tr>
 <td>investorRepayments[].type</td>
 <td>string</td>
-<td>The type of the repayment Possible values are: <br><code>CAPITAL</code><br><code>INTEREST</code><br><code>INTEREST_CASH</code><br></td>
+<td>The type of the repayment Possible values are: <br><code>CAPITAL</code><br><code>INTEREST</code><br><code>INTEREST_CASH</code><br><code>PREMIUM</code><br></td>
 <td>required</td>
 </tr>
 <tr>
@@ -10584,7 +10584,7 @@ This endpoint is the only call required to repay investments or uninvested cash 
 <td>investorRepayments[].type</td>
 <td>String</td>
 <td>Enum</td>
-<td>The repayment type. Possible values are: </br> <code>INTEREST</code> </br> <code>CAPITAL</code> </br> <code>INTEREST_CASH</code> </br></td>
+<td>The repayment type. Possible values are: </br> <code>INTEREST</code> </br> <code>CAPITAL</code> </br> <code>INTEREST_CASH</code> </br> <code>PREMIUM</code> </br></td>
 </tr>
 <tr>
 <td>investorRepayments[].status</td>
@@ -14352,7 +14352,7 @@ The cash balance remains unchanged.</p>
 
 <p>POST /investors/{investorId}/investment/{investmentId}/repayment</p>
 
-<p>Setting the <code>capitalAmount</code> to the amount of the sale and the <code>interestAmount</code> to zero (assuming there is no interest element to the sale).</p>
+<p>Setting the <code>capitalAmount</code> to the amount of the sale assuming there is no interest or premium element to the sale.</p>
 
 <p>If a loan has been sold for more or less than the capital outstanding amount (eg in an auction), then there is a specific endpoint that can be called:</p>
 
@@ -19079,6 +19079,10 @@ Please note this is a test endpoint and is only available in the sandbox environ
   </span><span class="s2">"capitalAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
     </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"premiumAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -19111,7 +19115,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td>capitalAmount</td>
 <td>ref</td>
 <td>The capital amount being repaid</td>
-<td>required</td>
+<td>optional</td>
 </tr>
 <tr>
 <td>capitalAmount.amount</td>
@@ -19129,7 +19133,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td>interestAmount</td>
 <td>ref</td>
 <td>The interest amount being repaid</td>
-<td>required</td>
+<td>optional</td>
 </tr>
 <tr>
 <td>interestAmount.amount</td>
@@ -19144,12 +19148,34 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <td></td>
 </tr>
 <tr>
+<td>premiumAmount</td>
+<td>ref</td>
+<td>The premium amount being repaid</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>premiumAmount.amount</td>
+<td>number</td>
+<td>The amount</td>
+<td></td>
+</tr>
+<tr>
+<td>premiumAmount.currency</td>
+<td>string</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+<td></td>
+</tr>
+<tr>
 <td>dateTimeOfRepayment</td>
 <td>string</td>
 <td>The date and time of the repayment</td>
 <td>required</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+At least one of the 'capitalAmount', 'interestAmount' or 'premiumAmount' should be used.
+</aside>
 <h2 id='isa-administration-post-investors-investorid-investment-investmentid-reinvestment'><code>POST /investors/{investorId}/investment/{investmentId}/reinvestment</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/investors/{investorId}/investment/{investmentId}/reinvestment</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>

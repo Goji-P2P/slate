@@ -1015,7 +1015,7 @@ when making the API call.</li>
 <li>The system will publish an <a href="/#webhooks-investment_repayment_instruction_received">INVESTMENT_REPAYMENT_INSTRUCTION_RECEIVED</a> webhook once the repayment batch has been accepted.</li>
 <li>The system will then publish &quot;n&quot; webhooks of type <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a> or <a href="/#webhooks-cash_interest_repayment_clearing">CASH_INTEREST_REPAYMENT_CLEARING</a>, where &quot;n&quot; is the size of the <code>investorRepayments</code> array, as each repayment in the batch is cleared.</li>
 <li>Finally the system will publish an <a href="/#webhooks-investment_repayment_batch_complete">INVESTMENT_REPAYMENT_BATCH_COMPLETE</a> webhook when the batch in considered complete. This is a batch process and therefore might be sent later than the last repayment to clear.</li>
-<li>These webhooks should provide coverage of all stages of the batch clearing. When using <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a> or <a href="/#webhooks-cash_interest_repayment_clearing">CASH_INTEREST_REPAYMENT_CLEARING</a>, it might be relevant to ignore all <a href="/#webhooks-investor_funds_received">INVESTOR_FUNDS_RECEIVED</a> webhooks with a <code>sourceType</code> of <code>CAPITAL_REPAYMENT</code>, <code>INTEREST_REPAYMENT</code> or <code>CASH_INTEREST_RECEIVED</code>.</li>
+<li>These webhooks should provide coverage of all stages of the batch clearing. When using <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a> or <a href="/#webhooks-cash_interest_repayment_clearing">CASH_INTEREST_REPAYMENT_CLEARING</a>, it might be relevant to ignore all <a href="/#webhooks-investor_funds_received">INVESTOR_FUNDS_RECEIVED</a> webhooks with a <code>sourceType</code> of <code>CAPITAL_REPAYMENT</code>, <code>INTEREST_REPAYMENT</code>, <code>CASH_INTEREST_RECEIVED</code> or <code>SELL_PREMIUM</code>.</li>
 <li>All these webhooks will reference <code>repaymentBatchReference</code> so you are required to store this value for reconciling repayments as they clear.</li>
 </ul>
 
@@ -1062,7 +1062,7 @@ This endpoint is the only call required to repay investments or uninvested cash 
 <tr>
 <td>investorRepayments[].type</td>
 <td>string</td>
-<td>The type of the repayment Possible values are: <br><code>CAPITAL</code><br><code>INTEREST</code><br><code>INTEREST_CASH</code><br></td>
+<td>The type of the repayment Possible values are: <br><code>CAPITAL</code><br><code>INTEREST</code><br><code>INTEREST_CASH</code><br><code>PREMIUM</code><br></td>
 <td>required</td>
 </tr>
 <tr>
@@ -1299,7 +1299,7 @@ This endpoint is the only call required to repay investments or uninvested cash 
 <td>investorRepayments[].type</td>
 <td>String</td>
 <td>Enum</td>
-<td>The repayment type. Possible values are: </br> <code>INTEREST</code> </br> <code>CAPITAL</code> </br> <code>INTEREST_CASH</code> </br></td>
+<td>The repayment type. Possible values are: </br> <code>INTEREST</code> </br> <code>CAPITAL</code> </br> <code>INTEREST_CASH</code> </br> <code>PREMIUM</code> </br></td>
 </tr>
 <tr>
 <td>investorRepayments[].status</td>
