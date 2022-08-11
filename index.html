@@ -258,7 +258,7 @@
                     <a href="#quickstart-guides-creating-an-investor" class="toc-h2 toc-link" data-title="Creating an Investor">Creating an Investor</a>
                   </li>
                   <li>
-                    <a href="#quickstart-guides-checking-the-kyc-details" class="toc-h2 toc-link" data-title="Checking the KYC details">Checking the KYC details</a>
+                    <a href="#quickstart-guides-checking-the-kyc-kyb-details" class="toc-h2 toc-link" data-title="Checking the KYC/KYB details">Checking the KYC/KYB details</a>
                   </li>
                   <li>
                     <a href="#quickstart-guides-depositing-test-funds" class="toc-h2 toc-link" data-title="Depositing Test Funds">Depositing Test Funds</a>
@@ -1386,10 +1386,10 @@ This will ensure the correct behaviour of payments during your testing.
 <p>An Investor is created by calling <a href="/#investors-post-platformapi-investors">POST https://api-sandbox.goji.investments/platformApi/investors</a> with example body:</p>
 
 <p>The Goji Platform will generate a <code>clientId</code> which should be saved as this is used for subsequent calls.</p>
-<h2 id='quickstart-guides-checking-the-kyc-details'>Checking the KYC details</h2>
-<p>Once the Investor has been created, a KYC check is done in the background and the status can be checked by calling <a href="/#investors-get-platformapi-investors-clientid-kyc">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/kyc</a></p>
+<h2 id='quickstart-guides-checking-the-kyc-kyb-details'>Checking the KYC/KYB details</h2>
+<p>Once the Investor has been created, a KYC/KYB check is done in the background and the status can be checked by calling <a href="/#investors-get-platformapi-investors-clientid-kyc">GET /investors/{clientId}/kyc</a> for individuals or <a href="/#investors-get-platformapi-investors-clientid-kyb">GET /investors/{clientId}/kyb</a> for corporates.</p>
 
-<p>In the sandbox environment, all Investors are considered verified unless the <code>lastName</code> contains <code>referred</code> or <code>forcekyc</code>.</p>
+<p>In the sandbox environment, all individual Investors are considered verified unless the <code>lastName</code> contains <code>referred</code> or <code>forcekyc</code>.</p>
 <h2 id='quickstart-guides-depositing-test-funds'>Depositing Test Funds</h2>
 <blockquote>
 <p>Bank Transfer Details</p>
@@ -1758,10 +1758,10 @@ Please note that wallets are not available by default. Please speak to the Goji 
 
 <p>Once a payment has cleared we will update you via <a href="/#webhooks-wallet_transfer_cleared">webhook</a>.</p>
 <h1 id='investors'>Investors</h1>
-<p>The Investors API allows you to onboard investors, run KYC/AML checks and open an ISA account.</p>
+<p>The Investors API allows you to onboard investors, run KYC/KYB/AML checks and open an ISA account.</p>
 <h2 id='investors-introduction-to-the-investors-api'>Introduction to the Investors API</h2>
 <p>When onboarding a new investor, they need to pass through the usual registration flow on your platform to capture name,
-address etc as well as complete any investor declarations that may be appropriate and sign Ts and Cs etc.</p>
+address etc. as well as complete any investor declarations that may be appropriate and sign Ts and Cs etc.</p>
 
 <p>Once this is complete, the investor can be onboarded onto the Goji Platform. The investor&#39;s details are validated and subject to Goji&#39;s KYC checks.
 This is initially an automated process and only requires manual involvement if the automated checks are inconclusive or the investor is deemed high risk.
@@ -1789,22 +1789,32 @@ or over the phone. A full audit of all emails are kept in the admin console.</p>
 
 <p>Alternatively, the ISA account can be added later by calling <code>POST /investors/{clientId}/accounts/ISA</code>.</p>
 <h3 id='investors-onboarding-investors-kyc-process'>KYC process</h3>
-<p>Once the investor has been registered, the KYC process will be initiated asynchronously.</p>
+<p>Once the individual investor has been registered, the KYC process will be initiated asynchronously.</p>
 
-<p>You can verify the KYC details by calling <code>GET /investors/{clientId}/kyc</code>. Alternatively, you can register a webhook and a call will be made to your system when the KYC status changes.</p>
+<p>You can verify the KYC details by calling <a href="/#investors-get-platformapi-investors-clientid-kyc">GET /investors/{clientId}/kyc</a>. Alternatively, you can register for webhooks and a call will be made to your system when the KYC status changes.</p>
 
-<p>When documents are required, identity documents must be uploaded. Supported formats are pdf, png and jpeg. The documents are uploaded as <code>Base64</code> encoded strings (maximum size 10MB) using <code>POST /investors/{clientId}/kyc/documents</code>.</p>
+<aside class="notice">
+
+Please note that for corporate Investors the KYB status endpoint should be used
+
+<a href="#investors-get-platformapi-investors-clientid-kyb">
+  <code>GET /investors/{clientId}/kyb</code>
+</a>
+
+</aside>
+
+<p>When documents are required, identity documents must be uploaded. Supported formats are pdf, png and jpeg. The documents are uploaded as <code>Base64</code> encoded strings (maximum size 10MB) using <a href="/#investors-post-platformapi-investors-clientid-kyc-documents">POST /investors/{clientId}/kyc/documents</a>.</p>
 
 <p>The supported documents are:</p>
 
 <ul>
 <li>Passport</li>
 <li>Driving licence (front side only)</li>
-<li>Bank statement less than three months old </li>
+<li>Bank statement less than three months old</li>
 <li>Utility bill less than three months old</li>
 </ul>
 
-<p>If the KYC documents are rejected (eg low quality, wrong address) then a webhook will be fired and a member of the Goji Platform Support team will contact you. The KYC status will remain as <code>ENHANCED_VERIFICATION_REQUIRED</code>.</p>
+<p>If the KYC documents are rejected (e.g. low quality, wrong address) then a webhook will be fired and a member of the Goji Platform Support team will contact you. The KYC status will remain as <code>ENHANCED_VERIFICATION_REQUIRED</code>.</p>
 
 <p>The customer is restricted from performing certain actions until they have completed the KYC process.</p>
 
@@ -1817,13 +1827,12 @@ or over the phone. A full audit of all emails are kept in the admin console.</p>
 <h4 id='investors-onboarding-investors-kyc-process-kyc-details'>KYC details</h4>
 <p>An investor can be one of the following statuses:</p>
 
-<p><code>AWAITING_CREDIT_AGENCY_CHECK</code> Investor is still being electronically verified.</p>
-
-<p><code>ELECTRONICALLY_VERIFIED</code> The investor has been verified.</p>
-
-<p><code>ENHANCED_VERIFICATION_REQUIRED</code> The investor is undergoing enhanced verification .</p>
-
-<p><code>ENHANCED_VERIFIED</code> The investor has passed enhanced verification. All corporate and international investors are subject to enhanced verification.</p>
+<ul>
+<li><p><code>AWAITING_CREDIT_AGENCY_CHECK</code> Investor is still being electronically verified.</p></li>
+<li><p><code>ELECTRONICALLY_VERIFIED</code> The investor has been verified.</p></li>
+<li><p><code>ENHANCED_VERIFICATION_REQUIRED</code> The investor is undergoing enhanced verification .</p></li>
+<li><p><code>ENHANCED_VERIFIED</code> The investor has passed enhanced verification. All corporate and international investors are subject to enhanced verification.</p></li>
+</ul>
 
 <p>To simulate different KYC statuses in sandbox create an investor with last name that contains:
  - <code>REFERRED</code>, <code>DECLINED</code> or <code>FORCEKYC</code> for <code>ENHANCED_VERIFICATION_REQUIRED</code> status
@@ -2895,6 +2904,16 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='investors-code-get-platformapi-investors-clientid-kyc-code-description'>Description</h3>
 <p>Retrieves an investor&#39;s KYC details.</p>
+
+<aside class="notice">
+
+Please note that for corporate Investors the KYB status endpoint should be used
+
+<a href="#investors-get-platformapi-investors-clientid-kyb">
+  <code>GET /investors/{clientId}/kyb</code>
+</a>
+
+</aside>
 <h3 id='investors-code-get-platformapi-investors-clientid-kyc-code-response'>Response</h3>
 <table><thead>
 <tr>
@@ -4034,7 +4053,7 @@ For each possible way of integrating with the application, you will need to firs
   </span><span class="s2">"subscriptionStatus"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"VALID"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='investors-code-get-platformapi-investors-clientid-isa-subscriptionstatus-code-description'>Description</h3>
-<p>Used to retrieve the subscription status of an investor&#39;s ISA. </p>
+<p>Used to retrieve the subscription status of an investor&#39;s ISA.</p>
 
 <p>Most useful for checking if the investor has entered a tax year break status whereby subscriptions are no longer allowed until redeclaration has taken place.</p>
 <h4 id='investors-code-get-platformapi-investors-clientid-isa-subscriptionstatus-code-description-tax-year-breaks'>Tax Year Breaks</h4>
@@ -5143,7 +5162,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
   </span><span class="s2">"fundsTransferType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BANK_TRANSFER"</span><span class="w">
 </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='investors-code-get-transferin-investors-clientid-open-code-description'>Description</h3>
-<p>Returns an overview of all open transfers in for a particular investor. 
+<p>Returns an overview of all open transfers in for a particular investor.
 The <code>transferDate</code> is only non-null if the transfer history form has been received.</p>
 <h3 id='investors-code-get-transferin-investors-clientid-open-code-response'>Response</h3>
 <table><thead>
@@ -5641,10 +5660,10 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 <h2 id='investors-migration'><em>Migration</em></h2><h2 id='investors-migrating-investors'>Migrating Investors</h2>
 <p>If you are migrating your existing investors over to Goji, then you need to onboard the existing investors using the dedicated <a href="#investors-post-platformapi-migrate">investor migration endpoint</a> and include <code>migrationDetails</code> data.</p>
 
-<p>The <code>migrationDetails</code> allows the platform to provide an existing investor ID where applicable and provide the diligence status as agreed with Goji before migration takes place. </p>
+<p>The <code>migrationDetails</code> allows the platform to provide an existing investor ID where applicable and provide the diligence status as agreed with Goji before migration takes place.</p>
 <h3 id='investors-migrating-investors-upgrading-investors-currently-using-the-isa-administration-api'>Upgrading investors currently using the ISA Administration API</h3>
-<p>When upgrading from using the Goji ISA Administration API to the Goji Platform API, the <code>existingClientId</code> in the 
-<code>migrationDetails</code> prompts the system to upgrade the existing investor with the relevant ID. </p>
+<p>When upgrading from using the Goji ISA Administration API to the Goji Platform API, the <code>existingClientId</code> in the
+<code>migrationDetails</code> prompts the system to upgrade the existing investor with the relevant ID.</p>
 
 <p>This involves:</p>
 
@@ -5788,7 +5807,7 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 <p>Migrates an existing investor onto the Goji system.</p>
 
 <aside class="notice">
-The required <code>migrationDetails</code> allows the platform to provide an existing investor ID where applicable and provide the diligence status as agreed with Goji before migration takes place. 
+The required <code>migrationDetails</code> allows the platform to provide an existing investor ID where applicable and provide the diligence status as agreed with Goji before migration takes place.
 </aside>
 <h3 id='investors-code-post-platformapi-migrate-code-request'>Request</h3>
 <table><thead>
