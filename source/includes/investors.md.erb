@@ -1,10 +1,10 @@
 # Investors
-The Investors API allows you to onboard investors, run KYC/AML checks and open an ISA account.
+The Investors API allows you to onboard investors, run KYC/KYB/AML checks and open an ISA account.
 
 ## Introduction to the Investors API
 
 When onboarding a new investor, they need to pass through the usual registration flow on your platform to capture name,
-address etc as well as complete any investor declarations that may be appropriate and sign Ts and Cs etc.
+address etc. as well as complete any investor declarations that may be appropriate and sign Ts and Cs etc.
 
 Once this is complete, the investor can be onboarded onto the Goji Platform. The investor's details are validated and subject to Goji's KYC checks.
 This is initially an automated process and only requires manual involvement if the automated checks are inconclusive or the investor is deemed high risk.
@@ -38,20 +38,22 @@ Alternatively, the ISA account can be added later by calling `POST /investors/{c
 
 ### KYC process
 
-Once the investor has been registered, the KYC process will be initiated asynchronously.
+Once the individual investor has been registered, the KYC process will be initiated asynchronously.
 
-You can verify the KYC details by calling `GET /investors/{clientId}/kyc`. Alternatively, you can register a webhook and a call will be made to your system when the KYC status changes.
+You can verify the KYC details by calling [GET /investors/{clientId}/kyc](/#investors-get-platformapi-investors-clientid-kyc). Alternatively, you can register for webhooks and a call will be made to your system when the KYC status changes.
 
-When documents are required, identity documents must be uploaded. Supported formats are pdf, png and jpeg. The documents are uploaded as `Base64` encoded strings (maximum size 10MB) using `POST /investors/{clientId}/kyc/documents`.
+<%= partial "partials/kyc_vs_kyb" %>
+
+When documents are required, identity documents must be uploaded. Supported formats are pdf, png and jpeg. The documents are uploaded as `Base64` encoded strings (maximum size 10MB) using [POST /investors/{clientId}/kyc/documents](/#investors-post-platformapi-investors-clientid-kyc-documents).
 
 The supported documents are:
 
 * Passport
 * Driving licence (front side only)
-* Bank statement less than three months old 
+* Bank statement less than three months old
 * Utility bill less than three months old
 
-If the KYC documents are rejected (eg low quality, wrong address) then a webhook will be fired and a member of the Goji Platform Support team will contact you. The KYC status will remain as `ENHANCED_VERIFICATION_REQUIRED`.
+If the KYC documents are rejected (e.g. low quality, wrong address) then a webhook will be fired and a member of the Goji Platform Support team will contact you. The KYC status will remain as `ENHANCED_VERIFICATION_REQUIRED`.
 
 The customer is restricted from performing certain actions until they have completed the KYC process.
 
@@ -64,13 +66,13 @@ These restricted actions include:
 
 An investor can be one of the following statuses:
 
-`AWAITING_CREDIT_AGENCY_CHECK` Investor is still being electronically verified.
+* `AWAITING_CREDIT_AGENCY_CHECK` Investor is still being electronically verified.
 
-`ELECTRONICALLY_VERIFIED` The investor has been verified.
+* `ELECTRONICALLY_VERIFIED` The investor has been verified.
 
-`ENHANCED_VERIFICATION_REQUIRED` The investor is undergoing enhanced verification .
+* `ENHANCED_VERIFICATION_REQUIRED` The investor is undergoing enhanced verification .
 
-`ENHANCED_VERIFIED` The investor has passed enhanced verification. All corporate and international investors are subject to enhanced verification.
+* `ENHANCED_VERIFIED` The investor has passed enhanced verification. All corporate and international investors are subject to enhanced verification.
 
 To simulate different KYC statuses in sandbox create an investor with last name that contains:
  - `REFERRED`, `DECLINED` or `FORCEKYC` for `ENHANCED_VERIFICATION_REQUIRED` status
@@ -94,7 +96,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -122,7 +124,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -189,7 +191,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -311,7 +313,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -414,7 +416,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -519,7 +521,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -531,7 +533,7 @@ Content-Type: application/json
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -559,7 +561,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -585,6 +587,9 @@ Content-Type: application/json
 ```
 ### Description
 Retrieves an investor's KYC details.
+
+<%= partial "partials/kyc_vs_kyb" %>
+
 ### Response
 | Name                                                | Type   | Description                                                                                                                                                                                                        |
 | --------------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -610,7 +615,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
@@ -665,7 +670,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -941,7 +946,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -974,7 +979,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1062,7 +1067,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1303,7 +1308,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1312,7 +1317,7 @@ Content-Type: application/json
 }
 ```
 ### Description
-Used to retrieve the subscription status of an investor's ISA. 
+Used to retrieve the subscription status of an investor's ISA.
 
 Most useful for checking if the investor has entered a tax year break status whereby subscriptions are no longer allowed until redeclaration has taken place.
 
@@ -1349,7 +1354,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1411,7 +1416,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1655,7 +1660,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1688,7 +1693,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1737,7 +1742,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1823,7 +1828,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1872,7 +1877,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1922,7 +1927,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1956,7 +1961,7 @@ Content-Type: application/json
 } ]
 ```
 ### Description
-Returns an overview of all open transfers in for a particular investor. 
+Returns an overview of all open transfers in for a particular investor.
 The `transferDate` is only non-null if the transfer history form has been received.
 ### Response
 | Name                                        | Type    | Description                                                                    |
@@ -1992,7 +1997,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -2061,7 +2066,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -2105,7 +2110,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -2185,12 +2190,12 @@ Lists all transfers out for all investors.
 
 If you are migrating your existing investors over to Goji, then you need to onboard the existing investors using the dedicated [investor migration endpoint](#investors-post-platformapi-migrate) and include `migrationDetails` data.
 
-The `migrationDetails` allows the platform to provide an existing investor ID where applicable and provide the diligence status as agreed with Goji before migration takes place. 
+The `migrationDetails` allows the platform to provide an existing investor ID where applicable and provide the diligence status as agreed with Goji before migration takes place.
 
 ### Upgrading investors currently using the ISA Administration API
 
-When upgrading from using the Goji ISA Administration API to the Goji Platform API, the `existingClientId` in the 
-`migrationDetails` prompts the system to upgrade the existing investor with the relevant ID. 
+When upgrading from using the Goji ISA Administration API to the Goji Platform API, the `existingClientId` in the
+`migrationDetails` prompts the system to upgrade the existing investor with the relevant ID.
 
 This involves:
 
@@ -2296,7 +2301,7 @@ Authorization: Basic ...
 }
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -2343,7 +2348,7 @@ Content-Type: application/json
 Migrates an existing investor onto the Goji system.
 
 <aside class="notice">
-The required <code>migrationDetails</code> allows the platform to provide an existing investor ID where applicable and provide the diligence status as agreed with Goji before migration takes place. 
+The required <code>migrationDetails</code> allows the platform to provide an existing investor ID where applicable and provide the diligence status as agreed with Goji before migration takes place.
 </aside>
 
 ### Request
