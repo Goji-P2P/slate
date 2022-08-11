@@ -35,7 +35,7 @@ end note
 
 api -[#007500]-> other : <b>INVESTMENT_REPAYMENT_INSTRUCTION_RECEIVED</b> webhook
 ... ...
-api -[#007500]-> other : <b>INVESTMENT_REPAYMENT_CLEARING</b> webhook (1/10)
+api -[#007500]-> other : <b>INVESTMENT_REPAYMENT_CLEARING</b> or <b>CASH_INTEREST_REPAYMENT_CLEARING</b> webhook (1/10)
 api -[#007500]-> other : INVESTMENT_REPAYMENT_CLEARING webhook (2/10)
 api -[#007500]-> other : ...
 api -[#007500]-> other : ...
@@ -83,4 +83,4 @@ api -> other : 200 Response
 
 
 
-@enduml 
+@enduml

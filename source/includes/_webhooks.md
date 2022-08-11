@@ -170,6 +170,7 @@ DEPOSIT<br>
 BONUS<br>
 CAPITAL_REPAYMENT<br>
 INTEREST_REPAYMENT<br>
+CASH_INTEREST_RECEIVED<br>
 SELL_PREMIUM
 
 ## ISA_AUTO_REPAIRED
@@ -800,6 +801,31 @@ This webhook is fired when the system has successfully recorded a repayment requ
 ```
 This webhook is fired whenever the system marks a single repayment as cleared.
 I.e. the money movement for the singular investor repayment has occurred.
+
+## CASH_INTEREST_REPAYMENT_CLEARING
+```json
+{
+  "id": "d6adb525-adac-4cc0-a86f-a9c0e68a7bb8",
+  "type": "CASH_INTEREST_REPAYMENT_CLEARING",
+  "dateTime": "2021-11-26T21:51:32.574621Z",
+  "content": {
+    "repaymentBatchReference": "REPAYMENT-2b86a1bb-fe9d-4476-9e6b-0e29477e251d",
+    "repaymentId": "REPAYMENT_ID",
+    "amount": {
+      "amount": 10,
+      "currency": "GBP"
+    },
+    "type": "CASH_INTEREST",
+    "status": "CLEARED",
+    "postedAt": "2021-11-26T21:51:32.542533Z",
+    "clearedAt": "2021-11-26T21:51:32.543340Z",
+    "clientId": "SPECS-63880",
+    "accountType": "ISA"
+  }
+}
+```
+This webhook is fired whenever the system marks a single INTEREST_CASH repayment as cleared.
+I.e. the money movement for the singular INTEREST_CASH repayment has occurred.
 
 
 ## INVESTMENT_REPAYMENT_BATCH_COMPLETE
