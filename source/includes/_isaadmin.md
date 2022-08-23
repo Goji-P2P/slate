@@ -4601,7 +4601,7 @@ Content-Type: application/json
 ""
 ```
 ### Description
-This endpoint should be called by the P2PP when they have received the deposit for a transfer in and have confirmed the split between current/prior year subscriptions. The transfer amount is the value of the total amount received from the previus ISA manager. Either the repair amount or the subscribed amount needs to be specified. The subscribed amount is the portion allocated to the ISA. The repair amount is the amount that had to be credited to the non-ISA account. Please see the integration guide for more details.
+This endpoint should be called by the P2PP when they have received the deposit for a transfer in and have confirmed the split between current/prior year subscriptions. The transfer amount is the value of the total amount received from the previous ISA manager. Either the repair amount or the subscribed amount needs to be specified. The subscribed amount is the portion allocated to the ISA. The repair amount is the amount that had to be credited to the non-ISA account. Please see the integration guide for more details.
 #### Possible Error Codes
 Please see [transfer cash errors](#errors)
 ### Request
