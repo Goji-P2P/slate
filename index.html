@@ -492,7 +492,7 @@
                     <a href="#payments-manager-post-companies" class="toc-h2 toc-link" data-title="POST /companies"><code>POST /companies</code></a>
                   </li>
                   <li>
-                    <a href="#payments-manager-put-test-companies-id-enable" class="toc-h2 toc-link" data-title="🧪 PUT /test/companies/{id}/enable"><code>🧪 PUT /test/companies/{id}/enable</code></a>
+                    <a href="#payments-manager-put-test-companies-partyid-enable" class="toc-h2 toc-link" data-title="🧪 PUT /test/companies/{partyId}/enable"><code>🧪 PUT /test/companies/{partyId}/enable</code></a>
                   </li>
                   <li>
                     <a href="#payments-manager-get-companies" class="toc-h2 toc-link" data-title="GET /companies"><code>GET /companies</code></a>
@@ -7178,28 +7178,28 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="s2">"SUCCESS"</span><span class="w">
-</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400
-Content-Type: application/json
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-{
-    "errors": [
-        {
-            "errorCode": "INVALID_DATA",
-            "message": "Payment address not found for accountNumber=12345678, sortCode=123456"
-        }
-    ]
-}
-</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400
-Content-Type: application/json
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"errorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_DATA"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Payment address not found for accountNumber=12345678, sortCode=123456"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-{
-    "errors": [
-        {
-            "errorCode": "SYSTEM_ERROR",
-            "message": "An unexpected error has occurred"
-        }
-    ]
-}
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"errorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SYSTEM_ERROR"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An unexpected error has occurred"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='payments-investors-post-platformapi-investors-clientid-fee'><code>POST /platformApi/investors/{clientId}/fee</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/platformApi/investors/{clientId}/fee</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -7862,6 +7862,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
           </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E17 FTW"</span><span class="p">,</span><span class="w">
         </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -7892,16 +7893,47 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <span class="s">    ]</span>
 <span class="s">  }</span>
 <span class="s">}</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">  "errors": [</span>
+<span class="s">    {</span>
+<span class="s">      "errorCode": "INVALID_DATA",</span>
+<span class="s">      "message": "The company number must be 8 characters, contain only numbers or two letters followed by six numbers."</span>
+<span class="s">    }</span>
+<span class="s">  ]</span>
+<span class="s">}</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">  "errors": [</span>
+<span class="s">    {</span>
+<span class="s">      "errorCode": "INVALID_DATA",</span>
+<span class="s">      "message": "The company number is required if company type is not SOLE_TRADER."</span>
+<span class="s">    }</span>
+<span class="s">  ]</span>
+<span class="s">}</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">409</span> <span class="ne">Conflict</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">  "errors": [</span>
+<span class="s">    {</span>
+<span class="s">      "errorCode": "COMPANY_ALREADY_REGISTERED",</span>
+<span class="s">      "message": "Company with number AB123456 already registered."</span>
+<span class="s">    }</span>
+<span class="s">  ]</span>
+<span class="s">}</span>
 </code></pre><h3 id='payments-manager-code-post-companies-code-description'>Description</h3>
-<p>Register a company with the Goji Platform.  This allows the company to own Wallets, and send/receive money through them.</p>
+<p>Register a company with the Goji Platform.<br>
+This allows the company to own Wallets, and send/receive money through them.</p>
 
-<p>The registration process is asynchronous. When this API is first called, the <code>status</code> returned will be <code>PENDING</code>. A
-<code>COMPANY_REGISTRATION_UPDATE</code> webhook will be used to notify completion of the registration.</p>
+<p>The registration process is asynchronous. When this API is first called, the <code>status</code> returned will be <code>PENDING</code>.<br>
+A <a href="#webhooks-company_registration_update"><code>COMPANY_REGISTRATION_UPDATE</code></a> webhook, with status <code>REGISTERED</code>, will be used to notify completion of the registration.</p>
 
 <p>The registration process is partially manual, so the webhook will be dispatched significantly later than the API call.</p>
 
 <aside class="notice">
-In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">endpoint</a> to enable a company.
+In sandbox use <a href="#payments-manager-put-test-companies-id-enable">/test/companies/{partyId}/enable</a> endpoint to enable a company.
 </aside>
 <h3 id='payments-manager-code-post-companies-code-request'>Request</h3>
 <table><thead>
@@ -7915,20 +7947,20 @@ In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">end
 <tr>
 <td>ukCompany.name</td>
 <td>string</td>
-<td>Company Name.</td>
+<td>The name of the company.</td>
 <td>required</td>
 </tr>
 <tr>
 <td>ukCompany.type</td>
 <td>string</td>
 <td>The type of company: SOLE_TRADER, LIMITED_COMPANY, LIMITED_PARTNERSHIP.</td>
-<td>required<sup>1</sup></td>
+<td>required when integrating after 2021-02-15</td>
 </tr>
 <tr>
 <td>ukCompany.number</td>
 <td>string</td>
-<td>The Company Number registered with Companies House.</td>
-<td>optional<sup>2</sup></td>
+<td>The number of the company registered with Companies House.</td>
+<td>required when company type is not SOLE_TRADER</td>
 </tr>
 <tr>
 <td>ukCompany.associatedIndividuals</td>
@@ -8003,9 +8035,6 @@ In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">end
 <td>required</td>
 </tr>
 </tbody></table>
-
-<p><sup>1. Required when integrating after 2021-02-15.</sup><br/>
-<sup>2. Required when ukCompany.type is <em>NOT</em> SOLE_TRADER.</sup></p>
 <h3 id='payments-manager-code-post-companies-code-response'>Response</h3>
 <table><thead>
 <tr>
@@ -8022,7 +8051,7 @@ In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">end
 <tr>
 <td>ukCompany.name</td>
 <td>string</td>
-<td>Company Name.</td>
+<td>The name of the company.</td>
 </tr>
 <tr>
 <td>ukCompany.type</td>
@@ -8032,7 +8061,7 @@ In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">end
 <tr>
 <td>ukCompany.number</td>
 <td>string</td>
-<td>The Company Number registered with Companies House.</td>
+<td>The number of the company registered with Companies House.</td>
 </tr>
 <tr>
 <td>ukCompany.associatedIndividuals</td>
@@ -8095,7 +8124,7 @@ In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">end
 <td>The country of the associated individual&#39;s address in 3 character ISO code.</td>
 </tr>
 </tbody></table>
-<h2 id='payments-manager-put-test-companies-id-enable'><code>🧪 PUT /test/companies/{id}/enable</code></h2><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/test/companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502/enable</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='payments-manager-put-test-companies-partyid-enable'><code>🧪 PUT /test/companies/{partyId}/enable</code></h2><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/test/companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502/enable</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
@@ -8109,13 +8138,13 @@ In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">end
 <span class="s">    "name": "Fake Company LIMITED"</span>
 <span class="s">  }</span>
 <span class="s">}</span>
-</code></pre><h3 id='payments-manager-code-put-test-companies-id-enable-code-description'>Description</h3>
+</code></pre><h3 id='payments-manager-code-put-test-companies-partyid-enable-code-description'>Description</h3>
 <p>Simulate enabling a pending company.</p>
 
 <aside class="notice">
 Please note this is a test endpoint and is only available in the sandbox environment.
 </aside>
-<h3 id='payments-manager-code-put-test-companies-id-enable-code-response'>Response</h3>
+<h3 id='payments-manager-code-put-test-companies-partyid-enable-code-response'>Response</h3>
 <table><thead>
 <tr>
 <th>Name</th>

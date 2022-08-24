@@ -1021,28 +1021,28 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="s2">"SUCCESS"</span><span class="w">
-</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400
-Content-Type: application/json
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-{
-    "errors": [
-        {
-            "errorCode": "INVALID_DATA",
-            "message": "Payment address not found for accountNumber=12345678, sortCode=123456"
-        }
-    ]
-}
-</span></code></pre><pre class="highlight http tab-http"><code><span class="err">HTTP/1.1 400
-Content-Type: application/json
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"errorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_DATA"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Payment address not found for accountNumber=12345678, sortCode=123456"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-{
-    "errors": [
-        {
-            "errorCode": "SYSTEM_ERROR",
-            "message": "An unexpected error has occurred"
-        }
-    ]
-}
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"errorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SYSTEM_ERROR"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An unexpected error has occurred"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='payments-investors-post-platformapi-investors-clientid-fee'><code>POST /platformApi/investors/{clientId}/fee</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/platformApi/investors/{clientId}/fee</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
