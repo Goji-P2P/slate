@@ -78,7 +78,10 @@ The Goji Platform will generate a `clientId` which should be saved as this is us
 ## Checking the KYC/KYB details
 Once the Investor has been created, a KYC/KYB check is done in the background and the status can be checked by calling [GET /investors/{clientId}/kyc](/#investors-get-platformapi-investors-clientid-kyc) for individuals or [GET /investors/{clientId}/kyb](/#investors-get-platformapi-investors-clientid-kyb) for corporates.
 
-In the sandbox environment, all individual Investors are considered verified unless the `lastName` contains `referred` or `forcekyc`.
+In the sandbox environment:
+
+* All Individual Investors are considered verified unless the `lastName` field contains `referred` or `forcekyc`.
+* All Corporate Investors are unverified by default. To verify the Investor, documents must be uploaded and verified using the KYB workflow on the Goji Admin Console.
 
 ## Depositing Test Funds
 
