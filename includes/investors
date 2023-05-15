@@ -1310,7 +1310,7 @@ Please note that for corporate Investors the KYB status endpoint should be used
 
 <span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='investors-code-post-platformapi-investors-clientid-kyc-documents-code-description'>Description</h3>
-<p>Add an investor&#39;s KYC documents.</p>
+<p>Add an investor&#39;s KYC/KYB documents.</p>
 <h3 id='investors-code-post-platformapi-investors-clientid-kyc-documents-code-request'>Request</h3>
 <table><thead>
 <tr>

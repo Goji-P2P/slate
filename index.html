@@ -1389,7 +1389,12 @@ This will ensure the correct behaviour of payments during your testing.
 <h2 id='quickstart-guides-checking-the-kyc-kyb-details'>Checking the KYC/KYB details</h2>
 <p>Once the Investor has been created, a KYC/KYB check is done in the background and the status can be checked by calling <a href="/#investors-get-platformapi-investors-clientid-kyc">GET /investors/{clientId}/kyc</a> for individuals or <a href="/#investors-get-platformapi-investors-clientid-kyb">GET /investors/{clientId}/kyb</a> for corporates.</p>
 
-<p>In the sandbox environment, all individual Investors are considered verified unless the <code>lastName</code> contains <code>referred</code> or <code>forcekyc</code>.</p>
+<p>In the sandbox environment:</p>
+
+<ul>
+<li>All Individual Investors are considered verified unless the <code>lastName</code> field contains <code>referred</code> or <code>forcekyc</code>.</li>
+<li>All Corporate Investors are unverified by default. To verify the Investor, documents must be uploaded and verified using the KYB workflow on the Goji Admin Console.</li>
+</ul>
 <h2 id='quickstart-guides-depositing-test-funds'>Depositing Test Funds</h2>
 <blockquote>
 <p>Bank Transfer Details</p>
@@ -3069,7 +3074,7 @@ Please note that for corporate Investors the KYB status endpoint should be used
 
 <span class="s2">""</span><span class="w">
 </span></code></pre><h3 id='investors-code-post-platformapi-investors-clientid-kyc-documents-code-description'>Description</h3>
-<p>Add an investor&#39;s KYC documents.</p>
+<p>Add an investor&#39;s KYC/KYB documents.</p>
 <h3 id='investors-code-post-platformapi-investors-clientid-kyc-documents-code-request'>Request</h3>
 <table><thead>
 <tr>
