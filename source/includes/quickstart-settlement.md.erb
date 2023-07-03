@@ -108,7 +108,9 @@ The Investor's unique bank details for depositing funds can be retrieved by call
 For an ISA account, use: [GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails/isa](/#payments-investors-get-platformapi-investors-clientid-banktransferdetails-isa)
 
 ### Testing
-You can simulate depositing funds by calling [POST https://api-sandbox.goji.investments/platformApi/test/account/topup](/#payments-investors-post-test-account-topup).
+<aside class="notice">
+You can simulate depositing funds by calling <a href="#payments-investors-post-test-account-topup"><code>POST /test/account/topup</code></a>.
+</aside>
 
 The payment reference must start with `ISA` if the funds are to be deposited to the ISA account.
 

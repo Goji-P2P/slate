@@ -12,6 +12,6 @@ services:
     volumes:
     - type: bind
       source: './source'
-      target: '/usr/local/src/source'
+      target: '/srv/slate/source'
       read_only: true
 

@@ -18,6 +18,10 @@ The distribution of the batch to investors will not occur until the necessary fu
 
 The response will include a payTo section. Payment should be sent to the bank details specified, including the `payTo.reference`.
 
+<aside class="notice">
+You can simulate depositing funds by calling <a href="#payments-investors-post-test-account-topup"><code>POST /test/account/topup</code></a>.
+</aside>
+
 Once payment has been made, the [`GET /transfers/batch/{batchId}`](/#payments-manager-get-transfers-batch-batchid) 
 endpoint can be used to see the current status of the batch payment instruction.
 
