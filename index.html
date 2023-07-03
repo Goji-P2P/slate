@@ -1415,7 +1415,9 @@ This will ensure the correct behaviour of payments during your testing.
 <h3 id='quickstart-guides-depositing-test-funds-an-isa-investor-39-s-bank-details'>An ISA Investor&#39;s Bank Details</h3>
 <p>For an ISA account, use: <a href="/#payments-investors-get-platformapi-investors-clientid-banktransferdetails-isa">GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails/isa</a></p>
 <h3 id='quickstart-guides-depositing-test-funds-testing'>Testing</h3>
-<p>You can simulate depositing funds by calling <a href="/#payments-investors-post-test-account-topup">POST https://api-sandbox.goji.investments/platformApi/test/account/topup</a>.</p>
+<aside class="notice">
+You can simulate depositing funds by calling <a href="#payments-investors-post-test-account-topup"><code>POST /test/account/topup</code></a>.
+</aside>
 
 <p>The payment reference must start with <code>ISA</code> if the funds are to be deposited to the ISA account.</p>
 
@@ -8977,6 +8979,10 @@ with a <code>status</code> field in the body of <code>AWAITING_FUNDS</code>.</p>
 The distribution of the batch to investors will not occur until the necessary funds are received. </p>
 
 <p>The response will include a payTo section. Payment should be sent to the bank details specified, including the <code>payTo.reference</code>.</p>
+
+<aside class="notice">
+You can simulate depositing funds by calling <a href="#payments-investors-post-test-account-topup"><code>POST /test/account/topup</code></a>.
+</aside>
 
 <p>Once payment has been made, the <a href="/#payments-manager-get-transfers-batch-batchid"><code>GET /transfers/batch/{batchId}</code></a> 
 endpoint can be used to see the current status of the batch payment instruction.</p>
