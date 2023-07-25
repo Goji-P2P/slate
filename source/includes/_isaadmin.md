@@ -5205,7 +5205,7 @@ Lists all transfers out for all investors.
 ### Request
 
 No body. The `activeOnly` parameter takes a `true` or `false` value (if not provided behaviour will be `false`).
-When set to `true` only Transfers Out where `dateFundsTransferred` is `null` will be returned.
+When set to `true` only Transfers Out where `dateFundsTransferred` is `null` will be returned. 
 ### Response
 | Name                                                 | Type    | Description                                                                                                                                                                                        |
 |------------------------------------------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
