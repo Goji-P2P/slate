@@ -3717,43 +3717,53 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"dateFundsTransferred"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"amountToTransfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"isaManager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lineTwo"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineTwo"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"townCity"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"townCity"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"postcode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"postcode"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lineOne"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineOne"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lineThree"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineThree"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"bankReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankReference"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"transferDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"transferCurrentYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"transferAllPriorYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"transferAll"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"transferDateFromNewIsaManager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"transferPriorYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"priorYearAmountToTransfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"dateTAFReceived"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"amountToTransferAlert"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"originatorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"originatorId"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"workflowId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"workflowId"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"isaManager"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"lineOne"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lineOne"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lineTwo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lineTwo"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lineThree"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lineThree"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"townCity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"townCity"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"postCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postCode"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"bankReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bankReference"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"transferDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"dateTAFReceived"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"transferDateFromNewIsaManager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-25"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"transferAll"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"transferCurrentYearSubscriptions"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"transferPriorYearSubscriptions"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"transferAllPriorYearSubscriptions"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"priorYearAmountToTransfer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"transferOutFee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.34</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"transferOutFee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"dateEmailSentToInvestor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"dateEmailSentToPlatform"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"dateFundsTransferred"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"thfUrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"amountToTransfer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"amountToTransferAlert"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='investors-code-get-platformapi-transfersout-code-description'>Description</h3>
 <p>Lists all transfers out for all investors.</p>
+<h3 id='investors-code-get-platformapi-transfersout-code-request'>Request</h3>
+<p>No body. The <code>activeOnly</code> parameter takes a <code>true</code> or <code>false</code> value (if not provided behaviour will be <code>false</code>).
+When set to <code>true</code> only Transfers Out where <code>dateFundsTransferred</code> is <code>null</code> will be returned.</p>
 <h3 id='investors-code-get-platformapi-transfersout-code-response'>Response</h3>
 <table><thead>
 <tr>
@@ -3765,7 +3775,17 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 <tr>
 <td>[].id</td>
 <td>string</td>
-<td>The ID Goji assigns to the Transfer Out request.</td>
+<td>The ID Goji assigns to the Transfer Out request</td>
+</tr>
+<tr>
+<td>[].originatorId</td>
+<td>string</td>
+<td>The ID Goji assigns to your Company</td>
+</tr>
+<tr>
+<td>[].workflowId</td>
+<td>string</td>
+<td>The ID Goji assigns to the workflow associated with this Transfer Out</td>
 </tr>
 <tr>
 <td>[].isaManager</td>
@@ -3780,37 +3800,37 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 <tr>
 <td>[].address.lineOne</td>
 <td>string</td>
-<td>Line one of the address.</td>
+<td>The first line of the investor&#39;s address.</td>
 </tr>
 <tr>
 <td>[].address.lineTwo</td>
 <td>string</td>
-<td>Line two of the address.</td>
+<td>The second line of the investor&#39;s address. NOT the town or region.</td>
 </tr>
 <tr>
 <td>[].address.lineThree</td>
 <td>string</td>
-<td>Line three of the address.</td>
+<td>The third line of the investor&#39;s address. NOT the town or region.</td>
 </tr>
 <tr>
 <td>[].address.townCity</td>
 <td>string</td>
-<td>The town/city of the address.</td>
+<td>The town of the investor&#39;s address.</td>
 </tr>
 <tr>
 <td>[].address.region</td>
 <td>string</td>
-<td>The region of the address eg county.</td>
-</tr>
-<tr>
-<td>[].address.postcode</td>
-<td>string</td>
-<td>The post code of the address.</td>
+<td>The region of the investor&#39;s address.</td>
 </tr>
 <tr>
 <td>[].address.country</td>
 <td>string</td>
 <td>The country of the investor&#39;s address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.</td>
+</tr>
+<tr>
+<td>[].address.postcode</td>
+<td>string</td>
+<td>The Post Code of the investor&#39;s address.</td>
 </tr>
 <tr>
 <td>[].isaManager.accountNumber</td>
@@ -3843,6 +3863,11 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 <td>The date the ISA manager has said they will accept subscriptions from.</td>
 </tr>
 <tr>
+<td>[].transferDetails.transferAll</td>
+<td>boolean</td>
+<td>True if all ISA subscriptions should be transferred.</td>
+</tr>
+<tr>
 <td>[].transferDetails.transferCurrentYearSubscriptions</td>
 <td>boolean</td>
 <td>True if current year subscriptions should be transferred.</td>
@@ -3858,19 +3883,34 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 <td>True if all prior year subscriptions should be transferred.</td>
 </tr>
 <tr>
-<td>[].transferDetails.transferAll</td>
-<td>boolean</td>
-<td>True if all ISA subscriptions should be transferred.</td>
-</tr>
-<tr>
-<td>[].priorYearAmountToTransfer.amount</td>
+<td>[].transferOutFee.amount</td>
 <td>number</td>
-<td>The amount</td>
+<td>The amount for any fee/s associated with this Transfer Out</td>
 </tr>
 <tr>
-<td>[].priorYearAmountToTransfer.currency</td>
+<td>[].transferOutFee.currency</td>
 <td>string</td>
-<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+<td>The currency of any fee/s in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].dateEmailSentToInvestor</td>
+<td>string</td>
+<td>The date the investor was emailed to confirm the Transfer Out details</td>
+</tr>
+<tr>
+<td>[].dateEmailSentToPlatform</td>
+<td>string</td>
+<td>The date the platform was emailed to confirm the Transfer Out details</td>
+</tr>
+<tr>
+<td>[].dateFundsTransferred</td>
+<td>string</td>
+<td>The date the funds were transferred to the new ISA manager.</td>
+</tr>
+<tr>
+<td>[].thfUrl</td>
+<td>string</td>
+<td>The URL of the Transfer History Form associated with this Transfer Out</td>
 </tr>
 <tr>
 <td>[].amountToTransfer</td>
@@ -3893,9 +3933,9 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 <td>True if the amount requested to be transferred cannot be satisfied. If this is true, the transfer cannot be processed until it is resolved.</td>
 </tr>
 <tr>
-<td>[].dateFundsTransferred</td>
-<td>string</td>
-<td>The date the funds were transferred to the new ISA manager.</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 <h2 id='investors-migration'><em>Migration</em></h2><h2 id='investors-migrating-investors'>Migrating Investors</h2>
