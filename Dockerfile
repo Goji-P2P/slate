@@ -1,4 +1,4 @@
-FROM ruby:2.6-slim
+FROM docker.io/ruby:2.6.10-slim
 
 WORKDIR /srv/slate
 
@@ -12,7 +12,7 @@ RUN apt-get update \
         build-essential \
         git \
         nodejs \
-    && gem install bundler \
+    && gem install bundler -v 2.4.22 \
     && bundle install \
     && apt-get remove -y build-essential git \
     && apt-get autoremove -y \
