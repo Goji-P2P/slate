@@ -463,6 +463,14 @@ The process flow is:
 
 ## Tax Year Breaks
 
+<aside class="warning">
+Please note that Tax Year Break functionality will be removed on 6th April 2024.
+<br>
+<code>INVALID_TAX_YEAR_BREAK</code> status will no longer be returned.
+<br>
+All ISAs with this status will become <code>VALID</code> at this time.
+</aside>
+
 A tax year break occurs when an investor has not subscribed for a whole tax year and is therefore required to re-open an ISA before they can make further subscriptions.
 
 For example, Investor A opens an ISA on 1st April 2016 (ie in the 2015/16 tax year) and subscribes £10,000.
@@ -1579,6 +1587,15 @@ Content-Type: application/json
 ```
 ### Description
 Used to retrieve the subscription status of an investor's ISA. Can be used for tax year breaks.
+
+<aside class="warning">
+Please note that Tax Year Break functionality will be removed on 6th April 2024.
+<br>
+<code>INVALID_TAX_YEAR_BREAK</code> status will no longer be returned.
+<br>
+All ISAs with this status will become <code>VALID</code> at this time.
+</aside>
+
 ### Response
 | Name               | Type   | Description                                                                                                                                                                                                                                                                             |
 | ------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -2036,6 +2053,14 @@ Content-Type: application/json
 ```
 ### Description
 Used to record an investor agreeing to the ISA declaration after the ISA has been opened. Can be used for tax year breaks.
+
+<aside class="warning">
+Please note that Tax Year Break functionality will be removed on 6th April 2024.
+<br>
+<code>INVALID_TAX_YEAR_BREAK</code> status will no longer be returned.
+<br>
+All ISAs with this status will become <code>VALID</code> at this time.
+</aside>
 
 ### Response
 | Name                                               | Type   | Description                                                                                                                                                                                                                                                                             |
