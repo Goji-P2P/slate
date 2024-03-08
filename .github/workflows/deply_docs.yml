@@ -26,7 +26,7 @@ jobs:
     - run: bundle exec middleman build --clean
 
     - name: deploy
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v2.3.1
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.GIT_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
