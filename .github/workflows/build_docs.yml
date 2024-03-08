@@ -1,0 +1,24 @@
+name: build
+
+on:
+  pull_request:
+    branches: [ '*' ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+
+      - name: bundle install
+        run: |
+          gem install bundler -v 2.4.2
+          bundle install --jobs 4 --retry 3
+
+      - run: bundle exec middleman build --clean
