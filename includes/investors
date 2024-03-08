@@ -75,10 +75,15 @@ Please note that for corporate Investors the KYB status endpoint should be used
 <li><p><code>ENHANCED_VERIFIED</code> The investor has passed enhanced verification. All corporate and international investors are subject to enhanced verification.</p></li>
 </ul>
 
-<p>To simulate different KYC statuses in sandbox create an investor with last name that contains:
- - <code>REFERRED</code>, <code>DECLINED</code> or <code>FORCEKYC</code> for <code>ENHANCED_VERIFICATION_REQUIRED</code> status
- - <code>INPROGRESS</code> for <code>AWAITING_CREDIT_AGENCY_CHECK</code> status
- - By default all investors will get <code>ELECTRONICALLY_VERIFIED</code> status.</p>
+<aside class="notice">
+By default all individual investors in sandbox environment will get <code>ELECTRONICALLY_VERIFIED</code> KYC status.
+
+To simulate different KYC status in sandbox create an investor with last name that contains:
+  <ul>
+    <li><code>REFERRED</code>, <code>DECLINED</code> or <code>FORCEKYC</code> for <code>ENHANCED_VERIFICATION_REQUIRED</code> status</li>
+    <li><code>INPROGRESS</code> for <code>AWAITING_CREDIT_AGENCY_CHECK</code> status</li>
+  <ul>
+</aside>
 
 <p>For <code>ENHANCED_VERIFIED</code> are required intervention from goji admin. After uploading the documents, goji admin will to approve the uploaded documents.</p>
 
@@ -2298,6 +2303,14 @@ For each possible way of integrating with the application, you will need to firs
 
 <p>Most useful for checking if the investor has entered a tax year break status whereby subscriptions are no longer allowed until redeclaration has taken place.</p>
 <h4 id='investors-code-get-platformapi-investors-clientid-isa-subscriptionstatus-code-description-tax-year-breaks'>Tax Year Breaks</h4>
+<aside class="warning">
+Please note that Tax Year Break functionality will be removed on 6th April 2024.
+<br>
+<code>INVALID_TAX_YEAR_BREAK</code> status will no longer be returned.
+<br>
+All ISAs with this status will become <code>VALID</code> at this time.
+</aside>
+
 <p>A tax year break occurs when an investor has not subscribed for a whole tax year and is therefore required to re-open an ISA before they can make further subscriptions.</p>
 
 <p>For example, Investor A opens an ISA on 1st April 2016 (ie in the 2015/16 tax year) and subscribes £10,000.</p>
@@ -2642,6 +2655,14 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='investors-code-post-platformapi-investors-investorid-isa-declaration-agreement-code-description'>Description</h3>
 <p>Used to record an investor agreeing to the ISA declaration after the ISA has been opened. Can be used to re-enable ISAs in a tax year break status for example.</p>
+
+<aside class="warning">
+Please note that Tax Year Break functionality will be removed on 6th April 2024.
+<br>
+<code>INVALID_TAX_YEAR_BREAK</code> status will no longer be returned.
+<br>
+All ISAs with this status will become <code>VALID</code> at this time.
+</aside>
 <h3 id='investors-code-post-platformapi-investors-investorid-isa-declaration-agreement-code-response'>Response</h3>
 <table><thead>
 <tr>
