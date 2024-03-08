@@ -1,4 +1,4 @@
-name: deploy
+name: build & deploy
 
 on:
   push:
@@ -11,21 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v
 
-    - name: Set up Ruby 2.6
+    - name: set up Ruby 2.6
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.6
 
-    - name: Build
+    - name: bundle install
       run: |
-        gem install bundler
+        gem install bundler -v 2.4.2
         bundle install --jobs 4 --retry 3
-        bundle exec middleman build --clean
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.3.1
+    - run: bundle exec middleman build --clean
+
+    - name: deploy
+      uses: peaceiris/actions-gh-pages@v3
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.GIT_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
