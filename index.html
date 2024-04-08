@@ -4033,7 +4033,7 @@ For each possible way of integrating with the application, you will need to firs
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -4070,11 +4070,11 @@ For each possible way of integrating with the application, you will need to firs
 <p>Most useful for checking if the investor has entered a tax year break status whereby subscriptions are no longer allowed until redeclaration has taken place.</p>
 <h4 id='investors-code-get-platformapi-investors-clientid-isa-subscriptionstatus-code-description-tax-year-breaks'>Tax Year Breaks</h4>
 <aside class="warning">
-Please note that Tax Year Break functionality will be removed on 6th April 2024.
+Please note that Tax Year Break functionality has been removed as of 6th April 2024.
 <br>
-<code>INVALID_TAX_YEAR_BREAK</code> status will no longer be returned.
+The status <code>INVALID_TAX_YEAR_BREAK</code> will no longer be returned.
 <br>
-All ISAs with this status will become <code>VALID</code> at this time.
+All ISA(s) previously with this status have been migrated to <code>VALID</code>.
 </aside>
 
 <p>A tax year break occurs when an investor has not subscribed for a whole tax year and is therefore required to re-open an ISA before they can make further subscriptions.</p>
@@ -4097,7 +4097,7 @@ All ISAs with this status will become <code>VALID</code> at this time.
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 </tbody></table>
 <h2 id='investors-put-platformapi-investors-investorid-isa-subscriptionstatus'><code>PUT /platformApi/investors/{investorId}/isa/subscriptionStatus</code></h2><pre class="highlight http tab-http"><code><span class="err">
@@ -4156,7 +4156,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>isaSubscriptionStatus</td>
 <td>string</td>
-<td>The status to change this ISA to. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>The status to change this ISA to. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 <td>required</td>
 </tr>
 </tbody></table>
@@ -4423,11 +4423,11 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <p>Used to record an investor agreeing to the ISA declaration after the ISA has been opened. Can be used to re-enable ISAs in a tax year break status for example.</p>
 
 <aside class="warning">
-Please note that Tax Year Break functionality will be removed on 6th April 2024.
+Please note that Tax Year Break functionality has been removed as of 6th April 2024.
 <br>
-<code>INVALID_TAX_YEAR_BREAK</code> status will no longer be returned.
+The status <code>INVALID_TAX_YEAR_BREAK</code> will no longer be returned.
 <br>
-All ISAs with this status will become <code>VALID</code> at this time.
+All ISA(s) previously with this status have been migrated to <code>VALID</code>.
 </aside>
 <h3 id='investors-code-post-platformapi-investors-investorid-isa-declaration-agreement-code-response'>Response</h3>
 <table><thead>
@@ -4615,7 +4615,7 @@ All ISAs with this status will become <code>VALID</code> at this time.
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -14760,11 +14760,11 @@ For each possible way of integrating with the application, you will need to firs
 </ul>
 <h2 id='isa-administration-tax-year-breaks'>Tax Year Breaks</h2>
 <aside class="warning">
-Please note that Tax Year Break functionality will be removed on 6th April 2024.
+Please note that Tax Year Break functionality has been removed as of 6th April 2024.
 <br>
-<code>INVALID_TAX_YEAR_BREAK</code> status will no longer be returned.
+The status <code>INVALID_TAX_YEAR_BREAK</code> will no longer be returned.
 <br>
-All ISAs with this status will become <code>VALID</code> at this time.
+All ISA(s) previously with this status have been migrated to <code>VALID</code>.
 </aside>
 
 <p>A tax year break occurs when an investor has not subscribed for a whole tax year and is therefore required to re-open an ISA before they can make further subscriptions.</p>
@@ -14778,8 +14778,6 @@ All ISAs with this status will become <code>VALID</code> at this time.
 <p>To re-open the ISA, the investor has to agree to the ISA declaration. This can be achieved by calling:</p>
 
 <p>POST /investors/{investorId}/declaration/agreement</p>
-
-<p>To check whether an investor has a tax year break and needs to agree to the declaration, check whether <code>isaSubscriptionStatus</code> on <code>/isa</code> is set to <code>INVALID_TAX_YEAR_BREAK</code>.</p>
 
 <ul>
 <li>Please note that Goji can contact the affected investors on your behalf to encourage them to re-open their ISAs. *</li>
@@ -16399,7 +16397,7 @@ This creates an investor on the Goji platform and allocates it to the P2P platfo
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -16796,11 +16794,11 @@ The <code>transferDate</code> is only non-null if the transfer history form has 
 <p>Used to retrieve the subscription status of an investor&#39;s ISA. Can be used for tax year breaks.</p>
 
 <aside class="warning">
-Please note that Tax Year Break functionality will be removed on 6th April 2024.
+Please note that Tax Year Break functionality has been removed as of 6th April 2024.
 <br>
-<code>INVALID_TAX_YEAR_BREAK</code> status will no longer be returned.
+The status <code>INVALID_TAX_YEAR_BREAK</code> will no longer be returned.
 <br>
-All ISAs with this status will become <code>VALID</code> at this time.
+All ISA(s) previously with this status have been migrated to <code>VALID</code>.
 </aside>
 <h3 id='isa-administration-code-get-investors-clientid-isa-subscriptionstatus-code-response'>Response</h3>
 <table><thead>
@@ -16813,7 +16811,7 @@ All ISAs with this status will become <code>VALID</code> at this time.
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 </tbody></table>
 <h2 id='isa-administration-put-investors-investorid-isa-status'><code>PUT /investors/{investorId}/isa/status</code></h2><pre class="highlight http tab-http"><code><span class="err">
@@ -16872,7 +16870,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>isaSubscriptionStatus</td>
 <td>string</td>
-<td>The status to change this ISA to. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>The status to change this ISA to. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 <td>required</td>
 </tr>
 </tbody></table>
@@ -17559,11 +17557,11 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <p>Used to record an investor agreeing to the ISA declaration after the ISA has been opened. Can be used for tax year breaks.</p>
 
 <aside class="warning">
-Please note that Tax Year Break functionality will be removed on 6th April 2024.
+Please note that Tax Year Break functionality has been removed as of 6th April 2024.
 <br>
-<code>INVALID_TAX_YEAR_BREAK</code> status will no longer be returned.
+The status <code>INVALID_TAX_YEAR_BREAK</code> will no longer be returned.
 <br>
-All ISAs with this status will become <code>VALID</code> at this time.
+All ISA(s) previously with this status have been migrated to <code>VALID</code>.
 </aside>
 <h3 id='isa-administration-code-post-investors-investorid-declaration-agreement-code-response'>Response</h3>
 <table><thead>
@@ -17751,7 +17749,7 @@ All ISAs with this status will become <code>VALID</code> at this time.
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -18308,7 +18306,7 @@ All ISAs with this status will become <code>VALID</code> at this time.
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -18735,7 +18733,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -19184,7 +19182,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -19836,7 +19834,7 @@ This endpoint creates the new investment associated with the reinvestment.</p>
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -20281,7 +20279,7 @@ This endpoint creates the new investment associated with the reinvestment.</p>
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -20719,7 +20717,7 @@ This endpoint creates the new investment associated with the reinvestment.</p>
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -21178,7 +21176,7 @@ This endpoint creates the new investment associated with the reinvestment.</p>
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -21617,7 +21615,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
@@ -22069,7 +22067,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 <tr>
 <td>subscriptionStatus</td>
 <td>string</td>
-<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br><code>INVALID_TAX_YEAR_BREAK</code><br></td>
+<td>Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br><code>VALID</code><br><code>INVALID_CROWN_DEPENDENCY</code><br><code>INVALID_NON_UK</code><br><code>INVALID_LOCKED_DEATH</code><br><code>INVALID_LOCKED_BANKRUPTCY</code><br><code>UNLOCKED</code><br><code>INVALID_CANCELLED</code><br></td>
 </tr>
 <tr>
 <td>remainingAdditionalPermittedSubscriptions</td>
