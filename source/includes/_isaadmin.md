@@ -5068,7 +5068,7 @@ Initialisation data for the ISA Transfer In widget.
 More information can be found [here](#investors-isa-transfers-in-embedding-the-isa-transfer-in-widget).
 
 <aside class="notice">
-Please note that this endpoint replaces <code>GET /platformApi/investors/{investorId}/accounts/ISA/transferIn/UI`</code>. The behavior remains unchanged.
+Please note that this endpoint replaces <code>GET /platformApi/investors/{investorId}/accounts/ISA/transferIn/UI</code>. The behavior remains unchanged.
 </aside>
 
 
