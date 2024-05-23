@@ -562,25 +562,25 @@ Authorization: Basic ...
   "sourceWalletId": "sourceWalletId",
   "investorRepayments" : [ {
     "amount" : {
-      "amount" : 2.68,
-      "currency" : "currency"
+      "amount" : 1.23,
+      "currency" : "GBP"
     },
     "investmentId" : "investmentId",
     "tax" : {
-      "amount" : 2.68,
-      "currency" : "currency"
+      "amount" : 1.23,
+      "currency" : "GBP"
     },
     "type" : "CAPITAL"
   }, {
     "amount" : {
-      "amount" : 2.68,
-      "currency" : "currency"
+      "amount" : 1.23,
+      "currency" : "GBP"
     },
     "tax" : {
-      "amount" : 2.68,
-      "currency" : "currency"
+      "amount" : 1.23,
+      "currency" : "GBP"
     },
-    "type" : "INTEREST_CASH",
+    "type" : "INTEREST",
     "clientId": "clientId",
     "accountType": "accountType"
   } ]
@@ -592,9 +592,43 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "repaymentBatchReference": "repaymentBatchReference"
+  "repaymentBatchReference": "REPAYMENT-fef06e98-1603-4cc6-9e15-2507b818fe5e"
 }
 ```
+```http
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+
+{
+  "errors": [
+    {
+      "errorCode": "INVALID_DATA",
+      "message": "cannot process both cash interest and interest repayments in the same call"
+    }
+  ]
+}
+```
+```http
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+
+{
+  "errors": [
+    {
+      "errorCode": "INVALID_DATA",
+      "message": "Field 'sourceWalletId' cannot be present when 'investorRepayments[].type' is 'INTEREST_CASH'."
+    }
+  ]
+}
+```
+<aside class="notice">
+This endpoint is the only call required to repay investments or uninvested cash for any platform onboarded from 1st November 2021.
+</aside>
+
+<aside class="notice">
+Usage of the <code>INTEREST_CASH</code> type with this endpoint is disabled by default. Please contact Goji Operations to enable it.
+</aside>
+
 ### Description
 Adds repayments to investments or uninvested cash from a specified flexible payments wallet.
 
@@ -606,19 +640,11 @@ Adds repayments to investments or uninvested cash from a specified flexible paym
  - These webhooks should provide coverage of all stages of the batch clearing. When using <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a> or <a href="/#webhooks-cash_interest_repayment_clearing">CASH_INTEREST_REPAYMENT_CLEARING</a>, it might be relevant to ignore all <a href="/#webhooks-investor_funds_received">INVESTOR_FUNDS_RECEIVED</a> webhooks with a `sourceType` of `CAPITAL_REPAYMENT`, `INTEREST_REPAYMENT`, `CASH_INTEREST_RECEIVED` or `SELL_PREMIUM`.
  - All these webhooks will reference `repaymentBatchReference` so you are required to store this value for reconciling repayments as they clear.
 
-<aside class="notice">
-Usage of the INTEREST_CASH type with this endpoint is disabled by default. Please contact Goji Operations to enable usage of this.
-</aside>
-
-<aside class="notice">
-This endpoint is the only call required to repay investments or uninvested cash for any platform onboarded from 1st November 2021.
-</aside>
-
 ### Request
 | Name                              | Type   | Description                                                                                                                                                                                                                               | Required |
 |-----------------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
 | reference                         | string | The payment reference used for the repayment of funds. This will be present on the wallet statement.                                                                                                                                      | required |
-| sourceWalletId                    | string | The wallet this distribution should be made from                                                                                                                                                                                          | required |
+| sourceWalletId                    | string | The wallet this distribution should be made from. This field cannot be used if the repayment type is `INTEREST_CASH`.                                                                                                                     | required |
 | investorRepayments                | array  | The repayments per investor.                                                                                                                                                                                                              | required |
 | investorRepayments[].investmentId | string | The ID of the of the investment that was specified in the original <a href="/#settlement-debt-post-platformapi-settlement-tranche">investment creation call</a>. This should not be part of the request when type `INTEREST_CASH` is used | optional |
 | investorRepayments[].type         | string | The type of the repayment Possible values are: <br>`CAPITAL`<br>`INTEREST`<br>`INTEREST_CASH`<br>`PREMIUM`<br>                                                                                                                            | required |
