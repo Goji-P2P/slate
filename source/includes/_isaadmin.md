@@ -5064,7 +5064,13 @@ Content-Type: application/json
 }
 ```
 ### Description
-Initialisation data for the Transfer In widget
+Initialisation data for the Transfer In widget.
+
+<aside class="notice">
+Please note that this endpoint replaces `GET /platformApi/investors/{investorId}/accounts/ISA/transferIn/UI`. The behavior remains unchanged.
+</aside>
+
+
 ### Response
 | Name       | Type   | Description |
 | ---------- | ------ | ----------- |

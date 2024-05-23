@@ -11,5 +11,5 @@ After merging your PR, the changes will be automatically deployed to the https:/
     docker-compose build
     docker-compose up
 
-    http://localhost:4567  # project will rebuilt automatically, refresh page to see changes
+http://localhost:4567  # project will rebuilt automatically, refresh page to see changes
 
