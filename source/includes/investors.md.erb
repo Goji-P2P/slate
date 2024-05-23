@@ -885,17 +885,18 @@ For each possible way of integrating with the application, you will need to firs
 
 To obtain the application's asset URLs one time security token, make an authenticated request to the following URL:
 
-`GET /investors/{investorId}/transferIn/uiData`
+ [`GET /investors/{investorId}/transferIn/uiData}`](#isa-administration-get-investors-investorid-transferin-uidata)
 
 The response will be structured like so:
 
 <code>
 {<br>
 &nbsp; "apiUrl": "https://api.goji.investments",<br>
-&nbsp;  "styleSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.css",<br>
-&nbsp;  "scriptSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.js",<br>
-&nbsp;  "investorId": "{investorId}",<br>
-&nbsp;  "token": "{oneTimeToken}"<br>
+&nbsp; "styleSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.css",<br>
+&nbsp; "scriptSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.js",<br>
+&nbsp; "hostedUrl" : "https://api.goji.investments/transferIn/application/?token={oneTimeToken}&investorId={investorId}",<br>
+&nbsp; "investorId": "investorId",<br>
+&nbsp; "token": "oneTimeToken"<br>
 }
 </code>
 
