@@ -5055,16 +5055,23 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "apiUrl" : "apiUrl",
-  "hostedUrl" : "hostedUrl",
-  "styleSrc" : "styleSrc",
-  "investorId" : "investorId",
-  "scriptSrc" : "scriptSrc",
-  "token" : "token"
+  "apiUrl": "https://api.goji.investments",
+  "styleSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.css",
+  "scriptSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.js",
+  "hostedUrl" : "https://api.goji.investments/transferIn/application/?token={oneTimeToken}&investorId={investorId}",
+  "investorId": "investorId",
+  "token": "oneTimeToken"
 }
 ```
 ### Description
-Initialisation data for the Transfer In widget
+Initialisation data for the ISA Transfer In widget.  
+More information can be found [here](#investors-isa-transfers-in-embedding-the-isa-transfer-in-widget).
+
+<aside class="notice">
+Please note that this endpoint replaces <code>GET /platformApi/investors/{investorId}/accounts/ISA/transferIn/UI</code>. The behavior remains unchanged.
+</aside>
+
+
 ### Response
 | Name       | Type   | Description |
 | ---------- | ------ | ----------- |

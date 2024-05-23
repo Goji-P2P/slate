@@ -876,7 +876,7 @@ It supports ISA transfers of the following types:
 
 5. In the case where the received funds would exceed the current year's allowance, then the surplus will be credited to their standard account.
 
-### Embedding the Transfer In Widget
+### Embedding the ISA Transfer In Widget
 
 The Goji Transfer In application is a JavaScript component which can be integrated in a number of ways.
 For each possible way of integrating with the application, you will need to first obtain a one time security token.
@@ -885,24 +885,29 @@ For each possible way of integrating with the application, you will need to firs
 
 To obtain the application's asset URLs one time security token, make an authenticated request to the following URL:
 
-   `/investors/{clientId}/accounts/ISA/transferIn/uiData`
+ [`GET /investors/{investorId}/transferIn/uiData}`](#isa-administration-get-investors-investorid-transferin-uidata)
 
-   The response will be structured like so:
+The response will be structured like so:
 
-   _(Please note that you should never hard-code the URLs returned since they are subject to change)_
+<code>
+{<br>
+&nbsp; "apiUrl": "https://api.goji.investments",<br>
+&nbsp; "styleSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.css",<br>
+&nbsp; "scriptSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.js",<br>
+&nbsp; "hostedUrl" : "https://api.goji.investments/transferIn/application/?token={oneTimeToken}&investorId={investorId}",<br>
+&nbsp; "investorId": "investorId",<br>
+&nbsp; "token": "oneTimeToken"<br>
+}
+</code>
 
-               {
-                 "apiUrl": "https://api.gojip2p.net",
-                 "styleSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.css",
-                 "scriptSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.js",
-                 "investorId": "<investorId>",
-                 "token": "<oneTimeToken>"
-               }
+<aside class="notice">
+Please note that you should never hard-code the returned URLs since they are subject to change.
+</aside>
 
-   With this data you are then able to bootstrap the application using any of the methods outlined below.
+With this data you are then able to bootstrap the application using any of the methods outlined below.
 
-  If your front-end application uses Ember, using as an Ember Addon makes sense. Alternatively, the suggested approach would be to
-  embed as a standalone JavaScript component on your existing pages - this enables full control over the application's styling.
+If your front-end application uses Ember, using as an Ember Addon makes sense. Alternatively, the suggested approach would be to
+embed as a standalone JavaScript component on your existing pages - this enables full control over the application's styling.
 
 #### Application Arguments
 
@@ -919,12 +924,16 @@ To include the application in your existing page as a JavaScript component, you 
 
 1). In the body of your HTML include the following:
 
-    `<div id="goji-application">`
-      `<div data-component="goji-transfer-in"`
-                             `data-attrs='{ "apiUrl": "<uiData.apiUrl>", "accountUrl": "<platform-manage-account-url>",`
-                                           `"investorId": "<uiData.investorId>", "token": "<uiData.token>" }'>`
-      `</div>`
-    `</div>`
+`<div id="goji-application">`<br/>
+&nbsp;    `<div data-component="goji-transfer-in"`<br/>
+&nbsp;&nbsp;         `data-attrs='{`<br/>
+&nbsp;&nbsp;&nbsp;                       `"apiUrl": "<uiData.apiUrl>",`<br/>
+&nbsp;&nbsp;&nbsp;                       `"accountUrl": "<platform-manage-account-url>",`<br/>
+&nbsp;&nbsp;&nbsp;                       `"investorId": "<uiData.investorId>",`<br/>
+&nbsp;&nbsp;&nbsp;                       `"token": "<uiData.token>"`<br/>
+&nbsp;&nbsp;                     `}'>`<br/>
+&nbsp;    `</div>`<br/>
+`</div>`
 
 2). Extract the JavaScript asset's URL from the request above and include it in your page.
 
