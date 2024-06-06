@@ -1594,7 +1594,7 @@ For each possible way of integrating with the application, you will need to firs
 <h4 id='investors-isa-transfers-in-embedding-the-isa-transfer-in-widget-obtaining-the-uidata-and-the-security-token'>Obtaining the <em>uiData</em> and the security token</h4>
 <p>To obtain the application&#39;s asset URLs one time security token, make an authenticated request to the following URL:</p>
 
-<p><a href="#isa-administration-get-investors-investorid-transferin-uidata"><code>GET /investors/{investorId}/transferIn/uiData}</code></a></p>
+<p><a href="#isa-administration-get-investors-investorid-transferin-uidata"><code>GET /investors/{investorId}/transferIn/uiData</code></a></p>
 
 <p>The response will be structured like so:</p>
 
