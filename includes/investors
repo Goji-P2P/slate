@@ -3065,6 +3065,9 @@ All ISA(s) previously with this status have been migrated to <code>VALID</code>.
 </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='investors-code-get-platformapi-investors-clientid-transferout-code-description'>Description</h3>
 <p>Lists transfers out for the investor.</p>
+
+<p>The <code>activeOnly</code> parameter takes a <code>true</code> or <code>false</code> value (if not provided behaviour will be <code>false</code>).
+When set to <code>true</code> only Transfers Out where <code>dateFundsTransferred</code> is <code>null</code> will be returned.</p>
 <h3 id='investors-code-get-platformapi-investors-clientid-transferout-code-response'>Response</h3>
 <table><thead>
 <tr>
