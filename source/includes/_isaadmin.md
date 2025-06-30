@@ -5099,57 +5099,86 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 [ {
-  "dateFundsTransferred" : "2000-01-23",
-  "amountToTransfer" : {
-    "amount" : 123.45,
-    "currency" : "currency"
-  },
-  "isaManager" : {
-    "address" : {
-      "country" : "country",
-      "lineTwo" : "lineTwo",
-      "townCity" : "townCity",
-      "postcode" : "postcode",
-      "lineOne" : "lineOne",
-      "lineThree" : "lineThree",
-      "region" : "region"
+    "id": "id",
+    "isaId": "isaId",
+    "investorId": "investorId",
+    "originatorId": "originatorId",
+    "originatorName": "originatorName",
+    "clientId": "clientId",
+    "workflowId": "workflowId",
+    "isaManager": {
+      "name": "ISA Manager",
+      "address": {
+        "lineOne": "line 1",
+        "lineTwo": null,
+        "lineThree": null,
+        "townCity": "town",
+        "region": "region",
+        "postCode": "AA1 2AS"
+      },
+      "accountNumber": "accountNumber",
+      "sortCode": "112233",
+      "bankReference": "bankReference"
     },
-    "bankReference" : "bankReference",
-    "name" : "name",
-    "accountNumber" : "accountNumber",
-    "sortCode" : "sortCode"
-  },
-  "transferDetails" : {
-    "transferCurrentYearSubscriptions" : true,
-    "transferAllPriorYearSubscriptions" : true,
-    "transferAll" : true,
-    "transferDateFromNewIsaManager" : "2000-01-23",
-    "transferPriorYearSubscriptions" : true,
-    "priorYearAmountToTransfer" : {
-      "amount" : 123.45,
-      "currency" : "currency"
+    "transferDetails": {
+      "dateTAFReceived": "2020-01-10",
+      "transferDateFromNewIsaManager": "2020-01-10",
+      "transferAll": true,
+      "transferCurrentYearSubscriptions": false,
+      "transferPriorYearSubscriptions": false,
+      "transferAllPriorYearSubscriptions": false,
+      "priorYearAmountToTransfer": null,
+      "transferOutFee": {
+        "amount": 123.45,
+        "currency": "GBP"
+      }
     },
-    "dateTAFReceived" : "2000-01-23"
-  },
-  "id" : "id",
-  "amountToTransferAlert" : true
-} ]
+    "transferOutFee": null,
+    "dateTimeStarted": "2020-01-10T02:00:00Z",
+    "dateEmailSentToInvestor": null,
+    "dateEmailSentToPlatform": null,
+    "dateFundsTransferred": null,
+    "thfUrl": null,
+    "amountToTransfer": {
+      "amount": 2010.0,
+      "currency": "GBP"
+    },
+    "amountToTransferAlert": false,
+    "amountSubscribedInCurrentYear": {
+      "amount": 1000.0,
+      "currency": "GBP"
+    },
+    "dateOfFirstSubscriptionInCurrentYear": "2020-01-09"
+  } ]
+
 ```
 ### Description
 Lists transfers out for the investor.
+
+### Request
+
+The `activeOnly` parameter takes a `true` or `false` value (if not provided behaviour will be `false`).
+When set to `true` only Transfers Out where `dateFundsTransferred` is `null` will be returned.
+
 ### Response
 | Name                                                 | Type    | Description                                                                                                                                                                                        |
 | ---------------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [].id                                                | string  | The ID Goji assigns to the Transfer Out request.                                                                                                                                                   |
+| [].isaId                                             | string  | The ID of the ISA account.                                                                                                                                                                         |
+| [].investorId                                        | string  | The ID of the investor.                                                                                                                                                                            |
+| [].originatorId                                      | string  | The ID of the originator.                                                                                                                                                                          |
+| [].originatorName                                    | string  | The name of the originator.                                                                                                                                                                        |
+| [].clientId                                          | string  | The client ID.                                                                                                                                                                                     |
+| [].workflowId                                        | string  | The workflow ID.                                                                                                                                                                                   |
 | [].isaManager                                        | ref     |                                                                                                                                                                                                    |
 | [].isaManager.name                                   | string  | The name of the ISA manager.                                                                                                                                                                       |
-| [].address.lineOne                                   | string  | The first line of the investor's address.                                                                                                                                                          |
-| [].address.lineTwo                                   | string  | The second line of the investor's address. NOT the town or region.                                                                                                                                 |
-| [].address.lineThree                                 | string  | The third line of the investor's address. NOT the town or region.                                                                                                                                  |
-| [].address.townCity                                  | string  | The town of the investor's address.                                                                                                                                                                |
-| [].address.region                                    | string  | The region of the investor's address.                                                                                                                                                              |
-| [].address.country                                   | string  | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. |
-| [].address.postcode                                  | string  | The Post Code of the investor's address.                                                                                                                                                           |
+| [].isaManager.address                                | ref     |                                                                                                                                                                                                    |
+| [].isaManager.address.lineOne                        | string  | The first line of the ISA manager's address.                                                                                                                                                       |
+| [].isaManager.address.lineTwo                        | string  | The second line of the ISA manager's address. NOT the town or region.                                                                                                                              |
+| [].isaManager.address.lineThree                      | string  | The third line of the ISA manager's address. NOT the town or region.                                                                                                                               |
+| [].isaManager.address.townCity                       | string  | The town of the ISA manager's address.                                                                                                                                                             |
+| [].isaManager.address.region                         | string  | The region of the ISA manager's address.                                                                                                                                                           |
+| [].isaManager.address.postCode                       | string  | The Post Code of the ISA manager's address.                                                                                                                                                        |
 | [].isaManager.accountNumber                          | string  | The account number to transfer the funds to.                                                                                                                                                       |
 | [].isaManager.sortCode                               | string  | The sort code to transfer the funds to.                                                                                                                                                            |
 | [].isaManager.bankReference                          | string  | The reference to use for the bank transfer.                                                                                                                                                        |
@@ -5160,13 +5189,24 @@ Lists transfers out for the investor.
 | [].transferDetails.transferPriorYearSubscriptions    | boolean | True if prior year subscriptions should be transferred.                                                                                                                                            |
 | [].transferDetails.transferAllPriorYearSubscriptions | boolean | True if all prior year subscriptions should be transferred.                                                                                                                                        |
 | [].transferDetails.transferAll                       | boolean | True if all ISA subscriptions should be transferred.                                                                                                                                               |
-| [].priorYearAmountToTransfer.amount                  | number  | The amount                                                                                                                                                                                         |
-| [].priorYearAmountToTransfer.currency                | string  | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                            |
+| [].transferDetails.priorYearAmountToTransfer         | ref     | The amount of prior year subscriptions to transfer.                                                                                                                                                |
+| [].transferDetails.transferOutFee                    | ref     | The fee for the transfer out.                                                                                                                                                                      |
+| [].transferDetails.transferOutFee.amount             | number  | The amount of the transfer out fee.                                                                                                                                                                |
+| [].transferDetails.transferOutFee.currency           | string  | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                            |
+| [].transferOutFee                                    | ref     | The transfer out fee (deprecated, use transferDetails.transferOutFee).                                                                                                                             |
+| [].dateTimeStarted                                   | string  | The date and time when the transfer out was started.                                                                                                                                               |
+| [].dateEmailSentToInvestor                           | string  | The date when the email was sent to the investor.                                                                                                                                                  |
+| [].dateEmailSentToPlatform                           | string  | The date when the email was sent to the platform.                                                                                                                                                  |
+| [].dateFundsTransferred                              | string  | The date the funds were transferred to the new ISA manager.                                                                                                                                        |
+| [].thfUrl                                            | string  | The URL for the transfer history form.                                                                                                                                                             |
 | [].amountToTransfer                                  | ref     |                                                                                                                                                                                                    |
-| [].amountToTransfer.amount                           | number  | The amount                                                                                                                                                                                         |
+| [].amountToTransfer.amount                           | number  | The amount to transfer.                                                                                                                                                                            |
 | [].amountToTransfer.currency                         | string  | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                            |
 | [].amountToTransferAlert                             | boolean | True if the amount requested to be transferred cannot be satisfied. If this is true, the transfer cannot be processed until it is resolved.                                                        |
-| [].dateFundsTransferred                              | string  | The date the funds were transferred to the new ISA manager.                                                                                                                                        |
+| [].amountSubscribedInCurrentYear                     | ref     | The amount subscribed in the current year.                                                                                                                                                         |
+| [].amountSubscribedInCurrentYear.amount              | number  | The amount subscribed in the current year.                                                                                                                                                         |
+| [].amountSubscribedInCurrentYear.currency            | string  | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                            |
+| [].dateOfFirstSubscriptionInCurrentYear              | string  | The date of the first subscription in the current year.                                                                                                                                            |
 
 ## `GET /transfersOut`
 
