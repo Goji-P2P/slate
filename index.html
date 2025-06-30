@@ -23022,43 +23022,63 @@ Please note that this endpoint replaces <code>GET /platformApi/investors/{invest
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"dateFundsTransferred"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"amountToTransfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"isaManager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lineTwo"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineTwo"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"townCity"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"townCity"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"postcode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"postcode"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lineOne"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineOne"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lineThree"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"lineThree"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isaId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"isaId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"investorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"investorId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originatorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"originatorId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originatorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"originatorName"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workflowId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"workflowId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isaManager"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISA Manager"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"lineOne"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line 1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lineTwo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lineThree"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"townCity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"town"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"region"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AA1 2AS"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sortCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"112233"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bankReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bankReference"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"bankReference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bankReference"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountNumber"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accountNumber"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sortCode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sortCode"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"transferDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"transferCurrentYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"transferAllPriorYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"transferAll"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"transferDateFromNewIsaManager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"transferPriorYearSubscriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"priorYearAmountToTransfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="w">
+    </span><span class="s2">"transferDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"dateTAFReceived"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-10"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transferDateFromNewIsaManager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-10"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transferAll"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transferCurrentYearSubscriptions"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transferPriorYearSubscriptions"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transferAllPriorYearSubscriptions"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"priorYearAmountToTransfer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transferOutFee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"dateTAFReceived"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-23"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"amountToTransferAlert"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"transferOutFee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dateTimeStarted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-10T02:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dateEmailSentToInvestor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dateEmailSentToPlatform"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dateFundsTransferred"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"thfUrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amountToTransfer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">2010.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"amountToTransferAlert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amountSubscribedInCurrentYear"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"dateOfFirstSubscriptionInCurrentYear"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-09"</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+
 </span></code></pre><h3 id='isa-administration-code-get-investors-investorid-transferout-code-description'>Description</h3>
 <p>Lists transfers out for the investor.</p>
+<h3 id='isa-administration-code-get-investors-investorid-transferout-code-request'>Request</h3>
+<p>The <code>activeOnly</code> parameter takes a <code>true</code> or <code>false</code> value (if not provided behaviour will be <code>false</code>).
+When set to <code>true</code> only Transfers Out where <code>dateFundsTransferred</code> is <code>null</code> will be returned.</p>
 <h3 id='isa-administration-code-get-investors-investorid-transferout-code-response'>Response</h3>
 <table><thead>
 <tr>
@@ -23073,6 +23093,36 @@ Please note that this endpoint replaces <code>GET /platformApi/investors/{invest
 <td>The ID Goji assigns to the Transfer Out request.</td>
 </tr>
 <tr>
+<td>[].isaId</td>
+<td>string</td>
+<td>The ID of the ISA account.</td>
+</tr>
+<tr>
+<td>[].investorId</td>
+<td>string</td>
+<td>The ID of the investor.</td>
+</tr>
+<tr>
+<td>[].originatorId</td>
+<td>string</td>
+<td>The ID of the originator.</td>
+</tr>
+<tr>
+<td>[].originatorName</td>
+<td>string</td>
+<td>The name of the originator.</td>
+</tr>
+<tr>
+<td>[].clientId</td>
+<td>string</td>
+<td>The client ID.</td>
+</tr>
+<tr>
+<td>[].workflowId</td>
+<td>string</td>
+<td>The workflow ID.</td>
+</tr>
+<tr>
 <td>[].isaManager</td>
 <td>ref</td>
 <td></td>
@@ -23083,39 +23133,39 @@ Please note that this endpoint replaces <code>GET /platformApi/investors/{invest
 <td>The name of the ISA manager.</td>
 </tr>
 <tr>
-<td>[].address.lineOne</td>
-<td>string</td>
-<td>The first line of the investor&#39;s address.</td>
+<td>[].isaManager.address</td>
+<td>ref</td>
+<td></td>
 </tr>
 <tr>
-<td>[].address.lineTwo</td>
+<td>[].isaManager.address.lineOne</td>
 <td>string</td>
-<td>The second line of the investor&#39;s address. NOT the town or region.</td>
+<td>The first line of the ISA manager&#39;s address.</td>
 </tr>
 <tr>
-<td>[].address.lineThree</td>
+<td>[].isaManager.address.lineTwo</td>
 <td>string</td>
-<td>The third line of the investor&#39;s address. NOT the town or region.</td>
+<td>The second line of the ISA manager&#39;s address. NOT the town or region.</td>
 </tr>
 <tr>
-<td>[].address.townCity</td>
+<td>[].isaManager.address.lineThree</td>
 <td>string</td>
-<td>The town of the investor&#39;s address.</td>
+<td>The third line of the ISA manager&#39;s address. NOT the town or region.</td>
 </tr>
 <tr>
-<td>[].address.region</td>
+<td>[].isaManager.address.townCity</td>
 <td>string</td>
-<td>The region of the investor&#39;s address.</td>
+<td>The town of the ISA manager&#39;s address.</td>
 </tr>
 <tr>
-<td>[].address.country</td>
+<td>[].isaManager.address.region</td>
 <td>string</td>
-<td>The country of the investor&#39;s address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.</td>
+<td>The region of the ISA manager&#39;s address.</td>
 </tr>
 <tr>
-<td>[].address.postcode</td>
+<td>[].isaManager.address.postCode</td>
 <td>string</td>
-<td>The Post Code of the investor&#39;s address.</td>
+<td>The Post Code of the ISA manager&#39;s address.</td>
 </tr>
 <tr>
 <td>[].isaManager.accountNumber</td>
@@ -23168,14 +23218,54 @@ Please note that this endpoint replaces <code>GET /platformApi/investors/{invest
 <td>True if all ISA subscriptions should be transferred.</td>
 </tr>
 <tr>
-<td>[].priorYearAmountToTransfer.amount</td>
-<td>number</td>
-<td>The amount</td>
+<td>[].transferDetails.priorYearAmountToTransfer</td>
+<td>ref</td>
+<td>The amount of prior year subscriptions to transfer.</td>
 </tr>
 <tr>
-<td>[].priorYearAmountToTransfer.currency</td>
+<td>[].transferDetails.transferOutFee</td>
+<td>ref</td>
+<td>The fee for the transfer out.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferOutFee.amount</td>
+<td>number</td>
+<td>The amount of the transfer out fee.</td>
+</tr>
+<tr>
+<td>[].transferDetails.transferOutFee.currency</td>
 <td>string</td>
 <td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].transferOutFee</td>
+<td>ref</td>
+<td>The transfer out fee (deprecated, use transferDetails.transferOutFee).</td>
+</tr>
+<tr>
+<td>[].dateTimeStarted</td>
+<td>string</td>
+<td>The date and time when the transfer out was started.</td>
+</tr>
+<tr>
+<td>[].dateEmailSentToInvestor</td>
+<td>string</td>
+<td>The date when the email was sent to the investor.</td>
+</tr>
+<tr>
+<td>[].dateEmailSentToPlatform</td>
+<td>string</td>
+<td>The date when the email was sent to the platform.</td>
+</tr>
+<tr>
+<td>[].dateFundsTransferred</td>
+<td>string</td>
+<td>The date the funds were transferred to the new ISA manager.</td>
+</tr>
+<tr>
+<td>[].thfUrl</td>
+<td>string</td>
+<td>The URL for the transfer history form.</td>
 </tr>
 <tr>
 <td>[].amountToTransfer</td>
@@ -23185,7 +23275,7 @@ Please note that this endpoint replaces <code>GET /platformApi/investors/{invest
 <tr>
 <td>[].amountToTransfer.amount</td>
 <td>number</td>
-<td>The amount</td>
+<td>The amount to transfer.</td>
 </tr>
 <tr>
 <td>[].amountToTransfer.currency</td>
@@ -23198,9 +23288,24 @@ Please note that this endpoint replaces <code>GET /platformApi/investors/{invest
 <td>True if the amount requested to be transferred cannot be satisfied. If this is true, the transfer cannot be processed until it is resolved.</td>
 </tr>
 <tr>
-<td>[].dateFundsTransferred</td>
+<td>[].amountSubscribedInCurrentYear</td>
+<td>ref</td>
+<td>The amount subscribed in the current year.</td>
+</tr>
+<tr>
+<td>[].amountSubscribedInCurrentYear.amount</td>
+<td>number</td>
+<td>The amount subscribed in the current year.</td>
+</tr>
+<tr>
+<td>[].amountSubscribedInCurrentYear.currency</td>
 <td>string</td>
-<td>The date the funds were transferred to the new ISA manager.</td>
+<td>The currency in ISO 4217 three character codes eg &#39;GBP&#39;</td>
+</tr>
+<tr>
+<td>[].dateOfFirstSubscriptionInCurrentYear</td>
+<td>string</td>
+<td>The date of the first subscription in the current year.</td>
 </tr>
 </tbody></table>
 <h2 id='isa-administration-get-transfersout'><code>GET /transfersOut</code></h2><pre class="highlight http tab-http"><code><span class="err">
