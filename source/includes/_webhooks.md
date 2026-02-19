@@ -850,3 +850,59 @@ I.e. the money movement for the singular INTEREST_CASH repayment has occurred.
 ```
 This webhook is fired when the system marks the full repayment request as complete.
 I.e. all associated money movements have occurred.
+
+
+
+## INVESTMENT_ACTION_INSTRUCTION_RECEIVED
+```json
+{
+  "id": "INSTRUCT-CREATE-1ef52c88-aa23-45f7-98ff-6e8f5a0bbff9",
+  "type": "INVESTMENT_ACTION_INSTRUCTION_RECEIVED",
+  "dateTime": "2026-02-18T15:43:35.070399466Z",
+  "content": {
+    "batchReference": "f6541d36-288f-49c1-aa57-eb16addfb2ba",
+    "generatedId": "1ef52c88-aa23-45f7-98ff-6e8f5a0bbff9",
+    "clientSuppliedId": "clientSpecifiedWritedownId",
+    "investmentId": "clientInvestmentIdA",
+    "amount": {
+      "amount": 222,
+      "currency": "GBP"
+    },
+    "category": "WRITEDOWN",
+    "status": "PENDING",
+    "postedAt": "2026-02-18T15:43:34.680944400Z",
+    "clearedAt": null
+  }
+}
+```
+This webhook is fired when the system has successfully recorded an investment action instruction via <a href="/#settlement-debt-post-platformapi-settlement-write-down">POST /platformApi/settlement/write-down</a>.
+
+There are two `statuses` that can be reported upon: `PENDING` and `PENDING_DELETE`.
+
+
+## INVESTMENT_ACTION_INSTRUCTION_COMPLETE
+```json
+{
+  "id": "COMPLETE-CREATE-1ef52c88-aa23-45f7-98ff-6e8f5a0bbff9",
+  "type": "INVESTMENT_ACTION_INSTRUCTION_COMPLETE",
+  "dateTime": "2026-02-18T15:43:37.372581220Z",
+  "content": {
+    "batchReference": "f6541d36-288f-49c1-aa57-eb16addfb2ba",
+    "generatedId": "1ef52c88-aa23-45f7-98ff-6e8f5a0bbff9",
+    "clientSuppliedId": "clientSpecifiedWritedownId",
+    "investmentId": "clientInvestmentIdA",
+    "amount": {
+      "amount": 222,
+      "currency": "GBP"
+    },
+    "category": "WRITEDOWN",
+    "status": "CLEARED",
+    "postedAt": "2026-02-18T15:43:34.680944400Z",
+    "clearedAt": "2026-02-18T15:43:37.369061622Z"
+  }
+}
+```
+This webhook is fired when the system marks an investment action instruction as complete.
+I.e. all relevant systems are now up to date with the change.
+
+There are two `statuses` that can be reported upon: `CLEARED` and `DELETED`
