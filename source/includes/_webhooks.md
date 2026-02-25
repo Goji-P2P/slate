@@ -853,7 +853,7 @@ I.e. all associated money movements have occurred.
 
 
 
-## INVESTMENT_ACTION_INSTRUCTION_RECEIVED
+## 🚧: INVESTMENT_ACTION_INSTRUCTION_RECEIVED
 ```json
 {
   "id": "INSTRUCT-CREATE-1ef52c88-aa23-45f7-98ff-6e8f5a0bbff9",
@@ -877,10 +877,14 @@ I.e. all associated money movements have occurred.
 ```
 This webhook is fired when the system has successfully recorded an investment action instruction via <a href="/#settlement-debt-post-platformapi-settlement-write-down">POST /platformApi/settlement/write-down</a>.
 
+<aside class="notice">
+Features denoted with 🚧 are newly added. Presently, these are only available in the sandbox environment.
+</aside>
+
 There are two `statuses` that can be reported upon: `PENDING` and `PENDING_DELETE`.
 
 
-## INVESTMENT_ACTION_INSTRUCTION_COMPLETE
+## 🚧: INVESTMENT_ACTION_INSTRUCTION_COMPLETE
 ```json
 {
   "id": "COMPLETE-CREATE-1ef52c88-aa23-45f7-98ff-6e8f5a0bbff9",
