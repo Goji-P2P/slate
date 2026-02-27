@@ -1415,6 +1415,10 @@ Usage of the <code>INTEREST_CASH</code> type with this endpoint is disabled by d
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='settlement-debt-code-get-investment-clientinvestmentid-code-description'>Description</h3>
 <p>Returns all repayments associated with the specified investment.</p>
+
+<aside class="warning">
+Deprecated and replaced with <a href="#settlement-debt-get-client-investment-clientinvestmentid">GET /client-investment/{clientInvestmentId}</a>.
+</aside>
 <h3 id='settlement-debt-code-get-investment-clientinvestmentid-code-response'>Response</h3>
 <table><thead>
 <tr>
@@ -1509,6 +1513,198 @@ Usage of the <code>INTEREST_CASH</code> type with this endpoint is disabled by d
 <td>The currency that <code>tax.amount</code> is expressed in.</td>
 </tr>
 </tbody></table>
+<h2 id='settlement-debt-get-client-investment-clientinvestmentid'><code>🚧: GET /client-investment/{clientInvestmentId}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/client-investment/{clientInvestmentId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+<span class="na">X-GOJI-CLIENT-ID</span><span class="p">:</span> <span class="s">79f33f3c-86e0-4613-ba49-9fac3c6f0eac</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">X-GOJI-CLIENT-ID</span><span class="p">:</span> <span class="s">79f33f3c-86e0-4613-ba49-9fac3c6f0eac</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"investmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5ab5df55-8e5e-4380-a94c-6fcac3a9a6ac"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clientInvestmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientInvestmentIdA"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">100.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"postedAt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-26T15:07:02Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"LIVE"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"statusCommentary"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"This investment's capital has been partially written down."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"investmentActions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"generatedId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"01180666-234b-4bf4-a879-60196e4f781b"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientSuppliedId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"repaymentId1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"category"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"REPAYMENT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">10.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"INTEREST"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CLEARED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-26T15:07:05Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"batchReferenceId1"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"generatedId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1ef52c88-aa23-45f7-98ff-6e8f5a0bbff9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientSuppliedId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientSpecifiedWritedownId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"category"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"WRITEDOWN"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">50.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"NONE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CLEARED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-02-18T15:43:34Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"batchReferenceId2"</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='settlement-debt-code-get-client-investment-clientinvestmentid-code-description'>Description</h3>
+<p>Returns all investment actions (repayments and write-downs) associated with the specified investment.</p>
+
+<aside class="notice">
+Features denoted with 🚧 are newly added. Presently, these are only available in the sandbox environment.
+</aside>
+<h3 id='settlement-debt-code-get-client-investment-clientinvestmentid-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Value Type</th>
+<th>Value Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>investmentId</td>
+<td>String</td>
+<td>InvestmentId</td>
+<td>System-generated unique investment ID</td>
+</tr>
+<tr>
+<td>clientInvestmentId</td>
+<td>String</td>
+<td>InvestmentId</td>
+<td>The client-specified investment ID</td>
+</tr>
+<tr>
+<td>total.amount</td>
+<td>Number</td>
+<td>Number</td>
+<td>The total amount invested</td>
+</tr>
+<tr>
+<td>total.currency</td>
+<td>String</td>
+<td>ISO 4217</td>
+<td>The currency that the <code>total.amount</code> is in.</td>
+</tr>
+<tr>
+<td>postedAt</td>
+<td>String</td>
+<td>ISO 8601</td>
+<td>The time at which the investment was originally recorded.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>Enum</td>
+<td>The investment status. Possible values are: </br> <code>LIVE</code> </br> <code>MATURED</code> </br></td>
+</tr>
+<tr>
+<td>statusCommentary</td>
+<td>String</td>
+<td>String</td>
+<td>Additional context about the investment status.</td>
+</tr>
+<tr>
+<td>investmentActions</td>
+<td>Array</td>
+<td>Array</td>
+<td>The array of investment actions (repayments and write-downs) associated with the investment</td>
+</tr>
+<tr>
+<td>investmentActions[].generatedId</td>
+<td>String</td>
+<td>String</td>
+<td>System-generated unique identifier for this action</td>
+</tr>
+<tr>
+<td>investmentActions[].clientSuppliedId</td>
+<td>String</td>
+<td>String</td>
+<td>Client-supplied identifier for this action</td>
+</tr>
+<tr>
+<td>investmentActions[].category</td>
+<td>String</td>
+<td>Enum</td>
+<td>The action category. Possible values are: </br> <code>REPAYMENT</code> </br> <code>WRITEDOWN</code> </br></td>
+</tr>
+<tr>
+<td>investmentActions[].amount</td>
+<td>Object</td>
+<td>Object</td>
+<td>Describes the amount of the action.</td>
+</tr>
+<tr>
+<td>investmentActions[].amount.amount</td>
+<td>Number</td>
+<td>Number</td>
+<td>The amount in <code>amount.currency</code>.</td>
+</tr>
+<tr>
+<td>investmentActions[].amount.currency</td>
+<td>String</td>
+<td>ISO 4217</td>
+<td>The currency that <code>amount.amount</code> is expressed in.</td>
+</tr>
+<tr>
+<td>investmentActions[].tax</td>
+<td>Object</td>
+<td>Object</td>
+<td>The amount of tax withheld. Only applicable when category is <code>REPAYMENT</code>. May be null.</td>
+</tr>
+<tr>
+<td>investmentActions[].tax.amount</td>
+<td>Number</td>
+<td>Number</td>
+<td>The amount to be taxed in <code>tax.currency</code>.</td>
+</tr>
+<tr>
+<td>investmentActions[].tax.currency</td>
+<td>String</td>
+<td>ISO 4217</td>
+<td>The currency that <code>tax.amount</code> is expressed in.</td>
+</tr>
+<tr>
+<td>investmentActions[].type</td>
+<td>String</td>
+<td>Enum</td>
+<td>The action type. Possible values are: </br> <code>INTEREST</code> </br> <code>CAPITAL</code> </br> <code>INTEREST_CASH</code> </br> <code>PREMIUM</code> </br> <code>NONE</code> </br></td>
+</tr>
+<tr>
+<td>investmentActions[].status</td>
+<td>String</td>
+<td>Enum</td>
+<td>The action status. Possible values are: </br> <code>PENDING</code> </br> <code>CLEARED</code> </br> <code>PENDING_DELETE</code> </br> <code>DELETED</code> </br></td>
+</tr>
+<tr>
+<td>investmentActions[].createdAt</td>
+<td>String</td>
+<td>ISO 8601</td>
+<td>The time at which the action was created.</td>
+</tr>
+<tr>
+<td>investmentActions[].reference</td>
+<td>String</td>
+<td>String</td>
+<td>The batch reference ID associated with this investment action</td>
+</tr>
+</tbody></table>
 <h2 id='settlement-debt-get-platformapi-settlement-investors-clientid-accounts-accounttype-investments'><code>GET /platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
@@ -1588,3 +1784,209 @@ Usage of the <code>INTEREST_CASH</code> type with this endpoint is disabled by d
 <td>The account making the investment. Possible values are: <br><code>GOJI_INVESTMENT</code><br><code>ISA</code><br></td>
 </tr>
 </tbody></table>
+<h2 id='settlement-debt-post-platformapi-settlement-write-down'><code>🚧: POST /platformApi/settlement/write-down</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">POST</span> <span class="nn">/platformApi/settlement/write-down</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"investorWritedowns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientSpecifiedWritedownId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"investmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientInvestmentIdA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">100.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-02-18T11:51:00Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientSpecifiedWritedownId2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"investmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientInvestmentIdB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">100.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-02-18T11:51:00Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"batchReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f6541d36-288f-49c1-aa57-eb16addfb2ba"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='settlement-debt-code-post-platformapi-settlement-write-down-code-description'>Description</h3>
+<p>Records write-down actions for investments.</p>
+
+<aside class="notice">
+Features denoted with 🚧 are newly added. Presently, these are only available in the sandbox environment.
+</aside>
+
+<ul>
+<li>The system will publish an <a href="/#webhooks-investment_action_instruction_received">INVESTMENT_ACTION_INSTRUCTION_RECEIVED</a> webhook for each investment action once accepted.</li>
+<li>The system will then publish an <a href="/#webhooks-investment_action_instruction_complete">INVESTMENT_ACTION_INSTRUCTION_COMPLETE</a> webhook for each investment action once complete.</li>
+<li>These webhooks will reference <code>batchReference</code> and <code>clientSuppliedId</code> (the <code>investorWritedowns[].id</code> submitted) for reconciliation.</li>
+</ul>
+<h3 id='settlement-debt-code-post-platformapi-settlement-write-down-code-request'>Request</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>investorWritedowns</td>
+<td>array</td>
+<td>The write-down actions per investment.</td>
+<td>required</td>
+</tr>
+<tr>
+<td>investorWritedowns[].id</td>
+<td>string</td>
+<td>A unique client-supplied identifier for this action</td>
+<td>required</td>
+</tr>
+<tr>
+<td>investorWritedowns[].investmentId</td>
+<td>string</td>
+<td>The ID of the investment</td>
+<td>required</td>
+</tr>
+<tr>
+<td>investorWritedowns[].amount</td>
+<td>ref</td>
+<td>The amount to write down</td>
+<td>required</td>
+</tr>
+<tr>
+<td>investorWritedowns[].date</td>
+<td>string</td>
+<td>The date of the write-down (ISO 8601 date format)</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h3 id='settlement-debt-code-post-platformapi-settlement-write-down-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>batchReference</td>
+<td>string</td>
+<td>The unique reference for this batch request</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-debt-get-platformapi-settlement-write-down-batchreference'><code>🚧: GET /platformApi/settlement/write-down/{batchReference}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">GET</span> <span class="nn">/platformApi/settlement/write-down/{batchReference}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"investorWritedowns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientSpecifiedWritedownId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"actionId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1ef52c88-aa23-45f7-98ff-6e8f5a0bbff9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"investmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientInvestmentIdA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-02-18"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientSpecifiedWritedownId2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"actionId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2af63d99-bb34-56g8-a9gg-7f9f6b1ccga0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"investmentId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"clientInvestmentIdB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CLEARED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-02-18"</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"systemCreatedAt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-02-18T15:43:34.680944400Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='settlement-debt-code-get-platformapi-settlement-write-down-batchreference-code-description'>Description</h3>
+<p>Retrieves write-down actions for a specific batch reference.</p>
+<h3 id='settlement-debt-code-get-platformapi-settlement-write-down-batchreference-code-response'>Response</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>investorWritedowns</td>
+<td>array</td>
+<td>The write-down actions in this batch</td>
+</tr>
+<tr>
+<td>investorWritedowns[].id</td>
+<td>string</td>
+<td>Client-supplied identifier for this action</td>
+</tr>
+<tr>
+<td>investorWritedowns[].actionId</td>
+<td>string</td>
+<td>System-generated unique identifier for this action</td>
+</tr>
+<tr>
+<td>investorWritedowns[].investmentId</td>
+<td>string</td>
+<td>The ID of the investment</td>
+</tr>
+<tr>
+<td>investorWritedowns[].amount</td>
+<td>ref</td>
+<td>The amount written down</td>
+</tr>
+<tr>
+<td>investorWritedowns[].status</td>
+<td>string</td>
+<td>The status of the action. Possible values are: <br><code>PENDING</code><br><code>CLEARED</code><br><code>DELETED</code><br><code>PENDING_DELETE</code><br></td>
+</tr>
+<tr>
+<td>investorWritedowns[].date</td>
+<td>string</td>
+<td>The date of the write-down (ISO 8601 date format)</td>
+</tr>
+<tr>
+<td>systemCreatedAt</td>
+<td>string</td>
+<td>The timestamp when the batch was created (ISO 8601 format)</td>
+</tr>
+</tbody></table>
+<h2 id='settlement-debt-delete-platformapi-settlement-write-down-batchreference'><code>🚧: DELETE /platformApi/settlement/write-down/{batchReference}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">DELETE</span> <span class="nn">/platformApi/settlement/write-down/{batchReference}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No Content</span>
+</code></pre><h3 id='settlement-debt-code-delete-platformapi-settlement-write-down-batchreference-code-description'>Description</h3>
+<p>Deletes all write-down actions in a batch.</p>
+
+<ul>
+<li>The system will publish <a href="/#webhooks-investment_action_instruction_received">INVESTMENT_ACTION_INSTRUCTION_RECEIVED</a> webhooks with status <code>PENDING_DELETE</code> for each action.</li>
+<li>The system will then publish <a href="/#webhooks-investment_action_instruction_complete">INVESTMENT_ACTION_INSTRUCTION_COMPLETE</a> webhooks with status <code>DELETED</code> once complete.</li>
+</ul>
+<h2 id='settlement-debt-delete-platformapi-settlement-write-down-batchreference-clientwritedownid'><code>🚧: DELETE /platformApi/settlement/write-down/{batchReference}/{clientWritedownId}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+</span><span class="nf">DELETE</span> <span class="nn">/platformApi/settlement/write-down/{batchReference}/{clientWritedownId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic ...</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No Content</span>
+</code></pre><h3 id='settlement-debt-code-delete-platformapi-settlement-write-down-batchreference-clientwritedownid-code-description'>Description</h3>
+<p>Deletes a specific write-down action within a batch.</p>
+
+<ul>
+<li>The system will publish an <a href="/#webhooks-investment_action_instruction_received">INVESTMENT_ACTION_INSTRUCTION_RECEIVED</a> webhook with status <code>PENDING_DELETE</code>.</li>
+<li>The system will then publish an <a href="/#webhooks-investment_action_instruction_complete">INVESTMENT_ACTION_INSTRUCTION_COMPLETE</a> webhook with status <code>DELETED</code> once complete.</li>
+</ul>
