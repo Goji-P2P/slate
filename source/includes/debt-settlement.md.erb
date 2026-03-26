@@ -865,7 +865,7 @@ Deprecated and replaced with <a href="#settlement-debt-get-client-investment-cli
 | investorRepayments[].tax.amount      | Number | Number                      | The amount to be taxed in `tax.currency`.                                                          |
 | investorRepayments[].tax.currency    | String | ISO 4217                    | The currency that `tax.amount` is expressed in.                                                    |
 
-## `🚧: GET /client-investment/{clientInvestmentId}`
+## `GET /client-investment/{clientInvestmentId}`
 
 ```http
 
@@ -925,9 +925,6 @@ X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eac
 ### Description
 Returns all investment actions (repayments and write-downs) associated with the specified investment.
 
-<aside class="notice">
-Features denoted with 🚧 are newly added. Presently, these are only available in the sandbox environment.
-</aside>
 
 ### Response
 | Name                                  | Type   | Value Type   | Value Description                                                                                  |
@@ -1008,7 +1005,7 @@ Lists recorded investments for an investor.
 | investments[].amount       | ref    | The amount being invested                                                                                       |
 | investments[].accountType  | string | The account making the investment. Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                      |
 
-## `🚧: POST /platformApi/settlement/write-down`
+## `POST /platformApi/settlement/write-down`
 
 ```http
 
@@ -1049,9 +1046,6 @@ Content-Type: application/json
 ### Description
 Records write-down actions for investments.
 
-<aside class="notice">
-Features denoted with 🚧 are newly added. Presently, these are only available in the sandbox environment.
-</aside>
 
  - The system will publish an <a href="/#webhooks-investment_action_instruction_received">INVESTMENT_ACTION_INSTRUCTION_RECEIVED</a> webhook for each investment action once accepted.
  - The system will then publish an <a href="/#webhooks-investment_action_instruction_complete">INVESTMENT_ACTION_INSTRUCTION_COMPLETE</a> webhook for each investment action once complete.
@@ -1070,7 +1064,7 @@ Features denoted with 🚧 are newly added. Presently, these are only available 
 | -------------- | ------ | -------------------------------------------- |
 | batchReference | string | The unique reference for this batch request  |
 
-## `🚧: GET /platformApi/settlement/write-down/{batchReference}`
+## `GET /platformApi/settlement/write-down/{batchReference}`
 
 ```http
 
@@ -1123,7 +1117,7 @@ Retrieves write-down actions for a specific batch reference.
 | investorWritedowns[].date     | string | The date of the write-down (ISO 8601 date format)                              |
 | systemCreatedAt               | string | The timestamp when the batch was created (ISO 8601 format)                     |
 
-## `🚧: DELETE /platformApi/settlement/write-down/{batchReference}`
+## `DELETE /platformApi/settlement/write-down/{batchReference}`
 
 ```http
 
@@ -1142,7 +1136,7 @@ Deletes all write-down actions in a batch.
  - The system will publish <a href="/#webhooks-investment_action_instruction_received">INVESTMENT_ACTION_INSTRUCTION_RECEIVED</a> webhooks with status `PENDING_DELETE` for each action.
  - The system will then publish <a href="/#webhooks-investment_action_instruction_complete">INVESTMENT_ACTION_INSTRUCTION_COMPLETE</a> webhooks with status `DELETED` once complete.
 
-## `🚧: DELETE /platformApi/settlement/write-down/{batchReference}/{clientWritedownId}`
+## `DELETE /platformApi/settlement/write-down/{batchReference}/{clientWritedownId}`
 
 ```http
 
