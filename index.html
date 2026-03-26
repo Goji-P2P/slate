@@ -596,22 +596,22 @@
                     <a href="#settlement-debt-get-investment-clientinvestmentid" class="toc-h2 toc-link" data-title="GET /investment/{clientInvestmentId}"><code>GET /investment/{clientInvestmentId}</code></a>
                   </li>
                   <li>
-                    <a href="#settlement-debt-get-client-investment-clientinvestmentid" class="toc-h2 toc-link" data-title="🚧: GET /client-investment/{clientInvestmentId}"><code>🚧: GET /client-investment/{clientInvestmentId}</code></a>
+                    <a href="#settlement-debt-get-client-investment-clientinvestmentid" class="toc-h2 toc-link" data-title="GET /client-investment/{clientInvestmentId}"><code>GET /client-investment/{clientInvestmentId}</code></a>
                   </li>
                   <li>
                     <a href="#settlement-debt-get-platformapi-settlement-investors-clientid-accounts-accounttype-investments" class="toc-h2 toc-link" data-title="GET /platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments"><code>GET /platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments</code></a>
                   </li>
                   <li>
-                    <a href="#settlement-debt-post-platformapi-settlement-write-down" class="toc-h2 toc-link" data-title="🚧: POST /platformApi/settlement/write-down"><code>🚧: POST /platformApi/settlement/write-down</code></a>
+                    <a href="#settlement-debt-post-platformapi-settlement-write-down" class="toc-h2 toc-link" data-title="POST /platformApi/settlement/write-down"><code>POST /platformApi/settlement/write-down</code></a>
                   </li>
                   <li>
-                    <a href="#settlement-debt-get-platformapi-settlement-write-down-batchreference" class="toc-h2 toc-link" data-title="🚧: GET /platformApi/settlement/write-down/{batchReference}"><code>🚧: GET /platformApi/settlement/write-down/{batchReference}</code></a>
+                    <a href="#settlement-debt-get-platformapi-settlement-write-down-batchreference" class="toc-h2 toc-link" data-title="GET /platformApi/settlement/write-down/{batchReference}"><code>GET /platformApi/settlement/write-down/{batchReference}</code></a>
                   </li>
                   <li>
-                    <a href="#settlement-debt-delete-platformapi-settlement-write-down-batchreference" class="toc-h2 toc-link" data-title="🚧: DELETE /platformApi/settlement/write-down/{batchReference}"><code>🚧: DELETE /platformApi/settlement/write-down/{batchReference}</code></a>
+                    <a href="#settlement-debt-delete-platformapi-settlement-write-down-batchreference" class="toc-h2 toc-link" data-title="DELETE /platformApi/settlement/write-down/{batchReference}"><code>DELETE /platformApi/settlement/write-down/{batchReference}</code></a>
                   </li>
                   <li>
-                    <a href="#settlement-debt-delete-platformapi-settlement-write-down-batchreference-clientwritedownid" class="toc-h2 toc-link" data-title="🚧: DELETE /platformApi/settlement/write-down/{batchReference}/{clientWritedownId}"><code>🚧: DELETE /platformApi/settlement/write-down/{batchReference}/{clientWritedownId}</code></a>
+                    <a href="#settlement-debt-delete-platformapi-settlement-write-down-batchreference-clientwritedownid" class="toc-h2 toc-link" data-title="DELETE /platformApi/settlement/write-down/{batchReference}/{clientWritedownId}"><code>DELETE /platformApi/settlement/write-down/{batchReference}/{clientWritedownId}</code></a>
                   </li>
               </ul>
           </li>
@@ -10951,7 +10951,7 @@ Deprecated and replaced with <a href="#settlement-debt-get-client-investment-cli
 <td>The currency that <code>tax.amount</code> is expressed in.</td>
 </tr>
 </tbody></table>
-<h2 id='settlement-debt-get-client-investment-clientinvestmentid'><code>🚧: GET /client-investment/{clientInvestmentId}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+<h2 id='settlement-debt-get-client-investment-clientinvestmentid'><code>GET /client-investment/{clientInvestmentId}</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/client-investment/{clientInvestmentId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -11003,10 +11003,6 @@ Deprecated and replaced with <a href="#settlement-debt-get-client-investment-cli
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='settlement-debt-code-get-client-investment-clientinvestmentid-code-description'>Description</h3>
 <p>Returns all investment actions (repayments and write-downs) associated with the specified investment.</p>
-
-<aside class="notice">
-Features denoted with 🚧 are newly added. Presently, these are only available in the sandbox environment.
-</aside>
 <h3 id='settlement-debt-code-get-client-investment-clientinvestmentid-code-response'>Response</h3>
 <table><thead>
 <tr>
@@ -11222,7 +11218,7 @@ Features denoted with 🚧 are newly added. Presently, these are only available 
 <td>The account making the investment. Possible values are: <br><code>GOJI_INVESTMENT</code><br><code>ISA</code><br></td>
 </tr>
 </tbody></table>
-<h2 id='settlement-debt-post-platformapi-settlement-write-down'><code>🚧: POST /platformApi/settlement/write-down</code></h2><pre class="highlight http tab-http"><code><span class="err">
+<h2 id='settlement-debt-post-platformapi-settlement-write-down'><code>POST /platformApi/settlement/write-down</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">POST</span> <span class="nn">/platformApi/settlement/write-down</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -11255,10 +11251,6 @@ Features denoted with 🚧 are newly added. Presently, these are only available 
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='settlement-debt-code-post-platformapi-settlement-write-down-code-description'>Description</h3>
 <p>Records write-down actions for investments.</p>
-
-<aside class="notice">
-Features denoted with 🚧 are newly added. Presently, these are only available in the sandbox environment.
-</aside>
 
 <ul>
 <li>The system will publish an <a href="/#webhooks-investment_action_instruction_received">INVESTMENT_ACTION_INSTRUCTION_RECEIVED</a> webhook for each investment action once accepted.</li>
@@ -11319,7 +11311,7 @@ Features denoted with 🚧 are newly added. Presently, these are only available 
 <td>The unique reference for this batch request</td>
 </tr>
 </tbody></table>
-<h2 id='settlement-debt-get-platformapi-settlement-write-down-batchreference'><code>🚧: GET /platformApi/settlement/write-down/{batchReference}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+<h2 id='settlement-debt-get-platformapi-settlement-write-down-batchreference'><code>GET /platformApi/settlement/write-down/{batchReference}</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">GET</span> <span class="nn">/platformApi/settlement/write-down/{batchReference}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -11402,7 +11394,7 @@ Features denoted with 🚧 are newly added. Presently, these are only available 
 <td>The timestamp when the batch was created (ISO 8601 format)</td>
 </tr>
 </tbody></table>
-<h2 id='settlement-debt-delete-platformapi-settlement-write-down-batchreference'><code>🚧: DELETE /platformApi/settlement/write-down/{batchReference}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+<h2 id='settlement-debt-delete-platformapi-settlement-write-down-batchreference'><code>DELETE /platformApi/settlement/write-down/{batchReference}</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">DELETE</span> <span class="nn">/platformApi/settlement/write-down/{batchReference}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -11415,7 +11407,7 @@ Features denoted with 🚧 are newly added. Presently, these are only available 
 <li>The system will publish <a href="/#webhooks-investment_action_instruction_received">INVESTMENT_ACTION_INSTRUCTION_RECEIVED</a> webhooks with status <code>PENDING_DELETE</code> for each action.</li>
 <li>The system will then publish <a href="/#webhooks-investment_action_instruction_complete">INVESTMENT_ACTION_INSTRUCTION_COMPLETE</a> webhooks with status <code>DELETED</code> once complete.</li>
 </ul>
-<h2 id='settlement-debt-delete-platformapi-settlement-write-down-batchreference-clientwritedownid'><code>🚧: DELETE /platformApi/settlement/write-down/{batchReference}/{clientWritedownId}</code></h2><pre class="highlight http tab-http"><code><span class="err">
+<h2 id='settlement-debt-delete-platformapi-settlement-write-down-batchreference-clientwritedownid'><code>DELETE /platformApi/settlement/write-down/{batchReference}/{clientWritedownId}</code></h2><pre class="highlight http tab-http"><code><span class="err">
 </span><span class="nf">DELETE</span> <span class="nn">/platformApi/settlement/write-down/{batchReference}/{clientWritedownId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-sandbox.goji.investments</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
